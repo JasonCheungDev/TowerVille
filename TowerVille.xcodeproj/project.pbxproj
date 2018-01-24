@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD6E20193318004565D4 /* AppDelegate.swift */; };
+		2BB2AD7120193318004565D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7020193318004565D4 /* ViewController.swift */; };
+		2BB2AD7420193318004565D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7220193318004565D4 /* Main.storyboard */; };
+		2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7520193318004565D4 /* Assets.xcassets */; };
+		2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7720193318004565D4 /* LaunchScreen.storyboard */; };
+		2BB2AD8420193318004565D4 /* TowerVilleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD8320193318004565D4 /* TowerVilleTests.swift */; };
+		2BB2AD8F20193318004565D4 /* TowerVilleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD8E20193318004565D4 /* TowerVilleUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2BB2AD8020193318004565D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BB2AD6320193318004565D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BB2AD6A20193318004565D4;
+			remoteInfo = TowerVille;
+		};
+		2BB2AD8B20193318004565D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BB2AD6320193318004565D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BB2AD6A20193318004565D4;
+			remoteInfo = TowerVille;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2BB2AD6B20193318004565D4 /* TowerVille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TowerVille.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB2AD6E20193318004565D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2BB2AD7020193318004565D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2BB2AD7320193318004565D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2BB2AD7520193318004565D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2BB2AD7820193318004565D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2BB2AD7A20193318004565D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BB2AD7F20193318004565D4 /* TowerVilleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TowerVilleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB2AD8320193318004565D4 /* TowerVilleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerVilleTests.swift; sourceTree = "<group>"; };
+		2BB2AD8520193318004565D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BB2AD8A20193318004565D4 /* TowerVilleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TowerVilleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB2AD8E20193318004565D4 /* TowerVilleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerVilleUITests.swift; sourceTree = "<group>"; };
+		2BB2AD9020193318004565D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2BB2AD6820193318004565D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB2AD7C20193318004565D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB2AD8720193318004565D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2BB2AD6220193318004565D4 = {
+			isa = PBXGroup;
+			children = (
+				2BB2AD6D20193318004565D4 /* TowerVille */,
+				2BB2AD8220193318004565D4 /* TowerVilleTests */,
+				2BB2AD8D20193318004565D4 /* TowerVilleUITests */,
+				2BB2AD6C20193318004565D4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2BB2AD6C20193318004565D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2BB2AD6B20193318004565D4 /* TowerVille.app */,
+				2BB2AD7F20193318004565D4 /* TowerVilleTests.xctest */,
+				2BB2AD8A20193318004565D4 /* TowerVilleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2BB2AD6D20193318004565D4 /* TowerVille */ = {
+			isa = PBXGroup;
+			children = (
+				2BB2AD6E20193318004565D4 /* AppDelegate.swift */,
+				2BB2AD7020193318004565D4 /* ViewController.swift */,
+				2BB2AD7220193318004565D4 /* Main.storyboard */,
+				2BB2AD7520193318004565D4 /* Assets.xcassets */,
+				2BB2AD7720193318004565D4 /* LaunchScreen.storyboard */,
+				2BB2AD7A20193318004565D4 /* Info.plist */,
+			);
+			path = TowerVille;
+			sourceTree = "<group>";
+		};
+		2BB2AD8220193318004565D4 /* TowerVilleTests */ = {
+			isa = PBXGroup;
+			children = (
+				2BB2AD8320193318004565D4 /* TowerVilleTests.swift */,
+				2BB2AD8520193318004565D4 /* Info.plist */,
+			);
+			path = TowerVilleTests;
+			sourceTree = "<group>";
+		};
+		2BB2AD8D20193318004565D4 /* TowerVilleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2BB2AD8E20193318004565D4 /* TowerVilleUITests.swift */,
+				2BB2AD9020193318004565D4 /* Info.plist */,
+			);
+			path = TowerVilleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2BB2AD6A20193318004565D4 /* TowerVille */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BB2AD9320193318004565D4 /* Build configuration list for PBXNativeTarget "TowerVille" */;
+			buildPhases = (
+				2BB2AD6720193318004565D4 /* Sources */,
+				2BB2AD6820193318004565D4 /* Frameworks */,
+				2BB2AD6920193318004565D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TowerVille;
+			productName = TowerVille;
+			productReference = 2BB2AD6B20193318004565D4 /* TowerVille.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2BB2AD7E20193318004565D4 /* TowerVilleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BB2AD9620193318004565D4 /* Build configuration list for PBXNativeTarget "TowerVilleTests" */;
+			buildPhases = (
+				2BB2AD7B20193318004565D4 /* Sources */,
+				2BB2AD7C20193318004565D4 /* Frameworks */,
+				2BB2AD7D20193318004565D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BB2AD8120193318004565D4 /* PBXTargetDependency */,
+			);
+			name = TowerVilleTests;
+			productName = TowerVilleTests;
+			productReference = 2BB2AD7F20193318004565D4 /* TowerVilleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2BB2AD8920193318004565D4 /* TowerVilleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BB2AD9920193318004565D4 /* Build configuration list for PBXNativeTarget "TowerVilleUITests" */;
+			buildPhases = (
+				2BB2AD8620193318004565D4 /* Sources */,
+				2BB2AD8720193318004565D4 /* Frameworks */,
+				2BB2AD8820193318004565D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BB2AD8C20193318004565D4 /* PBXTargetDependency */,
+			);
+			name = TowerVilleUITests;
+			productName = TowerVilleUITests;
+			productReference = 2BB2AD8A20193318004565D4 /* TowerVilleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2BB2AD6320193318004565D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "The-Fighting-Mongeese";
+				TargetAttributes = {
+					2BB2AD6A20193318004565D4 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					2BB2AD7E20193318004565D4 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2BB2AD6A20193318004565D4;
+					};
+					2BB2AD8920193318004565D4 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2BB2AD6A20193318004565D4;
+					};
+				};
+			};
+			buildConfigurationList = 2BB2AD6620193318004565D4 /* Build configuration list for PBXProject "TowerVille" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2BB2AD6220193318004565D4;
+			productRefGroup = 2BB2AD6C20193318004565D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2BB2AD6A20193318004565D4 /* TowerVille */,
+				2BB2AD7E20193318004565D4 /* TowerVilleTests */,
+				2BB2AD8920193318004565D4 /* TowerVilleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BB2AD6920193318004565D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
+				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
+				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB2AD7D20193318004565D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB2AD8820193318004565D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2BB2AD6720193318004565D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB2AD7120193318004565D4 /* ViewController.swift in Sources */,
+				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB2AD7B20193318004565D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB2AD8420193318004565D4 /* TowerVilleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB2AD8620193318004565D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB2AD8F20193318004565D4 /* TowerVilleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2BB2AD8120193318004565D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BB2AD6A20193318004565D4 /* TowerVille */;
+			targetProxy = 2BB2AD8020193318004565D4 /* PBXContainerItemProxy */;
+		};
+		2BB2AD8C20193318004565D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BB2AD6A20193318004565D4 /* TowerVille */;
+			targetProxy = 2BB2AD8B20193318004565D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2BB2AD7220193318004565D4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BB2AD7320193318004565D4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2BB2AD7720193318004565D4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BB2AD7820193318004565D4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2BB2AD9120193318004565D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2BB2AD9220193318004565D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2BB2AD9420193318004565D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TowerVille/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVille";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2BB2AD9520193318004565D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TowerVille/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVille";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2BB2AD9720193318004565D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TowerVilleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVilleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TowerVille.app/TowerVille";
+			};
+			name = Debug;
+		};
+		2BB2AD9820193318004565D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TowerVilleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVilleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TowerVille.app/TowerVille";
+			};
+			name = Release;
+		};
+		2BB2AD9A20193318004565D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TowerVilleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVilleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TowerVille;
+			};
+			name = Debug;
+		};
+		2BB2AD9B20193318004565D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TowerVilleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVilleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TowerVille;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BB2AD6620193318004565D4 /* Build configuration list for PBXProject "TowerVille" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB2AD9120193318004565D4 /* Debug */,
+				2BB2AD9220193318004565D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BB2AD9320193318004565D4 /* Build configuration list for PBXNativeTarget "TowerVille" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB2AD9420193318004565D4 /* Debug */,
+				2BB2AD9520193318004565D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BB2AD9620193318004565D4 /* Build configuration list for PBXNativeTarget "TowerVilleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB2AD9720193318004565D4 /* Debug */,
+				2BB2AD9820193318004565D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BB2AD9920193318004565D4 /* Build configuration list for PBXNativeTarget "TowerVilleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB2AD9A20193318004565D4 /* Debug */,
+				2BB2AD9B20193318004565D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2BB2AD6320193318004565D4 /* Project object */;
+}
