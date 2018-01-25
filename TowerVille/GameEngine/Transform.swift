@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Transform{
-    var Position : Vertex
+class Transform {
+    var mPosition : Vertex?
 }

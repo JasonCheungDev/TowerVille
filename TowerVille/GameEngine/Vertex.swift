@@ -9,8 +9,8 @@
 import Foundation
 
 struct Vertex{
-    var x : Float
-    var y : Float
-    var z : Float
+    var x : Float = 0
+    var y : Float = 0
+    var z : Float = 0
     
 }

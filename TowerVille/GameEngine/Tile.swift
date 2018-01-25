@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Tile : VisualObject{
+class Tile : VisualObject {
     
-    var x : uint
-    var y : uint
+    var x : uint = 0
+    var y : uint = 0
     
 }
