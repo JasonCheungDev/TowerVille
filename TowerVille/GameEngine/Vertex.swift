@@ -10,9 +10,9 @@ import Foundation
 import GLKit
 
 struct Vertex{
-    var x : GLfloat = 0
-    var y : GLfloat = 0
-    var z : GLfloat = 0
+    var x : GLfloat = 0.0
+    var y : GLfloat = 0.0
+    var z : GLfloat = 0.0
  
     init(_ x : GLfloat, _ y : GLfloat, _ z : GLfloat)
     {

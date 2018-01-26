@@ -58,6 +58,7 @@ extension ShaderProgram {
                 var actualLength : GLsizei = 0
                 
                 glGetShaderInfoLog(shaderHandle, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
+                NSLog("Shader file: \(shaderFileName) failed to compile.")
                 NSLog(String(validatingUTF8: info)!)
                 exit(1)
             }
@@ -80,6 +81,9 @@ extension ShaderProgram {
         self.programHandle = glCreateProgram()
         glAttachShader(self.programHandle, vertexShaderName)
         glAttachShader(self.programHandle, fragmentShaderName)
+        
+        // ensure the shader file follows this format!
+        glBindAttribLocation(self.programHandle, VertexAttributes.position.rawValue, "vertexPosition_modelSpace");
         
         // glBindAttribLocation(self.programHandle, VertexAttributes.vertexAttribPosition.rawValue, "a_Position") // 정점 보내는 곳을 a_Position 어트리뷰트로 바인딩한다.
         
