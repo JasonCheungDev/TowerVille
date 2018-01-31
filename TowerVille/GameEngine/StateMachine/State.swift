@@ -2,8 +2,13 @@ import Foundation
 
 class State
 {
-    var _next : State = State()
-    var _replacing : Bool = false;
+    var _next : State? = nil
+    var _replacing : Bool = true
+    var _machine : StateMachine
+    
+    init(machine : StateMachine) {
+        _machine = machine
+    }
     
     func update(dt : Float) {
         
@@ -21,7 +26,7 @@ class State
         
     }
     
-    func next() -> State {
+    func next() -> State? {
         return _next
     }
     

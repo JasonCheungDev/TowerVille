@@ -1,8 +1,30 @@
-/*
-#include "PlayState.h"
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+class PlayState : State {
+    
+    override init(machine : StateMachine) {
+        super.init(machine : machine)
+        //
+    }
+    
+    override func update(dt: Float) {
+        
+    }
+    
+    override func draw() {
+        
+    }
+    
+    override func pause() {
+        
+    }
+    
+    override func resume() {
+        
+    }
+    
+}
 
+
+/*
 PlayState::PlayState(StateMachine& machine, sf::RenderWindow& window, bool replace)
 	: State(machine, window, replace)
 {

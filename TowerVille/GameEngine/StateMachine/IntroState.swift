@@ -1,9 +1,29 @@
-/*#include "IntroState.h"
+class IntroState : State {
+    
+    override init(machine : StateMachine) {
+        super.init(machine : machine)
+        //
+    }
+    
+    override func update(dt: Float) {
+        
+    }
+    
+    override func draw() {
+        
+    }
+    
+    override func pause() {
+        
+    }
+    
+    override func resume() {
+        
+    }
+    
+}
 
-#include <SFML/Graphics.hpp>
-#include "StateMachine.h"
-#include "PlayState.h"
-
+/*
 IntroState::IntroState(StateMachine& machine, sf::RenderWindow& window, bool replace)
 	: State(machine, window, replace)
 {
