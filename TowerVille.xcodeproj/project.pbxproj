@@ -42,6 +42,7 @@
 		DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */; };
 		DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B930F2019558B001B9D83 /* ShaderProgram.swift */; };
 		DE5B93122019BF63001B9D83 /* VertexAttributesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */; };
+		DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2DA14201BD9810088797D /* GlkExtensions.swift */; };
 		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
 		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
 		DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexAttributesEnum.swift; sourceTree = "<group>"; };
+		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
 		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				2BEBE64D2019413F008E8FEB /* PhongMaterial.swift */,
 				DE5B930F2019558B001B9D83 /* ShaderProgram.swift */,
 				DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */,
+				DEB2DA14201BD9810088797D /* GlkExtensions.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,
 				2BEBE63620193A5B008E8FEB /* GameManager.swift in Sources */,
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
+				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
 				2BEBE64E2019413F008E8FEB /* PhongMaterial.swift in Sources */,
 				DE5B93122019BF63001B9D83 /* VertexAttributesEnum.swift in Sources */,
 				2BEBE63A20193B5E008E8FEB /* Transform.swift in Sources */,

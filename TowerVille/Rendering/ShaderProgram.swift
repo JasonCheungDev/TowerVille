@@ -11,6 +11,10 @@ import GLKit
 
 class ShaderProgram {
     var programHandle : GLuint = 0
+    var mvpUniform : Int32 = 0
+        var mUniform : Int32 = 0
+        var vUniform : Int32 = 0
+        var pUniform : Int32 = 0
     
     init(vertexShader: String, fragmentShader: String) {
         self.compile(vertexShader: vertexShader, fragmentShader: fragmentShader)
@@ -84,11 +88,13 @@ extension ShaderProgram {
         
         // ensure the shader file follows this format!
         glBindAttribLocation(self.programHandle, VertexAttributes.position.rawValue, "vertexPosition_modelSpace");
+        glBindAttribLocation(self.programHandle, VertexAttributes.colour.rawValue, "vertexColor");
         
-        // glBindAttribLocation(self.programHandle, VertexAttributes.vertexAttribPosition.rawValue, "a_Position") // 정점 보내는 곳을 a_Position 어트리뷰트로 바인딩한다.
-        
-        // link program (doesn't actually use yet)
+        // link program (doesn't actually use yet) (linking makes the table for variable lookup)
         glLinkProgram(self.programHandle)
+
+        // get uniform variables (MUST BE AFTER LINKING)
+        self.mvpUniform = glGetUniformLocation(self.programHandle, "mvp")
         
         // error checking
         var linkStatus : GLint = 0
