@@ -10,7 +10,7 @@ class State
         _machine = machine
     }
     
-    func update(dt : Float) {
+    func update(dt : TimeInterval) {
         
     }
     

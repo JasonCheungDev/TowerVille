@@ -1,12 +1,14 @@
+import Foundation
+
 class IntroState : State {
     
     override init(machine : StateMachine) {
         super.init(machine : machine)
-        //
+        print("intro")
     }
     
-    override func update(dt: Float) {
-        
+    override func update(dt: TimeInterval) {
+        _next = PlayState(machine : _machine)
     }
     
     override func draw() {

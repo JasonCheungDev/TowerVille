@@ -1,3 +1,5 @@
+import Foundation
+
 class StateMachine
 {
     var _resume : Bool = false
@@ -37,7 +39,7 @@ class StateMachine
         _resume = true;
     }
 
-    func update(dt : Float) {
+    func update(dt : TimeInterval) {
         _states.top?.update(dt : dt)
     }
 
