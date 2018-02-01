@@ -7,12 +7,20 @@
 //
 
 import Foundation
+import GLKit
 
 struct Color{
     
-    var r : Float
-    var g : Float
-    var b : Float
-    var a : Float
+    var r : GLfloat = 0
+    var g : GLfloat = 0
+    var b : GLfloat = 0
+    var a : GLfloat = 0
     
+    init(_ r : GLfloat, _ g : GLfloat, _ b : GLfloat, _ a : GLfloat)
+    {
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+    }
 }

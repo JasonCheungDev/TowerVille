@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import GLKit
 
 struct Vertex{
-    var x : Float = 0
-    var y : Float = 0
-    var z : Float = 0
-    
+    var x : GLfloat = 0.0
+    var y : GLfloat = 0.0
+    var z : GLfloat = 0.0
+ 
+    init(_ x : GLfloat, _ y : GLfloat, _ z : GLfloat)
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+    }
 }
