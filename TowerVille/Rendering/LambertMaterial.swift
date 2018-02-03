@@ -7,12 +7,26 @@
 //
 
 import Foundation
+import GLKit
 
 class LambertMaterial : Material{
     
-    var Color : Color?
+    var color : Color = Color(1,0,0,1)
     
-    func LoadMaterial() -> Void{
-        //default implementation
+    private var colorUniformLocation : Int32!
+    
+    init (_ shader : ShaderProgram)
+    {
+        SetupAttributeLocations(shader)
+    }
+    
+    func LoadMaterial() -> Void
+    {
+        glUniform4f(colorUniformLocation, color.r, color.g, color.b, color.a)
+    }
+    
+    private func SetupAttributeLocations(_ shader : ShaderProgram)
+    {
+        colorUniformLocation = glGetUniformLocation(shader.programHandle, "color")
     }
 }

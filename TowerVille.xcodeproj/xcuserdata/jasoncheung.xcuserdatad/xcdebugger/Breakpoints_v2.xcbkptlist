@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TowerVille/ViewController.swift"
-            timestampString = "539344081.4772609"
+            timestampString = "539346876.280322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "cubeColorData"
-            landmarkType = "24">
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "debug_SetupRenderObject()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TowerVille/ViewController.swift"
-            timestampString = "539344081.477675"
+            timestampString = "539346876.280867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "glkView(_:drawIn:)"
             landmarkType = "7">
          </BreakpointContent>

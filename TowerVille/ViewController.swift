@@ -28,7 +28,6 @@ class ViewController: GLKViewController { //UIViewController
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
     
-
     var shader : ShaderProgram!
    
     var debugVisualObjects : [VisualObject] = []
@@ -91,10 +90,16 @@ extension ViewController {
     {
         let vo = VisualObject()
         let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromIndices: DebugData.indices)
+        let mat = LambertMaterial(shader)
+        mat.color = Color(1,0,0,1)
+        ro.Material = mat
         vo.LinkRenderObject(ro)
         
         let vo2 = VisualObject()
         let ro2 = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromIndices: DebugData.indices)
+        let mat2 = LambertMaterial(shader)
+        mat2.color = Color(0,1,0,1)
+        ro2.Material = mat2
         vo2.LinkRenderObject(ro2)
         vo2.y = 2
         vo2.x = 2
