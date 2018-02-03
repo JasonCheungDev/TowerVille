@@ -10,7 +10,7 @@ import Foundation
 
 class Tile : VisualObject {
     
-    var x : uint = 0
-    var y : uint = 0
+    var xCoord : uint = 0
+    var yCoord : uint = 0
     
 }
