@@ -32,6 +32,7 @@ class ViewController: GLKViewController { //UIViewController
    
     var debugVisualObjects : [VisualObject] = []
     
+    //initilization
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -154,13 +155,17 @@ extension ViewController {
 class GLKUpdater : NSObject, GLKViewControllerDelegate {
     
     weak var glkViewController : GLKViewController!
+    var _machine : StateMachine = StateMachine()
     
     init(glkViewController : GLKViewController) {
         self.glkViewController = glkViewController
+        _machine.run(state: IntroState(machine : _machine))
     }
     
     // Update Game Logic
     func glkViewControllerUpdate(_ controller: GLKViewController) {
+        _machine.nextState()
+        _machine.update(dt: controller.timeSinceLastUpdate)
         // collision detection ...
         // GameManager.instance.Update()
     }
