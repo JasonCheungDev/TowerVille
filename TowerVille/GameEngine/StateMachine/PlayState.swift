@@ -2,8 +2,8 @@ import Foundation
 
 class PlayState : State {
     
-    override init(machine : StateMachine) {
-        super.init(machine : machine)
+    override init(machine : StateMachine, replacing : Bool = true) {
+        super.init(machine : machine, replacing: replacing)
         print("play")
     }
     

@@ -6,8 +6,9 @@ class State
     var _replacing : Bool = true
     var _machine : StateMachine
     
-    init(machine : StateMachine) {
+    init(machine : StateMachine, replacing : Bool = true) {
         _machine = machine
+        _replacing = replacing
     }
     
     func update(dt : TimeInterval) {
