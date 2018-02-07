@@ -26,4 +26,13 @@ class VisualObject : GameObject{
         self.RenderObject = nil
     }
     
+    /* Consider below. This would allow RO's to be shared across multiple VO's. 
+     func Draw()
+     {
+        RenderObject.SetVisualObject(self);
+        RenderObject.Draw();
+        RenderObject.SetVisualObject(null);    // optional
+     }
+     */
+    
 }

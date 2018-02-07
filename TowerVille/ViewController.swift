@@ -34,13 +34,14 @@ class ViewController: GLKViewController { //UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupGLcontext()
         setupGLupdater()
         setupShader()
         
         debug_setup()
-        debug_SetupRenderObject()
+        //debug_SetupRenderObject()
+        debug_SetupTiledMap()
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,6 +111,42 @@ extension ViewController {
         
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
+    }
+    
+    func debug_SetupTiledMap()
+    {
+        let halfWidth: Int = 10
+        let halfHeight: Int  = 5
+        // let tileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
+        let grassTileMat = LambertMaterial(shader)
+        grassTileMat.color = Color(0,1,0,1)
+        let mountainTileMat = LambertMaterial(shader)
+        mountainTileMat.color = Color(0,0,0,1)
+        
+        for x in -halfWidth...halfWidth {
+            for y in -halfHeight...halfHeight {
+                var newTile = Tile()
+                newTile.x = Float(x)
+                // newTile.xCoord = uint(x) // or x - maxSize/2
+                newTile.z = Float(y)
+                // newTile.yCoord = uint(y) // or y - maxSize/2
+
+                let newTileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
+
+                if (x == -halfWidth || x == halfWidth || y == -halfHeight || y == halfHeight)
+                {
+                    newTileRo.Material = mountainTileMat
+                }
+                else
+                {
+                    newTileRo.Material = grassTileMat
+                }
+                
+                newTile.LinkRenderObject(newTileRo)
+
+                debugVisualObjects.append(newTile)
+            }
+        }
     }
 }
 
@@ -184,18 +221,18 @@ class DebugData {
     func initialize(_ aspectRatio : CGFloat)
     {
         self.aspectRatio = aspectRatio
-        projectionMatrix = GLKMatrix4MakeOrtho(-17.0, 17.0, -10.0, 10, 1.0, 10.0)
-        projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), Float(aspectRatio), 0.0, 20.0)
+        projectionMatrix = GLKMatrix4MakeOrtho(-10.0, 10.0, -10.0 / Float(aspectRatio), 10 / Float(aspectRatio), 0.0, 100.0)
+        // projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), Float(aspectRatio), 0.0, 20.0)
         
-        var viewPos = GLKVector3Make(2, -3, -10)
-        var modelPos = GLKVector3Make(0, 1, -1)
+        var viewPos = GLKVector3Make(0, 10, 0)
+        var viewTar = GLKVector3Make(0, 0, 0)
         viewMatrix = GLKMatrix4MakeLookAt(
             viewPos.x, viewPos.y, viewPos.z,            // eye
-            modelPos.x, modelPos.y, modelPos.z,   // target direction
-            0, -1, 0)
+            viewTar.x, viewTar.y, viewTar.z,   // target direction
+            0, 0, 1)
         
         modelMatrixCube = GLKMatrix4Identity
-        modelMatrixCube = GLKMatrix4Translate(modelMatrixCube, modelPos.x, modelPos.y, modelPos.z)
+        modelMatrixCube = GLKMatrix4Translate(modelMatrixCube, viewTar.x, viewTar.y, viewTar.z)
         //        modelMatrixCube = GLKMatrix4RotateX(modelMatrixCube, GLKMathDegreesToRadians(30))
         //        modelMatrixCube = GLKMatrix4RotateY(modelMatrixCube, GLKMathDegreesToRadians(60))
         //        modelMatrixCube = GLKMatrix4RotateZ(modelMatrixCube, GLKMathDegreesToRadians(15))
