@@ -10,8 +10,6 @@ import Foundation
 
 protocol Material{
     
-    
-    
     func LoadMaterial() -> Void
     
 }
