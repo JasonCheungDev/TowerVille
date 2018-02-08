@@ -122,8 +122,8 @@ extension ViewController {
         grassTileMat.color = Color(0,1,0,1)
         let mountainTileMat = LambertMaterial(shader)
         mountainTileMat.color = Color(0,0,0,1)
-        let jeff = LambertMaterial(shader)
-        jeff.color = Color(1,0,0,1)
+        let highlightOrigin = LambertMaterial(shader)
+        highlightOrigin.color = Color(1,0,0,1)
         
         for x in 0..<gridSize {
             for y in 0..<gridSize {
@@ -137,7 +137,7 @@ extension ViewController {
 
                 if (x == 0 && y == 0)
                 {
-                    newTileRo.Material = jeff
+                    newTileRo.Material = highlightOrigin
                 }
                 else if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
                 {
