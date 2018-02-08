@@ -240,6 +240,20 @@ class DebugData {
         viewMatrix = GLKMatrix4Multiply(translationMatrix, rotationMatrix)
     }
     
+    func printScreenToWorld(screen_x: Float, screen_y: Float)
+    {
+        var isInvertable = true
+        var inverseProjectionMatrix = GLKMatrix4InvertAndTranspose(projectionMatrix, &isInvertable)
+
+        var vector = GLKMatrix4MultiplyVector3(inverseProjectionMatrix, GLKVector3Make(screen_x, screen_y, 0))
+        
+        var world_x = vector.x / sqrt(2) - 2 * vector.y / sqrt(2)
+        var world_y = vector.x / sqrt(2) + 2 * vector.y / sqrt(2)
+        
+        print("tap x : \(world_x)")
+        print("tap y : \(world_y)")
+    }
+    
     private func setupBuffers()
     {
         glGenBuffers(GLsizei(1), &colorBuffer)
