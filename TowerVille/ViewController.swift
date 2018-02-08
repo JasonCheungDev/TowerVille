@@ -227,21 +227,11 @@ class DebugData {
     {
         self.aspectRatio = aspectRatio
         projectionMatrix = GLKMatrix4MakeOrtho(-10.0, 10.0, -10.0 / Float(aspectRatio), 10 / Float(aspectRatio), 0.0, 100.0)
-        // projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), Float(aspectRatio), 0.0, 20.0)
         
-        var viewPos = GLKVector3Make(0, 10, 0)
-        var viewTar = GLKVector3Make(0, 0, 0)
-        viewMatrix = GLKMatrix4MakeLookAt(
-            viewPos.x, viewPos.y, viewPos.z,            // eye
-            viewTar.x, viewTar.y, viewTar.z,   // target direction
-            0, 0, 1)
-        
-        modelMatrixCube = GLKMatrix4Identity
-        modelMatrixCube = GLKMatrix4Translate(modelMatrixCube, viewTar.x, viewTar.y, viewTar.z)
-        //        modelMatrixCube = GLKMatrix4RotateX(modelMatrixCube, GLKMathDegreesToRadians(30))
-        //        modelMatrixCube = GLKMatrix4RotateY(modelMatrixCube, GLKMathDegreesToRadians(60))
-        //        modelMatrixCube = GLKMatrix4RotateZ(modelMatrixCube, GLKMathDegreesToRadians(15))
-        //        modelMatrixCube = GLKMatrix4Scale(modelMatrixCube, 1, 1, 1)
+        var rotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(45), 1, 0, 0)
+        rotationMatrix = GLKMatrix4Rotate(rotationMatrix, GLKMathDegreesToRadians(45), 0, 1, 0)
+        var translationMatrix = GLKMatrix4MakeTranslation(0, -10, 0)
+        viewMatrix = GLKMatrix4Multiply(rotationMatrix, translationMatrix)
     }
     
     private func setupBuffers()
