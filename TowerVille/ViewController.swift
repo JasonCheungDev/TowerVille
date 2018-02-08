@@ -116,16 +116,17 @@ extension ViewController {
     
     func debug_SetupTiledMap()
     {
-        let halfWidth: Int = 10
-        let halfHeight: Int  = 5
+        let gridSize: Int = 10
         // let tileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
         let grassTileMat = LambertMaterial(shader)
         grassTileMat.color = Color(0,1,0,1)
         let mountainTileMat = LambertMaterial(shader)
         mountainTileMat.color = Color(0,0,0,1)
+        let jeff = LambertMaterial(shader)
+        jeff.color = Color(1,0,0,1)
         
-        for x in -halfWidth...halfWidth {
-            for y in -halfHeight...halfHeight {
+        for x in 0..<gridSize {
+            for y in 0..<gridSize {
                 var newTile = Tile()
                 newTile.x = Float(x)
                 // newTile.xCoord = uint(x) // or x - maxSize/2
@@ -134,7 +135,11 @@ extension ViewController {
 
                 let newTileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
 
-                if (x == -halfWidth || x == halfWidth || y == -halfHeight || y == halfHeight)
+                if (x == 0 && y == 0)
+                {
+                    newTileRo.Material = jeff
+                }
+                else if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
                 {
                     newTileRo.Material = mountainTileMat
                 }
@@ -226,12 +231,13 @@ class DebugData {
     func initialize(_ aspectRatio : CGFloat)
     {
         self.aspectRatio = aspectRatio
-        projectionMatrix = GLKMatrix4MakeOrtho(-10.0, 10.0, -10.0 / Float(aspectRatio), 10 / Float(aspectRatio), 0.0, 100.0)
+        var size : Float = 10 * sqrt(2) // screen width in tiles
+        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, size / 2 / Float(aspectRatio), (0 - size) / 2 / Float(aspectRatio), 0, 100.0)
         
-        var rotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(45), 1, 0, 0)
+        var rotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(-45), 1, 0, 0)
         rotationMatrix = GLKMatrix4Rotate(rotationMatrix, GLKMathDegreesToRadians(45), 0, 1, 0)
-        var translationMatrix = GLKMatrix4MakeTranslation(0, -10, 0)
-        viewMatrix = GLKMatrix4Multiply(rotationMatrix, translationMatrix)
+        var translationMatrix = GLKMatrix4MakeTranslation(0, 0, -10)
+        viewMatrix = GLKMatrix4Multiply(translationMatrix, rotationMatrix)
     }
     
     private func setupBuffers()

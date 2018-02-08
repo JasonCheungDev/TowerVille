@@ -12,10 +12,10 @@ import GLKit
 class Tile : VisualObject {
     
     static let vertexData = [
-        Vertex(0.45,  0, 0.45),
-        Vertex(0.45,  0, -0.45),
-        Vertex(-0.45, 0, 0.45),
-        Vertex(-0.45, 0, -0.45)
+        Vertex(0.9, 0, 0.9),
+        Vertex(0.9, 0, 0.1),
+        Vertex(0.1, 0, 0.9),
+        Vertex(0.1, 0, 0.1)
     ]
     
     static let indexData : [GLubyte] = [
