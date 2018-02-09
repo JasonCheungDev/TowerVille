@@ -45,6 +45,34 @@ class ViewController: GLKViewController { //UIViewController
         debug_SetupTiledMap()
     }
     
+    @IBAction func OnTap(_ sender: UITapGestureRecognizer)
+    {
+        if sender.state == .ended
+        {
+            let touchLocation = sender.location(in:sender.view)
+            let x = Float(touchLocation.x / sender.view!.frame.width)
+            let y = Float(0.5 - touchLocation.y / sender.view!.frame.height)
+            printScreenToWorld(screen_x: x, screen_y: y)
+        }
+    }
+    
+    func printScreenToWorld(screen_x: Float, screen_y: Float)
+    {
+        // undo scaling
+        var temp_x = screen_x * 2 / DebugData.Instance.projectionMatrix.m00
+        var temp_y = screen_y * 2 / DebugData.Instance.projectionMatrix.m11
+        
+        // undo second rotation
+        temp_y *= sqrt(3)
+        
+        // undo first rotation
+        var world_x = (temp_x - temp_y) / sqrt(2)
+        var world_y = (temp_x + temp_y) / sqrt(2)
+        
+        print("world x : \(world_x)")
+        print("world y : \(world_y)")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -230,28 +258,14 @@ class DebugData {
     
     func initialize(_ aspectRatio : CGFloat)
     {
-        self.aspectRatio = aspectRatio
+        var viewPos = GLKVector3Make(10, -10, -10)
+        var viewTar = GLKVector3Make(0, 0, 0)
+        viewMatrix = GLKMatrix4MakeLookAt(viewPos.x, viewPos.y, viewPos.z, // camera position
+                                          viewTar.x, viewTar.y, viewTar.z, // target position
+                                          -1, -1, 1) // camera up vector
+        
         var size : Float = 10 * sqrt(2) // screen width in tiles
-        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, size / 2 / Float(aspectRatio), (0 - size) / 2 / Float(aspectRatio), 0, 100.0)
-        
-        var rotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(-45), 1, 0, 0)
-        rotationMatrix = GLKMatrix4Rotate(rotationMatrix, GLKMathDegreesToRadians(45), 0, 1, 0)
-        var translationMatrix = GLKMatrix4MakeTranslation(0, 0, -10)
-        viewMatrix = GLKMatrix4Multiply(translationMatrix, rotationMatrix)
-    }
-    
-    func printScreenToWorld(screen_x: Float, screen_y: Float)
-    {
-        var isInvertable = true
-        var inverseProjectionMatrix = GLKMatrix4InvertAndTranspose(projectionMatrix, &isInvertable)
-
-        var vector = GLKMatrix4MultiplyVector3(inverseProjectionMatrix, GLKVector3Make(screen_x, screen_y, 0))
-        
-        var world_x = vector.x / sqrt(2) - 2 * vector.y / sqrt(2)
-        var world_y = vector.x / sqrt(2) + 2 * vector.y / sqrt(2)
-        
-        print("tap x : \(world_x)")
-        print("tap y : \(world_y)")
+        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -size / 2 / Float(aspectRatio), size / 2 / Float(aspectRatio), 0, 100.0)
     }
     
     private func setupBuffers()
