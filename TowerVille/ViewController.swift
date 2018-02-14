@@ -112,7 +112,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "PhongVertexShader.glsl", fragmentShader: "PhongFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
     }
     
     func debug_setup()
@@ -126,8 +126,9 @@ extension ViewController {
     {
         let vo = VisualObject()
         let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromNormals: DebugData.cubeNormalData, fromIndices: DebugData.indices)
-        let mat = PhongMaterial(shader)
-        mat.Ambient = Color(1,0,0,1)
+        let mat = LambertMaterial(shader)
+        
+        mat.SurfaceColor = Color(1,0,0,1)
         ro.Material = mat
         vo.LinkRenderObject(ro)
         vo.x = 10
@@ -135,8 +136,8 @@ extension ViewController {
         
         let vo2 = VisualObject()
         let ro2 = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromNormals: DebugData.cubeNormalData, fromIndices: DebugData.indices)
-        let mat2 = PhongMaterial(shader)
-        mat2.Ambient = Color(0,1,0,1)
+        let mat2 = LambertMaterial(shader)
+        mat2.SurfaceColor = Color(0,1,0,1)
         ro2.Material = mat2
         vo2.LinkRenderObject(ro2)
         vo2.y = 2
@@ -156,11 +157,11 @@ extension ViewController {
     {
         let gridSize: Int = 10
         // let tileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        let grassTileMat = LambertMaterial(shader)
+        let grassTileMat = FlatColorMaterial(shader)
         grassTileMat.color = Color(0,1,0,1)
-        let mountainTileMat = LambertMaterial(shader)
+        let mountainTileMat = FlatColorMaterial(shader)
         mountainTileMat.color = Color(0,0,0,1)
-        let highlightOrigin = LambertMaterial(shader)
+        let highlightOrigin = FlatColorMaterial(shader)
         highlightOrigin.color = Color(1,0,0,1)
         
         for x in 0..<gridSize {

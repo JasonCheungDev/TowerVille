@@ -1,5 +1,5 @@
 //
-//  LambertMaterial.swift
+//  PhongMaterial.swift
 //  TowerVille
 //
 //  Created by Daniel Tian on 2018-01-24.
@@ -9,12 +9,15 @@
 import Foundation
 import GLKit
 
-class LambertMaterial : Material{
+class LambertMaterial : Material {
+    var SurfaceColor : Color  = Color(1,0,0,1)
+    var LightColor : Color = Color(1,1,0,1)
+    var LightDirection : Vertex = Vertex(-1, -1, -1)
     
-    var color : Color = Color(1,0,0,1)
-    
-    private var colorUniformLocation : Int32!
-    
+    private var surfaceColorUniformLocation : Int32!
+    private var lightColorUniformLocation : Int32!
+    private var lightDirectionUniformLocation : Int32!
+
     init (_ shader : ShaderProgram)
     {
         SetupAttributeLocations(shader)
@@ -22,11 +25,15 @@ class LambertMaterial : Material{
     
     func LoadMaterial() -> Void
     {
-        glUniform4f(colorUniformLocation, color.r, color.g, color.b, color.a)
+        glUniform4f(surfaceColorUniformLocation, SurfaceColor.r, SurfaceColor.g, SurfaceColor.b, SurfaceColor.a)
+        glUniform4f(lightColorUniformLocation, LightColor.r, LightColor.g, LightColor.b, LightColor.a)
+        glUniform3f(lightDirectionUniformLocation, 1, 1, 1)
     }
     
     private func SetupAttributeLocations(_ shader : ShaderProgram)
     {
-        colorUniformLocation = glGetUniformLocation(shader.programHandle, "color")
+        surfaceColorUniformLocation = glGetUniformLocation(shader.programHandle, "surfaceColor")
+        lightColorUniformLocation = glGetUniformLocation(shader.programHandle, "lightColor");
+        lightDirectionUniformLocation = glGetUniformLocation(shader.programHandle, "lightDirection");
     }
 }

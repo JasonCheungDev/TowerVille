@@ -25,9 +25,9 @@
 		2BEBE64420193F0A008E8FEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64320193F0A008E8FEB /* Tile.swift */; };
 		2BEBE64620193F1D008E8FEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64520193F1D008E8FEB /* Map.swift */; };
 		2BEBE64820193FF5008E8FEB /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64720193FF5008E8FEB /* Material.swift */; };
-		2BEBE64A201940C6008E8FEB /* LambertMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE649201940C6008E8FEB /* LambertMaterial.swift */; };
+		2BEBE64A201940C6008E8FEB /* FlatColorMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE649201940C6008E8FEB /* FlatColorMaterial.swift */; };
 		2BEBE64C20194134008E8FEB /* Farm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64B20194134008E8FEB /* Farm.swift */; };
-		2BEBE64E2019413F008E8FEB /* PhongMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64D2019413F008E8FEB /* PhongMaterial.swift */; };
+		2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */; };
 		2BEBE6502019415A008E8FEB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64F2019415A008E8FEB /* Vertex.swift */; };
 		2BEBE6522019416C008E8FEB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE6512019416C008E8FEB /* Color.swift */; };
 		2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE656201942F4008E8FEB /* ExplodeTower.swift */; };
@@ -44,8 +44,8 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
-		DE5977EE20324E3000E52927 /* PhongVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* PhongVertexShader.glsl */; };
-		DE5977EF20324E3000E52927 /* PhongFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* PhongFragmentShader.glsl */; };
+		DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */; };
+		DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */; };
 		DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */; };
 		DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B930F2019558B001B9D83 /* ShaderProgram.swift */; };
 		DE5B93122019BF63001B9D83 /* VertexAttributesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */; };
@@ -95,9 +95,9 @@
 		2BEBE64320193F0A008E8FEB /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		2BEBE64520193F1D008E8FEB /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		2BEBE64720193FF5008E8FEB /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
-		2BEBE649201940C6008E8FEB /* LambertMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LambertMaterial.swift; sourceTree = "<group>"; };
+		2BEBE649201940C6008E8FEB /* FlatColorMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatColorMaterial.swift; sourceTree = "<group>"; };
 		2BEBE64B20194134008E8FEB /* Farm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Farm.swift; sourceTree = "<group>"; };
-		2BEBE64D2019413F008E8FEB /* PhongMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhongMaterial.swift; sourceTree = "<group>"; };
+		2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LambertMaterial.swift; sourceTree = "<group>"; };
 		2BEBE64F2019415A008E8FEB /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		2BEBE6512019416C008E8FEB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2BEBE656201942F4008E8FEB /* ExplodeTower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodeTower.swift; sourceTree = "<group>"; };
@@ -114,8 +114,8 @@
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		DE5977EC20324E3000E52927 /* PhongVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongVertexShader.glsl; sourceTree = "<group>"; };
-		DE5977ED20324E3000E52927 /* PhongFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongFragmentShader.glsl; sourceTree = "<group>"; };
+		DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertVertexShader.glsl; sourceTree = "<group>"; };
+		DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertFragmentShader.glsl; sourceTree = "<group>"; };
 		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
 		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
 		DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexAttributesEnum.swift; sourceTree = "<group>"; };
@@ -207,8 +207,8 @@
 			children = (
 				2BEBE64120193E96008E8FEB /* RenderObject.swift */,
 				2BEBE64720193FF5008E8FEB /* Material.swift */,
-				2BEBE649201940C6008E8FEB /* LambertMaterial.swift */,
-				2BEBE64D2019413F008E8FEB /* PhongMaterial.swift */,
+				2BEBE649201940C6008E8FEB /* FlatColorMaterial.swift */,
+				2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */,
 				DE5B930F2019558B001B9D83 /* ShaderProgram.swift */,
 				DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */,
 				DEB2DA14201BD9810088797D /* GlkExtensions.swift */,
@@ -284,8 +284,8 @@
 		DEE44739201952CA009044FB /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				DE5977ED20324E3000E52927 /* PhongFragmentShader.glsl */,
-				DE5977EC20324E3000E52927 /* PhongVertexShader.glsl */,
+				DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */,
+				DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */,
 				DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */,
 				DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */,
 			);
@@ -401,12 +401,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
-				DE5977EE20324E3000E52927 /* PhongVertexShader.glsl in Resources */,
+				DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
 				DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */,
 				DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */,
-				DE5977EF20324E3000E52927 /* PhongFragmentShader.glsl in Resources */,
+				DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +451,7 @@
 				2BEBE63620193A5B008E8FEB /* GameManager.swift in Sources */,
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
-				2BEBE64E2019413F008E8FEB /* PhongMaterial.swift in Sources */,
+				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
 				DE5B93122019BF63001B9D83 /* VertexAttributesEnum.swift in Sources */,
 				2BEBE63A20193B5E008E8FEB /* Transform.swift in Sources */,
 				2BEBE669201943BE008E8FEB /* SawMill.swift in Sources */,
@@ -462,7 +462,7 @@
 				3C01A27D202267D800BB0D7C /* Stack.swift in Sources */,
 				2BEBE64620193F1D008E8FEB /* Map.swift in Sources */,
 				3C01A279202262CE00BB0D7C /* StateMachine.swift in Sources */,
-				2BEBE64A201940C6008E8FEB /* LambertMaterial.swift in Sources */,
+				2BEBE64A201940C6008E8FEB /* FlatColorMaterial.swift in Sources */,
 				2BEBE63E20193E53008E8FEB /* Tower.swift in Sources */,
 				2BEBE65920194304008E8FEB /* CannonTower.swift in Sources */,
 				2BEBE6522019416C008E8FEB /* Color.swift in Sources */,

@@ -8,8 +8,7 @@ out lowp vec4 color;
 
 void main()
 {
-    color = vec4(normalize(fragmentNormal), 1);
-//    color = fragmentColor;
+    color = fragmentColor;
 }
 
 /* Notes:
