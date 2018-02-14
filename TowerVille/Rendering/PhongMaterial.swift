@@ -9,14 +9,17 @@
 import Foundation
 import GLKit
 
-class PhongMaterial{
+class PhongMaterial : Material {
     var Ambient : Color  = Color(1,0,0,1)
     var Diffuse : Color  = Color(0,1,0,1)
     var Specular : Color = Color(0,0,1,1)
+    var LightColor : Color = Color(1,1,0,1)
     
     private var ambientUniformLocation : Int32!
     private var diffuseUniformLocation : Int32!
     private var specularUniformLocation : Int32!
+    private var lightColorUniformLocation : Int32!
+    private var lightDirectionUniformLocation : Int32!
 
     init (_ shader : ShaderProgram)
     {
@@ -26,15 +29,14 @@ class PhongMaterial{
     func LoadMaterial() -> Void
     {
         glUniform4f(ambientUniformLocation, Ambient.r, Ambient.g, Ambient.b, Ambient.a)
-        glUniform4f(diffuseUniformLocation, Diffuse.r, Diffuse.g, Diffuse.b, Diffuse.a)
-        glUniform4f(specularUniformLocation, Specular.r, Specular.g, Specular.b, Specular.a)
-
+        glUniform4f(lightColorUniformLocation, Diffuse.r, Diffuse.g, Diffuse.b, Diffuse.a)
+        glUniform3f(lightDirectionUniformLocation, 1, 1, 1)
     }
     
     private func SetupAttributeLocations(_ shader : ShaderProgram)
     {
         ambientUniformLocation = glGetUniformLocation(shader.programHandle, "ambientColor")
-        ambientUniformLocation = glGetUniformLocation(shader.programHandle, "diffuseColor")
-        ambientUniformLocation = glGetUniformLocation(shader.programHandle, "specularColor")
+        lightColorUniformLocation = glGetUniformLocation(shader.programHandle, "lightColor");
+        lightDirectionUniformLocation = glGetUniformLocation(shader.programHandle, "lightDirection");
     }
 }

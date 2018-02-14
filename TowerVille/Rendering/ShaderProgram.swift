@@ -12,9 +12,9 @@ import GLKit
 class ShaderProgram {
     var programHandle : GLuint = 0
     var mvpUniform : Int32 = 0
-        var mUniform : Int32 = 0
-        var vUniform : Int32 = 0
-        var pUniform : Int32 = 0
+    var mUniform : Int32 = 0
+    var vUniform : Int32 = 0
+    var pUniform : Int32 = 0
     
     init(vertexShader: String, fragmentShader: String) {
         self.compile(vertexShader: vertexShader, fragmentShader: fragmentShader)
@@ -87,15 +87,18 @@ extension ShaderProgram {
         glAttachShader(self.programHandle, fragmentShaderName)
         
         // ensure the shader file follows this format!
-        glBindAttribLocation(self.programHandle, VertexAttributes.position.rawValue, "vertexPosition_modelSpace");
-        glBindAttribLocation(self.programHandle, VertexAttributes.colour.rawValue, "vertexColor");
+        glBindAttribLocation(self.programHandle, VertexAttributes.position.rawValue, "vertexPosition");
+        glBindAttribLocation(self.programHandle, VertexAttributes.normal.rawValue, "vertexNormal")
         
         // link program (doesn't actually use yet) (linking makes the table for variable lookup)
         glLinkProgram(self.programHandle)
 
         // get uniform variables (MUST BE AFTER LINKING)
         self.mvpUniform = glGetUniformLocation(self.programHandle, "mvp")
-        
+        self.mUniform = glGetUniformLocation(self.programHandle, "m")
+        self.vUniform = glGetUniformLocation(self.programHandle, "v")
+        self.pUniform = glGetUniformLocation(self.programHandle, "p")
+
         // error checking
         var linkStatus : GLint = 0
         glGetProgramiv(self.programHandle, GLenum(GL_LINK_STATUS), &linkStatus)

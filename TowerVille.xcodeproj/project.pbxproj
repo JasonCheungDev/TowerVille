@@ -44,6 +44,8 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
+		DE5977EE20324E3000E52927 /* PhongVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* PhongVertexShader.glsl */; };
+		DE5977EF20324E3000E52927 /* PhongFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* PhongFragmentShader.glsl */; };
 		DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */; };
 		DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B930F2019558B001B9D83 /* ShaderProgram.swift */; };
 		DE5B93122019BF63001B9D83 /* VertexAttributesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */; };
@@ -107,16 +109,18 @@
 		2BEBE66320194382008E8FEB /* Aggro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aggro.swift; sourceTree = "<group>"; };
 		2BEBE666201943B1008E8FEB /* Mine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine.swift; sourceTree = "<group>"; };
 		2BEBE668201943BE008E8FEB /* SawMill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SawMill.swift; sourceTree = "<group>"; };
-		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
-		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
-		DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexAttributesEnum.swift; sourceTree = "<group>"; };
-		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
-		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 		3C01A273202262CD00BB0D7C /* StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		3C01A274202262CD00BB0D7C /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		DE5977EC20324E3000E52927 /* PhongVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongVertexShader.glsl; sourceTree = "<group>"; };
+		DE5977ED20324E3000E52927 /* PhongFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongFragmentShader.glsl; sourceTree = "<group>"; };
+		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
+		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
+		DE5B93112019BF63001B9D83 /* VertexAttributesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexAttributesEnum.swift; sourceTree = "<group>"; };
+		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
+		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,15 +270,6 @@
 			path = Farm;
 			sourceTree = "<group>";
 		};
-		DEE44739201952CA009044FB /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */,
-				DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */,
-			);
-			path = Shaders;
-			sourceTree = "<group>";
-		};
 		3C01A2712022621A00BB0D7C /* StateMachine */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +279,17 @@
 				3C01A273202262CD00BB0D7C /* StateMachine.swift */,
 			);
 			path = StateMachine;
+			sourceTree = "<group>";
+		};
+		DEE44739201952CA009044FB /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				DE5977ED20324E3000E52927 /* PhongFragmentShader.glsl */,
+				DE5977EC20324E3000E52927 /* PhongVertexShader.glsl */,
+				DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */,
+				DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,10 +401,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
+				DE5977EE20324E3000E52927 /* PhongVertexShader.glsl in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
 				DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */,
 				DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */,
+				DE5977EF20324E3000E52927 /* PhongFragmentShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

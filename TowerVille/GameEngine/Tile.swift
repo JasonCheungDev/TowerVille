@@ -18,6 +18,13 @@ class Tile : VisualObject {
         Vertex(0.1, 0, 0.1)
     ]
     
+    static let normalData = [
+        Vertex(0,1,0),
+        Vertex(0,1,0),
+        Vertex(0,1,0),
+        Vertex(0,1,0)
+    ]
+    
     static let indexData : [GLubyte] = [
         0,1,2,
         1,2,3

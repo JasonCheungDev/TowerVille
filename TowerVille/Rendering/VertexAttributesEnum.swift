@@ -12,4 +12,5 @@ import GLKit
 enum VertexAttributes : GLuint {
     case position = 0
     case colour = 1
+    case normal = 2 
 }

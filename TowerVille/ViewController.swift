@@ -41,8 +41,8 @@ class ViewController: GLKViewController { //UIViewController
         setupShader()
         
         debug_setup()
-        //debug_SetupRenderObject()
-        debug_SetupTiledMap()
+        debug_SetupRenderObject()
+        // debug_SetupTiledMap()
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -79,12 +79,14 @@ class ViewController: GLKViewController { //UIViewController
 
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
         glClearColor(0.2, 0.4, 0.6, 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
+
         
         shader.prepareToDraw()  // warning: May need to move this to the RenderObject (to ensure right shader is used)
         
         for vo in debugVisualObjects
         {
+            vo.yRot += 0.5
             vo.RenderObject?.Draw()
         }
     }
@@ -97,7 +99,11 @@ extension ViewController {
     func setupGLcontext() {
         glkView = self.view as! GLKView
         glkView.context = EAGLContext(api: .openGLES3)! // Warning: Doesn't work on iPods
+        glkView.drawableDepthFormat = .format16         // for depth testing
         EAGLContext.setCurrent(glkView.context)
+        
+        glEnable(GLenum(GL_DEPTH_TEST))
+        glEnable(GLenum(GL_CULL_FACE))
     }
     
     func setupGLupdater() {
@@ -106,7 +112,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "SimpleVertexShader.glsl", fragmentShader: "SimpleFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "PhongVertexShader.glsl", fragmentShader: "PhongFragmentShader.glsl")
     }
     
     func debug_setup()
@@ -119,20 +125,24 @@ extension ViewController {
     func debug_SetupRenderObject()
     {
         let vo = VisualObject()
-        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromIndices: DebugData.indices)
-        let mat = LambertMaterial(shader)
-        mat.color = Color(1,0,0,1)
+        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromNormals: DebugData.cubeNormalData, fromIndices: DebugData.indices)
+        let mat = PhongMaterial(shader)
+        mat.Ambient = Color(1,0,0,1)
         ro.Material = mat
         vo.LinkRenderObject(ro)
+        vo.x = 10
+        vo.yRot = 180
         
         let vo2 = VisualObject()
-        let ro2 = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromIndices: DebugData.indices)
-        let mat2 = LambertMaterial(shader)
-        mat2.color = Color(0,1,0,1)
+        let ro2 = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromNormals: DebugData.cubeNormalData, fromIndices: DebugData.indices)
+        let mat2 = PhongMaterial(shader)
+        mat2.Ambient = Color(0,1,0,1)
         ro2.Material = mat2
         vo2.LinkRenderObject(ro2)
         vo2.y = 2
-        vo2.x = 2
+        vo2.x = 5
+        vo2.xRot = 15
+        vo2.yRot = 230
         
         // TODO: Should be auto gen by GameObject
         vo.ID = "Debug VO 1"
@@ -161,7 +171,7 @@ extension ViewController {
                 newTile.z = Float(y)
                 // newTile.yCoord = uint(y) // or y - maxSize/2
 
-                let newTileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
+                let newTileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromNormals: Tile.normalData, fromIndices: Tile.indexData)
 
                 if (x == 0 && y == 0)
                 {
@@ -208,41 +218,86 @@ class DebugData {
     
     static let Instance = DebugData()
     
+    // Can't share data (for cubes) when normals/UV's are required
     static let cubePositionData : [Vertex] = [
-        Vertex(-1.0, -1.0, -1.0),
-        Vertex( 1.0, -1.0, -1.0),
-        Vertex( 1.0,  1.0, -1.0),
-        Vertex(-1.0,  1.0, -1.0),
-        Vertex(-1.0, -1.0,  1.0),
-        Vertex( 1.0, -1.0,  1.0),
-        Vertex( 1.0,  1.0,  1.0),
-        Vertex(-1.0,  1.0,  1.0)
+        // Front
+        Vertex( 1, -1, 1),
+        Vertex( 1,  1, 1),
+        Vertex(-1,  1, 1),
+        Vertex(-1, -1, 1),
+        // Back
+        Vertex(-1, -1, -1),
+        Vertex(-1,  1, -1),
+        Vertex( 1,  1, -1),
+        Vertex( 1, -1, -1),
+        // Left
+        Vertex(-1, -1,  1),
+        Vertex(-1,  1,  1),
+        Vertex(-1,  1, -1),
+        Vertex(-1, -1, -1),
+        // Right
+        Vertex( 1, -1, -1),
+        Vertex( 1,  1, -1),
+        Vertex( 1,  1,  1),
+        Vertex( 1, -1,  1),
+        // Top
+        Vertex( 1,  1,  1),
+        Vertex( 1,  1, -1),
+        Vertex(-1,  1, -1),
+        Vertex(-1,  1,  1),
+        // Bottom
+        Vertex( 1, -1, -1),
+        Vertex( 1, -1,  1),
+        Vertex(-1, -1,  1),
+        Vertex(-1, -1, -1),
+    ]
+    
+    static let cubeNormalData : [Vertex] = [
+        Vertex( 0, 0, 1),
+        Vertex( 0, 0, 1),
+        Vertex( 0, 0, 1),
+        Vertex( 0, 0, 1),
+        Vertex( 0, 0,-1),
+        Vertex( 0, 0,-1),
+        Vertex( 0, 0,-1),
+        Vertex( 0, 0,-1),
+        Vertex(-1, 0, 0),
+        Vertex(-1, 0, 0),
+        Vertex(-1, 0, 0),
+        Vertex(-1, 0, 0),
+        Vertex( 1, 0, 0),
+        Vertex( 1, 0, 0),
+        Vertex( 1, 0, 0),
+        Vertex( 1, 0, 0),
+        Vertex( 0, 1, 0),
+        Vertex( 0, 1, 0),
+        Vertex( 0, 1, 0),
+        Vertex( 0, 1, 0),
+        Vertex( 0,-1, 0),
+        Vertex( 0,-1, 0),
+        Vertex( 0,-1, 0),
+        Vertex( 0,-1, 0)
     ]
     
     static let indices : [GLubyte] = [
-        0, 1, 2,    // front
+        // Front
+        0, 1, 2,
         2, 3, 0,
-        4, 5, 6,    // back
+        // Back
+        4, 5, 6,
         6, 7, 4,
-        1, 2, 5,    // right
-        5, 6, 2,
-        0, 3, 4,    // left
-        4, 7, 3,
-        2, 3, 6,    // top
-        6, 7, 3,
-        0, 1, 4,    // bot
-        4, 5, 1
-    ]
-    
-    static let cubeColorData : [Color] = [
-        Color(1.0,  0.0,  0.0, 1.0),
-        Color(0.0,  1.0,  0.0, 1.0),
-        Color(0.0,  0.0,  1.0, 1.0),
-        Color(1.0,  1.0,  0.0, 1.0),
-        Color(1.0,  0.0,  0.0, 1.0),
-        Color(0.0,  1.0,  0.0, 1.0),
-        Color(0.0,  0.0,  1.0, 1.0),
-        Color(1.0,  1.0,  0.0, 1.0),
+        // Left
+        8, 9, 10,
+        10, 11, 8,
+        // Right
+        12, 13, 14,
+        14, 15, 12,
+        // Top
+        16, 17, 18,
+        18, 19, 16,
+        // Bottom
+        20, 21, 22,
+        22, 23, 20
     ]
     
     var projectionMatrix : GLKMatrix4!
@@ -270,11 +325,11 @@ class DebugData {
     
     private func setupBuffers()
     {
-        glGenBuffers(GLsizei(1), &colorBuffer)
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), colorBuffer)
-        let ccount = DebugData.cubeColorData.count
-        let csize =  MemoryLayout<Color>.size
-        glBufferData(GLenum(GL_ARRAY_BUFFER), ccount * csize, DebugData.cubeColorData, GLenum(GL_STATIC_DRAW))
+//        glGenBuffers(GLsizei(1), &colorBuffer)
+//        glBindBuffer(GLenum(GL_ARRAY_BUFFER), colorBuffer)
+//        let ccount = DebugData.cubeColorData.count
+//        let csize =  MemoryLayout<Color>.size
+//        glBufferData(GLenum(GL_ARRAY_BUFFER), ccount * csize, DebugData.cubeColorData, GLenum(GL_STATIC_DRAW))
     }
 }
 
