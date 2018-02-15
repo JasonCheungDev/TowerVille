@@ -12,18 +12,39 @@ import GLKit
 class RenderObject{
     
     var gameObject : VisualObject?
+    var material : Material?
+    var texture: GLuint = 0
+
+    var currentModelView : GLKMatrix4 = GLKMatrix4()
+
+    private var Shader : ShaderProgram!
+    private var VertexDatas : [VertexData] = []
+    private var Indices : [GLubyte] = []
+    private var vao : GLuint = 0
+    private var vertexBuffer : GLuint = 0
+    private var indexBuffer : GLuint = 0
     
-    var Shader : ShaderProgram!
-    var Material : Material?
-    var Vertices : [Vertex] = []
-    var Normals : [Vertex] = []
-    var Indices : [GLubyte] = []
     
-    var vertexBuffer : GLuint = 0
-    var normalBuffer : GLuint = 0
-    var indexBuffer : GLuint = 0
+    init(fromShader shader: ShaderProgram, fromVertices vertices: [VertexData], fromIndices indices: [GLubyte])
+    {
+        self.Shader = shader
+        self.VertexDatas = vertices
+        self.Indices = indices
+        
+        self.SetupBuffers()
+    }
     
+    func modelMatrix() -> GLKMatrix4 {
+        var modelMatrix : GLKMatrix4 = GLKMatrix4Identity
+        modelMatrix = GLKMatrix4Translate(modelMatrix, self.gameObject!.x, self.gameObject!.y, self.gameObject!.z)
+        modelMatrix = GLKMatrix4Rotate(modelMatrix, self.gameObject!.xRot, 1, 0, 0)
+        modelMatrix = GLKMatrix4Rotate(modelMatrix, self.gameObject!.yRot, 0, 1, 0)
+        modelMatrix = GLKMatrix4Rotate(modelMatrix, self.gameObject!.zRot, 0, 0, 1)
+        // TODO: modelMatrix = GLKMatrix4Scale(modelMatrix, self.scale, self.scale, self.scale)
+        return modelMatrix
+    }
     
+    // Draws the object as if it had no parent (Use for now until drawWithParent is implemented)
     func Draw() -> Void{
         
         if (gameObject == nil)
@@ -37,76 +58,120 @@ class RenderObject{
         }
         
         // Load custom presets
-        Material?.LoadMaterial()
+        material?.LoadMaterial()
         
-        var modelMatrix = GLKMatrix4MakeTranslation(self.gameObject!.x, self.gameObject!.y, self.gameObject!.z)
-        modelMatrix = GLKMatrix4RotateX(modelMatrix, GLKMathDegreesToRadians(self.gameObject!.xRot))
-        modelMatrix = GLKMatrix4RotateY(modelMatrix, GLKMathDegreesToRadians(self.gameObject!.yRot))
-        modelMatrix = GLKMatrix4RotateZ(modelMatrix, GLKMathDegreesToRadians(self.gameObject!.zRot))
+        // Load positional uniforms
+        let mv = GLKMatrix4Multiply(DebugData.Instance.viewMatrix, self.modelMatrix())
+        glUniformMatrix4fv(self.Shader.modelViewUniform, 1, GLboolean(GL_FALSE), mv.array)
+        glUniformMatrix4fv(self.Shader.projectionUniform, 1, GLboolean(GL_FALSE), DebugData.Instance.projectionMatrix.array)
 
-        // TODO: Replace DebugData with GameManager.Instance?
-//        var mvp = GLKMatrix4Multiply(DebugData.Instance.projectionMatrix, DebugData.Instance.viewMatrix)
-//        mvp = GLKMatrix4Multiply(mvp, modelMatrix)
-        glUniformMatrix4fv(self.Shader.mUniform, 1, GLboolean(GL_FALSE), modelMatrix.array)
-        glUniformMatrix4fv(self.Shader.vUniform, 1, GLboolean(GL_FALSE), DebugData.Instance.viewMatrix.array)
-        glUniformMatrix4fv(self.Shader.pUniform, 1, GLboolean(GL_FALSE), DebugData.Instance.projectionMatrix.array)
+//        glActiveTexture(GLenum(GL_TEXTURE1))
+//        glBindTexture(GLenum(GL_TEXTURE_2D), self.texture)
+//        print(self.texture)
+//        glUniform1i(self.Shader.textureUniform, 1)
         
-        glEnableVertexAttribArray(VertexAttributes.position.rawValue)
+        // Load vertex data & draw
+        glBindVertexArrayOES(vao)
+        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(Indices.count), GLenum(GL_UNSIGNED_BYTE), nil)
+        glBindVertexArrayOES(0)
+    }
+    
+    // Draws the object if it has a parent. (For root objects pass in just the ViewMatrix)
+    func drawWithParentModelViewMatrix(_ parentModelViewMatrix: GLKMatrix4) {
+        
+        // Calculate new ModelView
+        self.currentModelView = GLKMatrix4Multiply(parentModelViewMatrix, self.modelMatrix())
+        
+        // Load custom presets
+        material?.LoadMaterial()
+        
+        // Load positional uniforms
+        glUniformMatrix4fv(self.Shader.modelViewUniform, 1, GLboolean(GL_FALSE), self.currentModelView.array)
+        glUniformMatrix4fv(self.Shader.projectionUniform, 1, GLboolean(GL_FALSE), DebugData.Instance.projectionMatrix.array)
+        glActiveTexture(GLenum(GL_TEXTURE1))
+        glBindTexture(GLenum(GL_TEXTURE_2D), self.texture)
+        glUniform1i(self.Shader.textureUniform, 1)
+        
+        // Load vertex data & draw
+        glBindVertexArrayOES(vao)
+        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(Indices.count), GLenum(GL_UNSIGNED_BYTE), nil)
+        glBindVertexArrayOES(0)
+    }
+
+    private func SetupBuffers() {
+
+        // Create a "profile" to switch to (allows switching multiple VBO's at once)
+        glGenVertexArraysOES(1, &vao)
+        glBindVertexArrayOES(vao)
+
+        
+        // Create buffers
+        glGenBuffers(GLsizei(1), &vertexBuffer)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
+        glBufferData(GLenum(GL_ARRAY_BUFFER), VertexDatas.count * MemoryLayout<VertexData>.size, VertexDatas, GLenum(GL_STATIC_DRAW))
+        
+        glGenBuffers(GLsizei(1), &indexBuffer)
+        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count * MemoryLayout<GLubyte>.size, Indices, GLenum(GL_STATIC_DRAW))
+        
+        
+        // Enable attributes (in)
+        glEnableVertexAttribArray(VertexAttributes.position.rawValue)
         glVertexAttribPointer(
             VertexAttributes.position.rawValue,
             3,
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
-            GLsizei(MemoryLayout<Vertex>.size), nil) // or BUFFER_OFFSET(0)
+            GLsizei(MemoryLayout<VertexData>.size), BUFFER_OFFSET(0))
+        
+        // TODO REMOVE
+        glEnableVertexAttribArray(VertexAttributes.color.rawValue)
+        glVertexAttribPointer(
+            VertexAttributes.color.rawValue,
+            4,
+            GLenum(GL_FLOAT),
+            GLboolean(GL_FALSE),
+            GLsizei(MemoryLayout<VertexData>.size), BUFFER_OFFSET(3 * MemoryLayout<GLfloat>.size)) // x, y, z | r, g, b, a :: offset is 3*sizeof(GLfloat)
+        
+        glEnableVertexAttribArray(VertexAttributes.texCoord.rawValue)
+        glVertexAttribPointer(
+            VertexAttributes.texCoord.rawValue,
+            2,
+            GLenum(GL_FLOAT),
+            GLboolean(GL_FALSE),
+            GLsizei(MemoryLayout<VertexData>.size), BUFFER_OFFSET((3+4) * MemoryLayout<GLfloat>.size)) // x, y, z | r, g, b, a | u, v :: offset is (3+4)*sizeof(GLfloat)
         
         glEnableVertexAttribArray(VertexAttributes.normal.rawValue)
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), normalBuffer)
         glVertexAttribPointer(
             VertexAttributes.normal.rawValue,
             3,
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
-            GLsizei(MemoryLayout<Vertex>.size), nil) // or BUFFER_OFFSET(0)
+            GLsizei(MemoryLayout<VertexData>.size), BUFFER_OFFSET((3+4+2) * MemoryLayout<GLfloat>.size)) // x, y, z | r, g, b, a | u, v | nx, ny, nz :: offset is (3+4+2)*sizeof(GLfloat)
         
-        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
-        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(DebugData.indices.count), GLenum(GL_UNSIGNED_BYTE), nil)
-
-        glDisableVertexAttribArray(VertexAttributes.position.rawValue)
+        
+        // Finished - unbind
+        glBindVertexArrayOES(0)
+        glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
+        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), 0)
+        
     }
     
-    init(fromShader shader: ShaderProgram, fromVertices vertices: [Vertex], fromNormals normals: [Vertex], fromIndices indices: [GLubyte])
-    {
-        self.Shader = shader
-        self.Vertices = vertices
-        self.Normals = normals
-        self.Indices = indices
+    func loadTexture(_ filename: String) {
         
-        self.SetupBuffers()
+        let path = Bundle.main.path(forResource: filename, ofType: nil)!
+        let option = [ GLKTextureLoaderOriginBottomLeft: true]
+        do {
+            let info = try GLKTextureLoader.texture(withContentsOfFile: path, options: option as [String : NSNumber]?)
+            self.texture = info.name
+        } catch {
+            NSLog("ERROR: Failed to load texture %s", filename)
+        }
     }
     
-    private func SetupBuffers() {
-
-        glGenBuffers(GLsizei(1), &vertexBuffer)
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-        let count = Vertices.count
-        let size =  MemoryLayout<Vertex>.size
-        glBufferData(GLenum(GL_ARRAY_BUFFER), count * size, Vertices, GLenum(GL_STATIC_DRAW))
-
-        glGenBuffers(GLsizei(1), &indexBuffer)
-        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
-        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count * MemoryLayout<GLubyte>.size, Indices, GLenum(GL_STATIC_DRAW))
-        
-        glGenBuffers(GLsizei(1), &normalBuffer)
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), normalBuffer)
-        let nCount = Normals.count
-        let nSize =  MemoryLayout<Vertex>.size
-        glBufferData(GLenum(GL_ARRAY_BUFFER), nCount * nSize, Normals, GLenum(GL_STATIC_DRAW))
-
-    }
-    
-    func BUFFER_OFFSET(_ n: Int) -> UnsafeRawPointer {
-        let ptr: UnsafeRawPointer? = nil
-        return ptr! + n * MemoryLayout<Void>.size
+    func BUFFER_OFFSET(_ n: Int) -> UnsafeRawPointer? {
+        return UnsafeRawPointer(bitPattern: n)
+        //        let ptr: UnsafeRawPointer? = nil
+//        return ptr! + n * MemoryLayout<Void>.size
     }
 }

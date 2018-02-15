@@ -4,7 +4,7 @@ class IntroState : State {
     
     override init(machine : StateMachine, replacing : Bool = true) {
         super.init(machine : machine, replacing : replacing)
-        print("intro")
+        //print("intro")
     }
     
     override func update(dt: TimeInterval) {

@@ -1,17 +1,30 @@
 #version 300 es
 
-// precision highp float; // change all float values to highp 
-in lowp vec4 fragmentColor;  // must match "out" variable in vertex shader
-in highp vec3 fragmentNormal;
+uniform sampler2D u_Texture;    // sampler3D also exists
 
-out lowp vec4 color;
+in lowp vec4 frag_Color;
+in lowp vec2 frag_TexCoord;
+in lowp vec3 frag_Normal;
+in lowp vec3 frag_Position;
+
+out lowp vec4 o_color;
 
 void main()
 {
-    color = fragmentColor;
-}
+    lowp vec3 debugLightDirection = vec3(-1,-1,-1);
 
-/* Notes:
-Fragment shader variables always require a precision qualifier. (Vertex shaders do not)
- - lowp, mediump, highp. (Use highp when in doubt)
- */
+    mediump float diffuseFactor = max(-dot(normalize(frag_Normal), normalize(debugLightDirection)), 0.0);
+    mediump float halfLambertFactor = pow(diffuseFactor * 0.5 + 0.5, 2.0);
+    mediump vec4 diffuseColor = frag_Color * halfLambertFactor;
+    diffuseColor.a = 1.0f;
+    
+    ivec2 texSize = textureSize(u_Texture, 0);
+    if (texSize.x == 0)
+    {
+        o_color = diffuseColor;
+    }
+    else
+    {
+        o_color = texture(u_Texture, frag_TexCoord) * diffuseColor;
+    }
+}

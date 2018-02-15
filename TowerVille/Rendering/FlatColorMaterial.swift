@@ -27,6 +27,6 @@ class FlatColorMaterial : Material{
     
     private func SetupAttributeLocations(_ shader : ShaderProgram)
     {
-        colorUniformLocation = glGetUniformLocation(shader.programHandle, "color")
+        colorUniformLocation = glGetUniformLocation(shader.programHandle, "u_Color")
     }
 }

@@ -1,8 +1,8 @@
-#version 300 es
+#version 300
 
 uniform highp mat4 u_ModelView;
 uniform highp mat4 u_Projection;
-uniform lowp  vec4 u_SurfaceColor;
+uniform lowp  mat4 u_SurfaceColor;
 
 in vec4 i_Position;
 // in vec4 i_Color;
@@ -13,13 +13,11 @@ out lowp vec4 frag_Color;
 out lowp vec2 frag_TexCoord;
 out lowp vec3 frag_Normal;
 out lowp vec3 frag_Position;
-out lowp vec3 frag_Debug;
 
 void main(void) {
     frag_Color = u_SurfaceColor;
     frag_TexCoord = i_TexCoord;
-    frag_Normal = (u_ModelView * vec4(i_Normal, 0.0)).xyz;
-    frag_Position = (u_ModelView * i_Position).xyz;
-    frag_Debug = (u_ModelView * vec4(i_Normal, 0.0)).rgb;
-    gl_Position = u_Projection * u_ModelView * i_Position;
+    frag_Normal = (u_ModelView * vec4(a_Normal, 0.0)).xyz;
+    frag_Position = (u_ModelView * a_Position).xyz;
+    gl_Position = u_Projection * u_ModelView * a_Position;
 }
