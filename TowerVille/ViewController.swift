@@ -45,6 +45,34 @@ class ViewController: GLKViewController { //UIViewController
         debug_SetupTiledMap()
     }
     
+    @IBAction func OnTap(_ sender: UITapGestureRecognizer)
+    {
+        if sender.state == .ended
+        {
+            let touchLocation = sender.location(in:sender.view)
+            let x = Float(touchLocation.x / sender.view!.frame.width)
+            let y = Float(0.5 - touchLocation.y / sender.view!.frame.height)
+            printScreenToWorld(screen_x: x, screen_y: y)
+        }
+    }
+    
+    func printScreenToWorld(screen_x: Float, screen_y: Float)
+    {
+        // undo scaling
+        var temp_x = screen_x * 2 / DebugData.Instance.projectionMatrix.m00
+        var temp_y = screen_y * 2 / DebugData.Instance.projectionMatrix.m11
+        
+        // undo second rotation
+        temp_y *= sqrt(3)
+        
+        // undo first rotation
+        var world_x = (temp_x - temp_y) / sqrt(2)
+        var world_y = (temp_x + temp_y) / sqrt(2)
+        
+        print("world x : \(world_x)")
+        print("world y : \(world_y)")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -116,16 +144,17 @@ extension ViewController {
     
     func debug_SetupTiledMap()
     {
-        let halfWidth: Int = 10
-        let halfHeight: Int  = 5
+        let gridSize: Int = 10
         // let tileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
         let grassTileMat = LambertMaterial(shader)
         grassTileMat.color = Color(0,1,0,1)
         let mountainTileMat = LambertMaterial(shader)
         mountainTileMat.color = Color(0,0,0,1)
+        let highlightOrigin = LambertMaterial(shader)
+        highlightOrigin.color = Color(1,0,0,1)
         
-        for x in -halfWidth...halfWidth {
-            for y in -halfHeight...halfHeight {
+        for x in 0..<gridSize {
+            for y in 0..<gridSize {
                 var newTile = Tile()
                 newTile.x = Float(x)
                 // newTile.xCoord = uint(x) // or x - maxSize/2
@@ -134,7 +163,11 @@ extension ViewController {
 
                 let newTileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
 
-                if (x == -halfWidth || x == halfWidth || y == -halfHeight || y == halfHeight)
+                if (x == 0 && y == 0)
+                {
+                    newTileRo.Material = highlightOrigin
+                }
+                else if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
                 {
                     newTileRo.Material = mountainTileMat
                 }
@@ -225,23 +258,14 @@ class DebugData {
     
     func initialize(_ aspectRatio : CGFloat)
     {
-        self.aspectRatio = aspectRatio
-        projectionMatrix = GLKMatrix4MakeOrtho(-10.0, 10.0, -10.0 / Float(aspectRatio), 10 / Float(aspectRatio), 0.0, 100.0)
-        // projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), Float(aspectRatio), 0.0, 20.0)
-        
-        var viewPos = GLKVector3Make(0, 10, 0)
+        var viewPos = GLKVector3Make(10, -10, -10)
         var viewTar = GLKVector3Make(0, 0, 0)
-        viewMatrix = GLKMatrix4MakeLookAt(
-            viewPos.x, viewPos.y, viewPos.z,            // eye
-            viewTar.x, viewTar.y, viewTar.z,   // target direction
-            0, 0, 1)
+        viewMatrix = GLKMatrix4MakeLookAt(viewPos.x, viewPos.y, viewPos.z, // camera position
+                                          viewTar.x, viewTar.y, viewTar.z, // target position
+                                          -1, -1, 1) // camera up vector
         
-        modelMatrixCube = GLKMatrix4Identity
-        modelMatrixCube = GLKMatrix4Translate(modelMatrixCube, viewTar.x, viewTar.y, viewTar.z)
-        //        modelMatrixCube = GLKMatrix4RotateX(modelMatrixCube, GLKMathDegreesToRadians(30))
-        //        modelMatrixCube = GLKMatrix4RotateY(modelMatrixCube, GLKMathDegreesToRadians(60))
-        //        modelMatrixCube = GLKMatrix4RotateZ(modelMatrixCube, GLKMathDegreesToRadians(15))
-        //        modelMatrixCube = GLKMatrix4Scale(modelMatrixCube, 1, 1, 1)
+        var size : Float = 10 * sqrt(2) // screen width in tiles
+        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -size / 2 / Float(aspectRatio), size / 2 / Float(aspectRatio), 0, 100.0)
     }
     
     private func setupBuffers()

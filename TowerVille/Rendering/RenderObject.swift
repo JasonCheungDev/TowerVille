@@ -36,8 +36,7 @@ class RenderObject{
         // Load custom presets
         Material?.LoadMaterial()
         
-        var modelMatrix = GLKMatrix4Identity
-        modelMatrix = GLKMatrix4Translate(modelMatrix, self.gameObject!.x, self.gameObject!.y, self.gameObject!.z)
+        var modelMatrix = GLKMatrix4MakeTranslation(self.gameObject!.x, self.gameObject!.y, self.gameObject!.z)
         // TODO: Replace DebugData with GameManager.Instance?
         var mvp = GLKMatrix4Multiply(DebugData.Instance.projectionMatrix, DebugData.Instance.viewMatrix)
         mvp = GLKMatrix4Multiply(mvp, modelMatrix)

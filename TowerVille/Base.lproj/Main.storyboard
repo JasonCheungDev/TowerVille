@@ -17,10 +17,19 @@
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="jLd-o5-rMF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="z5K-yD-WZX"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0Rp-Pm-IFU" appends="YES" id="4la-lv-5MA"/>
+                        </connections>
                     </glkView>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0Rp-Pm-IFU">
+                    <connections>
+                        <action selector="OnTap:" destination="BYZ-38-t0r" id="JH5-Rk-ISp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="31.934032983508249"/>
         </scene>
