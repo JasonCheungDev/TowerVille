@@ -19,6 +19,10 @@ class State
         
     }
     
+    func processInput(x : Float, z : Float, u : Float, v : Float) {
+        
+    }
+    
     func resume() {
         
     }
