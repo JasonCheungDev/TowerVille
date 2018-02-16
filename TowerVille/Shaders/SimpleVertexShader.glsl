@@ -1,23 +1,15 @@
 #version 300 es
 
-// Values that stay constant for whole mesh
-uniform highp mat4 mvp;
-uniform vec4 color;
-//uniform mat4 projection;
-//uniform mat4 view;
-//uniform mat4 model;
+uniform highp mat4 u_ModelView;
+uniform highp mat4 u_Projection;
+uniform lowp  vec4 u_Color;
 
-// Note: layout location # == # in glVertexAttribute
-in vec4 vertexPosition_modelSpace;
-in vec4 vertexColor;
+in vec4 i_Position;
 
-// Forward color to fragment shader
-out lowp vec4 fragmentColor;
+out lowp vec4 frag_Color;
 
-void main()
-{
-    fragmentColor = color;    // just pass color value to fragment shader
-
-    gl_Position = mvp *	vertexPosition_modelSpace;
-    
+void main(void) {
+    frag_Color = u_Color;
+    gl_Position = u_Projection * u_ModelView * i_Position;
 }
+
