@@ -112,7 +112,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "MarkusVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     }
     
     func debug_setup()
