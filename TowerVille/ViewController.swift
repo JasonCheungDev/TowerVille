@@ -153,18 +153,18 @@ extension ViewController {
         let vo3 = VisualObject()
         vo3.LinkRenderObject(ro3)
         vo3.x = 4
-        vo3.z = 8
+        vo3.z = -8
         vo3.xRot = 60
 
         let vo4 = VisualObject()
         vo4.LinkRenderObject(ro3)
         vo4.x = 8
-        vo4.z = 8
+        vo4.z = -8
         vo4.yRot = 30
         
         let prefab = CubePrefab(shader)
         prefab.x = 6
-        prefab.z = 6
+        prefab.z = -6
     
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
@@ -199,7 +199,7 @@ extension ViewController {
             for y in 0..<gridSize {
                 var newTile = Tile()
                 newTile.x = Float(x)
-                newTile.z = Float(y)
+                newTile.z = Float(-y)
                 
                 if (x == 0 && y == 0)
                 {
