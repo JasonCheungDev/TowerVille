@@ -246,7 +246,6 @@
 				2BEBE63520193A5B008E8FEB /* GameManager.swift */,
 				2BEBE63720193B41008E8FEB /* InputManager.swift */,
 				2BEBE63920193B5E008E8FEB /* Transform.swift */,
-				2BEBE63B20193E16008E8FEB /* MinionSpawner.swift */,
 				2BEBE64320193F0A008E8FEB /* Tile.swift */,
 				2BEBE64520193F1D008E8FEB /* Map.swift */,
 				2BEBE64F2019415A008E8FEB /* Vertex.swift */,
@@ -271,6 +270,7 @@
 		2BEBE65E20194334008E8FEB /* NPC */ = {
 			isa = PBXGroup;
 			children = (
+				2BEBE63B20193E16008E8FEB /* MinionSpawner.swift */,
 				2BEBE65F2019433E008E8FEB /* Minion.swift */,
 				2BEBE6612019436D008E8FEB /* NonAggro.swift */,
 				2BEBE66320194382008E8FEB /* Aggro.swift */,

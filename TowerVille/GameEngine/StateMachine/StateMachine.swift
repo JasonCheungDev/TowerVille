@@ -32,6 +32,10 @@ class StateMachine
         }
     }
 
+    func state() -> State? {
+        return states.top
+    }
+    
     func run(state : State) {
         running = true;
         states.push(state);

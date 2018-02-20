@@ -13,20 +13,20 @@ class VisualObject : GameObject{
     
     var renderObject : RenderObject?
     
-    func LinkRenderObject(_ renderObj : RenderObject)
+    func linkRenderObject(_ renderObj : RenderObject)
     {
         self.renderObject?.gameObject = nil // unlink RO if one is already set
         self.renderObject = renderObj
         renderObj.gameObject = self
     }
     
-    func UnlinkRenderObject()
+    func unlinkRenderObject()
     {
         self.renderObject?.gameObject = nil // unlink RO if set
         self.renderObject = nil
     }
     
-    func Draw()
+    func draw()
     {
         renderObject?.gameObject = self
         renderObject?.Draw()

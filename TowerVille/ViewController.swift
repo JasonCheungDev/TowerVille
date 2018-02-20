@@ -38,6 +38,8 @@ class ViewController: GLKViewController { //UIViewController
 
         setupGLcontext()
         setupGLupdater()
+        
+        
         setupShader()
         
         debug_setup()
@@ -89,7 +91,7 @@ class ViewController: GLKViewController { //UIViewController
         for vo in debugVisualObjects
         {
             //vo.yRot += 0.05 // test normals. don't do this in real code
-            vo.Draw()
+            vo.draw()
         }
     }
 
@@ -143,12 +145,12 @@ extension ViewController {
         ro3.material = mat
         
         let vo = VisualObject()
-        vo.LinkRenderObject(ro)
+        vo.linkRenderObject(ro)
         vo.x = 4
         vo.xRot = 15
         
         let vo2 = VisualObject()
-        vo2.LinkRenderObject(ro2)
+        vo2.linkRenderObject(ro2)
         vo2.x = 8
         vo2.yRot = 55
         
@@ -156,13 +158,13 @@ extension ViewController {
         vo.id = "Debug VO 1"
         vo2.id = "Debug VO 2"
         let vo3 = VisualObject()
-        vo3.LinkRenderObject(ro3)
+        vo3.linkRenderObject(ro3)
         vo3.x = 4
         vo3.z = 8
         vo3.xRot = 60
 
         let vo4 = VisualObject()
-        vo4.LinkRenderObject(ro3)
+        vo4.linkRenderObject(ro3)
         vo4.x = 8
         vo4.z = 8
         vo4.yRot = 30
@@ -208,15 +210,15 @@ extension ViewController {
                 
                 if (x == 0 && y == 0)
                 {
-                    newTile.LinkRenderObject(highlightRo)
+                    newTile.linkRenderObject(highlightRo)
                 }
                 else if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
                 {
-                    newTile.LinkRenderObject(mountainRo)
+                    newTile.linkRenderObject(mountainRo)
                 }
                 else
                 {
-                    newTile.LinkRenderObject(grassRo)
+                    newTile.linkRenderObject(grassRo)
                 }
 
                 debugVisualObjects.append(newTile)

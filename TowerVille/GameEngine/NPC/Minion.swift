@@ -16,14 +16,13 @@ class Minion : VisualObject {
     
     var curIndex : Int = 0
     
-    override init() {
+    init(shader: ShaderProgram) {
         super.init()
-        let shader = ShaderProgram(vertexShader: "SimpleVertexShader.glsl", fragmentShader: "SimpleFragmentShader.glsl")
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(0,0,1,1)
         let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
         ro.material = mat
-        self.LinkRenderObject(ro)
+        linkRenderObject(ro)
         print("minion init")
         x = 0
         z = 0
@@ -31,11 +30,11 @@ class Minion : VisualObject {
     
     override func update(dt: TimeInterval) {
         //go to target
-        self.x += Float(speed * dt)
+        self.z += Float(speed * dt)
     }
     
-    override func Draw() {
-        super.Draw()
+    override func draw() {
+        super.draw()
     }
     
     func updateTarget() {

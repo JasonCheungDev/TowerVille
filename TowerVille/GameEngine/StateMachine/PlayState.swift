@@ -12,12 +12,11 @@ class PlayState : State {
     }
     
     override func update(dt: TimeInterval) {
-        //_next = IntroState(machine : _machine)
         minion.update(dt: dt)
     }
     
     override func draw() {
-        minion.Draw()
+        minion.draw()
     }
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
