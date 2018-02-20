@@ -4,7 +4,7 @@ class PlayState : State {
     
     override init(machine : StateMachine, replacing : Bool = true) {
         super.init(machine : machine, replacing: replacing)
-        print("play")
+        //print("play")
     }
     
     override func update(dt: TimeInterval) {

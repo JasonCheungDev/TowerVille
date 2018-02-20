@@ -5,6 +5,10 @@
 //  Created by Jason Cheung on 2018-01-24.
 //  Copyright © 2018 The-Fighting-Mongeese. All rights reserved.
 //
+//  Modified from https://github.com/skyfe79/LearningOpenGLES2 (this is BaseEffect)
+//  Reads and compiles shader files to create a usable program handle.
+//  Shader MUST have the following attributes: m,v,p,texture,
+//
 
 import Foundation
 import GLKit
@@ -12,10 +16,10 @@ import GLKit
 class ShaderProgram {
     var programHandle : GLuint = 0
     var mvpUniform : Int32 = 0
-        var mUniform : Int32 = 0
-        var vUniform : Int32 = 0
-        var pUniform : Int32 = 0
-    
+    var modelViewUniform : Int32 = 0
+    var projectionUniform : Int32 = 0
+    var textureUniform : Int32 = 0
+
     init(vertexShader: String, fragmentShader: String) {
         self.compile(vertexShader: vertexShader, fragmentShader: fragmentShader)
     }
@@ -86,16 +90,21 @@ extension ShaderProgram {
         glAttachShader(self.programHandle, vertexShaderName)
         glAttachShader(self.programHandle, fragmentShaderName)
         
-        // ensure the shader file follows this format!
-        glBindAttribLocation(self.programHandle, VertexAttributes.position.rawValue, "vertexPosition_modelSpace");
-        glBindAttribLocation(self.programHandle, VertexAttributes.colour.rawValue, "vertexColor");
-        
+        // bind attributes (ensure the shader file follows this format!)
+        glBindAttribLocation(self.programHandle, VertexAttributes.position.rawValue, "i_Position")
+        glBindAttribLocation(self.programHandle, VertexAttributes.texCoord.rawValue, "i_TexCoord")  // UV
+        glBindAttribLocation(self.programHandle, VertexAttributes.normal.rawValue, "i_Normal")
+        // glBindAttribLocation(self.programHandle, VertexAttributes.color.rawValue, "i_Color")
+
         // link program (doesn't actually use yet) (linking makes the table for variable lookup)
         glLinkProgram(self.programHandle)
 
         // get uniform variables (MUST BE AFTER LINKING)
         self.mvpUniform = glGetUniformLocation(self.programHandle, "mvp")
-        
+        self.modelViewUniform = glGetUniformLocation(self.programHandle, "u_ModelView")
+        self.projectionUniform = glGetUniformLocation(self.programHandle, "u_Projection")
+        self.textureUniform = glGetUniformLocation(self.programHandle, "u_Texture")
+
         // error checking
         var linkStatus : GLint = 0
         glGetProgramiv(self.programHandle, GLenum(GL_LINK_STATUS), &linkStatus)

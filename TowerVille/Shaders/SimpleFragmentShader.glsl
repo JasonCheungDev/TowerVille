@@ -1,13 +1,12 @@
 #version 300 es
 
-// precision highp float; // change all float values to highp 
-in lowp vec4 fragmentColor;  // must match "out" variable in vertex shader
+in lowp vec4 frag_Color;
 
-out lowp vec4 color;
+out lowp vec4 o_color;
 
 void main()
 {
-    color = fragmentColor;
+    o_color = frag_Color;
 }
 
 /* Notes:
