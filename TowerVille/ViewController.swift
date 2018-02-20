@@ -69,6 +69,10 @@ class ViewController: GLKViewController { //UIViewController
         var world_x = (temp_x - temp_y) / sqrt(2)
         var world_y = (temp_x + temp_y) / sqrt(2)
         
+        // undo first rotation
+        world_x += Float(DebugData.Instance.displaySize - 2) / 2
+        world_y += Float(DebugData.Instance.displaySize - 2) / 2
+        
         print("world x : \(world_x)")
         print("world y : \(world_y)")
     }
@@ -175,8 +179,8 @@ extension ViewController {
     
     func debug_SetupTiledMap()
     {
-        let displaySize: Int = 10 // screen size in tiles
-        let gridSize: Int = (displaySize * 2) - 1 // size of actual game grid data representation
+        let displaySize: Int = DebugData.Instance.displaySize // screen size in tiles
+        let gridSize: Int = DebugData.Instance.gridSize // size of actual game grid data representation
         
         // create some materials
         let grassTileMat = LambertMaterial(shader)
