@@ -53,9 +53,9 @@ class RenderObject{
             return
         }
         
-        if let id = gameObject?.ID {
-            print("Drawing RO " + id)
-        }
+        //if let id = gameObject?.id {
+        //    print("Drawing RO " + id)
+        //}
         
         // Load custom presets
         material?.LoadMaterial()

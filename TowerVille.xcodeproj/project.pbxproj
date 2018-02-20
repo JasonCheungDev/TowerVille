@@ -25,7 +25,6 @@
 		2BEBE64420193F0A008E8FEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64320193F0A008E8FEB /* Tile.swift */; };
 		2BEBE64620193F1D008E8FEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64520193F1D008E8FEB /* Map.swift */; };
 		2BEBE64820193FF5008E8FEB /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64720193FF5008E8FEB /* Material.swift */; };
-		2BEBE64A201940C6008E8FEB /* FlatColorMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE649201940C6008E8FEB /* FlatColorMaterial.swift */; };
 		2BEBE64C20194134008E8FEB /* Farm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64B20194134008E8FEB /* Farm.swift */; };
 		2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */; };
 		2BEBE6502019415A008E8FEB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64F2019415A008E8FEB /* Vertex.swift */; };
@@ -495,7 +494,6 @@
 				3C01A27D202267D800BB0D7C /* Stack.swift in Sources */,
 				2BEBE64620193F1D008E8FEB /* Map.swift in Sources */,
 				3C01A279202262CE00BB0D7C /* StateMachine.swift in Sources */,
-				2BEBE64A201940C6008E8FEB /* FlatColorMaterial.swift in Sources */,
 				DEC217BE2035335A00F11022 /* DebugData.swift in Sources */,
 				2BEBE63E20193E53008E8FEB /* Tower.swift in Sources */,
 				2BEBE65920194304008E8FEB /* CannonTower.swift in Sources */,

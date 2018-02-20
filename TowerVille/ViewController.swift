@@ -84,9 +84,11 @@ class ViewController: GLKViewController { //UIViewController
         
         shader.prepareToDraw()  // warning: May need to move this to the RenderObject (to ensure right shader is used)
         
+        StateMachine.Instance.draw()
+        
         for vo in debugVisualObjects
         {
-            vo.yRot += 0.05 // test normals. don't do this in real code
+            //vo.yRot += 0.05 // test normals. don't do this in real code
             vo.Draw()
         }
     }
@@ -150,6 +152,9 @@ extension ViewController {
         vo2.x = 8
         vo2.yRot = 55
         
+        // TODO: Should be auto gen by GameObject
+        vo.id = "Debug VO 1"
+        vo2.id = "Debug VO 2"
         let vo3 = VisualObject()
         vo3.LinkRenderObject(ro3)
         vo3.x = 4
@@ -224,17 +229,16 @@ extension ViewController {
 class GLKUpdater : NSObject, GLKViewControllerDelegate {
     
     weak var glkViewController : GLKViewController!
-    var _machine : StateMachine = StateMachine()
     
     init(glkViewController : GLKViewController) {
         self.glkViewController = glkViewController
-        _machine.run(state: IntroState(machine : _machine))
+        StateMachine.Instance.run(state: IntroState())
     }
     
     // Update Game Logic
     func glkViewControllerUpdate(_ controller: GLKViewController) {
-        _machine.nextState()
-        _machine.update(dt: controller.timeSinceLastUpdate)
+        StateMachine.Instance.nextState()
+        StateMachine.Instance.update(dt: controller.timeSinceLastUpdate)
         // collision detection ...
         // GameManager.instance.Update()
     }
