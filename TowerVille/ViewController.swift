@@ -199,8 +199,8 @@ extension ViewController {
         for x in 0..<gridSize {
             for y in 0..<gridSize {
                 var newTile = Tile()
-                newTile.x = Float(x) - Float(displaySize - 1) / 2
-                newTile.z = Float(-y) + Float(displaySize - 1) / 2
+                newTile.x = Float(x) - Float(displaySize - 2) / 2
+                newTile.z = Float(-y) + Float(displaySize - 2) / 2
                 
                 if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
                 {
