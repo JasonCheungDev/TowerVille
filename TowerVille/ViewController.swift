@@ -175,7 +175,8 @@ extension ViewController {
     
     func debug_SetupTiledMap()
     {
-        let gridSize: Int = 10
+        let displaySize: Int = 10 // screen size in tiles
+        let gridSize: Int = (displaySize * 2) - 1 // size of actual game grid data representation
         
         // create some materials
         let grassTileMat = LambertMaterial(shader)
@@ -198,10 +199,10 @@ extension ViewController {
         for x in 0..<gridSize {
             for y in 0..<gridSize {
                 var newTile = Tile()
-                newTile.x = Float(x)
-                newTile.z = Float(-y)
+                newTile.x = Float(x) - Float(displaySize - 1) / 2
+                newTile.z = Float(-y) + Float(displaySize - 1) / 2
                 
-                if (x == 0 && y == 0)
+                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
                 {
                     newTile.LinkRenderObject(highlightRo)
                 }
