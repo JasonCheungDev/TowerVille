@@ -25,6 +25,10 @@ class FlatColorMaterial : Material{
         glUniform4f(colorUniformLocation, color.r, color.g, color.b, color.a)
     }
     
+    func LoadLightData(fromLights lights: [Light]) {
+        
+    }
+    
     private func SetupAttributeLocations(_ shader : ShaderProgram)
     {
         colorUniformLocation = glGetUniformLocation(shader.programHandle, "u_Color")

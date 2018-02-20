@@ -43,6 +43,7 @@ class ViewController: GLKViewController { //UIViewController
         debug_setup()
         debug_SetupRenderObject()
         debug_SetupTiledMap()
+        debug_SetupLights()
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -112,7 +113,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "MarkusVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "JasonVertexShader.glsl", fragmentShader: "JasonFragmentShader.glsl")
     }
     
     func debug_setup()
@@ -171,6 +172,21 @@ extension ViewController {
         self.debugVisualObjects.append(vo3)
         self.debugVisualObjects.append(vo4)
         self.debugVisualObjects.append(prefab)
+    }
+    
+    func debug_SetupLights()
+    {
+        var directionalLight = DirectionalLight()
+        directionalLight.xDir = 1
+        directionalLight.yDir = -1
+        directionalLight.zDir = -1
+        
+        var pointLight1 = PointLight()
+        var pointLight2 = PointLight()
+        pointLight2.x = 5
+        pointLight2.z = 5
+        var pointLight3 = PointLight()
+        var pointLight4 = PointLight()
     }
     
     func debug_SetupTiledMap()

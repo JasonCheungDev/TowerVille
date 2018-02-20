@@ -59,6 +59,7 @@ class RenderObject{
         
         // Load custom presets
         material?.LoadMaterial()
+        material?.LoadLightData(fromLights: LightManager.Instance.lights)
         
         // Load positional uniforms
         let mv = GLKMatrix4Multiply(DebugData.Instance.viewMatrix, self.modelMatrix())

@@ -30,6 +30,10 @@ class PhongMaterial : Material {
 //        glUniform3f(lightDirectionUniformLocation, 1, 1, 1)
     }
     
+    func LoadLightData(fromLights lights: [Light]) {
+        
+    }
+    
     private func SetupAttributeLocations(_ shader : ShaderProgram)
     {
         surfaceColorUniformLocation = glGetUniformLocation(shader.programHandle, "u_SurfaceColor")
