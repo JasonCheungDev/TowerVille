@@ -64,22 +64,22 @@ class ViewController: GLKViewController { //UIViewController
     func printScreenToWorld(screen_x: Float, screen_y: Float)
     {
         // undo scaling
-        var temp_x = screen_x * 2 / Camera.ActiveCamera!.projectionMatrix.m00
-        var temp_y = screen_y * 2 / Camera.ActiveCamera!.projectionMatrix.m11
+        let temp_x = screen_x * 2 / Camera.ActiveCamera!.projectionMatrix.m00
+        var temp_z = screen_y * 2 / Camera.ActiveCamera!.projectionMatrix.m11
         
         // undo second rotation
-        temp_y *= sqrt(3)
+        temp_z *= sqrt(3)
         
         // undo first rotation
-        var world_x = (temp_x - temp_y) / sqrt(2)
-        var world_y = (temp_x + temp_y) / sqrt(2)
+        var world_x = (temp_x - temp_z) / sqrt(2)
+        var world_z = -(temp_x + temp_z) / sqrt(2)
         
         // undo first rotation
         world_x += Float(DebugData.Instance.displaySize - 2) / 2
-        world_y += Float(DebugData.Instance.displaySize - 2) / 2
+        world_z -= Float(DebugData.Instance.displaySize - 2) / 2
         
         print("world x : \(world_x)")
-        print("world y : \(world_y)")
+        print("world z : \(world_z)")
     }
     
     override func didReceiveMemoryWarning() {
