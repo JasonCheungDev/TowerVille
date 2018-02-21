@@ -30,7 +30,6 @@
 		2BEBE64420193F0A008E8FEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64320193F0A008E8FEB /* Tile.swift */; };
 		2BEBE64620193F1D008E8FEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64520193F1D008E8FEB /* Map.swift */; };
 		2BEBE64820193FF5008E8FEB /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64720193FF5008E8FEB /* Material.swift */; };
-		2BEBE64A201940C6008E8FEB /* FlatColorMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE649201940C6008E8FEB /* FlatColorMaterial.swift */; };
 		2BEBE64C20194134008E8FEB /* Farm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64B20194134008E8FEB /* Farm.swift */; };
 		2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */; };
 		2BEBE6502019415A008E8FEB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64F2019415A008E8FEB /* Vertex.swift */; };
@@ -49,6 +48,7 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
+		8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25E267203E0C0600CF348E /* TowerProjectile.swift */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
 		DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */; };
 		DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */; };
@@ -137,6 +137,7 @@
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		8C25E267203E0C0600CF348E /* TowerProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerProjectile.swift; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
 		DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertVertexShader.glsl; sourceTree = "<group>"; };
 		DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertFragmentShader.glsl; sourceTree = "<group>"; };
@@ -270,7 +271,6 @@
 				2BEBE63520193A5B008E8FEB /* GameManager.swift */,
 				2BEBE63720193B41008E8FEB /* InputManager.swift */,
 				2BEBE63920193B5E008E8FEB /* Transform.swift */,
-				2BEBE63B20193E16008E8FEB /* MinionSpawner.swift */,
 				2BEBE64320193F0A008E8FEB /* Tile.swift */,
 				2BEBE64520193F1D008E8FEB /* Map.swift */,
 				2BEBE64F2019415A008E8FEB /* Vertex.swift */,
@@ -288,6 +288,7 @@
 				2BEBE65820194304008E8FEB /* CannonTower.swift */,
 				2BEBE65A20194313008E8FEB /* SlowTower.swift */,
 				2BEBE65C2019431F008E8FEB /* LaserTower.swift */,
+				8C25E267203E0C0600CF348E /* TowerProjectile.swift */,
 			);
 			path = Towers;
 			sourceTree = "<group>";
@@ -295,6 +296,7 @@
 		2BEBE65E20194334008E8FEB /* NPC */ = {
 			isa = PBXGroup;
 			children = (
+				2BEBE63B20193E16008E8FEB /* MinionSpawner.swift */,
 				2BEBE65F2019433E008E8FEB /* Minion.swift */,
 				2BEBE6612019436D008E8FEB /* NonAggro.swift */,
 				2BEBE66320194382008E8FEB /* Aggro.swift */,
@@ -537,6 +539,7 @@
 				2BEBE64020193E68008E8FEB /* VisualObject.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
 				2BEBE66420194382008E8FEB /* Aggro.swift in Sources */,
+				8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,
 				28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */,
@@ -555,7 +558,6 @@
 				3C01A27D202267D800BB0D7C /* Stack.swift in Sources */,
 				2BEBE64620193F1D008E8FEB /* Map.swift in Sources */,
 				3C01A279202262CE00BB0D7C /* StateMachine.swift in Sources */,
-				2BEBE64A201940C6008E8FEB /* FlatColorMaterial.swift in Sources */,
 				DEC217BE2035335A00F11022 /* DebugData.swift in Sources */,
 				2BEBE63E20193E53008E8FEB /* Tower.swift in Sources */,
 				2BEBE65920194304008E8FEB /* CannonTower.swift in Sources */,
