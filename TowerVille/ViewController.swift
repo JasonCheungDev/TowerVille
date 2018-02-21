@@ -45,6 +45,7 @@ class ViewController: GLKViewController { //UIViewController
         debug_setup()
         debug_SetupRenderObject()
         debug_SetupTiledMap()
+        debug_SetupLights()
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -70,6 +71,10 @@ class ViewController: GLKViewController { //UIViewController
         // undo first rotation
         var world_x = (temp_x - temp_y) / sqrt(2)
         var world_y = (temp_x + temp_y) / sqrt(2)
+        
+        // undo first rotation
+        world_x += Float(DebugData.Instance.displaySize - 2) / 2
+        world_y += Float(DebugData.Instance.displaySize - 2) / 2
         
         print("world x : \(world_x)")
         print("world y : \(world_y)")
@@ -116,7 +121,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "JasonVertexShader.glsl", fragmentShader: "JasonFragmentShader.glsl")
     }
     
     func debug_setup()
@@ -160,18 +165,18 @@ extension ViewController {
         let vo3 = VisualObject()
         vo3.linkRenderObject(ro3)
         vo3.x = 4
-        vo3.z = 8
+        vo3.z = -8
         vo3.xRot = 60
 
         let vo4 = VisualObject()
         vo4.linkRenderObject(ro3)
         vo4.x = 8
-        vo4.z = 8
+        vo4.z = -8
         vo4.yRot = 30
         
         let prefab = CubePrefab(shader)
         prefab.x = 6
-        prefab.z = 6
+        prefab.z = -6
     
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
@@ -180,9 +185,35 @@ extension ViewController {
         self.debugVisualObjects.append(prefab)
     }
     
+    func debug_SetupLights()
+    {
+        var directionalLight = DirectionalLight()
+        directionalLight.xDir = 1
+        directionalLight.yDir = -1
+        directionalLight.zDir = -1
+        
+        var pointLight1 = PointLight()
+        pointLight1.x = 0.07107
+        pointLight1.y = 4.08248
+        pointLight1.z = -14.4338
+        pointLight1.lightColor = Color(1,0,0,1)
+        var pointLight2 = PointLight()
+        pointLight2.x = 13.07107
+        pointLight2.y = 4.08248
+        pointLight2.z = -14.4338
+        pointLight2.lightColor = Color(0,1,0,1)
+        var pointLight3 = PointLight()
+        pointLight3.x = 5
+        pointLight3.y = 5
+        pointLight3.z = -5
+        pointLight3.lightColor = Color(0,0,1,1)
+        var pointLight4 = PointLight()
+    }
+    
     func debug_SetupTiledMap()
     {
-        let gridSize: Int = 10
+        let displaySize: Int = DebugData.Instance.displaySize // screen size in tiles
+        let gridSize: Int = DebugData.Instance.gridSize // size of actual game grid data representation
         
         // create some materials
         let grassTileMat = LambertMaterial(shader)
@@ -205,10 +236,10 @@ extension ViewController {
         for x in 0..<gridSize {
             for y in 0..<gridSize {
                 var newTile = Tile()
-                newTile.x = Float(x)
-                newTile.z = Float(y)
+                newTile.x = Float(x) - Float(displaySize - 2) / 2
+                newTile.z = Float(-y) + Float(displaySize - 2) / 2
                 
-                if (x == 0 && y == 0)
+                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
                 {
                     newTile.linkRenderObject(highlightRo)
                 }
@@ -224,6 +255,21 @@ extension ViewController {
                 debugVisualObjects.append(newTile)
             }
         }
+        
+        var objLoader : ObjLoader = ObjLoader()
+        objLoader.Read(fileName : "sphere")
+
+        var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        ro.material = highlightOrigin
+        
+        var vo = VisualObject()
+        vo.x = 4
+        vo.y = 4
+        vo.z = -2
+        vo.LinkRenderObject(ro)
+        
+        debugVisualObjects.append(vo)
+
     }
 }
 
