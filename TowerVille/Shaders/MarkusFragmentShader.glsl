@@ -14,13 +14,14 @@ out vec4 o_color;
 void main()
 {
     lowp vec4 debugLightColor = vec4(1.0, 1.0, 1.0, 1.0);
-    vec3 debugLightPosition = vec3(7.07107, 4.08248, -14.4338); // (5,-5,5) worldspace
+    vec3 debugLightPosition = vec3(7.07107, 4.08248, -14.4338); // (5,5,-5) worldspace
     
+    vec3 normal = normalize(frag_Normal);
     vec3 lightDirection = debugLightPosition - frag_Position;
     vec3 halfDirection = normalize(vec3(0.0, 0.0, 1.0)+normalize(lightDirection));
     
-    float halfLambert = pow(dot(frag_Normal, normalize(lightDirection)) * 0.5 + 0.5, 2.0);
-    float blinn = pow(max(0.0, dot(frag_Normal, halfDirection)), 10.0);
+    float halfLambert = pow(dot(normal, normalize(lightDirection)) * 0.5 + 0.5, 2.0);
+    float blinn = pow(max(0.0, dot(normal, halfDirection)), 10.0);
     float attenuation = 1.0 / pow(length(lightDirection) * 0.2, 2.0);
     
     vec4 linearColor;
