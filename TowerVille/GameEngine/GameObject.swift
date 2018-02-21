@@ -17,10 +17,10 @@ class GameObject {
     var yRot : Float = 0
     var zRot : Float = 0
     
-    func initialize(id_init : String?, x_init : Float, z_init : Float) {
-        id = id_init
-        x = x_init
-        z = z_init
+    func initialize(id : String?, x : Float, z : Float) {
+        self.id = id
+        self.x = x
+        self.z = z
     }
     
     func update(dt : TimeInterval) {

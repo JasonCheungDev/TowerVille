@@ -11,6 +11,6 @@ import Foundation
 class Map {
     
     var Tiles : [[Tile]] = []
-    var Waypoints : [GameObject] = []
+    
     
 }

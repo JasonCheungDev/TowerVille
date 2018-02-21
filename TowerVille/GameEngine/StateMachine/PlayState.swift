@@ -2,13 +2,15 @@ import Foundation
 
 class PlayState : State {
     
-    static var map : Map = Map()
-    let minion : Minion = Minion()
+    var map : Map = Map()
+    let shader : ShaderProgram = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
+    let minion : Minion
+    
+   
     
     override init(replacing : Bool = true) {
+        minion = Minion(shader: shader)
         super.init(replacing: replacing)
-        print("play")
-        
     }
     
     override func update(dt: TimeInterval) {
