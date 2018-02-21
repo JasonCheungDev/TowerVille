@@ -266,7 +266,7 @@ extension ViewController {
         vo.x = 4
         vo.y = 4
         vo.z = -2
-        vo.LinkRenderObject(ro)
+        vo.linkRenderObject(ro)
         
         debugVisualObjects.append(vo)
 
