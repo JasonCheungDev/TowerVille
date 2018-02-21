@@ -36,16 +36,18 @@ class ViewController: GLKViewController { //UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // pregame setup
         setupGLcontext()
+        setupCamera()       // this retrieves aspect ratio for all Camera objects
+
+        // init updater and game
         setupGLupdater()
         
-        
-        setupShader()
-        
-        debug_setup()
-        debug_SetupRenderObject()
-        debug_SetupTiledMap()
-        debug_SetupLights()
+//        setupShader()
+//        debug_SetupCamera()
+//        debug_SetupRenderObject()
+//        debug_SetupTiledMap()
+//        debug_SetupLights()
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -88,16 +90,13 @@ class ViewController: GLKViewController { //UIViewController
         glClearColor(0.2, 0.4, 0.6, 1.0);
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
 
-        
-        shader.prepareToDraw()  // warning: May need to move this to the RenderObject (to ensure right shader is used)
-        
         StateMachine.Instance.draw()
         
-        for vo in debugVisualObjects
-        {
-            //vo.yRot += 0.05 // test normals. don't do this in real code
-            vo.draw()
-        }
+//         shader.prepareToDraw()
+//        for vo in debugVisualObjects
+//        {
+//            vo.draw()
+//        }
     }
 
 }
@@ -115,6 +114,12 @@ extension ViewController {
         glEnable(GLenum(GL_CULL_FACE))
     }
     
+    func setupCamera()
+    {
+        let aspectRatio = self.view.frame.width / self.view.frame.height
+        Camera.initialize(aspectRatio)
+    }
+    
     func setupGLupdater() {
         self.glkUpdater = GLKUpdater(glkViewController: self)
         self.delegate = self.glkUpdater
@@ -124,7 +129,7 @@ extension ViewController {
         self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     }
     
-    func debug_setup()
+    func debug_SetupCamera()
     {
         let aspectRatio = self.view.frame.width / self.view.frame.height
         print("Aspect ratio \(aspectRatio)")
@@ -284,10 +289,8 @@ class GLKUpdater : NSObject, GLKViewControllerDelegate {
     
     // Update Game Logic
     func glkViewControllerUpdate(_ controller: GLKViewController) {
-        StateMachine.Instance.nextState()
+        StateMachine.Instance.nextState()   // check if next state is available and switch if there is one
         StateMachine.Instance.update(dt: controller.timeSinceLastUpdate)
-        // collision detection ...
-        // GameManager.instance.Update()
     }
 }
 
