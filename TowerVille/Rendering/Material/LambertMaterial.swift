@@ -21,7 +21,7 @@ class LambertMaterial : Material {
     
     private var directionalLightIntensityUniform : Int32!
     private var directionalLightDirectionUniform : Int32!
-    private var directionalLightColorUniform : Int32!
+    private var directionalLightColorUniform     : Int32!
     private var pointLightPositionsUniform   = [Int32](repeating: 0, count: MAX_POINT_LIGHTS)
     private var pointLightColorsUniform      = [Int32](repeating: 0, count: MAX_POINT_LIGHTS)
     private var pointLightIntensitiesUniform = [Int32](repeating: 0, count: MAX_POINT_LIGHTS)
@@ -90,8 +90,6 @@ class LambertMaterial : Material {
         directionalLightDirectionUniform = glGetUniformLocation(shader.programHandle, "u_DirectionalLight.direction")
         directionalLightColorUniform = glGetUniformLocation(shader.programHandle, "u_DirectionalLight.color")
         directionalLightIntensityUniform = glGetUniformLocation(shader.programHandle, "u_DirectionalLight.intensity")
-
-        let foo = glGetUniformLocation(shader.programHandle, "u_PointLights[0].position");
         
         for i in 0..<LambertMaterial.MAX_POINT_LIGHTS {
             pointLightPositionsUniform[i] = glGetUniformLocation(shader.programHandle, "u_PointLights[\(i)].position")

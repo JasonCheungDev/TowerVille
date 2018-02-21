@@ -182,9 +182,15 @@ extension ViewController {
         directionalLight.zDir = -1
         
         var pointLight1 = PointLight()
+        pointLight1.x = 0.07107
+        pointLight1.y = 4.08248
+        pointLight1.z = -14.4338
+        pointLight1.lightColor = Color(1,0,0,1)
         var pointLight2 = PointLight()
-        pointLight2.x = 5
-        pointLight2.z = 5
+        pointLight2.x = 13.07107
+        pointLight2.y = 4.08248
+        pointLight2.z = -14.4338
+        pointLight2.lightColor = Color(0,1,0,1)
         var pointLight3 = PointLight()
         var pointLight4 = PointLight()
     }
