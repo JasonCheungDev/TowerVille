@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2840DE2F203C1BEA005C0513 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2840DE2E203C1BEA005C0513 /* cube.obj */; };
+		2840DE31203D2F7B005C0513 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2840DE30203D2F7B005C0513 /* sphere.obj */; };
+		289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */; };
+		289E3CCB203A8B8400B34C4A /* MarkusVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 289E3CCA203A8B8400B34C4A /* MarkusVertexShader.glsl */; };
+		28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B37B71203CE4E30063D84C /* ObjLoader.swift */; };
 		2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD6E20193318004565D4 /* AppDelegate.swift */; };
 		2BB2AD7120193318004565D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7020193318004565D4 /* ViewController.swift */; };
 		2BB2AD7420193318004565D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7220193318004565D4 /* Main.storyboard */; };
@@ -78,6 +83,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2840DE2E203C1BEA005C0513 /* cube.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		2840DE30203D2F7B005C0513 /* sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarkusFragmentShader.glsl; sourceTree = "<group>"; };
+		289E3CCA203A8B8400B34C4A /* MarkusVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarkusVertexShader.glsl; sourceTree = "<group>"; };
+		28B37B71203CE4E30063D84C /* ObjLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjLoader.swift; sourceTree = "<group>"; };
 		2BB2AD6B20193318004565D4 /* TowerVille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TowerVille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB2AD6E20193318004565D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB2AD7020193318004565D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +206,8 @@
 				2BB2AD7520193318004565D4 /* Assets.xcassets */,
 				2BB2AD7720193318004565D4 /* LaunchScreen.storyboard */,
 				2BB2AD7A20193318004565D4 /* Info.plist */,
+				2840DE2E203C1BEA005C0513 /* cube.obj */,
+				2840DE30203D2F7B005C0513 /* sphere.obj */,
 			);
 			path = TowerVille;
 			sourceTree = "<group>";
@@ -230,6 +242,7 @@
 				DEB2DA14201BD9810088797D /* GlkExtensions.swift */,
 				DEC217BD2035335A00F11022 /* DebugData.swift */,
 				DEC217BF2035347E00F11022 /* PhongMaterial.swift */,
+				28B37B71203CE4E30063D84C /* ObjLoader.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -317,6 +330,8 @@
 				DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */,
 				DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */,
 				DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */,
+				289E3CCA203A8B8400B34C4A /* MarkusVertexShader.glsl */,
+				289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -432,7 +447,11 @@
 				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
 				DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
+				289E3CCB203A8B8400B34C4A /* MarkusVertexShader.glsl in Resources */,
+				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
+				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
+				2840DE2F203C1BEA005C0513 /* cube.obj in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
 				DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */,
 				DEC217C22035412100F11022 /* dungeon_01.png in Resources */,
@@ -481,6 +500,7 @@
 				2BEBE66420194382008E8FEB /* Aggro.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,
+				28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */,
 				2BEBE63620193A5B008E8FEB /* GameManager.swift in Sources */,
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
