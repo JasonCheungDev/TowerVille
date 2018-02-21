@@ -66,8 +66,11 @@ class LambertMaterial : Material {
             }
             else if let pLight = light as? PointLight
             {
+                var lightPos = GLKVector4Make(pLight.x, pLight.y, pLight.z, 1)
+                lightPos = GLKMatrix4MultiplyVector4(DebugData.Instance.viewMatrix, lightPos)
+
                 glUniform1f(pointLightIntensitiesUniform[pointLightCount], pLight.lightIntensity)
-                glUniform3f(pointLightPositionsUniform[pointLightCount], pLight.x, pLight.y, pLight.z)
+                glUniform3f(pointLightPositionsUniform[pointLightCount], lightPos.x, lightPos.y, lightPos.z)
                 glUniform4f(pointLightColorsUniform[pointLightCount], pLight.lightColor.r
                     , pLight.lightColor.g, pLight.lightColor.b, pLight.lightColor.a)
                 pointLightCount += 1

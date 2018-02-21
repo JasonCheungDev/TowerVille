@@ -196,6 +196,10 @@ extension ViewController {
         pointLight2.z = -14.4338
         pointLight2.lightColor = Color(0,1,0,1)
         var pointLight3 = PointLight()
+        pointLight3.x = 5
+        pointLight3.y = 5
+        pointLight3.z = -5
+        pointLight3.lightColor = Color(0,0,1,1)
         var pointLight4 = PointLight()
     }
     
