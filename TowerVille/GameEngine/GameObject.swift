@@ -8,13 +8,23 @@
 
 import Foundation
 
-class GameObject{
-    var ID : String?
-    var x : Float = 0
+class GameObject {
+    var id : String?
+    var x: Float = 0
     var y : Float = 0
     var z : Float = 0
     var xRot : Float = 0
     var yRot : Float = 0
     var zRot : Float = 0
+    
+    func initialize(id : String?, x : Float, z : Float) {
+        self.id = id
+        self.x = x
+        self.z = z
+    }
+    
+    func update(dt : TimeInterval) {
+        
+    }
 }
 

@@ -1,16 +1,14 @@
 //
-//  Map.swift
+//  Waypoint.swift
 //  TowerVille
 //
-//  Created by Daniel Tian on 2018-01-24.
+//  Created by Rian Neufelt on 2018-02-08.
 //  Copyright © 2018 The-Fighting-Mongeese. All rights reserved.
 //
 
 import Foundation
 
-class Map {
-    
-    var Tiles : [[Tile]] = []
+class  Waypoint : GameObject {
     
     
 }

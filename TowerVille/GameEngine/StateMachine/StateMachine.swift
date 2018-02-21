@@ -2,61 +2,59 @@ import Foundation
 
 class StateMachine
 {
-    var _resume : Bool = false
-    var _running : Bool = false
-    var _states : Stack<State> = Stack<State>();
+    var resume : Bool = false
+    var running : Bool = false
+    var states : Stack<State> = Stack<State>();
  
+    static let Instance : StateMachine = StateMachine()
+    
     func nextState() {
-        if (_resume) {
+        if (resume) {
             // Cleanup the current state
-            _ = _states.pop()
+            _ = states.pop()
 
             // Resume previous state
-            _states.top?.resume();
-            _resume = false;
+            states.top?.resume();
+            resume = false;
         }
 
         // There needs to be a state
-        if let temp = _states.top?.next() {
+        if let temp = states.top?.next {
             // Replace the running state
-            if (temp.isReplacing()) {
-                _ = _states.pop();
+            if (temp.replacing) {
+                _ = states.pop();
             }
             // Pause the running state
             else {
-                _states.top?.pause();
+                states.top?.pause();
             }
-            _states.push(temp);
+            states.push(temp);
         }
     }
 
+    func state() -> State? {
+        return states.top
+    }
+    
     func run(state : State) {
-        _running = true;
-        _states.push(state);
+        running = true;
+        states.push(state);
     }
 
     func lastState() {
-        _resume = true;
+        resume = true;
     }
 
     func update(dt : TimeInterval) {
-        _states.top?.update(dt : dt)
+        states.top?.update(dt : dt)
     }
 
     func draw() {
-        _states.top?.draw()
+        states.top?.draw()
     }
     
     func processInput(x : Float, z : Float, u : Float, v : Float) {
-        _states.top?.processInput(x: x, z : z, u : u, v : v)
-    }
-
-    func running() -> Bool {
-        return _running;
-    }
-
-    func quit() {
-        _running = false;
+        states.top?.processInput(x: x, z : z, u : u, v : v)
     }
 
 }
