@@ -171,11 +171,12 @@ extension ViewController {
         prefab.x = 6
         prefab.z = -6
     
+        /*
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
         self.debugVisualObjects.append(vo3)
         self.debugVisualObjects.append(vo4)
-        self.debugVisualObjects.append(prefab)
+        self.debugVisualObjects.append(prefab)*/
     }
     
     func debug_SetupLights()

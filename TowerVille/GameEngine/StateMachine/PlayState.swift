@@ -2,9 +2,14 @@ import Foundation
 
 class PlayState : State {
     
+    let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
+    
+    let tower : Tower
+    
     override init(machine : StateMachine, replacing : Bool = true) {
+        tower = Tower(10.0, 10.0, shader:shader)
         super.init(machine : machine, replacing: replacing)
-        //print("play")
+        
     }
     
     override func update(dt: TimeInterval) {
@@ -12,7 +17,7 @@ class PlayState : State {
     }
     
     override func draw() {
-        
+        tower.Draw()
     }
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
