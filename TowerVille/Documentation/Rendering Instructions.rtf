@@ -36,9 +36,8 @@ To create visual objects follow these steps in any file:\cb2 \
 \f0\b\fs24 \cf0 \cb1 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\b0 \cf0 \ul \ulc0 Custom: (
+\b0 \ul Custom: (
 \i \ulnone Will probably change soon!!!
 \i0 \ul )
 \b \ulnone \
@@ -47,14 +46,12 @@ To create visual objects follow these steps in any file:\cb2 \
 
 \b0 \cf0 1. Create a VisualObject (aka. a GameObject for positional data you can manipulate) \
 
-\f1\fs28 \cf4 \cb2     \cf3 \cb2 let\cf4 \cb2  vo = \cf5 VisualObject\cf4 ()
+\f1\fs28 \cf4 \cb2     \cf3 let\cf4  vo = \cf5 VisualObject\cf4 ()
 \f0\fs24 \cf0 \
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\b \cf0 \cb1 \
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\b \cb1 \
 
-\b0 \cf0 2. Create a RenderObject (aka. a model or mesh)\
+\b0 2. Create a RenderObject (aka. a model or mesh)\
 \pard\tx692\pardeftab692\pardirnatural\partightenfactor0
 
 \f1\fs28 \cf4 \cb2 	\cf3 let\cf4  ro = \cf5 RenderObject\cf4 (fromShader: \cf5 shader\cf4 , fromVertices: \cf5 DebugData\cf4 .\cf5 cubeVertices\cf4 , fromIndices: \cf5 DebugData\cf4 .\cf5 cubeIndices\cf4 )
@@ -100,8 +97,10 @@ To create visual objects follow these steps in any file:\cb2 \
  	- Only one shader can be used, this game cannot use more than one shader at runtime (at the moment). \
 	- For every shader there should be ONE compatible material (ex. Simple...Shader & FlatColorMaterial). \
 \
-\ul Sample code to use SimpleVertexShader + SimpleFragmentShader\
-\ulnone \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \ul Sample code to use SimpleVertexShader + SimpleFragmentShader\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \ulnone \
 ---------- ViewController.swift --------------\
 \pard\tx692\pardeftab692\pardirnatural\partightenfactor0
 
@@ -158,4 +157,40 @@ To create visual objects follow these steps in any file:\cb2 \
 \f0\fs24 \cf0 \cb1 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \
----------- End File ----------}
+---------- End File ----------\
+\
+\
+
+\b Creating your own Shader\
+
+\b0 \
+1. Create another Vertex and Fragment Shader file pair.\
+These files must include below variables (named EXACTLY the same) at the bare minimum:\
+\
+-------- FoobarVertex.glsl and/or FoobarFragment.glsl ----------\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf3 \cb2 \
+uniform\cf4  \cf3 highp\cf4  \cf3 mat4\cf4  u_ModelView;
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf3 uniform\cf4  \cf3 highp\cf4  \cf3 mat4\cf4  u_Projection;
+\f0\fs24 \cf0 \
+\
+
+\f1\fs28 \cf3 in\cf4  \cf3 vec4\cf4  i_Position;
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf3 in\cf4  \cf3 vec2\cf4  i_TexCoord;
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf3 in\cf4  \cf3 vec3\cf4  i_Normal;
+\f0\fs24 \cf0 \cb1 \
+\
+---------- End File ----------\
+\
+\
+2. Create a material to implement your shader \
+This material should have uniforms for all the details such as colour and lightning. Each material should correspond to one shader. \
+	- See the various material files for details. \
+}
