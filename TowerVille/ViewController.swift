@@ -224,14 +224,15 @@ extension ViewController {
         }
         
         var objLoader : ObjLoader = ObjLoader()
-        objLoader.Read(fileName : "cube")
+        objLoader.Read(fileName : "sphere")
 
         var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         ro.material = highlightOrigin
         
         var vo = VisualObject()
-        vo.x = 5
-        vo.z = -5
+        vo.x = 4
+        vo.y = 4
+        vo.z = -2
         vo.LinkRenderObject(ro)
         
         debugVisualObjects.append(vo)
