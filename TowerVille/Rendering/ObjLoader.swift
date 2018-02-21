@@ -15,6 +15,8 @@ class ObjLoader {
     var normalArray = [GLKVector3]()
     
     var vertexDataArray = [VertexData]()
+    var vertexDataIndex : Int = 0
+    var indexDataArray = [GLubyte]()
     
     func Read(fileName : String) -> Void{
         if let path = Bundle.main.path(forResource: fileName, ofType: "obj") {
@@ -65,7 +67,13 @@ class ObjLoader {
     }
     
     func ReadFace(_ string : String) -> Void{
-        
+        var strings = string.components(separatedBy: " ")
+        var a = strings[1].components(separatedBy: "/")
+        var b = strings[2].components(separatedBy: "/")
+        var c = strings[3].components(separatedBy: "/")
+        if (strings.count == 4) {
+            var d = strings[4].components(separatedBy: "/")
+        }
     }
     
 }
