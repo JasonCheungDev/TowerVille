@@ -14,7 +14,6 @@ class MinionSpawner : GameObject {
     var curTime : TimeInterval = 0.0
     let spawnTime : TimeInterval = 2.0
     let minion : Minion
-    var minions : [Minion] = []
     let total : Int = 10
     var current : Int = 0
     
@@ -26,27 +25,27 @@ class MinionSpawner : GameObject {
             wayPoints.append(go)
         }
         
-        wayPoints[0].x = 0.0
-        wayPoints[0].z = 0.0
+        wayPoints[0].x = 4.0
+        wayPoints[0].z = -5.0
         
-        wayPoints[1].x = 0.0
-        wayPoints[1].z = -6.0
+        wayPoints[1].x = 10.0
+        wayPoints[1].z = -5.0
         
-        wayPoints[2].x = 6.0
-        wayPoints[2].z = -6.0
+        wayPoints[2].x = 10.0
+        wayPoints[2].z = -5.0
         
-        wayPoints[3].x = 6.0
+        wayPoints[3].x = 10.0
         wayPoints[3].z = 0.0
         
-        wayPoints[4].x = 0.0
-        wayPoints[4].z = -6.0
+        wayPoints[4].x = 10.0
+        wayPoints[4].z = -5.0
         
-        wayPoints[5].x = 6.0
-        wayPoints[5].z = -6.0
+        wayPoints[5].x = 10.0
+        wayPoints[5].z = -5.0
         
     }
     
-    func spawn() {
+    func spawn(minions: inout [Minion]) {
         let c = minion.copy() as! Minion
         c.setWayPoints(wayPoints: wayPoints)
         c.x = wayPoints[0].x
@@ -55,20 +54,11 @@ class MinionSpawner : GameObject {
         current += 1
     }
     
-    override func update(dt: TimeInterval) {
+    func update(dt: TimeInterval, minions: inout [Minion]) {
         curTime += dt
         if(current <= total && curTime >= spawnTime) {
             curTime = 0.0
-            spawn()
-        }
-        for guy in minions {
-            guy.update(dt: dt)
-        }
-    }
-    
-    func draw() {
-        for guy in minions {
-            guy.draw()
+            spawn(minions: &minions)
         }
     }
     
