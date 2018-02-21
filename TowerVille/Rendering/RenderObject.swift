@@ -62,9 +62,9 @@ class RenderObject{
         material?.LoadLightData(fromLights: LightManager.Instance.lights)
         
         // Load positional uniforms
-        let mv = GLKMatrix4Multiply(DebugData.Instance.viewMatrix, self.modelMatrix())
+        let mv = GLKMatrix4Multiply(Camera.ActiveCamera!.viewMatrix, self.modelMatrix())
         glUniformMatrix4fv(self.Shader.modelViewUniform, 1, GLboolean(GL_FALSE), mv.array)
-        glUniformMatrix4fv(self.Shader.projectionUniform, 1, GLboolean(GL_FALSE), DebugData.Instance.projectionMatrix.array)
+        glUniformMatrix4fv(self.Shader.projectionUniform, 1, GLboolean(GL_FALSE), Camera.ActiveCamera!.projectionMatrix.array)
 
 //        glActiveTexture(GLenum(GL_TEXTURE1))
 //        glBindTexture(GLenum(GL_TEXTURE_2D), self.texture)
@@ -88,7 +88,7 @@ class RenderObject{
         
         // Load positional uniforms
         glUniformMatrix4fv(self.Shader.modelViewUniform, 1, GLboolean(GL_FALSE), self.currentModelView.array)
-        glUniformMatrix4fv(self.Shader.projectionUniform, 1, GLboolean(GL_FALSE), DebugData.Instance.projectionMatrix.array)
+        glUniformMatrix4fv(self.Shader.projectionUniform, 1, GLboolean(GL_FALSE), Camera.ActiveCamera!.projectionMatrix.array)
         glActiveTexture(GLenum(GL_TEXTURE1))
         glBindTexture(GLenum(GL_TEXTURE_2D), self.texture)
         glUniform1i(self.Shader.textureUniform, 1)

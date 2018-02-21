@@ -12,7 +12,7 @@ import GLKit
 class Tower : VisualObject{
     
     var health : Int = 100
-    var attacksPerSecond : Double = 1.0
+    var attacksPerSecond : Double = 5.0
     
     var zombie : Minion!
     var towerProjectiles : [TowerProjectile] = []
@@ -53,10 +53,28 @@ class Tower : VisualObject{
         
         
     }
+    
+    override func draw(){
+        super.draw()
+        
+        if(towerProjectiles.count > 0){ //put into tower draw
+            for p in towerProjectiles
+            {
+                p.draw()
+            }
+        }
+    }
 
     override func update(dt: TimeInterval) {
         //go to target
         //self.z += Float(speed * dt)
+        
+        if(towerProjectiles.count > 0){ //put into tower.update
+            for p in towerProjectiles
+            {
+                p.update(dt: dt)
+            }
+        }
         
     }
 }

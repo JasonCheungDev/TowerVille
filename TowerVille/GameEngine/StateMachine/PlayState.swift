@@ -11,7 +11,7 @@ class PlayState : State {
     
     override init(replacing : Bool = true) {
         minion = Minion(shader: shader)
-        tower = Tower(8.0, 0.0, shader:shader)
+        tower = Tower(8.0, -7.0, shader:shader)
         tower.setMinion(min: minion)
         super.init(replacing: replacing)
 
@@ -21,24 +21,11 @@ class PlayState : State {
         minion.update(dt: dt)
         tower.update(dt: dt)
         
-        if(tower.towerProjectiles.count > 0){
-            for p in tower.towerProjectiles
-            {
-                p.update(dt: dt)
-            }
-        }
     }
     
     override func draw() {
         tower.draw()
         minion.draw()
-        
-        if(tower.towerProjectiles.count > 0){
-            for p in tower.towerProjectiles
-            {
-                p.draw()
-            }
-        }
     }
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {

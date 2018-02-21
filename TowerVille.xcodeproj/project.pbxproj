@@ -10,7 +10,6 @@
 		2840DE2F203C1BEA005C0513 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2840DE2E203C1BEA005C0513 /* cube.obj */; };
 		2840DE31203D2F7B005C0513 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2840DE30203D2F7B005C0513 /* sphere.obj */; };
 		289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */; };
-		289E3CCB203A8B8400B34C4A /* MarkusVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 289E3CCA203A8B8400B34C4A /* MarkusVertexShader.glsl */; };
 		28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B37B71203CE4E30063D84C /* ObjLoader.swift */; };
 		2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD6E20193318004565D4 /* AppDelegate.swift */; };
 		2BB2AD7120193318004565D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7020193318004565D4 /* ViewController.swift */; };
@@ -55,12 +54,12 @@
 		DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */; };
 		DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B930F2019558B001B9D83 /* ShaderProgram.swift */; };
 		DE8EFD29203CF75D000987CE /* PhongMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD28203CF75D000987CE /* PhongMaterial.swift */; };
+		DE8EFD2B203D5C9D000987CE /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD2A203D5C9D000987CE /* Camera.swift */; };
 		DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF8282035868B0097F76B /* DirectionalLight.swift */; };
 		DE9AF82B20358A230097F76B /* LightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82A20358A230097F76B /* LightManager.swift */; };
 		DE9AF82D20358AFB0097F76B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82C20358AFB0097F76B /* Light.swift */; };
 		DE9AF830203BD6100097F76B /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82F203BD6100097F76B /* PointLight.swift */; };
 		DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE9AF832203C03440097F76B /* JasonFragmentShader.glsl */; };
-		DE9AF835203C03440097F76B /* JasonVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE9AF833203C03440097F76B /* JasonVertexShader.glsl */; };
 		DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2DA14201BD9810088797D /* GlkExtensions.swift */; };
 		DEC217B82034F05900F11022 /* VertexData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217B72034F05900F11022 /* VertexData.swift */; };
 		DEC217BB2035321400F11022 /* PhongFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEC217B92035321400F11022 /* PhongFragmentShader.glsl */; };
@@ -92,7 +91,6 @@
 		2840DE2E203C1BEA005C0513 /* cube.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		2840DE30203D2F7B005C0513 /* sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarkusFragmentShader.glsl; sourceTree = "<group>"; };
-		289E3CCA203A8B8400B34C4A /* MarkusVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarkusVertexShader.glsl; sourceTree = "<group>"; };
 		28B37B71203CE4E30063D84C /* ObjLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjLoader.swift; sourceTree = "<group>"; };
 		2BB2AD6B20193318004565D4 /* TowerVille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TowerVille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB2AD6E20193318004565D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,12 +142,12 @@
 		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
 		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
 		DE8EFD28203CF75D000987CE /* PhongMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongMaterial.swift; sourceTree = "<group>"; };
+		DE8EFD2A203D5C9D000987CE /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DE9AF8282035868B0097F76B /* DirectionalLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		DE9AF82A20358A230097F76B /* LightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightManager.swift; sourceTree = "<group>"; };
 		DE9AF82C20358AFB0097F76B /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		DE9AF82F203BD6100097F76B /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
 		DE9AF832203C03440097F76B /* JasonFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JasonFragmentShader.glsl; sourceTree = "<group>"; };
-		DE9AF833203C03440097F76B /* JasonVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JasonVertexShader.glsl; sourceTree = "<group>"; };
 		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
 		DEC217B72034F05900F11022 /* VertexData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexData.swift; sourceTree = "<group>"; };
 		DEC217B92035321400F11022 /* PhongFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongFragmentShader.glsl; sourceTree = "<group>"; };
@@ -276,6 +274,7 @@
 				2BEBE64F2019415A008E8FEB /* Vertex.swift */,
 				2BEBE6512019416C008E8FEB /* Color.swift */,
 				DEC217B72034F05900F11022 /* VertexData.swift */,
+				DE8EFD2A203D5C9D000987CE /* Camera.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -359,14 +358,12 @@
 			isa = PBXGroup;
 			children = (
 				DE9AF832203C03440097F76B /* JasonFragmentShader.glsl */,
-				DE9AF833203C03440097F76B /* JasonVertexShader.glsl */,
 				DEC217B92035321400F11022 /* PhongFragmentShader.glsl */,
 				DEC217BA2035321400F11022 /* PhongVertexShader.glsl */,
 				DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */,
 				DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */,
 				DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */,
 				DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */,
-				289E3CCA203A8B8400B34C4A /* MarkusVertexShader.glsl */,
 				289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */,
 			);
 			path = Shaders;
@@ -483,7 +480,6 @@
 				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
 				DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
-				289E3CCB203A8B8400B34C4A /* MarkusVertexShader.glsl in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
@@ -496,7 +492,6 @@
 				DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */,
 				DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */,
 				DEC217BB2035321400F11022 /* PhongFragmentShader.glsl in Resources */,
-				DE9AF835203C03440097F76B /* JasonVertexShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8EFD2B203D5C9D000987CE /* Camera.swift in Sources */,
 				DE9AF82B20358A230097F76B /* LightManager.swift in Sources */,
 				2BEBE6502019415A008E8FEB /* Vertex.swift in Sources */,
 				3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */,
