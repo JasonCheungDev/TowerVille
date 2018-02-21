@@ -222,6 +222,20 @@ extension ViewController {
                 debugVisualObjects.append(newTile)
             }
         }
+        
+        var objLoader : ObjLoader = ObjLoader()
+        objLoader.Read(fileName : "cube")
+
+        var lord = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        lord.material = highlightOrigin
+        
+        var goat = Tile()
+        goat.x = 5
+        goat.z = -5
+        goat.LinkRenderObject(lord)
+        
+        debugVisualObjects.append(goat)
+
     }
 }
 

@@ -15,7 +15,7 @@ class ObjLoader {
     var normalArray = [GLKVector3]()
     
     var vertexDataArray = [VertexData]()
-    var vertexDataIndex : Int = 0
+    var vertexDataIndex : GLubyte = 0
     var indexDataArray = [GLubyte]()
     
     func Read(fileName : String) -> Void{
@@ -40,8 +40,8 @@ class ObjLoader {
         }
     }
     
-    func ReadVertex(_ string : String) -> Void{
-        var strings = string.components(separatedBy: " ")
+    func ReadVertex(_ line : String) -> Void{
+        var strings = line.components(separatedBy: " ")
         let x = Float(strings[1])!
         let y = Float(strings[2])!
         let z = Float(strings[3])!
@@ -49,16 +49,16 @@ class ObjLoader {
         vertexArray.append(vector3)
     }
     
-    func ReadTexture(_ string : String) -> Void{
-        var strings = string.components(separatedBy: " ")
+    func ReadTexture(_ line : String) -> Void{
+        var strings = line.components(separatedBy: " ")
         let u = Float(strings[1])!
         let v = Float(strings[2])!
         let vector2 = GLKVector2Make(u, v)
         textureArray.append(vector2)
     }
     
-    func ReadNormal(_ string : String) -> Void{
-        var strings = string.components(separatedBy: " ")
+    func ReadNormal(_ line : String) -> Void{
+        var strings = line.components(separatedBy: " ")
         let i = Float(strings[1])!
         let j = Float(strings[2])!
         let k = Float(strings[3])!
@@ -66,13 +66,17 @@ class ObjLoader {
         normalArray.append(vector3)
     }
     
-    func ReadFace(_ string : String) -> Void{
-        var strings = string.components(separatedBy: " ")
-        var a = strings[1].components(separatedBy: "/")
-        var b = strings[2].components(separatedBy: "/")
-        var c = strings[3].components(separatedBy: "/")
-        if (strings.count == 4) {
-            var d = strings[4].components(separatedBy: "/")
+    func ReadFace(_ line : String) -> Void{
+        var strings = line.components(separatedBy: " ")
+        strings.removeFirst()
+        for string in strings {
+            var a = string.components(separatedBy: "/")
+            let index = Int(a[0])! - 1
+            let vertex = vertexArray[index]
+            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+            vertexDataArray.append(vertexData)
+            indexDataArray.append(vertexDataIndex)
+            vertexDataIndex += 1
         }
     }
     
