@@ -71,9 +71,13 @@ class ObjLoader {
         strings.removeFirst()
         for string in strings {
             var a = string.components(separatedBy: "/")
-            let index = Int(a[0])! - 1
-            let vertex = vertexArray[index]
-            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0)
+            let vertexIndex = Int(a[0])! - 1
+            let textureIndex = Int(a[1])! - 1
+            let normalIndex = Int(a[2])! - 1
+            let vertex = vertexArray[vertexIndex]
+            let texture = textureArray[textureIndex]
+            let normal = normalArray[normalIndex]
+            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z, 0.0, 0.0, 0.0, 1.0, texture.x, texture.y, normal.x, normal.y, normal.z)
             vertexDataArray.append(vertexData)
             indexDataArray.append(vertexDataIndex)
             vertexDataIndex += 1
