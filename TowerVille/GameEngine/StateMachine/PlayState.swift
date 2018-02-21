@@ -8,10 +8,14 @@ class PlayState : State {
     }
     
     override func update(dt: TimeInterval) {
-        _next = IntroState(machine : _machine)
+        //_next = IntroState(machine : _machine)
     }
     
     override func draw() {
+        
+    }
+    
+    override func processInput(x: Float, z: Float, u: Float, v: Float) {
         
     }
     

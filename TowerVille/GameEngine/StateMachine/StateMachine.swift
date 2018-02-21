@@ -46,6 +46,10 @@ class StateMachine
     func draw() {
         _states.top?.draw()
     }
+    
+    func processInput(x : Float, z : Float, u : Float, v : Float) {
+        _states.top?.processInput(x: x, z : z, u : u, v : v)
+    }
 
     func running() -> Bool {
         return _running;

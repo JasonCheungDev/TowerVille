@@ -13,6 +13,8 @@ protocol Material {
     
     func LoadMaterial() -> Void
     
+    func LoadLightData(fromLights lights : [Light])
+    
 }
 
 // Consider: 

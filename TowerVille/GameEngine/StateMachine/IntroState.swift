@@ -15,6 +15,10 @@ class IntroState : State {
         
     }
     
+    override func processInput(x: Float, z: Float, u: Float, v: Float) {
+        
+    }
+    
     override func pause() {
         
     }
