@@ -121,7 +121,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "JasonVertexShader.glsl", fragmentShader: "JasonFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     }
     
     func debug_setup()
@@ -154,12 +154,14 @@ extension ViewController {
         
         let vo = VisualObject()
         vo.linkRenderObject(ro)
-        vo.x = 4
+        vo.x = 8
+        vo.z = -4
         vo.xRot = 15
         
         let vo2 = VisualObject()
         vo2.linkRenderObject(ro2)
-        vo2.x = 8
+        vo2.x = 12
+        vo2.z = -4
         vo2.yRot = 55
         
         // TODO: Should be auto gen by GameObject
@@ -167,19 +169,19 @@ extension ViewController {
         vo2.id = "Debug VO 2"
         let vo3 = VisualObject()
         vo3.linkRenderObject(ro3)
-        vo3.x = 4
-        vo3.z = -8
+        vo3.x = 8
+        vo3.z = -12
         vo3.xRot = 60
 
         let vo4 = VisualObject()
         vo4.linkRenderObject(ro3)
-        vo4.x = 8
-        vo4.z = -8
+        vo4.x = 12
+        vo4.z = -12
         vo4.yRot = 30
         
         let prefab = CubePrefab(shader)
-        prefab.x = 6
-        prefab.z = -6
+        prefab.x = 10
+        prefab.z = -10
     
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
@@ -194,22 +196,23 @@ extension ViewController {
         directionalLight.xDir = 1
         directionalLight.yDir = -1
         directionalLight.zDir = -1
+        directionalLight.lightIntensity = 0.125
+        directionalLight.lightColor = Color(1,1,1,1)
         
         var pointLight1 = PointLight()
-        pointLight1.x = 0.07107
-        pointLight1.y = 4.08248
-        pointLight1.z = -14.4338
-        pointLight1.lightColor = Color(1,0,0,1)
+        pointLight1.x = 4.0
+        pointLight1.y = 5.0
+        pointLight1.z = -4.0
+        pointLight1.lightIntensity = 1.0
+        pointLight1.lightColor = Color(222/255,107/255,40/255,1)
+        
         var pointLight2 = PointLight()
-        pointLight2.x = 13.07107
-        pointLight2.y = 4.08248
-        pointLight2.z = -14.4338
-        pointLight2.lightColor = Color(0,1,0,1)
-        var pointLight3 = PointLight()
-        pointLight3.x = 5
-        pointLight3.y = 5
-        pointLight3.z = -5
-        pointLight3.lightColor = Color(0,0,1,1)
+        pointLight2.x = 14.0
+        pointLight2.y = 5.0
+        pointLight2.z = -14.0
+        pointLight2.lightIntensity = 1.0
+        pointLight2.lightColor = Color(67/255,134/255,150/255,1)
+        
         var pointLight4 = PointLight()
     }
     
@@ -238,24 +241,18 @@ extension ViewController {
         
         for x in 0..<gridSize {
             for y in 0..<gridSize {
-                var newTile = Tile()
-                newTile.x = Float(x)
-                newTile.z = Float(-y)
-                
                 if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
                 {
-                    newTile.linkRenderObject(highlightRo)
+                    var newTile = Tile()
+                    newTile.x = Float(x)
+                    newTile.z = Float(-y)
+                    if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2) {
+                        newTile.linkRenderObject(mountainRo)
+                    } else {
+                        newTile.linkRenderObject(grassRo)
+                    }
+                    debugVisualObjects.append(newTile)
                 }
-                else if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
-                {
-                    newTile.linkRenderObject(mountainRo)
-                }
-                else
-                {
-                    newTile.linkRenderObject(grassRo)
-                }
-
-                debugVisualObjects.append(newTile)
             }
         }
         
@@ -266,13 +263,12 @@ extension ViewController {
         ro.material = highlightOrigin
         
         var vo = VisualObject()
-        vo.x = 4
+        vo.x = 8
         vo.y = 4
-        vo.z = -2
+        vo.z = -6
         vo.linkRenderObject(ro)
         
         debugVisualObjects.append(vo)
-
     }
 }
 
