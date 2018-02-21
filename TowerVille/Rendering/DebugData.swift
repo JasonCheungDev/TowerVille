@@ -124,22 +124,26 @@ class DebugData {
     var viewMatrix : GLKMatrix4!
     var modelMatrixCube : GLKMatrix4!   // debug transformation for the cube
     var aspectRatio : CGFloat
+    var displaySize : Int
+    var gridSize : Int
     var colorBuffer : GLuint = 0
     
     private init()
     {
         self.aspectRatio = 1.0
+        self.displaySize = 10
+        self.gridSize = self.displaySize * 2 - 1
     }
     
     func initialize(_ aspectRatio : CGFloat)
     {
-        var viewPos = GLKVector3Make(10, -10, -10)
+        var viewPos = GLKVector3Make(10, 10, 10)
         var viewTar = GLKVector3Make(0, 0, 0)
         viewMatrix = GLKMatrix4MakeLookAt(viewPos.x, viewPos.y, viewPos.z, // camera position
             viewTar.x, viewTar.y, viewTar.z, // target position
-            -1, -1, 1) // camera up vector
+            -1, 1, -1) // camera up vector
         
-        var size : Float = 10 * sqrt(2) // screen width in tiles
+        var size : Float = Float(self.displaySize) * sqrt(2) // screen width in tiles
         projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -size / 2 / Float(aspectRatio), size / 2 / Float(aspectRatio), 0, 100.0)
     }
 

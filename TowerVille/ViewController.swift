@@ -69,6 +69,10 @@ class ViewController: GLKViewController { //UIViewController
         var world_x = (temp_x - temp_y) / sqrt(2)
         var world_y = (temp_x + temp_y) / sqrt(2)
         
+        // undo first rotation
+        world_x += Float(DebugData.Instance.displaySize - 2) / 2
+        world_y += Float(DebugData.Instance.displaySize - 2) / 2
+        
         print("world x : \(world_x)")
         print("world y : \(world_y)")
     }
@@ -112,7 +116,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
+        self.shader = ShaderProgram(vertexShader: "MarkusVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     }
     
     func debug_setup()
@@ -153,18 +157,18 @@ extension ViewController {
         let vo3 = VisualObject()
         vo3.LinkRenderObject(ro3)
         vo3.x = 4
-        vo3.z = 8
+        vo3.z = -8
         vo3.xRot = 60
 
         let vo4 = VisualObject()
         vo4.LinkRenderObject(ro3)
         vo4.x = 8
-        vo4.z = 8
+        vo4.z = -8
         vo4.yRot = 30
         
         let prefab = CubePrefab(shader)
         prefab.x = 6
-        prefab.z = 6
+        prefab.z = -6
     
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
@@ -175,7 +179,8 @@ extension ViewController {
     
     func debug_SetupTiledMap()
     {
-        let gridSize: Int = 10
+        let displaySize: Int = DebugData.Instance.displaySize // screen size in tiles
+        let gridSize: Int = DebugData.Instance.gridSize // size of actual game grid data representation
         
         // create some materials
         let grassTileMat = LambertMaterial(shader)
@@ -198,10 +203,10 @@ extension ViewController {
         for x in 0..<gridSize {
             for y in 0..<gridSize {
                 var newTile = Tile()
-                newTile.x = Float(x)
-                newTile.z = Float(y)
+                newTile.x = Float(x) - Float(displaySize - 2) / 2
+                newTile.z = Float(-y) + Float(displaySize - 2) / 2
                 
-                if (x == 0 && y == 0)
+                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
                 {
                     newTile.LinkRenderObject(highlightRo)
                 }
