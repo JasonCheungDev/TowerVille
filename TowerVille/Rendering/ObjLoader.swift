@@ -72,12 +72,25 @@ class ObjLoader {
         for string in strings {
             var a = string.components(separatedBy: "/")
             let vertexIndex = Int(a[0])! - 1
-            let textureIndex = Int(a[1])! - 1
-            let normalIndex = Int(a[2])! - 1
             let vertex = vertexArray[vertexIndex]
-            let texture = textureArray[textureIndex]
-            let normal = normalArray[normalIndex]
-            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z, 0.0, 0.0, 0.0, 1.0, texture.x, texture.y, normal.x, normal.y, normal.z)
+            var vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+            if (a.count >= 2) {
+                let textureIndex = Int(a[1])
+                if (textureIndex != nil) {
+                    let texture = textureArray[textureIndex! - 1]
+                    vertexData.v = texture.x
+                    vertexData.u = texture.y
+                }
+            }
+            if (a.count == 3) {
+                let normalIndex = Int(a[2])
+                if (normalIndex != nil) {
+                    let normal = normalArray[normalIndex! - 1]
+                    vertexData.nx = normal.x
+                    vertexData.ny = normal.y
+                    vertexData.nz = normal.z
+                }
+            }
             vertexDataArray.append(vertexData)
             indexDataArray.append(vertexDataIndex)
             vertexDataIndex += 1
