@@ -222,6 +222,21 @@ extension ViewController {
                 debugVisualObjects.append(newTile)
             }
         }
+        
+        var objLoader : ObjLoader = ObjLoader()
+        objLoader.Read(fileName : "sphere")
+
+        var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        ro.material = highlightOrigin
+        
+        var vo = VisualObject()
+        vo.x = 4
+        vo.y = 4
+        vo.z = -2
+        vo.LinkRenderObject(ro)
+        
+        debugVisualObjects.append(vo)
+
     }
 }
 
