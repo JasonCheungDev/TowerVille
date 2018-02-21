@@ -2,17 +2,23 @@ import Foundation
 
 class PlayState : State {
     
-    override init(machine : StateMachine, replacing : Bool = true) {
-        super.init(machine : machine, replacing: replacing)
-        //print("play")
+    var map : Map = Map()
+    let shader : ShaderProgram = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "LambertFragmentShader.glsl")
+    let minion : Minion
+    
+   
+    
+    override init(replacing : Bool = true) {
+        minion = Minion(shader: shader)
+        super.init(replacing: replacing)
     }
     
     override func update(dt: TimeInterval) {
-        //_next = IntroState(machine : _machine)
+        minion.update(dt: dt)
     }
     
     override func draw() {
-        
+        minion.draw()
     }
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
@@ -28,39 +34,3 @@ class PlayState : State {
     }
     
 }
-
-
-/*
-PlayState::PlayState(StateMachine& machine, sf::RenderWindow& window, bool replace)
-	: State(machine, window, replace)
-{
-}
-
-void PlayState::pause()
-{
-}
-
-void PlayState::resume()
-{
-}
-
-void PlayState::update(const sf::Time&)
-{
-	while (_window.pollEvent(_event))
-	{
-		_events.Invoke(_event);
-
-	}
-}
-
-void PlayState::draw() const
-{
-	_window.clear(sf::Color::Black);
-
-	_window.display();
-}
-
-PlayState::~PlayState()
-{
-}
-*/
