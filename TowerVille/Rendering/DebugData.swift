@@ -120,8 +120,8 @@ class DebugData {
         
     ]
 
-    var projectionMatrix : GLKMatrix4!
-    var viewMatrix : GLKMatrix4!
+    // var projectionMatrix : GLKMatrix4!
+    // var viewMatrix : GLKMatrix4!
     var modelMatrixCube : GLKMatrix4!   // debug transformation for the cube
     var aspectRatio : CGFloat
     var displaySize : Int
@@ -137,14 +137,14 @@ class DebugData {
     
     func initialize(_ aspectRatio : CGFloat)
     {
-        var viewPos = GLKVector3Make(10, 10, 10)
-        var viewTar = GLKVector3Make(0, 0, 0)
-        viewMatrix = GLKMatrix4MakeLookAt(viewPos.x, viewPos.y, viewPos.z, // camera position
-            viewTar.x, viewTar.y, viewTar.z, // target position
-            -1, 1, -1) // camera up vector
-        
-        var size : Float = Float(self.displaySize) * sqrt(2) // screen width in tiles
-        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -size / 2 / Float(aspectRatio), size / 2 / Float(aspectRatio), 0, 100.0)
+//        var viewPos = GLKVector3Make(10, 10, 10)
+//        var viewTar = GLKVector3Make(0, 0, 0)
+//        viewMatrix = GLKMatrix4MakeLookAt(viewPos.x, viewPos.y, viewPos.z, // camera position
+//            viewTar.x, viewTar.y, viewTar.z, // target position
+//            -1, 1, -1) // camera up vector
+//
+//        var size : Float = Float(self.displaySize) * sqrt(2) // screen width in tiles
+//        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -size / 2 / Float(aspectRatio), size / 2 / Float(aspectRatio), 0, 100.0)
     }
 
 }

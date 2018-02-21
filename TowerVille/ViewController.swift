@@ -60,8 +60,8 @@ class ViewController: GLKViewController { //UIViewController
     func printScreenToWorld(screen_x: Float, screen_y: Float)
     {
         // undo scaling
-        var temp_x = screen_x * 2 / DebugData.Instance.projectionMatrix.m00
-        var temp_y = screen_y * 2 / DebugData.Instance.projectionMatrix.m11
+        var temp_x = screen_x * 2 / Camera.ActiveCamera!.projectionMatrix.m00
+        var temp_y = screen_y * 2 / Camera.ActiveCamera!.projectionMatrix.m11
         
         // undo second rotation
         temp_y *= sqrt(3)
@@ -124,7 +124,10 @@ extension ViewController {
     {
         let aspectRatio = self.view.frame.width / self.view.frame.height
         print("Aspect ratio \(aspectRatio)")
-        DebugData.Instance.initialize(aspectRatio)
+        
+        Camera.initialize(aspectRatio)
+        var cam = OrthoCamPrefab(viewableTiles: 10)
+        Camera.ActiveCamera = cam
     }
     
     func debug_SetupRenderObject()
@@ -229,8 +232,8 @@ extension ViewController {
         for x in 0..<gridSize {
             for y in 0..<gridSize {
                 var newTile = Tile()
-                newTile.x = Float(x) - Float(displaySize - 2) / 2
-                newTile.z = Float(-y) + Float(displaySize - 2) / 2
+                newTile.x = Float(x)
+                newTile.z = Float(-y)
                 
                 if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
                 {
