@@ -226,15 +226,15 @@ extension ViewController {
         var objLoader : ObjLoader = ObjLoader()
         objLoader.Read(fileName : "cube")
 
-        var lord = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        lord.material = highlightOrigin
+        var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        ro.material = highlightOrigin
         
-        var goat = Tile()
-        goat.x = 5
-        goat.z = -5
-        goat.LinkRenderObject(lord)
+        var vo = VisualObject()
+        vo.x = 5
+        vo.z = -5
+        vo.LinkRenderObject(ro)
         
-        debugVisualObjects.append(goat)
+        debugVisualObjects.append(vo)
 
     }
 }

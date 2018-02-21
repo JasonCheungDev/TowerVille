@@ -73,7 +73,7 @@ class ObjLoader {
             var a = string.components(separatedBy: "/")
             let index = Int(a[0])! - 1
             let vertex = vertexArray[index]
-            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0)
             vertexDataArray.append(vertexData)
             indexDataArray.append(vertexDataIndex)
             vertexDataIndex += 1
