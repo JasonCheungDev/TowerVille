@@ -44,8 +44,8 @@ void main() {
         vec3 lightDirection = u_PointLights[i].position - frag_Position;
         vec3 halfDirection = normalize(vec3(0.0, 0.0, 1.0)+normalize(lightDirection));
         
-        float halfLambert = pow(dot(frag_Normal, normalize(lightDirection)) * 0.5 + 0.5, 2.0);
-        float blinn = (2.0 + specularPower) * pow(max(0.0, dot(frag_Normal, halfDirection)), specularPower) / (8.0 * M_PI);
+        float halfLambert = pow(dot(normal, normalize(lightDirection)) * 0.5 + 0.5, 2.0);
+        float blinn = (2.0 + specularPower) * pow(max(0.0, dot(normal, halfDirection)), specularPower) / (8.0 * M_PI);
         float attenuation = u_PointLights[i].intensity / pow(length(lightDirection) * attenuationCoef, 2.0);
         
         diffuse += u_PointLights[i].color * attenuation * halfLambert;
