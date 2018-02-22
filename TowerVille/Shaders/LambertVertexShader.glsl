@@ -16,7 +16,11 @@ out vec3 frag_Normal;
 out vec3 frag_Position;
 
 void main(void) {
-    frag_Color = u_SurfaceColor;
+    //TODO : remove
+    float desaturationCoef = 0.333;
+    float averageLuminance = dot(u_SurfaceColor.rgb, vec3(0.333));
+    
+    frag_Color.rgb = mix(u_SurfaceColor.rgb, vec3(averageLuminance), desaturationCoef);
     frag_TexCoord = i_TexCoord;
     frag_Normal = (u_ModelView * vec4(i_Normal, 0.0)).xyz;
     frag_Position = (u_ModelView * i_Position).xyz;
