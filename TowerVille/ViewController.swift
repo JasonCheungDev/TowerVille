@@ -257,6 +257,7 @@ extension ViewController {
         }
         
         var objLoader : ObjLoader = ObjLoader()
+        objLoader.smoothed = true
         objLoader.Read(fileName : "sphere")
 
         var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)

@@ -10,6 +10,8 @@ import Foundation
 import GLKit
 
 class ObjLoader {
+    var smoothed : Bool = false
+    
     var vertexArray = [GLKVector3]()
     var textureArray = [GLKVector2]()
     var normalArray = [GLKVector3]()
@@ -26,12 +28,22 @@ class ObjLoader {
                 for line in lines {
                     if (line.hasPrefix("v ")) {
                         ReadVertex(line)
+                        if (smoothed) {
+                            let vertexIndex = vertexArray.count - 1
+                            let vertex = vertexArray[vertexIndex]
+                            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+                            vertexDataArray.append(vertexData)
+                        }
                     } else if (line.hasPrefix("vt ")) {
                         ReadTexture(line)
                     } else if (line.hasPrefix("vn ")) {
                         ReadNormal(line)
                     } else if (line.hasPrefix("f ")) {
-                        ReadFace(line)
+                        if (smoothed) {
+                            ReadFaceSmoothed(line)
+                        } else {
+                            ReadFace(line)
+                        }
                     }
                 }
             } catch {
@@ -62,7 +74,8 @@ class ObjLoader {
         let i = Float(strings[1])!
         let j = Float(strings[2])!
         let k = Float(strings[3])!
-        let vector3 = GLKVector3Make(i, j, k)
+        var vector3 = GLKVector3Make(i, j, k)
+        vector3 = GLKVector3Normalize(vector3)
         normalArray.append(vector3)
     }
     
@@ -94,6 +107,33 @@ class ObjLoader {
             vertexDataArray.append(vertexData)
             indexDataArray.append(vertexDataIndex)
             vertexDataIndex += 1
+        }
+    }
+    
+    func ReadFaceSmoothed(_ line : String) -> Void{
+        var strings = line.components(separatedBy: " ")
+        strings.removeFirst()
+        for string in strings {
+            var a = string.components(separatedBy: "/")
+            let vertexIndex = Int(a[0])! - 1
+            if (a.count >= 2) {
+                let textureIndex = Int(a[1])
+                if (textureIndex != nil) {
+                    let texture = textureArray[textureIndex! - 1]
+                    vertexDataArray[vertexIndex].v = texture.x
+                    vertexDataArray[vertexIndex].u = texture.y
+                }
+            }
+            if (a.count == 3) {
+                let normalIndex = Int(a[2])
+                if (normalIndex != nil) {
+                    let normal = normalArray[normalIndex! - 1]
+                    vertexDataArray[vertexIndex].nx += normal.x
+                    vertexDataArray[vertexIndex].ny += normal.y
+                    vertexDataArray[vertexIndex].nz += normal.z
+                }
+            }
+            indexDataArray.append(GLubyte(vertexIndex))
         }
     }
     
