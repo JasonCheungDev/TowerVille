@@ -11,8 +11,11 @@ import Foundation
 
 class Farm : VisualObject, ResourceGenerator {
     
+    static let COST : Int = 10
+    
     var Health: Int = 100
     var ResourcePerSecond: Int = 2
+    var Cost: Int = COST
     
     private let game : PlayState
     private var cooldown : Double = 1

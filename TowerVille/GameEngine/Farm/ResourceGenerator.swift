@@ -13,6 +13,7 @@ protocol ResourceGenerator {
     
     var Health : Int { get set }
     var ResourcePerSecond : Int { get set }
+    var Cost : Int { get }
     
     func ProduceResource() -> Void
 }
