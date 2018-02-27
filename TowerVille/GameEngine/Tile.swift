@@ -26,5 +26,23 @@ class Tile : VisualObject {
     
     var xCoord : uint = 0
     var yCoord : uint = 0
+    var type   : TileType = TileType.Grass
+    var structure : GameObject?
+    
+    func SetStructure(_ newStructure : GameObject) -> Bool {
+        if self.structure != nil { return false }
         
+        self.structure = newStructure
+        newStructure.x = self.x
+        newStructure.y = self.y + 0.01
+        newStructure.z = self.z
+        return true
+    }
+        
+}
+
+enum TileType {
+    case Grass
+    case Path
+    case Mountain
 }

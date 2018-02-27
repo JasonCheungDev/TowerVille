@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Mine : Farm{
+class Mine : Farm {
     
 }
