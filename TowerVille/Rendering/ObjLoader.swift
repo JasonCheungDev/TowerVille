@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class ObjLoader {
-    var smoothed : Bool = false
+    var smoothed = false
     
     var vertexArray = [GLKVector3]()
     var textureArray = [GLKVector2]()
@@ -49,6 +49,45 @@ class ObjLoader {
             } catch {
                 print(error)
             }
+        }
+        if (normalArray.count == 0) {
+            CalculateNormals()
+        }
+    }
+    
+    func CalculateNormals() -> Void{
+        for i in 0..<indexDataArray.count/3 {
+            let v1_index = indexDataArray[i*3]
+            let v2_index = indexDataArray[i*3+1]
+            let v3_index = indexDataArray[i*3+2]
+            
+            let v1 = vertexDataArray[Int(v1_index)]
+            let v2 = vertexDataArray[Int(v2_index)]
+            let v3 = vertexDataArray[Int(v3_index)]
+            
+            var U = GLKVector3()
+            U.x = v2.x - v1.x
+            U.y = v2.y - v1.y
+            U.z = v2.z - v1.z
+            
+            var V = GLKVector3()
+            V.x = v3.x - v1.x
+            V.y = v3.y - v1.y
+            V.z = v3.z - v1.z
+            
+            var normal = GLKVector3CrossProduct(U, V)
+            
+            vertexDataArray[Int(v1_index)].nx += normal.x
+            vertexDataArray[Int(v1_index)].ny += normal.y
+            vertexDataArray[Int(v1_index)].nz += normal.z
+            
+            vertexDataArray[Int(v2_index)].nx += normal.x
+            vertexDataArray[Int(v2_index)].ny += normal.y
+            vertexDataArray[Int(v2_index)].nz += normal.z
+            
+            vertexDataArray[Int(v3_index)].nx += normal.x
+            vertexDataArray[Int(v3_index)].ny += normal.y
+            vertexDataArray[Int(v3_index)].nz += normal.z
         }
     }
     
