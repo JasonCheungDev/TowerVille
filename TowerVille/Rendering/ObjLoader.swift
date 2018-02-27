@@ -17,7 +17,6 @@ class ObjLoader {
     var normalArray = [GLKVector3]()
     
     var vertexDataArray = [VertexData]()
-    var vertexDataIndex : GLubyte = 0
     var indexDataArray = [GLubyte]()
     
     func Read(fileName : String) -> Void{
@@ -28,30 +27,20 @@ class ObjLoader {
                 for line in lines {
                     if (line.hasPrefix("v ")) {
                         ReadVertex(line)
-                        if (smoothed) {
-                            let vertexIndex = vertexArray.count - 1
-                            let vertex = vertexArray[vertexIndex]
-                            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
-                            vertexDataArray.append(vertexData)
-                        }
                     } else if (line.hasPrefix("vt ")) {
                         ReadTexture(line)
                     } else if (line.hasPrefix("vn ")) {
                         ReadNormal(line)
                     } else if (line.hasPrefix("f ")) {
-                        if (smoothed) {
-                            ReadFaceSmoothed(line)
-                        } else {
-                            ReadFace(line)
-                        }
+                        ReadFace(line)
                     }
+                }
+                if (normalArray.count == 0) {
+                    CalculateNormals() // if no normals provided manually calculate them
                 }
             } catch {
                 print(error)
             }
-        }
-        if (normalArray.count == 0) {
-            CalculateNormals()
         }
     }
     
@@ -98,6 +87,15 @@ class ObjLoader {
         let z = Float(strings[3])!
         let vector3 = GLKVector3Make(x, y, z)
         vertexArray.append(vector3)
+        
+        // if model is smoothed vertices don't need to be duplicate
+        // and can be added immediately
+        if (smoothed) {
+            let vertexIndex = vertexArray.count - 1
+            let vertex = vertexArray[vertexIndex]
+            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+            vertexDataArray.append(vertexData)
+        }
     }
     
     func ReadTexture(_ line : String) -> Void{
@@ -123,38 +121,19 @@ class ObjLoader {
         strings.removeFirst()
         for string in strings {
             var a = string.components(separatedBy: "/")
-            let vertexIndex = Int(a[0])! - 1
-            let vertex = vertexArray[vertexIndex]
-            var vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
-            if (a.count >= 2) {
-                let textureIndex = Int(a[1])
-                if (textureIndex != nil) {
-                    let texture = textureArray[textureIndex! - 1]
-                    vertexData.v = texture.x
-                    vertexData.u = texture.y
-                }
+            
+            // choose vertexDataArray index to set values at
+            var vertexIndex = Int(a[0])! - 1
+            if (!smoothed) {
+                let vertex = vertexArray[vertexIndex]
+                vertexIndex = vertexDataArray.count
+                let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+                vertexDataArray.append(vertexData)
             }
-            if (a.count == 3) {
-                let normalIndex = Int(a[2])
-                if (normalIndex != nil) {
-                    let normal = normalArray[normalIndex! - 1]
-                    vertexData.nx = normal.x
-                    vertexData.ny = normal.y
-                    vertexData.nz = normal.z
-                }
-            }
-            vertexDataArray.append(vertexData)
-            indexDataArray.append(vertexDataIndex)
-            vertexDataIndex += 1
-        }
-    }
-    
-    func ReadFaceSmoothed(_ line : String) -> Void{
-        var strings = line.components(separatedBy: " ")
-        strings.removeFirst()
-        for string in strings {
-            var a = string.components(separatedBy: "/")
-            let vertexIndex = Int(a[0])! - 1
+            
+            indexDataArray.append(GLubyte(vertexIndex))
+            
+            // if UVs provided set them in vertexDataArray
             if (a.count >= 2) {
                 let textureIndex = Int(a[1])
                 if (textureIndex != nil) {
@@ -163,16 +142,17 @@ class ObjLoader {
                     vertexDataArray[vertexIndex].u = texture.y
                 }
             }
+            
+            // if normal provided set it in vertexDataArray
             if (a.count == 3) {
                 let normalIndex = Int(a[2])
                 if (normalIndex != nil) {
                     let normal = normalArray[normalIndex! - 1]
-                    vertexDataArray[vertexIndex].nx += normal.x
-                    vertexDataArray[vertexIndex].ny += normal.y
-                    vertexDataArray[vertexIndex].nz += normal.z
+                    vertexDataArray[vertexIndex].nx = normal.x
+                    vertexDataArray[vertexIndex].ny = normal.y
+                    vertexDataArray[vertexIndex].nz = normal.z
                 }
             }
-            indexDataArray.append(GLubyte(vertexIndex))
         }
     }
     
