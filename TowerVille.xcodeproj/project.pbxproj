@@ -54,6 +54,8 @@
 		DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B930F2019558B001B9D83 /* ShaderProgram.swift */; };
 		DE8EFD29203CF75D000987CE /* PhongMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD28203CF75D000987CE /* PhongMaterial.swift */; };
 		DE8EFD2B203D5C9D000987CE /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD2A203D5C9D000987CE /* Camera.swift */; };
+		DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */; };
+		DE8EFD2F203F5B28000987CE /* farm.png in Resources */ = {isa = PBXBuildFile; fileRef = DE8EFD2E203F5B28000987CE /* farm.png */; };
 		DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF8282035868B0097F76B /* DirectionalLight.swift */; };
 		DE9AF82B20358A230097F76B /* LightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82A20358A230097F76B /* LightManager.swift */; };
 		DE9AF82D20358AFB0097F76B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82C20358AFB0097F76B /* Light.swift */; };
@@ -141,6 +143,8 @@
 		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
 		DE8EFD28203CF75D000987CE /* PhongMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongMaterial.swift; sourceTree = "<group>"; };
 		DE8EFD2A203D5C9D000987CE /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceGenerator.swift; sourceTree = "<group>"; };
+		DE8EFD2E203F5B28000987CE /* farm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farm.png; sourceTree = "<group>"; };
 		DE9AF8282035868B0097F76B /* DirectionalLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		DE9AF82A20358A230097F76B /* LightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightManager.swift; sourceTree = "<group>"; };
 		DE9AF82C20358AFB0097F76B /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 			children = (
 				DEC217C32035432E00F11022 /* Documentation */,
 				DEC217C12035412000F11022 /* dungeon_01.png */,
+				DE8EFD2E203F5B28000987CE /* farm.png */,
 				DEE44739201952CA009044FB /* Shaders */,
 				2BEBE630201938E8008E8FEB /* GameEngine */,
 				2BEBE62F201938DE008E8FEB /* Rendering */,
@@ -306,6 +311,7 @@
 				2BEBE64B20194134008E8FEB /* Farm.swift */,
 				2BEBE666201943B1008E8FEB /* Mine.swift */,
 				2BEBE668201943BE008E8FEB /* SawMill.swift */,
+				DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */,
 			);
 			path = Farm;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
+				DE8EFD2F203F5B28000987CE /* farm.png in Resources */,
 				DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
@@ -530,6 +537,7 @@
 				2BB2AD7120193318004565D4 /* ViewController.swift in Sources */,
 				2BEBE667201943B1008E8FEB /* Mine.swift in Sources */,
 				2BEBE64020193E68008E8FEB /* VisualObject.swift in Sources */,
+				DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
 				2BEBE66420194382008E8FEB /* Aggro.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
