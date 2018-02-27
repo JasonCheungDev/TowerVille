@@ -55,9 +55,6 @@ void main() {
         diffuse *= texture(u_Texture, frag_TexCoord);
     }
     
-    //TODO : remove
-    vec4 goat = mix(frag_Color, vec4(0.5,0.5,0.5,1.0), 0.33); // makes colors less saturated
-    
-    vec4 linearColor = diffuse * goat + specular;
+    vec4 linearColor = diffuse * frag_Color + specular;
     o_color = sqrt(linearColor);
 }
