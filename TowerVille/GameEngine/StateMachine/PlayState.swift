@@ -87,6 +87,8 @@ class PlayState : State {
         let newFarm = Farm(self, shader)
         map.Tiles[x][y].SetStructure(newFarm)
         farms.append(newFarm)
+        self.gold -= Farm.COST
+        
         return true
     }
     
