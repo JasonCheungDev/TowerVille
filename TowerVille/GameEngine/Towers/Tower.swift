@@ -12,7 +12,8 @@ import GLKit
 class Tower : VisualObject{
     
     var health : Int = 100
-    var attacksPerSecond : Double = 5.0
+    var attacksPerSecond : Double = 1.0
+    var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
     
     var zombie : Minion!
     var towerProjectiles : [TowerProjectile] = []
@@ -24,6 +25,7 @@ class Tower : VisualObject{
         super.init()
         self.x = x
         self.z = z
+        self.y = 0.4
         self.shader = shader
         
         let mat = LambertMaterial(shader)
@@ -48,6 +50,9 @@ class Tower : VisualObject{
         if zombie != nil
         {
             let p = TowerProjectile(self.x, self.z, shader: self.shader, target: zombie)
+            p.xScale = 0.1
+            p.yScale = 0.1
+            p.zScale = 0.1
             towerProjectiles.append(p)
         }
         
@@ -56,13 +61,19 @@ class Tower : VisualObject{
     
     override func draw(){
         super.draw()
-        
-        if(towerProjectiles.count > 0){ //put into tower draw
-            for p in towerProjectiles
-            {
-                p.draw()
+      
+        if(towerProjectiles.count > 0){
+            for (index, projectile) in towerProjectiles.enumerated() {
+                
+                if(projectile.timeAlive > projectileLife){
+                    towerProjectiles.remove(at: index)
+                }else{
+                    projectile.draw()
+                }
             }
         }
+       
+        
     }
 
     override func update(dt: TimeInterval) {

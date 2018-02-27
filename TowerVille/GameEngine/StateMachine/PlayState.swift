@@ -17,8 +17,17 @@ class PlayState : State {
 
     override init(replacing : Bool = true) {
         minion = Minion(shader: shader)
+        minion.x = 10
+        minion.z = -8
+        minion.speed = 0.5
+        minion.zScale = 0.4
+        minion.xScale = 0.4
+        minion.yScale = 0.4
         
         tower = Tower(8.0, -7.0, shader:shader)
+        tower.zScale = 0.3
+        tower.yScale = 0.7
+        tower.xScale = 0.3
         tower.setMinion(min: minion)
         
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
