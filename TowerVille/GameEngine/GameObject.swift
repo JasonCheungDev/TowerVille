@@ -16,6 +16,9 @@ class GameObject {
     var xRot : Float = 0
     var yRot : Float = 0
     var zRot : Float = 0
+    var xScale : Float = 1
+    var yScale : Float = 1
+    var zScale : Float = 1
     
     func initialize(id : String?, x : Float, z : Float) {
         self.id = id

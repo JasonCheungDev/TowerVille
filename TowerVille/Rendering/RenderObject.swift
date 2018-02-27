@@ -40,7 +40,7 @@ class RenderObject{
         modelMatrix = GLKMatrix4Rotate(modelMatrix, self.gameObject!.xRot, 1, 0, 0)
         modelMatrix = GLKMatrix4Rotate(modelMatrix, self.gameObject!.yRot, 0, 1, 0)
         modelMatrix = GLKMatrix4Rotate(modelMatrix, self.gameObject!.zRot, 0, 0, 1)
-        // TODO: modelMatrix = GLKMatrix4Scale(modelMatrix, self.scale, self.scale, self.scale)
+        modelMatrix = GLKMatrix4Scale(modelMatrix, self.gameObject!.xScale, self.gameObject!.yScale, self.gameObject!.zScale)
         return modelMatrix
     }
     
