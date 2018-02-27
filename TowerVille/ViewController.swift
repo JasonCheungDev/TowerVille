@@ -25,6 +25,8 @@ import GLKit
 
 class ViewController: GLKViewController { //UIViewController
 
+    @IBOutlet var debugDisplay: UILabel!
+    
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
     
@@ -58,6 +60,7 @@ class ViewController: GLKViewController { //UIViewController
             let x = Float(touchLocation.x / sender.view!.frame.width)
             let y = Float(0.5 - touchLocation.y / sender.view!.frame.height)
             printScreenToWorld(screen_x: x, screen_y: y)
+            StateMachine.Instance.processInput(x: x, z: y, u: Float(touchLocation.x), v: Float(touchLocation.y))
         }
     }
     
@@ -99,6 +102,11 @@ class ViewController: GLKViewController { //UIViewController
 //        }
     }
 
+    func debug_updateUiDisplay(_ text : String)
+    {
+        debugDisplay.text = text 
+    }
+    
 }
 
 // OPENGL SETUP

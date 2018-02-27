@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class PlayState : State {
     
@@ -6,10 +7,14 @@ class PlayState : State {
     var map : Map = Map()
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     let minion : Minion
+    var gold : Int = 0
     
-    var gameObjects : [GameObject] = []
-    var visualObjects : [VisualObject] = []
+    var farms : [VisualObject] = []
+    
     var camera : Camera!
+    
+    // Mark: - Debug variables
+    var debugFarm : Farm?
     
     
     override init(replacing : Bool = true) {
@@ -20,26 +25,49 @@ class PlayState : State {
         
         super.init(replacing: replacing)
         
-        setupMap(mapSize: self.mapSize)
+        map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
         setupLights()
+        
+        self.debugFarm = Farm(self, shader)
+        map.Tiles[5][5].SetStructure(debugFarm!)
+        farms.append(debugFarm!)
     }
     
     override func update(dt: TimeInterval) {
         minion.update(dt: dt)
+        
+        for f in farms {
+            f.update(dt: dt)
+        }
     }
     
     override func draw() {
         shader.prepareToDraw()
         
         minion.draw()
+
+        for row in map.Tiles {
+            for vo in row {
+                vo.draw()
+            }
+        }
         
-        for vo in visualObjects {
-            vo.draw()
+        for f in farms {
+            f.draw()
+        }
+        
+        // debug display values
+        do {
+            try getViewController().debug_updateUiDisplay("Gold: \(self.gold)")
+        } catch MyError.RunTimeError(let errorMessage) {
+            print(errorMessage)
+        } catch {
+            print("ERROR: ?")
         }
     }
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
-        
+        NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
     }
     
     override func pause() {
@@ -50,53 +78,24 @@ class PlayState : State {
         
     }
     
+    func getViewController() throws -> ViewController {
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            // forcefully cast as ViewController type
+            return topController as! ViewController
+        }
+        throw MyError.RunTimeError("Could not find ViewController")
+    }
+    
 }
 
 // MARK: - Game initialization
 extension PlayState
 {
-    func setupMap(mapSize mapSize: Int) {
-        
-        let gridSize = mapSize * 2 - 1
-        
-        // create some materials
-        let grassTileMat = LambertMaterial(shader)
-        grassTileMat.surfaceColor = Color(0,1,0,1)
-        
-        let mountainTileMat = LambertMaterial(shader)
-        mountainTileMat.surfaceColor = Color(0,0,0,1)
-        
-        let highlightOrigin = LambertMaterial(shader)
-        highlightOrigin.surfaceColor = Color(1,0,0,1)
-        
-        // create shared RO
-        let grassRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        grassRo.material = grassTileMat
-        
-        let mountainRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        mountainRo.material = mountainTileMat
-        
-        let highlightRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        highlightRo.material = highlightOrigin
-        
-        for x in 0..<gridSize {
-            for y in 0..<gridSize {
-                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
-                {
-                    var newTile = Tile()
-                    newTile.x = Float(x)
-                    newTile.z = Float(-y)
-                    if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2) {
-                        newTile.linkRenderObject(mountainRo)
-                    } else {
-                        newTile.linkRenderObject(grassRo)
-                    }
-                    
-                    visualObjects.append(newTile)
-                }
-            }
-        }
-    }
+
     
     func setupLights()
     {
@@ -121,4 +120,9 @@ extension PlayState
         pointLightRename.lightIntensity = 1.0
         pointLightRename.lightColor = Color(67/255,134/255,150/255,1)
     }
+}
+
+// pathetic swift doesn't even have a basic error type
+enum MyError : Error {
+    case RunTimeError(String)
 }
