@@ -68,8 +68,7 @@ class PlayState : State {
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
-        
-        createFarm(x: Int(x), y: -Int(z))
+        createFarm(x: Int(round(x)), y: -Int(round(z)))
     }
     
     override func pause() {
@@ -83,6 +82,7 @@ class PlayState : State {
     func createFarm(x: Int, y: Int) -> Bool {
         if (self.gold < Farm.COST) { return false }
         if (self.map.Tiles[x][y].structure != nil) { return false }
+        if (self.map.Tiles[x][y].type != TileType.Grass) { return false }
         
         let newFarm = Farm(self, shader)
         map.Tiles[x][y].SetStructure(newFarm)

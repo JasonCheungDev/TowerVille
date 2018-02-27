@@ -59,12 +59,12 @@ class ViewController: GLKViewController { //UIViewController
             let touchLocation = sender.location(in:sender.view)
             let x = Float(touchLocation.x / sender.view!.frame.width)
             let y = Float(0.5 - touchLocation.y / sender.view!.frame.height)
-            printScreenToWorld(screen_x: x, screen_y: y)
-            StateMachine.Instance.processInput(x: x, z: y, u: Float(touchLocation.x), v: Float(touchLocation.y))
+            let world = getWorldFromScreen(screen_x: x, screen_y: y)
+            StateMachine.Instance.processInput(x: world.x, z: world.z, u: Float(touchLocation.x), v: Float(touchLocation.y))
         }
     }
     
-    func printScreenToWorld(screen_x: Float, screen_y: Float)
+    func getWorldFromScreen(screen_x: Float, screen_y: Float) -> Vertex
     {
         // undo scaling
         let temp_x = screen_x * 2 / Camera.ActiveCamera!.projectionMatrix.m00
@@ -83,6 +83,8 @@ class ViewController: GLKViewController { //UIViewController
         
         print("world x : \(world_x)")
         print("world z : \(world_z)")
+
+        return Vertex(world_x, 0, world_z)
     }
     
     override func didReceiveMemoryWarning() {

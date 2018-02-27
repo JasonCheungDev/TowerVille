@@ -42,19 +42,23 @@ class Map {
             Tiles.append([])
 
             for y in 0..<gridSize {
-                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
-                {
-                    let newTile = Tile()
-                    newTile.x = Float(x)
-                    newTile.z = Float(-y)
-                    if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2) {
-                        newTile.linkRenderObject(mountainRo)
-                    } else {
-                        newTile.linkRenderObject(grassRo)
-                    }
-                    
-                    Tiles[x].append(newTile)
+//                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
+//                {
+//                    // on screen calcuations here
+//                }
+                let newTile = Tile()
+                newTile.x = Float(x)
+                newTile.z = Float(-y)
+                if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2) {
+                    newTile.linkRenderObject(mountainRo)
+                    newTile.type = TileType.Mountain
+                } else {
+                    newTile.linkRenderObject(grassRo)
+                    newTile.type = TileType.Grass
                 }
+                
+                Tiles[x].append(newTile)
+            
             }
         }
     }
