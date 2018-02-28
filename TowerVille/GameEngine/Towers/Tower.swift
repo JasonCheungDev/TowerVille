@@ -54,7 +54,6 @@ class Tower : VisualObject{
     func scanForTargets(){
         //print("lookin for targets!")
         
-        
         for z in PlayState.activeGame.minions
         {
            spawnProjectile(zombie: z)
