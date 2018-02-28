@@ -157,8 +157,8 @@ class ObjLoader {
         if (strings.count == 4) {
             var count = indexDataArray.count
             
+            indexDataArray.append(indexDataArray[count - 4])
             indexDataArray.append(indexDataArray[count - 2])
-            indexDataArray.append(indexDataArray[count - 3])
         }
     }
     
