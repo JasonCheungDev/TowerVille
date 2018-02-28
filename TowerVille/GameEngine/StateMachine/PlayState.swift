@@ -1,27 +1,45 @@
 import Foundation
 import UIKit
 
+
+
 class PlayState : State {
+    
+    static var activeGame : PlayState!
     
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
     var map : Map = Map()
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
+
+    //let minion : Minion
+    let tower : Tower
     var gold : Int = 0
+
     let spawner : MinionSpawner
     var minions : [Minion] = []
     
     var farms : [VisualObject] = []
-    
     var camera : Camera!
     
     // Mark: - Debug variables
     var debugFarm : Farm?
-    
-    
+
     override init(replacing : Bool = true) {
+        
+        camera = OrthoCamPrefab(viewableTiles: self.mapSize)
+        Camera.ActiveCamera = camera
+        
         spawner = MinionSpawner(minion: Minion(shader: shader))
+
+        tower = Tower(8.0, -7.0, shader:shader)
+        tower.zScale = 0.3
+        tower.yScale = 0.7
+        tower.xScale = 0.3
+        
+        
         super.init(replacing: replacing)
         
+        PlayState.activeGame = self
         map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
         setupLights()
         
@@ -31,13 +49,16 @@ class PlayState : State {
     }
     
     override func update(dt: TimeInterval) {
+        
+        tower.update(dt: dt)
+
         for f in farms {
             f.update(dt: dt)
         }
         spawner.update(dt: dt, minions: &minions)
         
         for guy in minions {
-            print(minions.count)
+            //print(minions.count)
             guy.update(dt: dt)
         }
         
@@ -46,6 +67,7 @@ class PlayState : State {
     override func draw() {
         shader.prepareToDraw()
         
+        tower.draw()
 
         for row in map.Tiles {
             for vo in row {
