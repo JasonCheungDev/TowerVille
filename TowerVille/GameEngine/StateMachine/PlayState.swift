@@ -6,8 +6,9 @@ class PlayState : State {
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
     var map : Map = Map()
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
-    let minion : Minion
     var gold : Int = 0
+    let spawner : MinionSpawner
+    var minions : [Minion] = []
     
     var farms : [VisualObject] = []
     
@@ -18,11 +19,7 @@ class PlayState : State {
     
     
     override init(replacing : Bool = true) {
-        minion = Minion(shader: shader)
-        
-        camera = OrthoCamPrefab(viewableTiles: self.mapSize)
-        Camera.ActiveCamera = camera
-        
+        spawner = MinionSpawner(minion: Minion(shader: shader))
         super.init(replacing: replacing)
         
         map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
@@ -34,17 +31,21 @@ class PlayState : State {
     }
     
     override func update(dt: TimeInterval) {
-        minion.update(dt: dt)
-        
         for f in farms {
             f.update(dt: dt)
         }
+        spawner.update(dt: dt, minions: &minions)
+        
+        for guy in minions {
+            print(minions.count)
+            guy.update(dt: dt)
+        }
+        
     }
     
     override func draw() {
         shader.prepareToDraw()
         
-        minion.draw()
 
         for row in map.Tiles {
             for vo in row {
@@ -64,6 +65,11 @@ class PlayState : State {
         } catch {
             print("ERROR: ?")
         }
+        
+        for guy in minions {
+            guy.draw()
+        }
+        
     }
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
