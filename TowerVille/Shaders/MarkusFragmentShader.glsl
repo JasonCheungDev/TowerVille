@@ -1,5 +1,3 @@
-#version 300 es
-
 precision mediump float;
 
 struct DirectionalLight {
@@ -16,15 +14,15 @@ struct PointLights {
 
 uniform sampler2D u_Texture;
 uniform DirectionalLight u_DirectionalLight;
-uniform PointLights[4] u_PointLights;
+uniform PointLights u_PointLights[4];
 uniform highp mat4 u_ModelView;
 
-in lowp vec4 frag_Color;
-in lowp vec2 frag_TexCoord;
-in lowp vec3 frag_Normal;
-in lowp vec3 frag_Position;
+varying lowp vec4 frag_Color;
+varying lowp vec2 frag_TexCoord;
+varying lowp vec3 frag_Normal;
+varying lowp vec3 frag_Position;
 
-out lowp vec4 o_color;
+// out lowp vec4 o_color;
 
 void main() {
     float attenuationCoef = 0.15;
@@ -51,10 +49,10 @@ void main() {
         specular += u_PointLights[i].color * attenuation * blinn;
     }
     
-    if (textureSize(u_Texture, 0).x != 0) {
-        diffuse *= texture(u_Texture, frag_TexCoord);
-    }
+//    if (textureSize(u_Texture, 0).x != 0) {
+        diffuse += texture2D(u_Texture, frag_TexCoord);
+//    }
     
     vec4 linearColor = diffuse * frag_Color + specular;
-    o_color = sqrt(linearColor);
+    gl_FragColor = sqrt(linearColor);
 }

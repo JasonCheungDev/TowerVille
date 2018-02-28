@@ -116,7 +116,7 @@ extension ViewController {
     
     func setupGLcontext() {
         glkView = self.view as! GLKView
-        glkView.context = EAGLContext(api: .openGLES3)! // Warning: Doesn't work on iPods
+        glkView.context = EAGLContext(api: .openGLES2)! // Warning: Doesn't work on iPods
         glkView.drawableDepthFormat = .format16         // for depth testing
         EAGLContext.setCurrent(glkView.context)
         
