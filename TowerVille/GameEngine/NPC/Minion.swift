@@ -41,12 +41,8 @@ class Minion : VisualObject {
     
     override func update(dt: TimeInterval) {
         
-        if (abs(wayPoints[curIndex].x - x) < 0.5 && abs(wayPoints[curIndex].z - z) < 0.5) {
-            curIndex += 1
-            if(curIndex == wayPoints.count) {
-                print(wayPoints.count)
-                curIndex = 0
-            }
+        if (abs(wayPoints[curIndex].x - x) < 0.05 && abs(wayPoints[curIndex].z - z) < 0.05) {
+            curIndex = (curIndex + 1) % wayPoints.count
         }
         
         var max_trans = Float(speed * dt)
