@@ -25,6 +25,9 @@ class Minion : VisualObject {
         let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
         ro.material = mat
         linkRenderObject(ro)
+        self.xScale = 0.4
+        self.yScale = 0.3
+        self.zScale = 0.4
     }
     
     func copy(with zone: NSZone? = nil) -> Any {

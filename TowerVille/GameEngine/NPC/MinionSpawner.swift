@@ -14,7 +14,7 @@ class MinionSpawner : GameObject {
     var curTime : TimeInterval = 0.0
     let spawnTime : TimeInterval = 2.0
     let minion : Minion
-    let total : Int = 10
+    let total : Int = 1
     var current : Int = 0
     
     init(minion : Minion) {

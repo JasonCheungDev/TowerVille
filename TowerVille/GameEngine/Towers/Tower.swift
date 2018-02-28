@@ -39,23 +39,26 @@ class Tower : VisualObject{
         
     }
     
-    func setMinion(min : Minion){
-        zombie = min
+    func spawnProjectile(zombie : Minion){
+        
+        //spawns a projectile
+        let p = TowerProjectile(self.x, self.z, shader: self.shader, target: zombie)
+        p.xScale = 0.1
+        p.yScale = 0.1
+        p.zScale = 0.1
+        towerProjectiles.append(p)
+        
     }
     
     @objc
     func scanForTargets(){
         //print("lookin for targets!")
         
-        if zombie != nil
-        {
-            let p = TowerProjectile(self.x, self.z, shader: self.shader, target: zombie)
-            p.xScale = 0.1
-            p.yScale = 0.1
-            p.zScale = 0.1
-            towerProjectiles.append(p)
-        }
         
+        for z in PlayState.activeGame.minions
+        {
+           spawnProjectile(zombie: z)
+        }
         
     }
     

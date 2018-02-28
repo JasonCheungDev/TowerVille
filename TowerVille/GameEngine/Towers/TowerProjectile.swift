@@ -43,20 +43,8 @@ class TowerProjectile : VisualObject{
         timeAlive += dt
         
         if(target != nil){
-            /*
-            distance = sqrt(pow(target.x-self.x, 2)+pow(target.z-self.z, 2))
-            directionX = (target.x - self.x) / distance
-            directionZ = (target.z - self.z) / distance
-            
-            self.x += directionX * speed * Float(dt)
-            self.z += directionZ * speed * Float(dt)*/
             MoveTowards(dt: Float(dt))
         }
-        
-        //go to target, implement a MoveTowards func
-        //self.x -= 0.05
-        //self.z -= 0.10
-        
     }
     
     func MoveTowards(dt: Float){

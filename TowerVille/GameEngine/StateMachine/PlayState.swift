@@ -1,13 +1,17 @@
 import Foundation
 import UIKit
 
+
+
 class PlayState : State {
+    
+    static var activeGame : PlayState!
     
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
     var map : Map = Map()
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
 
-    let minion : Minion
+    //let minion : Minion
     let tower : Tower
     var gold : Int = 0
 
@@ -21,27 +25,21 @@ class PlayState : State {
     var debugFarm : Farm?
 
     override init(replacing : Bool = true) {
-        minion = Minion(shader: shader)
-        minion.x = 10
-        minion.z = -8
-        minion.speed = 0.5
-        minion.zScale = 0.4
-        minion.xScale = 0.4
-        minion.yScale = 0.4
-        
-        tower = Tower(8.0, -7.0, shader:shader)
-        tower.zScale = 0.3
-        tower.yScale = 0.7
-        tower.xScale = 0.3
-        tower.setMinion(min: minion)
         
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         
         spawner = MinionSpawner(minion: Minion(shader: shader))
 
+        tower = Tower(8.0, -7.0, shader:shader)
+        tower.zScale = 0.3
+        tower.yScale = 0.7
+        tower.xScale = 0.3
+        
+        
         super.init(replacing: replacing)
         
+        PlayState.activeGame = self
         map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
         setupLights()
         
@@ -51,8 +49,7 @@ class PlayState : State {
     }
     
     override func update(dt: TimeInterval) {
-
-        minion.update(dt: dt)
+        
         tower.update(dt: dt)
 
         for f in farms {
@@ -61,7 +58,7 @@ class PlayState : State {
         spawner.update(dt: dt, minions: &minions)
         
         for guy in minions {
-            print(minions.count)
+            //print(minions.count)
             guy.update(dt: dt)
         }
         
@@ -71,7 +68,6 @@ class PlayState : State {
         shader.prepareToDraw()
         
         tower.draw()
-        minion.draw()
 
         for row in map.Tiles {
             for vo in row {
