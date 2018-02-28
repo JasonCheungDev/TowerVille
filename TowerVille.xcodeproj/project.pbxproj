@@ -187,6 +187,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28C0DACF204756EE0068B071 /* ObjFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2840DE2E203C1BEA005C0513 /* cube.obj */,
+				2840DE30203D2F7B005C0513 /* sphere.obj */,
+			);
+			path = ObjFiles;
+			sourceTree = "<group>";
+		};
 		2BB2AD6220193318004565D4 = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +219,7 @@
 		2BB2AD6D20193318004565D4 /* TowerVille */ = {
 			isa = PBXGroup;
 			children = (
+				28C0DACF204756EE0068B071 /* ObjFiles */,
 				DEC217C32035432E00F11022 /* Documentation */,
 				DEC217C12035412000F11022 /* dungeon_01.png */,
 				DE8EFD2E203F5B28000987CE /* farm.png */,
@@ -222,8 +232,6 @@
 				2BB2AD7520193318004565D4 /* Assets.xcassets */,
 				2BB2AD7720193318004565D4 /* LaunchScreen.storyboard */,
 				2BB2AD7A20193318004565D4 /* Info.plist */,
-				2840DE2E203C1BEA005C0513 /* cube.obj */,
-				2840DE30203D2F7B005C0513 /* sphere.obj */,
 			);
 			path = TowerVille;
 			sourceTree = "<group>";
