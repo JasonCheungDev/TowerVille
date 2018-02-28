@@ -148,9 +148,9 @@ class ObjLoader {
                 let normalIndex = Int(a[2])
                 if (normalIndex != nil) {
                     let normal = normalArray[normalIndex! - 1]
-                    vertexDataArray[vertexIndex].nx = normal.x
-                    vertexDataArray[vertexIndex].ny = normal.y
-                    vertexDataArray[vertexIndex].nz = normal.z
+                    vertexDataArray[vertexIndex].nx += normal.x
+                    vertexDataArray[vertexIndex].ny += normal.y
+                    vertexDataArray[vertexIndex].nz += normal.z
                 }
             }
         }
