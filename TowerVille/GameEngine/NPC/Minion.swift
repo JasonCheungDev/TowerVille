@@ -25,6 +25,9 @@ class Minion : VisualObject {
         let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
         ro.material = mat
         linkRenderObject(ro)
+        self.xScale = 0.4
+        self.yScale = 0.3
+        self.zScale = 0.4
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
@@ -38,25 +41,17 @@ class Minion : VisualObject {
     
     override func update(dt: TimeInterval) {
         
-        if(wayPoints[curIndex].x - x < 0.1 && wayPoints[curIndex].z - z < 0.1) {
-            curIndex += 1
-            if(curIndex >= 5) {
-                curIndex = 4
-            }
-            
+        if (abs(wayPoints[curIndex].x - x) < 0.05 && abs(wayPoints[curIndex].z - z) < 0.05) {
+            curIndex = (curIndex + 1) % wayPoints.count
         }
-        if(wayPoints[curIndex].x > x) {
-            x += Float(speed * dt)
-        }
-        else if(wayPoints[curIndex].x < x) {
-            x += Float(-speed * dt)
-        }
-        if(wayPoints[curIndex].z > z) {
-            z += Float(speed * dt)
-        }
-        else if(wayPoints[curIndex].z < z) {
-            z += Float(-speed * dt)
-        }
+        
+        var max_trans = Float(speed * dt)
+        
+        var x_trans = max(min(wayPoints[curIndex].x - x, max_trans), -max_trans)
+        var z_trans = max(min(wayPoints[curIndex].z - z, max_trans), -max_trans)
+        
+        x += x_trans
+        z += z_trans
         
     }
 }

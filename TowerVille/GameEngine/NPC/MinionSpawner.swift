@@ -14,34 +14,30 @@ class MinionSpawner : GameObject {
     var curTime : TimeInterval = 0.0
     let spawnTime : TimeInterval = 2.0
     let minion : Minion
-    let total : Int = 10
+    let total : Int = 1
     var current : Int = 0
     
     init(minion : Minion) {
         self.minion = minion
         
-        for _ in 0...5 {
+        // auto place some waypoints
+        // TODO : remove
+        var numberOfWaypoints = 16
+        for i in 0..<numberOfWaypoints {
             let go = GameObject()
             wayPoints.append(go)
         }
+        var x_temp = 0
+        var z_temp = -5
+        for i in 0..<(numberOfWaypoints/2) {
+            wayPoints[2 * i].x = Float(8 * x_temp + 5)
+            wayPoints[2 * i].z = Float(z_temp)
+            x_temp = (x_temp + 1) % 2
+            wayPoints[2 * i + 1].x = Float(8 * x_temp + 5)
+            wayPoints[2 * i + 1].z = Float(z_temp)
+            z_temp = z_temp - 1
+        }
         
-        wayPoints[0].x = 4.0
-        wayPoints[0].z = -5.0
-        
-        wayPoints[1].x = 10.0
-        wayPoints[1].z = -5.0
-        
-        wayPoints[2].x = 10.0
-        wayPoints[2].z = -5.0
-        
-        wayPoints[3].x = 10.0
-        wayPoints[3].z = 0.0
-        
-        wayPoints[4].x = 10.0
-        wayPoints[4].z = -5.0
-        
-        wayPoints[5].x = 10.0
-        wayPoints[5].z = -5.0
         
     }
     
