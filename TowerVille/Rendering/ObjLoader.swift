@@ -20,6 +20,11 @@ class ObjLoader {
     var indexDataArray = [GLubyte]()
     
     func Read(fileName : String) -> Void{
+        vertexArray.removeAll()
+        textureArray.removeAll()
+        normalArray.removeAll()
+        vertexDataArray.removeAll()
+        indexDataArray.removeAll()
         if let path = Bundle.main.path(forResource: fileName, ofType: "obj") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
