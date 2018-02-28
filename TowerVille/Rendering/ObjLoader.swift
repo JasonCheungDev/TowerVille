@@ -46,13 +46,13 @@ class ObjLoader {
     
     func CalculateNormals() -> Void{
         for i in 0..<indexDataArray.count/3 {
-            let v1_index = indexDataArray[i*3]
-            let v2_index = indexDataArray[i*3+1]
-            let v3_index = indexDataArray[i*3+2]
+            let v1_index = Int(indexDataArray[i*3])
+            let v2_index = Int(indexDataArray[i*3+1])
+            let v3_index = Int(indexDataArray[i*3+2])
             
-            let v1 = vertexDataArray[Int(v1_index)]
-            let v2 = vertexDataArray[Int(v2_index)]
-            let v3 = vertexDataArray[Int(v3_index)]
+            let v1 = vertexDataArray[v1_index]
+            let v2 = vertexDataArray[v2_index]
+            let v3 = vertexDataArray[v3_index]
             
             var U = GLKVector3()
             U.x = v2.x - v1.x
@@ -66,17 +66,17 @@ class ObjLoader {
             
             var normal = GLKVector3CrossProduct(U, V)
             
-            vertexDataArray[Int(v1_index)].nx += normal.x
-            vertexDataArray[Int(v1_index)].ny += normal.y
-            vertexDataArray[Int(v1_index)].nz += normal.z
+            vertexDataArray[v1_index].nx += normal.x
+            vertexDataArray[v1_index].ny += normal.y
+            vertexDataArray[v1_index].nz += normal.z
             
-            vertexDataArray[Int(v2_index)].nx += normal.x
-            vertexDataArray[Int(v2_index)].ny += normal.y
-            vertexDataArray[Int(v2_index)].nz += normal.z
+            vertexDataArray[v2_index].nx += normal.x
+            vertexDataArray[v2_index].ny += normal.y
+            vertexDataArray[v2_index].nz += normal.z
             
-            vertexDataArray[Int(v3_index)].nx += normal.x
-            vertexDataArray[Int(v3_index)].ny += normal.y
-            vertexDataArray[Int(v3_index)].nz += normal.z
+            vertexDataArray[v3_index].nx += normal.x
+            vertexDataArray[v3_index].ny += normal.y
+            vertexDataArray[v3_index].nz += normal.z
         }
     }
     
