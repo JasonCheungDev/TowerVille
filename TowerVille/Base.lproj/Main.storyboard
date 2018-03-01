@@ -18,6 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPn-aw-zNY" userLabel="GLK Input Receiver">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1L5-J8-q1h" appends="YES" id="9CA-gT-Qw8"/>
+                                </connections>
+                            </view>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug Display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvJ-8s-r7g" userLabel="DebugLabel">
                                 <rect key="frame" x="16" y="0.0" width="635" height="64"/>
                                 <gestureRecognizers/>
@@ -80,10 +87,14 @@
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="GPn-aw-zNY" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="5Xj-PY-pFK"/>
                             <constraint firstItem="7Xx-9N-6Dq" firstAttribute="top" secondItem="NvJ-8s-r7g" secondAttribute="bottom" constant="50" id="6aJ-Mj-PIC"/>
+                            <constraint firstItem="GPn-aw-zNY" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="7qf-aZ-v1X"/>
                             <constraint firstItem="7Xx-9N-6Dq" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="NJd-jn-nxk"/>
                             <constraint firstItem="z5K-yD-WZX" firstAttribute="trailing" secondItem="NvJ-8s-r7g" secondAttribute="trailing" constant="16" id="YRT-Se-ms3"/>
+                            <constraint firstItem="GPn-aw-zNY" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="a3W-JD-cvy"/>
                             <constraint firstItem="7Xx-9N-6Dq" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="cAU-zu-FpF"/>
+                            <constraint firstItem="GPn-aw-zNY" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="dLh-x0-eSq"/>
                             <constraint firstAttribute="bottom" secondItem="7Xx-9N-6Dq" secondAttribute="bottom" id="ehu-dQ-6LA"/>
                             <constraint firstItem="NvJ-8s-r7g" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" constant="16" id="fDM-pQ-hpo"/>
                             <constraint firstItem="NvJ-8s-r7g" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="zcg-mC-3xH"/>
@@ -96,8 +107,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1L5-J8-q1h">
+                    <connections>
+                        <action selector="OnTap:" destination="BYZ-38-t0r" id="Ggj-wK-pIA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="31.934032983508249"/>
+            <point key="canvasLocation" x="24.7376311844078" y="31.199999999999999"/>
         </scene>
     </scenes>
 </document>
