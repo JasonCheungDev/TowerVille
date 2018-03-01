@@ -49,8 +49,8 @@ void main() {
         specular += u_PointLights[i].color * attenuation * blinn;
     }
     
-//    if (textureSize(u_Texture, 0).x != 0) {
-        diffuse += texture2D(u_Texture, frag_TexCoord);
+//    if (textureSize(u_Texture, 0).x != 0) { // function does not exist
+    diffuse += texture2D(u_Texture, frag_TexCoord);
 //    }
     
     vec4 linearColor = diffuse * frag_Color + specular;

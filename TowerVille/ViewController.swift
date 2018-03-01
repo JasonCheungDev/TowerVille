@@ -23,8 +23,45 @@ OpenGL Notes (Read this to get basic understanding of the Glkit flow)
 import UIKit
 import GLKit
 
-class ViewController: GLKViewController { //UIViewController
+class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    @IBOutlet var debugCollectionView: UICollectionView!
+    
+    var buildTowerOptions : [UIModelTower] = []
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return buildTowerOptions.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = debugCollectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! UICellTower
+        
+        let tower = buildTowerOptions[indexPath.row]
+        
+        cell.displayContent(image: tower.image, title: tower.name)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let tower = buildTowerOptions[indexPath.row]
+        
+        print("Selected tower: \(tower.name)")
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//        print("!!!")
+//    }
+    @IBAction func nani(_ sender: Any) {
+        print("Yolo swag")
 
+    }
+    @IBAction func aaaa(_ sender: Any) {
+        print("Yosfsfadwag")
+}
+    
     @IBOutlet var debugDisplay: UILabel!
     
     var glkView: GLKView!
@@ -44,6 +81,17 @@ class ViewController: GLKViewController { //UIViewController
 
         // init updater and game
         setupGLupdater()
+        
+        // setup UI
+        let basicTower = UIModelTower()
+        basicTower.name = "Basic"
+        let advancedTower = UIModelTower()
+        advancedTower.name = "Advanced"
+        advancedTower.image = UIImage(named: "farm.png")!
+        
+        buildTowerOptions.append(basicTower)
+        buildTowerOptions.append(advancedTower)
+
         
 //        setupShader()
 //        debug_SetupCamera()
@@ -96,12 +144,6 @@ class ViewController: GLKViewController { //UIViewController
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
 
         StateMachine.Instance.draw()
-        
-//         shader.prepareToDraw()
-//        for vo in debugVisualObjects
-//        {
-//            vo.draw()
-//        }
     }
 
     func debug_updateUiDisplay(_ text : String)
@@ -117,6 +159,9 @@ extension ViewController {
     func setupGLcontext() {
         glkView = self.view as! GLKView
         glkView.context = EAGLContext(api: .openGLES2)! // Warning: Doesn't work on iPods
+        
+        
+        
         glkView.drawableDepthFormat = .format16         // for depth testing
         EAGLContext.setCurrent(glkView.context)
         
