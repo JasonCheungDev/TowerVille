@@ -25,79 +25,134 @@ import GLKit
 
 class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet var debugCollectionView: UICollectionView!
+    // UI
+    @IBOutlet var towerCollectionView: UICollectionView!
+    @IBOutlet var resourceCollectionView: UICollectionView!
+    let cellIdentifier: String = "structureCollectionViewCell"
+    var buildTowerOptions : [UIModelStructure] = []
+    var buildResourceOptions : [UIModelStructure] = []
     
-    var buildTowerOptions : [UIModelTower] = []
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return buildTowerOptions.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = debugCollectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! UICellTower
-        
-        let tower = buildTowerOptions[indexPath.row]
-        
-        cell.displayContent(image: tower.image, title: tower.name)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let tower = buildTowerOptions[indexPath.row]
-        
-        print("Selected tower: \(tower.name)")
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-//        print("!!!")
-//    }
-    @IBAction func nani(_ sender: Any) {
-        print("Yolo swag")
-
-    }
-    @IBAction func aaaa(_ sender: Any) {
-        print("Yosfsfadwag")
-}
-    
-    @IBOutlet var debugDisplay: UILabel!
-    
+    // OpenGL
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
     
+    // TODO: Remove debug variables
     var shader : ShaderProgram!
-   
     var debugVisualObjects : [VisualObject] = []
+    @IBOutlet var debugDisplay: UILabel!
+
     
     //initilization
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // setup UI
+        setupBuildMenu()
+        
         // pregame setup
         setupGLcontext()
         setupCamera()       // this retrieves aspect ratio for all Camera objects
-
+        
         // init updater and game
         setupGLupdater()
-        
-        // setup UI
-        let basicTower = UIModelTower()
-        basicTower.name = "Basic"
-        let advancedTower = UIModelTower()
-        advancedTower.name = "Advanced"
-        advancedTower.image = UIImage(named: "farm.png")!
-        
-        buildTowerOptions.append(basicTower)
-        buildTowerOptions.append(advancedTower)
-
         
 //        setupShader()
 //        debug_SetupCamera()
 //        debug_SetupRenderObject()
 //        debug_SetupTiledMap()
 //        debug_SetupLights()
+    }
+
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
+        glClearColor(0.2, 0.4, 0.6, 1.0);
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
+
+        StateMachine.Instance.draw()
+    }
+
+    func debug_updateUiDisplay(_ text : String)
+    {
+        debugDisplay.text = text 
+    }
+    
+}
+
+// USER INTERFACE
+extension ViewController {
+    
+    func setupBuildMenu()
+    {
+        // Tower (top section)
+        let basicTower = UIModelStructure()
+        basicTower.name = "Basic"
+        basicTower.actionType = UIActionType.BuildTowerBasic
+        let advancedTower = UIModelStructure()
+        advancedTower.name = "Advanced"
+        advancedTower.image = UIImage(named: "farm.png")!
+        advancedTower.actionType = UIActionType.BuildTowerSpecial
+        
+        buildTowerOptions.append(basicTower)
+        buildTowerOptions.append(advancedTower)
+        
+        // Resource (bottom section)
+        let farm = UIModelStructure()
+        farm.name = "Farm"
+        farm.actionType = UIActionType.BuildResourceFarm
+        let mine = UIModelStructure()
+        mine.name = "Mine"
+        mine.actionType = UIActionType.BuildResourceSpecial
+        
+        buildResourceOptions.append(farm)
+        buildResourceOptions.append(mine)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if (collectionView == towerCollectionView)
+        {
+            return buildTowerOptions.count
+        }
+        else // resourceCollectionView
+        {
+            return buildResourceOptions.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = towerCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! UICellStructure
+        
+        if (collectionView == towerCollectionView)
+        {
+            let tower = buildTowerOptions[indexPath.row]
+            cell.displayContent(image: tower.image, title: tower.name)
+        }
+        else // buildCollectionView
+        {
+            let generator = buildResourceOptions[indexPath.row]
+            cell.displayContent(image: generator.image, title: generator.name)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if (collectionView == towerCollectionView)
+        {
+            let tower = buildTowerOptions[indexPath.row]
+            print("Selected tower: \(tower.name)")
+        }
+        else // buildCollectionView
+        {
+            let generator = buildResourceOptions[indexPath.row]
+            print("Selected generator: \(generator.name)")
+        }
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -131,24 +186,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
         
         print("world x : \(world_x)")
         print("world z : \(world_z)")
-
+        
         return Vertex(world_x, 0, world_z)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        glClearColor(0.2, 0.4, 0.6, 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
-
-        StateMachine.Instance.draw()
-    }
-
-    func debug_updateUiDisplay(_ text : String)
-    {
-        debugDisplay.text = text 
     }
     
 }
@@ -158,10 +197,7 @@ extension ViewController {
     
     func setupGLcontext() {
         glkView = self.view as! GLKView
-        glkView.context = EAGLContext(api: .openGLES2)! // Warning: Doesn't work on iPods
-        
-        
-        
+        glkView.context = EAGLContext(api: .openGLES2)!
         glkView.drawableDepthFormat = .format16         // for depth testing
         EAGLContext.setCurrent(glkView.context)
         

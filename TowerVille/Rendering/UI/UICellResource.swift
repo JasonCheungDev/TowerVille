@@ -1,16 +1,16 @@
 //
-//  UICellTower.swift
+//  UICellResource.swift
 //  TowerVille
 //
-//  Created by Jason Cheung on 2018-02-28.
+//  Created by Jason Cheung on 2018-03-01.
 //  Copyright © 2018 The-Fighting-Mongeese. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class UICellTower: UICollectionViewCell {
-
+class UICellResource: UICollectionViewCell {
+    
     @IBOutlet var towerImage: UIImageView!
     @IBOutlet var towerLabel: UILabel!
     

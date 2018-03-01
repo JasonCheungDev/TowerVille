@@ -56,8 +56,8 @@
 		DE8EFD2B203D5C9D000987CE /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD2A203D5C9D000987CE /* Camera.swift */; };
 		DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */; };
 		DE8EFD2F203F5B28000987CE /* farm.png in Resources */ = {isa = PBXBuildFile; fileRef = DE8EFD2E203F5B28000987CE /* farm.png */; };
-		DE96E58B2047E6D200B2966E /* UICellTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58A2047E6D200B2966E /* UICellTower.swift */; };
-		DE96E58D2047E9BC00B2966E /* UIModelTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58C2047E9BC00B2966E /* UIModelTower.swift */; };
+		DE96E58B2047E6D200B2966E /* UICellStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58A2047E6D200B2966E /* UICellStructure.swift */; };
+		DE96E58D2047E9BC00B2966E /* UIModelStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */; };
 		DE96E58F2047EF2A00B2966E /* UIActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58E2047EF2A00B2966E /* UIActionType.swift */; };
 		DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF8282035868B0097F76B /* DirectionalLight.swift */; };
 		DE9AF82B20358A230097F76B /* LightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82A20358A230097F76B /* LightManager.swift */; };
@@ -148,8 +148,8 @@
 		DE8EFD2A203D5C9D000987CE /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceGenerator.swift; sourceTree = "<group>"; };
 		DE8EFD2E203F5B28000987CE /* farm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farm.png; sourceTree = "<group>"; };
-		DE96E58A2047E6D200B2966E /* UICellTower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellTower.swift; sourceTree = "<group>"; };
-		DE96E58C2047E9BC00B2966E /* UIModelTower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModelTower.swift; sourceTree = "<group>"; };
+		DE96E58A2047E6D200B2966E /* UICellStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellStructure.swift; sourceTree = "<group>"; };
+		DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModelStructure.swift; sourceTree = "<group>"; };
 		DE96E58E2047EF2A00B2966E /* UIActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionType.swift; sourceTree = "<group>"; };
 		DE9AF8282035868B0097F76B /* DirectionalLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		DE9AF82A20358A230097F76B /* LightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightManager.swift; sourceTree = "<group>"; };
@@ -337,8 +337,8 @@
 		DE96E5892047E6A200B2966E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				DE96E58A2047E6D200B2966E /* UICellTower.swift */,
-				DE96E58C2047E9BC00B2966E /* UIModelTower.swift */,
+				DE96E58A2047E6D200B2966E /* UICellStructure.swift */,
+				DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */,
 				DE96E58E2047EF2A00B2966E /* UIActionType.swift */,
 			);
 			path = UI;
@@ -545,7 +545,7 @@
 				2BEBE64220193E96008E8FEB /* RenderObject.swift in Sources */,
 				DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */,
 				2BEBE63C20193E16008E8FEB /* MinionSpawner.swift in Sources */,
-				DE96E58B2047E6D200B2966E /* UICellTower.swift in Sources */,
+				DE96E58B2047E6D200B2966E /* UICellStructure.swift in Sources */,
 				2BEBE6622019436D008E8FEB /* NonAggro.swift in Sources */,
 				2BEBE65B20194313008E8FEB /* SlowTower.swift in Sources */,
 				3C01A27E20226BE200BB0D7C /* State.swift in Sources */,
@@ -583,7 +583,7 @@
 				2BEBE6522019416C008E8FEB /* Color.swift in Sources */,
 				DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */,
 				DEC217B82034F05900F11022 /* VertexData.swift in Sources */,
-				DE96E58D2047E9BC00B2966E /* UIModelTower.swift in Sources */,
+				DE96E58D2047E9BC00B2966E /* UIModelStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

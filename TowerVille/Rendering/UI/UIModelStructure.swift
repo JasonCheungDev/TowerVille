@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class UIModelTower
+class UIModelStructure
 {
     var image : UIImage = UIImage(named: "dungeon_01.png")!
-    var name : String = "Tower"
+    var name : String = "Structure"
     var description : String = ""
     var cost : Int = 0
     var actionType : UIActionType = UIActionType.BuildTowerBasic
