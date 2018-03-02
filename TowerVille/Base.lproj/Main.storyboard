@@ -137,6 +137,7 @@
                         <viewLayoutGuide key="safeArea" id="z5K-yD-WZX"/>
                     </glkView>
                     <connections>
+                        <outlet property="buildMenuView" destination="R9S-Vf-1sq" id="sPc-Et-ZQW"/>
                         <outlet property="debugDisplay" destination="NvJ-8s-r7g" id="4bt-13-zdL"/>
                         <outlet property="resourceCollectionView" destination="GP0-a4-f4t" id="7hv-p3-90h"/>
                         <outlet property="towerCollectionView" destination="7Xx-9N-6Dq" id="rJj-hT-NrN"/>

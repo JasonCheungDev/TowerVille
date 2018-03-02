@@ -16,6 +16,8 @@ class PlayState : State {
     // Mark: - Debug variables
     var debugFarm : Farm?
     
+    var selectedTile : Tile?
+    
     
     override init(replacing : Bool = true) {
         minion = Minion(shader: shader)
@@ -68,7 +70,21 @@ class PlayState : State {
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
-        createFarm(x: Int(round(x)), y: -Int(round(z)))
+        selectedTile = self.map.Tiles[Int(round(x))][Int(round(z))]
+    }
+    
+    override func processUiInput(action: UIActionType) {
+        
+        switch action {
+        case UIActionType.BuildTowerBasic:
+            // TODO: Tower stuff
+            break
+        case .BuildResourceFarm:
+            createFarm(x: Int(selectedTile!.x), y: Int(selectedTile!.y))
+        default:
+            NSLog("This action hasn't been implemented yet!")
+        }
+    
     }
     
     override func pause() {

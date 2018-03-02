@@ -26,6 +26,7 @@ import GLKit
 class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // UI
+    @IBOutlet var buildMenuView: UIView!
     @IBOutlet var towerCollectionView: UICollectionView!
     @IBOutlet var resourceCollectionView: UICollectionView!
     let cellIdentifier: String = "structureCollectionViewCell"
@@ -109,6 +110,11 @@ extension ViewController {
         
         buildResourceOptions.append(farm)
         buildResourceOptions.append(mine)
+    }
+    
+    func showBuildMenu(isShown : Bool)
+    {
+        buildMenuView.isHidden = !isShown
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
