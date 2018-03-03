@@ -11,9 +11,9 @@ import UIKit
 
 class UIModelStructure
 {
-    var image : UIImage = UIImage(named: "dungeon_01.png")!
+    var image : UIImage = UIImage(named: "wip.png")!
     var name : String = "Structure"
     var description : String = ""
     var cost : Int = 0
-    var actionType : UIActionType = UIActionType.BuildTowerBasic
+    var actionType : UIActionType = UIActionType.NOT_IMPLEMENTED
 }

@@ -9,6 +9,7 @@
 import Foundation
 
 enum UIActionType {
+    case NOT_IMPLEMENTED
     case BuildTowerBasic
     case BuildTowerSpecial
     case BuildResourceFarm

@@ -17,14 +17,13 @@ class PlayState : State {
 
     let spawner : MinionSpawner
     var minions : [Minion] = []
+    var farms   : [VisualObject] = []
+    var selectedTile : Tile?
     
-    var farms : [VisualObject] = []
     var camera : Camera!
     
     // Mark: - Debug variables
     var debugFarm : Farm?
-    
-    var selectedTile : Tile?
     
     
     override init(replacing : Bool = true) {
@@ -83,13 +82,7 @@ class PlayState : State {
         }
         
         // debug display values
-        do {
-            try getViewController().debug_updateUiDisplay("Gold: \(self.gold)")
-        } catch MyError.RunTimeError(let errorMessage) {
-            print(errorMessage)
-        } catch {
-            print("ERROR: ?")
-        }
+        getViewController()?.debug_updateUiDisplay("Gold: \(self.gold)")
         
         for guy in minions {
             guy.draw()
@@ -99,7 +92,12 @@ class PlayState : State {
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
+        
         selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
+        if selectedTile?.type == TileType.Grass
+        {
+            getViewController()?.showBuildMenu(isShown: true)
+        }
     }
     
     override func processUiInput(action: UIActionType) {
@@ -109,7 +107,10 @@ class PlayState : State {
             // TODO: Tower stuff
             break
         case .BuildResourceFarm:
-            createFarm(x: Int(selectedTile!.x), y: Int(selectedTile!.y))
+            if createFarm(tile: selectedTile!)
+            {
+                getViewController()?.showBuildMenu(isShown: false)
+            }
         default:
             NSLog("This action hasn't been implemented yet!")
         }
@@ -124,29 +125,29 @@ class PlayState : State {
         
     }
     
-    func createFarm(x: Int, y: Int) -> Bool {
+    func createFarm(tile : Tile) -> Bool {
         if (self.gold < Farm.COST) { return false }
-        if (self.map.Tiles[x][y].structure != nil) { return false }
-        if (self.map.Tiles[x][y].type != TileType.Grass) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
         
         let newFarm = Farm(self, shader)
-        map.Tiles[x][y].SetStructure(newFarm)
+        tile.SetStructure(newFarm)
         farms.append(newFarm)
         self.gold -= Farm.COST
         
         return true
     }
-    
-    func getViewController() throws -> ViewController {
+        
+    func getViewController() -> ViewController? {
         
         if var topController = UIApplication.shared.keyWindow?.rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
             // forcefully cast as ViewController type
-            return topController as! ViewController
+            return topController as? ViewController
         }
-        throw MyError.RunTimeError("Could not find ViewController")
+        return nil
     }
     
 }

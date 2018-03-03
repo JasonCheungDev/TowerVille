@@ -78,6 +78,8 @@
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
 		DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C42035434600F11022 /* Rendering Instructions.rtf */; };
 		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
+		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
+		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +178,8 @@
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
 		DEC217C42035434600F11022 /* Rendering Instructions.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Rendering Instructions.rtf"; sourceTree = "<group>"; };
 		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
+		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
+		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,10 +244,9 @@
 		2BB2AD6D20193318004565D4 /* TowerVille */ = {
 			isa = PBXGroup;
 			children = (
+				DEF7A6DA204B4ED000B1A311 /* Images */,
 				28C0DACF204756EE0068B071 /* ObjFiles */,
 				DEC217C32035432E00F11022 /* Documentation */,
-				DEC217C12035412000F11022 /* dungeon_01.png */,
-				DE8EFD2E203F5B28000987CE /* farm.png */,
 				DEE44739201952CA009044FB /* Shaders */,
 				2BEBE630201938E8008E8FEB /* GameEngine */,
 				2BEBE62F201938DE008E8FEB /* Rendering */,
@@ -415,6 +418,17 @@
 			path = Shaders;
 			sourceTree = "<group>";
 		};
+		DEF7A6DA204B4ED000B1A311 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7A6DD204B4FAE00B1A311 /* wip.png */,
+				DEF7A6DB204B4F5800B1A311 /* watchtower.png */,
+				DEC217C12035412000F11022 /* dungeon_01.png */,
+				DE8EFD2E203F5B28000987CE /* farm.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -529,9 +543,11 @@
 				28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
+				DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
+				DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */,
 				2840DE2F203C1BEA005C0513 /* cube.obj in Resources */,
 				28C0DAD5204757870068B071 /* icosahedron.obj in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,

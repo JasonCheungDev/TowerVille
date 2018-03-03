@@ -91,10 +91,10 @@ extension ViewController {
         // Tower (top section)
         let basicTower = UIModelStructure()
         basicTower.name = "Basic"
+        basicTower.image = UIImage(named: "watchtower.png")!
         basicTower.actionType = UIActionType.BuildTowerBasic
         let advancedTower = UIModelStructure()
         advancedTower.name = "Advanced"
-        advancedTower.image = UIImage(named: "farm.png")!
         advancedTower.actionType = UIActionType.BuildTowerSpecial
         
         buildTowerOptions.append(basicTower)
@@ -103,6 +103,7 @@ extension ViewController {
         // Resource (bottom section)
         let farm = UIModelStructure()
         farm.name = "Farm"
+        farm.image = UIImage(named: "farm.png")!
         farm.actionType = UIActionType.BuildResourceFarm
         let mine = UIModelStructure()
         mine.name = "Mine"
@@ -157,6 +158,7 @@ extension ViewController {
         else // buildCollectionView
         {
             let generator = buildResourceOptions[indexPath.row]
+            StateMachine.Instance.processUiAction(action: generator.actionType)
             print("Selected generator: \(generator.name)")
         }
     }
