@@ -11,6 +11,11 @@
 		2840DE31203D2F7B005C0513 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2840DE30203D2F7B005C0513 /* sphere.obj */; };
 		289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */; };
 		28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B37B71203CE4E30063D84C /* ObjLoader.swift */; };
+		28C0DAD5204757870068B071 /* icosahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD0204757870068B071 /* icosahedron.obj */; };
+		28C0DAD6204757870068B071 /* octahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD1204757870068B071 /* octahedron.obj */; };
+		28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD2204757870068B071 /* tetrahedron.obj */; };
+		28C0DAD8204757870068B071 /* hexahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD3204757870068B071 /* hexahedron.obj */; };
+		28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD4204757870068B071 /* dodecahedron.obj */; };
 		2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD6E20193318004565D4 /* AppDelegate.swift */; };
 		2BB2AD7120193318004565D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7020193318004565D4 /* ViewController.swift */; };
 		2BB2AD7420193318004565D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7220193318004565D4 /* Main.storyboard */; };
@@ -47,6 +52,7 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
+		8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25E267203E0C0600CF348E /* TowerProjectile.swift */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
 		DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */; };
 		DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */; };
@@ -96,6 +102,11 @@
 		2840DE30203D2F7B005C0513 /* sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarkusFragmentShader.glsl; sourceTree = "<group>"; };
 		28B37B71203CE4E30063D84C /* ObjLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjLoader.swift; sourceTree = "<group>"; };
+		28C0DAD0204757870068B071 /* icosahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icosahedron.obj; sourceTree = "<group>"; };
+		28C0DAD1204757870068B071 /* octahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octahedron.obj; sourceTree = "<group>"; };
+		28C0DAD2204757870068B071 /* tetrahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tetrahedron.obj; sourceTree = "<group>"; };
+		28C0DAD3204757870068B071 /* hexahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexahedron.obj; sourceTree = "<group>"; };
+		28C0DAD4204757870068B071 /* dodecahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dodecahedron.obj; sourceTree = "<group>"; };
 		2BB2AD6B20193318004565D4 /* TowerVille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TowerVille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB2AD6E20193318004565D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB2AD7020193318004565D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +150,7 @@
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		8C25E267203E0C0600CF348E /* TowerProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerProjectile.swift; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
 		DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertVertexShader.glsl; sourceTree = "<group>"; };
 		DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertFragmentShader.glsl; sourceTree = "<group>"; };
@@ -191,6 +203,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28C0DACF204756EE0068B071 /* ObjFiles */ = {
+			isa = PBXGroup;
+			children = (
+				28C0DAD4204757870068B071 /* dodecahedron.obj */,
+				28C0DAD3204757870068B071 /* hexahedron.obj */,
+				28C0DAD0204757870068B071 /* icosahedron.obj */,
+				28C0DAD1204757870068B071 /* octahedron.obj */,
+				28C0DAD2204757870068B071 /* tetrahedron.obj */,
+				2840DE2E203C1BEA005C0513 /* cube.obj */,
+				2840DE30203D2F7B005C0513 /* sphere.obj */,
+			);
+			path = ObjFiles;
+			sourceTree = "<group>";
+		};
 		2BB2AD6220193318004565D4 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +240,7 @@
 		2BB2AD6D20193318004565D4 /* TowerVille */ = {
 			isa = PBXGroup;
 			children = (
+				28C0DACF204756EE0068B071 /* ObjFiles */,
 				DEC217C32035432E00F11022 /* Documentation */,
 				DEC217C12035412000F11022 /* dungeon_01.png */,
 				DE8EFD2E203F5B28000987CE /* farm.png */,
@@ -226,8 +253,6 @@
 				2BB2AD7520193318004565D4 /* Assets.xcassets */,
 				2BB2AD7720193318004565D4 /* LaunchScreen.storyboard */,
 				2BB2AD7A20193318004565D4 /* Info.plist */,
-				2840DE2E203C1BEA005C0513 /* cube.obj */,
-				2840DE30203D2F7B005C0513 /* sphere.obj */,
 			);
 			path = TowerVille;
 			sourceTree = "<group>";
@@ -297,6 +322,7 @@
 				2BEBE65820194304008E8FEB /* CannonTower.swift */,
 				2BEBE65A20194313008E8FEB /* SlowTower.swift */,
 				2BEBE65C2019431F008E8FEB /* LaserTower.swift */,
+				8C25E267203E0C0600CF348E /* TowerProjectile.swift */,
 			);
 			path = Towers;
 			sourceTree = "<group>";
@@ -500,17 +526,22 @@
 				2BB2AD7920193318004565D4 /* LaunchScreen.storyboard in Resources */,
 				DE8EFD2F203F5B28000987CE /* farm.png in Resources */,
 				DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */,
+				28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
+				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
 				2840DE2F203C1BEA005C0513 /* cube.obj in Resources */,
+				28C0DAD5204757870068B071 /* icosahedron.obj in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
 				DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */,
 				DEC217C22035412100F11022 /* dungeon_01.png in Resources */,
 				DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */,
 				DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */,
+				28C0DAD6204757870068B071 /* octahedron.obj in Resources */,
 				DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */,
+				28C0DAD8204757870068B071 /* hexahedron.obj in Resources */,
 				DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */,
 				DEC217BB2035321400F11022 /* PhongFragmentShader.glsl in Resources */,
 			);
@@ -558,6 +589,7 @@
 				DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
 				2BEBE66420194382008E8FEB /* Aggro.swift in Sources */,
+				8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,
 				28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */,

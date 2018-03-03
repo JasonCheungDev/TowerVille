@@ -285,11 +285,12 @@ extension ViewController {
         prefab.x = 10
         prefab.z = -10
     
+        /*
         self.debugVisualObjects.append(vo)
         self.debugVisualObjects.append(vo2)
         self.debugVisualObjects.append(vo3)
         self.debugVisualObjects.append(vo4)
-        self.debugVisualObjects.append(prefab)
+        self.debugVisualObjects.append(prefab)*/
     }
     
     func debug_SetupLights()
@@ -359,6 +360,7 @@ extension ViewController {
         }
         
         var objLoader : ObjLoader = ObjLoader()
+        objLoader.smoothed = true
         objLoader.Read(fileName : "sphere")
 
         var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
@@ -368,6 +370,7 @@ extension ViewController {
         vo.x = 8
         vo.y = 4
         vo.z = -6
+
         vo.linkRenderObject(ro)
         
         debugVisualObjects.append(vo)

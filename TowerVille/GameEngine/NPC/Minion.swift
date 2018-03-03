@@ -14,7 +14,8 @@ class Minion : VisualObject {
     var health : Int = 100
     var speed : Double = 2
     let shader : ShaderProgram
-    var curIndex : Int = 0
+    var curIndex : Int = 1
+    var wayPoints : [GameObject] = []
     
     init(shader: ShaderProgram) {
         self.shader = shader
@@ -24,6 +25,9 @@ class Minion : VisualObject {
         let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
         ro.material = mat
         linkRenderObject(ro)
+        self.xScale = 0.4
+        self.yScale = 0.3
+        self.zScale = 0.4
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
@@ -31,16 +35,23 @@ class Minion : VisualObject {
         return copy
     }
     
-    override func update(dt: TimeInterval) {
-        //go to target
-        self.z += Float(speed * dt)
+    func setWayPoints(wayPoints : [GameObject]) {
+        self.wayPoints = wayPoints
     }
     
-    //override func draw() {
-     //   super.draw()
-    //}
-    
-    func updateTarget() {
+    override func update(dt: TimeInterval) {
+        
+        if (abs(wayPoints[curIndex].x - x) < 0.05 && abs(wayPoints[curIndex].z - z) < 0.05) {
+            curIndex = (curIndex + 1) % wayPoints.count
+        }
+        
+        var max_trans = Float(speed * dt)
+        
+        var x_trans = max(min(wayPoints[curIndex].x - x, max_trans), -max_trans)
+        var z_trans = max(min(wayPoints[curIndex].z - z, max_trans), -max_trans)
+        
+        x += x_trans
+        z += z_trans
         
     }
 }
