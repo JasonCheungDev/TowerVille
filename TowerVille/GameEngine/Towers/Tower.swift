@@ -12,6 +12,7 @@ import GLKit
 class Tower : VisualObject{
     
     var health : Int = 100
+    var maxRange : Float = 4.0
     var attacksPerSecond : Double = 1.0
     var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
     
@@ -56,10 +57,17 @@ class Tower : VisualObject{
         
         for z in PlayState.activeGame.minions
         {
-           spawnProjectile(zombie: z)
+            
+            let distance = sqrt(pow(z.x-self.x, 2) + pow(z.z-self.z, 2))
+            
+            if(distance < maxRange){    //spawn projectile if within tower aggro range
+                spawnProjectile(zombie: z)
+            }
+            
         }
         
     }
+    
     
     override func draw(){
         super.draw()
