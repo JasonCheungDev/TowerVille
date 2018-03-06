@@ -22,6 +22,10 @@ class PlayState : State {
     
     var camera : Camera!
     
+    // flags
+    var isSelectingStructure = false;
+    var isPickingStructure = false;
+    
     // Mark: - Debug variables
     var debugFarm : Farm?
     
@@ -93,11 +97,24 @@ class PlayState : State {
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
         
-        selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
-        if selectedTile?.type == TileType.Grass
+        if (isPickingStructure)
         {
-            getViewController()?.showBuildMenu(isShown: true)
+            // clicking out of build menu - deselect
+            selectedTile = nil;
+            getViewController()?.showBuildMenu(isShown: false)
+            isPickingStructure = false
         }
+        else
+        {
+            // clicking on tile (no menus open) - select
+            selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
+            if selectedTile?.type == TileType.Grass
+            {
+                getViewController()?.showBuildMenu(isShown: true)
+                isPickingStructure = true
+            }
+        }
+        
     }
     
     override func processUiInput(action: UIActionType) {
@@ -109,7 +126,9 @@ class PlayState : State {
         case .BuildResourceFarm:
             if createFarm(tile: selectedTile!)
             {
+                selectedTile = nil
                 getViewController()?.showBuildMenu(isShown: false)
+                isPickingStructure = false
             }
         default:
             NSLog("This action hasn't been implemented yet!")
