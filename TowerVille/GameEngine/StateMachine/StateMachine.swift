@@ -56,5 +56,10 @@ class StateMachine
     func processInput(x : Float, z : Float, u : Float, v : Float) {
         states.top?.processInput(x: x, z : z, u : u, v : v)
     }
+    
+    func processUiAction(action : UIActionType)
+    {
+        states.top?.processUiInput(action: action)
+    }
 
 }
