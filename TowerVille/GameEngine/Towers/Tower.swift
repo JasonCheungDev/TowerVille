@@ -14,7 +14,7 @@ class Tower : VisualObject{
     var health : Int = 100
     var maxRange : Float = 4.0
     var attacksPerSecond : Double = 1.0
-    var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
+    var projectileLife : Double = 1.0   //time before projectiles are destroyed, in seconds
     
     var zombie : Minion!
     var towerProjectiles : [TowerProjectile] = []
@@ -73,22 +73,21 @@ class Tower : VisualObject{
         super.draw()
       
         if(towerProjectiles.count > 0){
-            for (index, projectile) in towerProjectiles.enumerated() {
-                
-                if(projectile.timeAlive > projectileLife){
-                    towerProjectiles.remove(at: index)
-                }else{
+            /*for (_, projectile) in towerProjectiles.enumerated() {
                     projectile.draw()
-                }
+            }*/ 
+            for p in towerProjectiles{
+                p.draw()
             }
+            
         }
-       
         
     }
 
     override func update(dt: TimeInterval) {
         //go to target
-        //self.z += Float(speed * dt)
+        
+        towerProjectiles = towerProjectiles.filter{$0.timeAlive <= projectileLife}
         
         if(towerProjectiles.count > 0){ //put into tower.update
             for p in towerProjectiles
