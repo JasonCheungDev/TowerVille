@@ -12,14 +12,19 @@ import GLKit
 class ObjLoader {
     var smoothed = false
     
-    var vertexArray = [GLKVector3]()
-    var textureArray = [GLKVector2]()
-    var normalArray = [GLKVector3]()
+    private var vertexArray = [GLKVector3]()
+    private var textureArray = [GLKVector2]()
+    private var normalArray = [GLKVector3]()
     
     var vertexDataArray = [VertexData]()
     var indexDataArray = [GLubyte]()
     
     func Read(fileName : String) -> Void{
+        vertexArray.removeAll()
+        textureArray.removeAll()
+        normalArray.removeAll()
+        vertexDataArray.removeAll()
+        indexDataArray.removeAll()
         if let path = Bundle.main.path(forResource: fileName, ofType: "obj") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
@@ -44,7 +49,7 @@ class ObjLoader {
         }
     }
     
-    func CalculateNormals() -> Void{
+    private func CalculateNormals() -> Void{
         for i in 0..<indexDataArray.count/3 {
             let v1_index = Int(indexDataArray[i*3])
             let v2_index = Int(indexDataArray[i*3+1])
@@ -80,7 +85,7 @@ class ObjLoader {
         }
     }
     
-    func ReadVertex(_ line : String) -> Void{
+    private func ReadVertex(_ line : String) -> Void{
         var strings = line.components(separatedBy: " ")
         let x = Float(strings[1])!
         let y = Float(strings[2])!
@@ -98,7 +103,7 @@ class ObjLoader {
         }
     }
     
-    func ReadTexture(_ line : String) -> Void{
+    private func ReadTexture(_ line : String) -> Void{
         var strings = line.components(separatedBy: " ")
         let u = Float(strings[1])!
         let v = Float(strings[2])!
@@ -106,7 +111,7 @@ class ObjLoader {
         textureArray.append(vector2)
     }
     
-    func ReadNormal(_ line : String) -> Void{
+    private func ReadNormal(_ line : String) -> Void{
         var strings = line.components(separatedBy: " ")
         let i = Float(strings[1])!
         let j = Float(strings[2])!
@@ -116,7 +121,7 @@ class ObjLoader {
         normalArray.append(vector3)
     }
     
-    func ReadFace(_ line : String) -> Void{
+    private func ReadFace(_ line : String) -> Void{
         var strings = line.components(separatedBy: " ")
         strings.removeFirst()
         for string in strings {
