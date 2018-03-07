@@ -16,6 +16,7 @@ class Minion : VisualObject {
     let shader : ShaderProgram
     var curIndex : Int = 1
     var wayPoints : [GameObject] = []
+    var alive : Bool = true
     
     init(shader: ShaderProgram) {
         self.shader = shader
@@ -42,13 +43,19 @@ class Minion : VisualObject {
     override func update(dt: TimeInterval) {
         
         if (abs(wayPoints[curIndex].x - x) < 0.05 && abs(wayPoints[curIndex].z - z) < 0.05) {
-            curIndex = (curIndex + 1) % wayPoints.count
+            curIndex += 1
+            if(curIndex == wayPoints.count) {
+                let t = StateMachine.Instance.state() as! PlayState
+                t.lives -= 1
+                alive = false
+                curIndex = 0
+            }
         }
         
-        var max_trans = Float(speed * dt)
+        let max_trans = Float(speed * dt)
         
-        var x_trans = max(min(wayPoints[curIndex].x - x, max_trans), -max_trans)
-        var z_trans = max(min(wayPoints[curIndex].z - z, max_trans), -max_trans)
+        let x_trans = max(min(wayPoints[curIndex].x - x, max_trans), -max_trans)
+        let z_trans = max(min(wayPoints[curIndex].z - z, max_trans), -max_trans)
         
         x += x_trans
         z += z_trans

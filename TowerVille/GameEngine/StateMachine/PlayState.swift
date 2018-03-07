@@ -11,9 +11,10 @@ class PlayState : State {
     var map : Map = Map()
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
 
-    //let minion : Minion
+    
     let tower : Tower
     var gold : Int = 0
+    var lives : Int = 20
 
     let spawner : MinionSpawner
     var minions : [Minion] = []
@@ -55,7 +56,7 @@ class PlayState : State {
         for f in farms {
             f.update(dt: dt)
         }
-        spawner.update(dt: dt, minions: &minions)
+        spawner.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)
@@ -81,7 +82,7 @@ class PlayState : State {
         
         // debug display values
         do {
-            try getViewController().debug_updateUiDisplay("Gold: \(self.gold)")
+            try getViewController().debug_updateUiDisplay("Gold: \(self.gold) | Lives: \(self.lives)")
         } catch MyError.RunTimeError(let errorMessage) {
             print(errorMessage)
         } catch {

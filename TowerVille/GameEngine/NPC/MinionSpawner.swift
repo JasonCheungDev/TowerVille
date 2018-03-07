@@ -14,7 +14,7 @@ class MinionSpawner : GameObject {
     var curTime : TimeInterval = 0.0
     let spawnTime : TimeInterval = 2.0
     let minion : Minion
-    let total : Int = 1
+    let total : Int = 10
     var current : Int = 0
     
     init(minion : Minion) {
@@ -22,39 +22,55 @@ class MinionSpawner : GameObject {
         
         // auto place some waypoints
         // TODO : remove
-        var numberOfWaypoints = 16
-        for i in 0..<numberOfWaypoints {
+        let numberOfWaypoints = 7
+        for _ in 0..<numberOfWaypoints {
             let go = GameObject()
             wayPoints.append(go)
         }
-        var x_temp = 0
-        var z_temp = -5
-        for i in 0..<(numberOfWaypoints/2) {
-            wayPoints[2 * i].x = Float(8 * x_temp + 5)
-            wayPoints[2 * i].z = Float(z_temp)
-            x_temp = (x_temp + 1) % 2
-            wayPoints[2 * i + 1].x = Float(8 * x_temp + 5)
-            wayPoints[2 * i + 1].z = Float(z_temp)
-            z_temp = z_temp - 1
-        }
         
+        wayPoints[0].x = 5
+        wayPoints[0].z = -5
+        
+        wayPoints[1].x = 12
+        wayPoints[1].z = -5
+        
+        wayPoints[2].x = 12
+        wayPoints[2].z = -8
+        
+        wayPoints[3].x = 4
+        wayPoints[3].z = -8
+        
+        wayPoints[4].x = 4
+        wayPoints[4].z = -11
+        
+        wayPoints[5].x = 12
+        wayPoints[5].z = -11
+        
+        wayPoints[6].x = 12
+        wayPoints[6].z = -16
         
     }
     
-    func spawn(minions: inout [Minion]) {
+    func spawn() {
         let c = minion.copy() as! Minion
         c.setWayPoints(wayPoints: wayPoints)
         c.x = wayPoints[0].x
         c.z = wayPoints[0].z
-        minions.append(c)
+        let t = StateMachine.Instance.state() as! PlayState
+        t.minions.append(c)
         current += 1
     }
     
-    func update(dt: TimeInterval, minions: inout [Minion]) {
+    override func update(dt: TimeInterval) {
         curTime += dt
+        
+        let t = StateMachine.Instance.state() as! PlayState
+        if let i = t.minions.index(where: { !$0.alive }) {
+            t.minions.remove(at: i)
+        }
         if(current <= total && curTime >= spawnTime) {
             curTime = 0.0
-            spawn(minions: &minions)
+            spawn()
         }
     }
     
