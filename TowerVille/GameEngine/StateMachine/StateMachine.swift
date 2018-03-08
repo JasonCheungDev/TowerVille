@@ -19,16 +19,22 @@ class StateMachine
         }
 
         // There needs to be a state
-        if let temp = states.top?.next {
+        if let nextState = states.top?.next {
+            
             // Replace the running state
-            if (temp.replacing) {
-                _ = states.pop();
+            if (nextState.replacing) {
+                let oldState = states.pop();
+                oldState?.exit();
             }
             // Pause the running state
-            else {
+            else
+            {
                 states.top?.pause();
+                states.top?.exit();
             }
-            states.push(temp);
+            
+            nextState.enter();
+            states.push(nextState);
         }
     }
 

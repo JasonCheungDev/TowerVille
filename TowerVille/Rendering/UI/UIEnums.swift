@@ -8,14 +8,6 @@
 
 import Foundation
 
-// DO NOT rearrange this enum
-enum UIButtonID {
-    case Play
-    case Help
-    case Settings
-    case Highscore
-}
-
 enum UIScreens {
     case IntroScreen
     case HelpScreen
@@ -23,7 +15,7 @@ enum UIScreens {
     case GameScreen
 }
 
-enum UIActionType {
+enum UIActionType : Int {
     case NOT_IMPLEMENTED
     case BuildTowerBasic
     case BuildTowerSpecial
@@ -31,8 +23,12 @@ enum UIActionType {
     case BuildResourceSpecial
     case BuildCancel
     
-//    case PlaySelected
-//    case HelpSelected
-//    case SettingsSelected
-//    case HighscoreSelected 
+    // Intro screen buttons
+    case PlaySelected = 100
+    case HelpSelected = 101
+    case SettingsSelected = 102
+    case HighscoreSelected = 103
+    
+    // Generic buttons
+    case BackSelected = 900
 }

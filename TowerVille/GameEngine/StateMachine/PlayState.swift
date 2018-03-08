@@ -31,7 +31,7 @@ class PlayState : State {
     var debugFarm : Farm?
     
     
-    override init(replacing : Bool = true) {
+    override init(replacing : Bool = true, viewController : ViewController) {
         
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
@@ -44,7 +44,7 @@ class PlayState : State {
         tower.xScale = 0.3
         
         
-        super.init(replacing: replacing)
+        super.init(replacing: replacing, viewController: viewController)
         
         PlayState.activeGame = self
         map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
