@@ -91,6 +91,7 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
         {
         case UIActionType.PlaySelected.rawValue:
             NSLog("Play btn pressed")
+            gameScreen.isHidden = false
             StateMachine.Instance.processUiAction(action: UIActionType.PlaySelected)
             break
         case UIActionType.HelpSelected.rawValue:
