@@ -26,6 +26,9 @@ import GLKit
 class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // UI
+    @IBOutlet var introScreen: UIView!
+    @IBOutlet var gameScreen: UIView!
+    
     @IBOutlet var buildMenuView: UIView!
     @IBOutlet var towerCollectionView: UICollectionView!
     @IBOutlet var resourceCollectionView: UICollectionView!
@@ -118,6 +121,11 @@ extension ViewController {
         buildMenuView.isHidden = !isShown
     }
     
+    func showScreen(screenType : UIScreen)
+    {
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if (collectionView == towerCollectionView)
@@ -197,6 +205,8 @@ extension ViewController {
         
         return Vertex(world_x, 0, world_z)
     }
+    
+    
     
 }
 

@@ -8,6 +8,21 @@
 
 import Foundation
 
+// DO NOT rearrange this enum
+enum UIButtonID {
+    case Play
+    case Help
+    case Settings
+    case Highscore
+}
+
+enum UIScreens {
+    case IntroScreen
+    case HelpScreen
+    case ScoreScreen
+    case GameScreen
+}
+
 enum UIActionType {
     case NOT_IMPLEMENTED
     case BuildTowerBasic
@@ -15,4 +30,9 @@ enum UIActionType {
     case BuildResourceFarm
     case BuildResourceSpecial
     case BuildCancel
+    
+//    case PlaySelected
+//    case HelpSelected
+//    case SettingsSelected
+//    case HighscoreSelected 
 }

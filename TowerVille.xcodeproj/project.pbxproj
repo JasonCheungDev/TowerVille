@@ -64,7 +64,7 @@
 		DE8EFD2F203F5B28000987CE /* farm.png in Resources */ = {isa = PBXBuildFile; fileRef = DE8EFD2E203F5B28000987CE /* farm.png */; };
 		DE96E58B2047E6D200B2966E /* UICellStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58A2047E6D200B2966E /* UICellStructure.swift */; };
 		DE96E58D2047E9BC00B2966E /* UIModelStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */; };
-		DE96E58F2047EF2A00B2966E /* UIActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58E2047EF2A00B2966E /* UIActionType.swift */; };
+		DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58E2047EF2A00B2966E /* UIEnums.swift */; };
 		DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF8282035868B0097F76B /* DirectionalLight.swift */; };
 		DE9AF82B20358A230097F76B /* LightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82A20358A230097F76B /* LightManager.swift */; };
 		DE9AF82D20358AFB0097F76B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82C20358AFB0097F76B /* Light.swift */; };
@@ -164,7 +164,7 @@
 		DE8EFD2E203F5B28000987CE /* farm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farm.png; sourceTree = "<group>"; };
 		DE96E58A2047E6D200B2966E /* UICellStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellStructure.swift; sourceTree = "<group>"; };
 		DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModelStructure.swift; sourceTree = "<group>"; };
-		DE96E58E2047EF2A00B2966E /* UIActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionType.swift; sourceTree = "<group>"; };
+		DE96E58E2047EF2A00B2966E /* UIEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEnums.swift; sourceTree = "<group>"; };
 		DE9AF8282035868B0097F76B /* DirectionalLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		DE9AF82A20358A230097F76B /* LightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightManager.swift; sourceTree = "<group>"; };
 		DE9AF82C20358AFB0097F76B /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 			children = (
 				DE96E58A2047E6D200B2966E /* UICellStructure.swift */,
 				DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */,
-				DE96E58E2047EF2A00B2966E /* UIActionType.swift */,
+				DE96E58E2047EF2A00B2966E /* UIEnums.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
 				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
-				DE96E58F2047EF2A00B2966E /* UIActionType.swift in Sources */,
+				DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */,
 				2BEBE63A20193B5E008E8FEB /* Transform.swift in Sources */,
 				2BEBE669201943BE008E8FEB /* SawMill.swift in Sources */,
 				2BEBE632201938F4008E8FEB /* GameObject.swift in Sources */,
@@ -798,6 +798,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZGXQ9QPG4P;
 				INFOPLIST_FILE = TowerVille/Info.plist;
@@ -805,6 +806,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -816,6 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZGXQ9QPG4P;
 				INFOPLIST_FILE = TowerVille/Info.plist;
@@ -823,6 +826,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
