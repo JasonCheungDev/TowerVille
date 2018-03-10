@@ -12,7 +12,7 @@ import GLKit
 class TowerProjectile : VisualObject{
     var damage : Int = 10
     
-    var target : GameObject!
+    var target : Minion!
     var timeAlive : Double = 0
     
     var distance : Float = 0.0
@@ -22,11 +22,10 @@ class TowerProjectile : VisualObject{
     
     
     
-    init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram, target : GameObject) {
+    init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram, target : Minion) {
         super.init()
         self.x = x
         self.z = z
-        
         self.target = target
         
         let mat = LambertMaterial(shader)
@@ -34,7 +33,6 @@ class TowerProjectile : VisualObject{
         let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
         ro.material = mat
         linkRenderObject(ro)
-        
         
     }
     
