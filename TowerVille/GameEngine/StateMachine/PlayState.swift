@@ -165,6 +165,7 @@ class PlayState : State {
         if (tile.type != TileType.Grass) { return false }
         
         let newFarm = Farm(self, shader)
+        newFarm.SetValue(x: tile.x, y: tile.z)
         tile.SetStructure(newFarm)
         farms.append(newFarm)
         self.gold -= Farm.COST
