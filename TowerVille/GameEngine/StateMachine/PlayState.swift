@@ -11,8 +11,8 @@ class PlayState : State {
     var map : Map = Map()
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
 
-    
-    let tower : Tower
+    //let minion : Minion
+    var towers : [Tower] = []
     var gold : Int = 0
     var lives : Int = 20
 
@@ -38,11 +38,17 @@ class PlayState : State {
         
         spawner = MinionSpawner(minion: Minion(shader: shader))
 
-        tower = Tower(8.0, -7.0, shader:shader)
-        tower.zScale = 0.3
-        tower.yScale = 0.7
-        tower.xScale = 0.3
+        let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
+        tower1.zScale = 0.3
+        tower1.yScale = 0.7
+        tower1.xScale = 0.3
+        towers.append(tower1)
         
+        let slowTower1 = SlowTower(3.0, -6.0, shader:shader, color: Color(0, 1, 1, 1))
+        slowTower1.zScale = 0.3
+        slowTower1.yScale = 0.7
+        slowTower1.xScale = 0.3
+        towers.append(slowTower1)
         
         super.init(replacing: replacing, viewController: viewController)
         
@@ -50,15 +56,21 @@ class PlayState : State {
         map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
         setupLights()
         
+        map.Tiles[3][3].type = TileType.Path //temp path
+        
         self.debugFarm = Farm(self, shader)
         map.Tiles[5][5].SetStructure(debugFarm!)
         farms.append(debugFarm!)
+        
+    
     }
     
     override func update(dt: TimeInterval) {
         
-        tower.update(dt: dt)
-
+        for t in towers {
+            t.update(dt: dt)
+        }
+        
         for f in farms {
             f.update(dt: dt)
         }
@@ -74,7 +86,9 @@ class PlayState : State {
     override func draw() {
         shader.prepareToDraw()
         
-        tower.draw()
+        for t in towers{
+            t.draw()
+        }
 
         for row in map.Tiles {
             for vo in row {
@@ -151,6 +165,7 @@ class PlayState : State {
         if (tile.type != TileType.Grass) { return false }
         
         let newFarm = Farm(self, shader)
+        newFarm.SetValue(x: tile.x, y: tile.z)
         tile.SetStructure(newFarm)
         farms.append(newFarm)
         self.gold -= Farm.COST

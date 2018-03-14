@@ -12,9 +12,9 @@ import GLKit
 class Tower : VisualObject{
     
     var health : Int = 100
-    var maxRange : Float = 4.0
+    var maxRange : Float = 5.0
     var attacksPerSecond : Double = 1.0
-    var projectileLife : Double = 1.0   //time before projectiles are destroyed, in seconds
+    var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
     
     var zombie : Minion!
     var towerProjectiles : [TowerProjectile] = []
@@ -22,7 +22,9 @@ class Tower : VisualObject{
     var timer = Timer()
     var shader : ShaderProgram!
     
-    init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram) {
+    private var target : Minion!
+    
+    init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram, color: Color) {
         super.init()
         self.x = x
         self.z = z
@@ -30,7 +32,7 @@ class Tower : VisualObject{
         self.shader = shader
         
         let mat = LambertMaterial(shader)
-        mat.surfaceColor = Color(1,1,0,1) // r g b a
+        mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
         
         let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
         ro.material = mat
@@ -41,14 +43,12 @@ class Tower : VisualObject{
     }
     
     func spawnProjectile(zombie : Minion){
-        
         //spawns a projectile
         let p = TowerProjectile(self.x, self.z, shader: self.shader, target: zombie)
         p.xScale = 0.1
         p.yScale = 0.1
         p.zScale = 0.1
         towerProjectiles.append(p)
-        
     }
     
     @objc
@@ -62,6 +62,7 @@ class Tower : VisualObject{
             
             if(distance < maxRange){    //spawn projectile if within tower aggro range
                 spawnProjectile(zombie: z)
+                return  //shoots only 1 projectile, not aoe
             }
             
         }
