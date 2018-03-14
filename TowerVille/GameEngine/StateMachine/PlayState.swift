@@ -100,14 +100,26 @@ class PlayState : State {
             f.draw()
         }
         
-        // debug display values
-        getViewController()?.debug_updateUiDisplay("Gold: \(self.gold) | Lives: \(self.lives)")
-
         for guy in minions {
             guy.draw()
         }
         
+        // update ui
+        updateUi()
+        
+        // debug display values
+        // getViewController()?.debug_updateUiDisplay("Gold: \(self.gold) | Lives: \(self.lives)")
     }
+    
+    
+    func updateUi()
+    {
+        viewController.healthLabel.text = "\(self.lives)"
+        viewController.goldLabel.text = "\(self.gold)"
+        viewController.wavesLabel.text = "WAVE: 1"
+        viewController.enemiesLabel.text = "ENEMIES: 10"
+    }
+    
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")

@@ -30,6 +30,12 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var gameScreen: UIView!
     @IBOutlet var helpScreen: UIView!
     
+    // Game Screen
+    @IBOutlet var healthLabel: UILabel!
+    @IBOutlet var goldLabel: UILabel!
+    @IBOutlet var wavesLabel: UILabel!
+    @IBOutlet var enemiesLabel: UILabel!
+    
     @IBOutlet var buildMenuView: UIView!
     @IBOutlet var towerCollectionView: UICollectionView!
     @IBOutlet var resourceCollectionView: UICollectionView!
