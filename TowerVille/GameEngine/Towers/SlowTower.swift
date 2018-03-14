@@ -16,6 +16,7 @@ class SlowTower : Tower{
         p.xScale = 0.1
         p.yScale = 0.1
         p.zScale = 0.1
+        p.speed = 4.0
         towerProjectiles.append(p)
     }
     

@@ -23,25 +23,37 @@ OpenGL Notes (Read this to get basic understanding of the Glkit flow)
 import UIKit
 import GLKit
 
-class ViewController: GLKViewController { //UIViewController
-
-    @IBOutlet var debugDisplay: UILabel!
+class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // UI
+    @IBOutlet var buildMenuView: UIView!
+    @IBOutlet var towerCollectionView: UICollectionView!
+    @IBOutlet var resourceCollectionView: UICollectionView!
+    let cellIdentifier: String = "structureCollectionViewCell"
+    var buildTowerOptions : [UIModelStructure] = []
+    var buildResourceOptions : [UIModelStructure] = []
+    
+    // OpenGL
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
     
+    // TODO: Remove debug variables
     var shader : ShaderProgram!
-   
     var debugVisualObjects : [VisualObject] = []
+    @IBOutlet var debugDisplay: UILabel!
+
     
     //initilization
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // setup UI
+        setupBuildMenu()
+        
         // pregame setup
         setupGLcontext()
         setupCamera()       // this retrieves aspect ratio for all Camera objects
-
+        
         // init updater and game
         setupGLupdater()
         
@@ -50,6 +62,105 @@ class ViewController: GLKViewController { //UIViewController
 //        debug_SetupRenderObject()
 //        debug_SetupTiledMap()
 //        debug_SetupLights()
+    }
+
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
+        glClearColor(0.2, 0.4, 0.6, 1.0);
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
+
+        StateMachine.Instance.draw()
+    }
+
+    func debug_updateUiDisplay(_ text : String)
+    {
+        debugDisplay.text = text 
+    }
+    
+}
+
+// USER INTERFACE
+extension ViewController {
+    
+    func setupBuildMenu()
+    {
+        // Tower (top section)
+        let basicTower = UIModelStructure()
+        basicTower.name = "Basic"
+        basicTower.image = UIImage(named: "watchtower.png")!
+        basicTower.actionType = UIActionType.BuildTowerBasic
+        let advancedTower = UIModelStructure()
+        advancedTower.name = "Advanced"
+        advancedTower.actionType = UIActionType.BuildTowerSpecial
+        
+        buildTowerOptions.append(basicTower)
+        buildTowerOptions.append(advancedTower)
+        
+        // Resource (bottom section)
+        let farm = UIModelStructure()
+        farm.name = "Farm"
+        farm.image = UIImage(named: "farm.png")!
+        farm.actionType = UIActionType.BuildResourceFarm
+        let mine = UIModelStructure()
+        mine.name = "Mine"
+        mine.actionType = UIActionType.BuildResourceSpecial
+        
+        buildResourceOptions.append(farm)
+        buildResourceOptions.append(mine)
+    }
+    
+    func showBuildMenu(isShown : Bool)
+    {
+        buildMenuView.isHidden = !isShown
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if (collectionView == towerCollectionView)
+        {
+            return buildTowerOptions.count
+        }
+        else // resourceCollectionView
+        {
+            return buildResourceOptions.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = towerCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! UICellStructure
+        
+        if (collectionView == towerCollectionView)
+        {
+            let tower = buildTowerOptions[indexPath.row]
+            cell.displayContent(image: tower.image, title: tower.name)
+        }
+        else // buildCollectionView
+        {
+            let generator = buildResourceOptions[indexPath.row]
+            cell.displayContent(image: generator.image, title: generator.name)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if (collectionView == towerCollectionView)
+        {
+            let tower = buildTowerOptions[indexPath.row]
+            print("Selected tower: \(tower.name)")
+        }
+        else // buildCollectionView
+        {
+            let generator = buildResourceOptions[indexPath.row]
+            StateMachine.Instance.processUiAction(action: generator.actionType)
+            print("Selected generator: \(generator.name)")
+        }
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -83,30 +194,8 @@ class ViewController: GLKViewController { //UIViewController
         
         print("world x : \(world_x)")
         print("world z : \(world_z)")
-
-        return Vertex(world_x, 0, world_z)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        glClearColor(0.2, 0.4, 0.6, 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
-
-        StateMachine.Instance.draw()
         
-//         shader.prepareToDraw()
-//        for vo in debugVisualObjects
-//        {
-//            vo.draw()
-//        }
-    }
-
-    func debug_updateUiDisplay(_ text : String)
-    {
-        debugDisplay.text = text 
+        return Vertex(world_x, 0, world_z)
     }
     
 }
@@ -116,7 +205,7 @@ extension ViewController {
     
     func setupGLcontext() {
         glkView = self.view as! GLKView
-        glkView.context = EAGLContext(api: .openGLES3)! // Warning: Doesn't work on iPods
+        glkView.context = EAGLContext(api: .openGLES2)!
         glkView.drawableDepthFormat = .format16         // for depth testing
         EAGLContext.setCurrent(glkView.context)
         
@@ -273,6 +362,7 @@ extension ViewController {
         }
         
         var objLoader : ObjLoader = ObjLoader()
+        objLoader.smoothed = true
         objLoader.Read(fileName : "sphere")
 
         var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
