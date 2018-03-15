@@ -22,7 +22,7 @@ class IntroState : State {
     override func processUiInput(action: UIActionType) {
         if (action == .PlaySelected)
         {
-            next = PlayState(viewController: self.viewController)
+            next = PlayState(replacing: false, viewController: self.viewController)
         }
     }
     
@@ -40,6 +40,7 @@ class IntroState : State {
     
     override func exit() {
         self.viewController.hideScreen(screenType: UIScreens.IntroScreen)
+        next = nil
     }
     
 }

@@ -113,6 +113,7 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
             break
         case UIActionType.BackSelected.rawValue:
             helpScreen.isHidden = true
+            StateMachine.Instance.processUiAction(action: .BackSelected)
             NSLog("Back btn pressed")
             break
         default:
@@ -166,6 +167,9 @@ extension ViewController {
         case .IntroScreen:
             introScreen.isHidden = false
             break
+        case .GameScreen:
+            gameScreen.isHidden = false
+            break
         case .HelpScreen:
             helpScreen.isHidden = false
             break
@@ -180,6 +184,9 @@ extension ViewController {
         {
         case .IntroScreen:
             introScreen.isHidden = true
+            break
+        case .GameScreen:
+            gameScreen.isHidden = true
             break
         case .HelpScreen:
             helpScreen.isHidden = true

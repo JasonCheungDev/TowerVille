@@ -55,6 +55,12 @@ class Tower : VisualObject{
     func scanForTargets(){
         //print("lookin for targets!")
         
+        if PlayState.activeGame == nil
+        {
+            timer.invalidate()
+            return;
+        }
+        
         for z in PlayState.activeGame.minions
         {
             

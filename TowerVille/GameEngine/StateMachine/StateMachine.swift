@@ -9,12 +9,16 @@ class StateMachine
     static let Instance : StateMachine = StateMachine()
     
     func nextState() {
+        
+        // Going back to last state 
         if (resume) {
             // Cleanup the current state
-            _ = states.pop()
-
+            let removing = states.pop()
+            removing?.exit()
+            
             // Resume previous state
             states.top?.resume();
+            states.top?.enter();
             resume = false;
         }
 

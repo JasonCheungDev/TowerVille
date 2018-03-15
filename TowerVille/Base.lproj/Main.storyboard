@@ -293,7 +293,7 @@
                                         </connections>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dOu-3d-bqr" userLabel="WaveEnemiesBar">
-                                        <rect key="frame" x="448" y="8" width="210.5" height="36"/>
+                                        <rect key="frame" x="404" y="8" width="254.5" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAVE: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIl-lE-cRN" userLabel="Waves Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="82.5" height="36"/>
@@ -307,6 +307,16 @@
                                                 <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1q-Nn-6Gr" userLabel="Back">
+                                                <rect key="frame" x="218.5" y="0.0" width="36" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="T1q-Nn-6Gr" secondAttribute="height" multiplier="1:1" id="cJ1-z3-P4z"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="btn_back"/>
+                                                <connections>
+                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dWN-ey-DOk"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="8Db-zI-RPw"/>
@@ -376,6 +386,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn_back" width="176" height="178"/>
         <image name="btn_normal" width="363" height="178"/>
         <image name="gold" width="119" height="129"/>
         <image name="health" width="115" height="115"/>

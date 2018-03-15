@@ -24,8 +24,8 @@ class PlayState : State {
     var camera : Camera!
     
     // flags
-    var isSelectingStructure = false;
-    var isPickingStructure = false;
+    var isSelectingStructure = false;   // selected a tile w/ a structure
+    var isPickingStructure = false;     // selected a tile w/o a structure
     
     // Mark: - Debug variables
     var debugFarm : Farm?
@@ -148,7 +148,7 @@ class PlayState : State {
     override func processUiInput(action: UIActionType) {
         
         switch action {
-        case UIActionType.BuildTowerBasic:
+        case .BuildTowerBasic:
             // TODO: Tower stuff
             break
         case .BuildResourceFarm:
@@ -158,6 +158,20 @@ class PlayState : State {
                 getViewController()?.showBuildMenu(isShown: false)
                 isPickingStructure = false
             }
+            break
+        case .BackSelected:
+            if (isPickingStructure)
+            {
+                selectedTile = nil
+                viewController.showBuildMenu(isShown: false)
+            }
+            // else if (isSelectingStructure) ...
+            else
+            {
+                NSLog("Back to intro")
+                StateMachine.Instance.lastState()
+            }
+            break
         default:
             NSLog("This action hasn't been implemented yet!")
         }
@@ -204,7 +218,11 @@ class PlayState : State {
     }
     
     override func exit() {
+        NSLog("Playstate Exit")
         viewController.hideScreen(screenType: .GameScreen);
+        towers.removeAll()
+        farms.removeAll()
+        minions.removeAll()
         PlayState.activeGame = nil;
         Camera.ActiveCamera = nil;
     }
