@@ -16,7 +16,7 @@ class PlayState : State {
     var gold : Int = 0
     var lives : Int = 20
 
-    let spawner : MinionSpawner
+    var spawner : MinionSpawner?
     var minions : [Minion] = []
     var farms   : [VisualObject] = []
     var selectedTile : Tile?
@@ -32,12 +32,23 @@ class PlayState : State {
     
     
     override init(replacing : Bool = true, viewController : ViewController) {
+        super.init(replacing: replacing, viewController: viewController)
+        PlayState.activeGame = self
         
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         
+        map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
+        setupLights()
+        
+        restart()
+    }
+    
+    func restart()
+    {
         spawner = MinionSpawner(minion: Minion(shader: shader))
-
+        map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
+        
         let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
         tower1.zScale = 0.3
         tower1.yScale = 0.7
@@ -50,19 +61,9 @@ class PlayState : State {
         slowTower1.xScale = 0.3
         towers.append(slowTower1)
         
-        super.init(replacing: replacing, viewController: viewController)
-        
-        PlayState.activeGame = self
-        map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
-        setupLights()
-        
-        map.Tiles[3][3].type = TileType.Path //temp path
-        
         self.debugFarm = Farm(self, shader)
         map.Tiles[5][5].SetStructure(debugFarm!)
         farms.append(debugFarm!)
-        
-    
     }
     
     override func update(dt: TimeInterval) {
@@ -74,7 +75,7 @@ class PlayState : State {
         for f in farms {
             f.update(dt: dt)
         }
-        spawner.update(dt: dt)
+        spawner?.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)
@@ -123,7 +124,7 @@ class PlayState : State {
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
-        
+        return;
         if (isPickingStructure)
         {
             // clicking out of build menu - deselect
@@ -195,6 +196,17 @@ class PlayState : State {
             return topController as? ViewController
         }
         return nil
+    }
+
+    
+    override func enter() {
+        viewController.showScreen(screenType: .GameScreen);
+    }
+    
+    override func exit() {
+        viewController.hideScreen(screenType: .GameScreen);
+        PlayState.activeGame = nil;
+        Camera.ActiveCamera = nil;
     }
     
 }
