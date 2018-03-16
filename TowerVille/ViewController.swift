@@ -26,6 +26,16 @@ import GLKit
 class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // UI
+    @IBOutlet var introScreen: UIView!
+    @IBOutlet var gameScreen: UIView!
+    @IBOutlet var helpScreen: UIView!
+    
+    // Game Screen
+    @IBOutlet var healthLabel: UILabel!
+    @IBOutlet var goldLabel: UILabel!
+    @IBOutlet var wavesLabel: UILabel!
+    @IBOutlet var enemiesLabel: UILabel!
+    
     @IBOutlet var buildMenuView: UIView!
     @IBOutlet var towerCollectionView: UICollectionView!
     @IBOutlet var resourceCollectionView: UICollectionView!
@@ -81,6 +91,38 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
         debugDisplay.text = text 
     }
     
+    @IBAction func onButtonPress(_ sender: UIButton) {
+        
+        switch sender.tag
+        {
+        case UIActionType.PlaySelected.rawValue:
+            NSLog("Play btn pressed")
+            gameScreen.isHidden = false
+            StateMachine.Instance.processUiAction(action: UIActionType.PlaySelected)
+            break
+        case UIActionType.HelpSelected.rawValue:
+            NSLog("Help btn pressed")
+            helpScreen.isHidden = false
+            break
+        case UIActionType.HelpSelected.rawValue:
+            NSLog("Settings btn pressed")
+            helpScreen.isHidden = false
+            break
+        case UIActionType.HighscoreSelected.rawValue:
+            NSLog("Highscore btn pressed")
+            break
+        case UIActionType.BackSelected.rawValue:
+            helpScreen.isHidden = true
+            StateMachine.Instance.processUiAction(action: .BackSelected)
+            NSLog("Back btn pressed")
+            break
+        default:
+            NSLog("Unknown btn pressed \(sender.tag)")
+            break
+        }
+        
+    }
+    
 }
 
 // USER INTERFACE
@@ -116,6 +158,42 @@ extension ViewController {
     func showBuildMenu(isShown : Bool)
     {
         buildMenuView.isHidden = !isShown
+    }
+    
+    func showScreen(screenType : UIScreens)
+    {
+        switch screenType
+        {
+        case .IntroScreen:
+            introScreen.isHidden = false
+            break
+        case .GameScreen:
+            gameScreen.isHidden = false
+            break
+        case .HelpScreen:
+            helpScreen.isHidden = false
+            break
+        default:
+            NSLog("Screen does not exist")
+        }
+    }
+    
+    func hideScreen(screenType : UIScreens)
+    {
+        switch screenType
+        {
+        case .IntroScreen:
+            introScreen.isHidden = true
+            break
+        case .GameScreen:
+            gameScreen.isHidden = true
+            break
+        case .HelpScreen:
+            helpScreen.isHidden = true
+            break
+        default:
+            NSLog("Screen does not exist")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -197,6 +275,8 @@ extension ViewController {
         
         return Vertex(world_x, 0, world_z)
     }
+    
+    
     
 }
 
@@ -386,7 +466,7 @@ class GLKUpdater : NSObject, GLKViewControllerDelegate {
     
     init(glkViewController : GLKViewController) {
         self.glkViewController = glkViewController
-        StateMachine.Instance.run(state: IntroState())
+        StateMachine.Instance.run(state: IntroState(viewController: glkViewController as! ViewController))
     }
     
     // Update Game Logic
