@@ -10,7 +10,6 @@ import Foundation
 
 class SlowTower : Tower{
     
-    
     override func spawnProjectile(zombie: Minion) {
         let p = IceProjectile(self.x, self.z, shader: self.shader, target: zombie)
         p.xScale = 0.1
