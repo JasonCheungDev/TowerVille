@@ -24,6 +24,9 @@ class Tower : VisualObject{
     
     private var target : Minion!
     
+    var timeElapsed : Double = 0.0  //time elapsed between each attack - attacks are initiated by targeting zombies with "scanForTargets()" method
+    var reloadTime : Double!        //dynamically calculated based on attacks per second. If attackspeed (attacks per second) is 2, then reload time is 0.5 (1 second / 2.0 attacks a second)
+    
     init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram, color: Color) {
         super.init()
         self.x = x
@@ -38,8 +41,8 @@ class Tower : VisualObject{
         ro.material = mat
         linkRenderObject(ro)
         
-        timer = Timer.scheduledTimer(timeInterval: 1 / attacksPerSecond, target: self, selector: #selector(self.scanForTargets), userInfo: nil, repeats: true)
-        
+        //timer = Timer.scheduledTimer(timeInterval: 1 / attacksPerSecond, target: self, selector: #selector(self.scanForTargets), userInfo: nil, repeats: true)
+        reloadTime = 1.0 / attacksPerSecond;    //calculates how long the tower will wait before scanning and shooting a projectile at zombie
     }
     
     func spawnProjectile(zombie : Minion){
@@ -51,10 +54,8 @@ class Tower : VisualObject{
         towerProjectiles.append(p)
     }
     
-    @objc
     func scanForTargets(){
         //print("lookin for targets!")
-        
         for z in PlayState.activeGame.minions
         {
             
@@ -88,6 +89,10 @@ class Tower : VisualObject{
     override func update(dt: TimeInterval) {
         //go to target
         
+        if(timeElapsed > reloadTime){
+            scanForTargets();
+            timeElapsed = 0;
+        }
         towerProjectiles = towerProjectiles.filter{$0.timeAlive <= projectileLife}
         
         if(towerProjectiles.count > 0){ //put into tower.update
@@ -97,5 +102,6 @@ class Tower : VisualObject{
             }
         }
         
+        timeElapsed += dt;
     }
 }
