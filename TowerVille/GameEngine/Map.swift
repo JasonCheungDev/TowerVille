@@ -12,9 +12,13 @@ class Map {
     
     var Tiles : [[Tile]] = []
     
+    private var shader : ShaderProgram?
+    
     // TODO: Change to init. Shouldn't work more than once I guess
     func setupMap(fromShader shader: ShaderProgram, mapSize mapSize: Int) {
-                
+        
+        self.shader = shader
+        
         let gridSize = mapSize * 2 - 1
         
         // create some materials
@@ -69,6 +73,40 @@ class Map {
                 }
                 
                 Tiles[x].append(newTile)
+            }
+        }
+    }
+    
+    
+    func setupPathFromWaypoints(waypoints : [GameObject])
+    {
+        let pathMat = LambertMaterial(shader!);
+        pathMat.surfaceColor = Color(0.1, 0.2, 0.3, 1.0);
+        let pathRo = RenderObject(fromShader: shader!, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
+        pathRo.material = pathMat
+        
+        var curX = Int(waypoints[0].x);
+        var curZ = -Int(waypoints[0].z);
+        
+        // do first tile path manually
+        Tiles[curX][curZ].linkRenderObject(pathRo);
+        Tiles[curX][curZ].type = .Path;
+        
+        for index in 1 ..< waypoints.count {
+            let wp = waypoints[index];
+            let x = Int(wp.x);
+            let z = -Int(wp.z);
+            
+            while ( !(curX == x && curZ == z) )
+            {
+                let moveX = clamp(x - curX, -1, 1);
+                let moveZ = clamp(z - curZ, -1, 1);
+                
+                curX += moveX;
+                curZ += moveZ;
+                
+                Tiles[curX][curZ].linkRenderObject(pathRo);
+                Tiles[curX][curZ].type = .Path;
             }
         }
     }

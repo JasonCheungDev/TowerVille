@@ -9,26 +9,36 @@ class StateMachine
     static let Instance : StateMachine = StateMachine()
     
     func nextState() {
+        
+        // Going back to last state 
         if (resume) {
             // Cleanup the current state
-            _ = states.pop()
-
+            let removing = states.pop()
+            removing?.exit()
+            
             // Resume previous state
             states.top?.resume();
+            states.top?.enter();
             resume = false;
         }
 
         // There needs to be a state
-        if let temp = states.top?.next {
+        if let nextState = states.top?.next {
+            
             // Replace the running state
-            if (temp.replacing) {
-                _ = states.pop();
+            if (nextState.replacing) {
+                let oldState = states.pop();
+                oldState?.exit();
             }
             // Pause the running state
-            else {
+            else
+            {
                 states.top?.pause();
+                states.top?.exit();
             }
-            states.push(temp);
+            
+            nextState.enter();
+            states.push(nextState);
         }
     }
 

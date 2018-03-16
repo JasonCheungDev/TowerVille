@@ -66,7 +66,7 @@
 		DE8EFD2F203F5B28000987CE /* farm.png in Resources */ = {isa = PBXBuildFile; fileRef = DE8EFD2E203F5B28000987CE /* farm.png */; };
 		DE96E58B2047E6D200B2966E /* UICellStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58A2047E6D200B2966E /* UICellStructure.swift */; };
 		DE96E58D2047E9BC00B2966E /* UIModelStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */; };
-		DE96E58F2047EF2A00B2966E /* UIActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58E2047EF2A00B2966E /* UIActionType.swift */; };
+		DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96E58E2047EF2A00B2966E /* UIEnums.swift */; };
 		DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF8282035868B0097F76B /* DirectionalLight.swift */; };
 		DE9AF82B20358A230097F76B /* LightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82A20358A230097F76B /* LightManager.swift */; };
 		DE9AF82D20358AFB0097F76B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82C20358AFB0097F76B /* Light.swift */; };
@@ -79,6 +79,7 @@
 		DEC217BE2035335A00F11022 /* DebugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217BD2035335A00F11022 /* DebugData.swift */; };
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
 		DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C42035434600F11022 /* Rendering Instructions.rtf */; };
+		DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC41C11205A36AC00B7373E /* Helpers.swift */; };
 		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
 		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
 		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
@@ -168,7 +169,7 @@
 		DE8EFD2E203F5B28000987CE /* farm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farm.png; sourceTree = "<group>"; };
 		DE96E58A2047E6D200B2966E /* UICellStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellStructure.swift; sourceTree = "<group>"; };
 		DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModelStructure.swift; sourceTree = "<group>"; };
-		DE96E58E2047EF2A00B2966E /* UIActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionType.swift; sourceTree = "<group>"; };
+		DE96E58E2047EF2A00B2966E /* UIEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEnums.swift; sourceTree = "<group>"; };
 		DE9AF8282035868B0097F76B /* DirectionalLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		DE9AF82A20358A230097F76B /* LightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightManager.swift; sourceTree = "<group>"; };
 		DE9AF82C20358AFB0097F76B /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		DEC217BD2035335A00F11022 /* DebugData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugData.swift; sourceTree = "<group>"; };
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
 		DEC217C42035434600F11022 /* Rendering Instructions.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Rendering Instructions.rtf"; sourceTree = "<group>"; };
+		DEC41C11205A36AC00B7373E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
 		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				3C01A27C202267D800BB0D7C /* Stack.swift */,
+				DEC41C11205A36AC00B7373E /* Helpers.swift */,
 				3C01A2712022621A00BB0D7C /* StateMachine */,
 				2BEBE665201943A5008E8FEB /* Farm */,
 				2BEBE65E20194334008E8FEB /* NPC */,
@@ -374,7 +377,7 @@
 			children = (
 				DE96E58A2047E6D200B2966E /* UICellStructure.swift */,
 				DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */,
-				DE96E58E2047EF2A00B2966E /* UIActionType.swift */,
+				DE96E58E2047EF2A00B2966E /* UIEnums.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */,
 				2BEBE63C20193E16008E8FEB /* MinionSpawner.swift in Sources */,
 				DE96E58B2047E6D200B2966E /* UICellStructure.swift in Sources */,
+				DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */,
 				2BEBE6622019436D008E8FEB /* NonAggro.swift in Sources */,
 				2BEBE65B20194313008E8FEB /* SlowTower.swift in Sources */,
 				3C01A27E20226BE200BB0D7C /* State.swift in Sources */,
@@ -623,7 +627,7 @@
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
 				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
-				DE96E58F2047EF2A00B2966E /* UIActionType.swift in Sources */,
+				DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */,
 				2BEBE63A20193B5E008E8FEB /* Transform.swift in Sources */,
 				2BEBE669201943BE008E8FEB /* SawMill.swift in Sources */,
 				2BEBE632201938F4008E8FEB /* GameObject.swift in Sources */,
@@ -806,6 +810,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZGXQ9QPG4P;
 				INFOPLIST_FILE = TowerVille/Info.plist;
@@ -813,6 +818,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -824,6 +830,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZGXQ9QPG4P;
 				INFOPLIST_FILE = TowerVille/Info.plist;
@@ -831,6 +838,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "The-Fighting-Mongeese.TowerVille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
