@@ -7,8 +7,17 @@
 //
 
 import Foundation
+import GLKit
 
 class SlowTower : Tower{
+    
+    override class var COST : Int {
+        return 50
+    }
+    
+    override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, color: Color) {
+        super.init(x, z, shader: shader, color: color)
+    }
     
     override func spawnProjectile(zombie: Minion) {
         let p = IceProjectile(self.x, self.z, shader: self.shader, target: zombie)

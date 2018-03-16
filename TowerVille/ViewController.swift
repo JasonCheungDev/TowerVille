@@ -136,7 +136,8 @@ extension ViewController {
         basicTower.image = UIImage(named: "watchtower.png")!
         basicTower.actionType = UIActionType.BuildTowerBasic
         let advancedTower = UIModelStructure()
-        advancedTower.name = "Advanced"
+        advancedTower.image = UIImage(named: "slow_tower.png")!
+        advancedTower.name = "Slow"
         advancedTower.actionType = UIActionType.BuildTowerSpecial
         
         buildTowerOptions.append(basicTower)
@@ -231,6 +232,7 @@ extension ViewController {
         if (collectionView == towerCollectionView)
         {
             let tower = buildTowerOptions[indexPath.row]
+            StateMachine.Instance.processUiAction(action: tower.actionType)
             print("Selected tower: \(tower.name)")
         }
         else // buildCollectionView

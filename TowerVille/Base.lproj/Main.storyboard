@@ -110,7 +110,7 @@
                                             <constraint firstAttribute="height" constant="50" id="J5i-km-gBb"/>
                                             <constraint firstAttribute="width" constant="200" id="KTu-5d-dHh"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="36"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -154,6 +154,14 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgP-ZR-VFs">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPn-aw-zNY" userLabel="GLK Input Receiver">
+                                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                        <gestureRecognizers/>
+                                        <viewLayoutGuide key="safeArea" id="33c-jg-Hc6"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="1L5-J8-q1h" appends="YES" id="9CA-gT-Qw8"/>
+                                        </connections>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7BL-Gl-60z" userLabel="HealthGoldBar">
                                         <rect key="frame" x="8" y="8" width="156.5" height="36"/>
                                         <subviews>
@@ -185,6 +193,37 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="1E5-sC-hDQ"/>
                                         </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dOu-3d-bqr" userLabel="WaveEnemiesBar">
+                                        <rect key="frame" x="404" y="8" width="254.5" height="36"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAVE: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIl-lE-cRN" userLabel="Waves Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="36"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENEMIES: 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtG-ET-qVG" userLabel="Enemies Label">
+                                                <rect key="frame" x="90.5" y="0.0" width="120" height="36"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1q-Nn-6Gr" userLabel="Back">
+                                                <rect key="frame" x="218.5" y="0.0" width="36" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="T1q-Nn-6Gr" secondAttribute="height" multiplier="1:1" id="cJ1-z3-P4z"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="btn_back"/>
+                                                <connections>
+                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dWN-ey-DOk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="8Db-zI-RPw"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="safeArea" id="C1j-Xi-urC"/>
                                     </stackView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9S-Vf-1sq" userLabel="Build Menu">
                                         <rect key="frame" x="167" y="75" width="333.5" height="225"/>
@@ -283,46 +322,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GPn-aw-zNY" userLabel="GLK Input Receiver">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <gestureRecognizers/>
-                                        <viewLayoutGuide key="safeArea" id="33c-jg-Hc6"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="1L5-J8-q1h" appends="YES" id="9CA-gT-Qw8"/>
-                                        </connections>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dOu-3d-bqr" userLabel="WaveEnemiesBar">
-                                        <rect key="frame" x="404" y="8" width="254.5" height="36"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAVE: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIl-lE-cRN" userLabel="Waves Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="36"/>
-                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENEMIES: 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtG-ET-qVG" userLabel="Enemies Label">
-                                                <rect key="frame" x="90.5" y="0.0" width="120" height="36"/>
-                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
-                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1q-Nn-6Gr" userLabel="Back">
-                                                <rect key="frame" x="218.5" y="0.0" width="36" height="36"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="T1q-Nn-6Gr" secondAttribute="height" multiplier="1:1" id="cJ1-z3-P4z"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="btn_back"/>
-                                                <connections>
-                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dWN-ey-DOk"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="8Db-zI-RPw"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="C1j-Xi-urC"/>
-                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="61R-JN-LZh"/>
@@ -330,12 +329,16 @@
                                     <constraint firstItem="7BL-Gl-60z" firstAttribute="leading" secondItem="FgP-ZR-VFs" secondAttribute="leading" constant="8" id="97f-Mb-rWt"/>
                                     <constraint firstItem="7BL-Gl-60z" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" constant="8" id="9bk-cR-kRt"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" multiplier="0.5" id="DQO-y9-iPs"/>
+                                    <constraint firstItem="GPn-aw-zNY" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" id="JLp-9Q-0Xy"/>
+                                    <constraint firstAttribute="trailing" secondItem="GPn-aw-zNY" secondAttribute="trailing" id="Vgj-LA-tbX"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="centerY" secondItem="FgP-ZR-VFs" secondAttribute="centerY" id="YqT-bu-AaQ"/>
                                     <constraint firstItem="NvJ-8s-r7g" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" id="YrQ-0t-XDF"/>
+                                    <constraint firstItem="GPn-aw-zNY" firstAttribute="leading" secondItem="FgP-ZR-VFs" secondAttribute="leading" id="cJK-wx-zNI"/>
                                     <constraint firstItem="dOu-3d-bqr" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" constant="8" id="d1C-A9-7Wu"/>
                                     <constraint firstItem="NvJ-8s-r7g" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" id="fRR-4G-14u"/>
                                     <constraint firstAttribute="trailing" secondItem="dOu-3d-bqr" secondAttribute="trailing" constant="8" id="g7D-gc-cL3"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="height" secondItem="FgP-ZR-VFs" secondAttribute="height" multiplier="0.6" id="qeP-VF-jix"/>
+                                    <constraint firstAttribute="bottom" secondItem="GPn-aw-zNY" secondAttribute="bottom" id="teX-Ny-1pu"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">

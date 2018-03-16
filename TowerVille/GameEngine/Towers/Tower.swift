@@ -11,6 +11,10 @@ import GLKit
 
 class Tower : VisualObject{
     
+    class var COST : Int {
+        return 10
+    }
+    
     var health : Int = 100
     var maxRange : Float = 5.0
     var attacksPerSecond : Double = 1.0
@@ -32,6 +36,9 @@ class Tower : VisualObject{
         self.x = x
         self.z = z
         self.y = 0.4
+        self.xScale = 0.3
+        self.yScale = 0.7
+        self.zScale = 0.3
         self.shader = shader
         
         let mat = LambertMaterial(shader)
