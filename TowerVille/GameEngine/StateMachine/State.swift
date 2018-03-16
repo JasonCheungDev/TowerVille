@@ -21,6 +21,10 @@ class State
         
     }
     
+    func processUiInput(action : UIActionType) {
+        
+    }
+    
     func resume() {
         
     }

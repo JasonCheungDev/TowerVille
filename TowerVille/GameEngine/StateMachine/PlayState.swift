@@ -14,16 +14,23 @@ class PlayState : State {
     //let minion : Minion
     var towers : [Tower] = []
     var gold : Int = 0
+    var lives : Int = 20
 
     let spawner : MinionSpawner
     var minions : [Minion] = []
+    var farms   : [VisualObject] = []
+    var selectedTile : Tile?
     
-    var farms : [VisualObject] = []
     var camera : Camera!
+    
+    // flags
+    var isSelectingStructure = false;
+    var isPickingStructure = false;
     
     // Mark: - Debug variables
     var debugFarm : Farm?
-
+    
+    
     override init(replacing : Bool = true) {
         
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
@@ -67,7 +74,7 @@ class PlayState : State {
         for f in farms {
             f.update(dt: dt)
         }
-        spawner.update(dt: dt, minions: &minions)
+        spawner.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)
@@ -94,14 +101,8 @@ class PlayState : State {
         }
         
         // debug display values
-        do {
-            try getViewController().debug_updateUiDisplay("Gold: \(self.gold)")
-        } catch MyError.RunTimeError(let errorMessage) {
-            print(errorMessage)
-        } catch {
-            print("ERROR: ?")
-        }
-        
+        getViewController()?.debug_updateUiDisplay("Gold: \(self.gold) | Lives: \(self.lives)")
+
         for guy in minions {
             guy.draw()
         }
@@ -110,7 +111,44 @@ class PlayState : State {
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
-        createFarm(x: Int(round(x)), y: -Int(round(z)))
+        
+        if (isPickingStructure)
+        {
+            // clicking out of build menu - deselect
+            selectedTile = nil;
+            getViewController()?.showBuildMenu(isShown: false)
+            isPickingStructure = false
+        }
+        else
+        {
+            // clicking on tile (no menus open) - select
+            selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
+            if selectedTile?.type == TileType.Grass
+            {
+                getViewController()?.showBuildMenu(isShown: true)
+                isPickingStructure = true
+            }
+        }
+        
+    }
+    
+    override func processUiInput(action: UIActionType) {
+        
+        switch action {
+        case UIActionType.BuildTowerBasic:
+            // TODO: Tower stuff
+            break
+        case .BuildResourceFarm:
+            if createFarm(tile: selectedTile!)
+            {
+                selectedTile = nil
+                getViewController()?.showBuildMenu(isShown: false)
+                isPickingStructure = false
+            }
+        default:
+            NSLog("This action hasn't been implemented yet!")
+        }
+    
     }
     
     override func pause() {
@@ -121,30 +159,30 @@ class PlayState : State {
         
     }
     
-    func createFarm(x: Int, y: Int) -> Bool {
+    func createFarm(tile : Tile) -> Bool {
         if (self.gold < Farm.COST) { return false }
-        if (self.map.Tiles[x][y].structure != nil) { return false }
-        if (self.map.Tiles[x][y].type != TileType.Grass) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
         
         let newFarm = Farm(self, shader)
-        newFarm.SetValue(x: Float(x), y: Float(y))
-        map.Tiles[x][y].SetStructure(newFarm)
+        newFarm.SetValue(x: tile.x, y: tile.z)
+        tile.SetStructure(newFarm)
         farms.append(newFarm)
         self.gold -= Farm.COST
         
         return true
     }
-    
-    func getViewController() throws -> ViewController {
+        
+    func getViewController() -> ViewController? {
         
         if var topController = UIApplication.shared.keyWindow?.rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
             // forcefully cast as ViewController type
-            return topController as! ViewController
+            return topController as? ViewController
         }
-        throw MyError.RunTimeError("Could not find ViewController")
+        return nil
     }
     
 }
