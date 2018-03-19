@@ -51,9 +51,12 @@ void main() {
         specular += u_PointLights[i].color * attenuation * blinn;
     }
     
-//    if (textureSize(u_Texture, 0).x != 0) { // function does not exist
-    diffuse += texture2D(u_Texture, frag_TexCoord);
-//    }
+    // HORRIBLE CLUDGE : if texel is black don't use it
+    // add a uniform bool storing if a texture has been set and use that instead
+    vec4 textureColor = texture2D(u_Texture, frag_TexCoord);
+    if (textureColor.xyz != vec3(0.0)) {
+        diffuse *= textureColor;
+    }
     
     vec4 linearColor = diffuse * frag_Color + specular;
     gl_FragColor = sqrt(linearColor);
