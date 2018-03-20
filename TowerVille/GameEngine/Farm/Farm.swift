@@ -52,7 +52,8 @@ class Farm : VisualObject, ResourceGenerator {
             for y in 0 ..< map.Tiles[x].count {
                 
                 if(map.Tiles[x][y].type == TileType.Path){
-                    let distance = sqrt(pow(Float( map.Tiles[x][y].xCoord) - self.x, 2) + pow( Float(map.Tiles[x][y].yCoord)-self.y, 2))
+                    let distance = sqrt(pow(Float(
+                        map.Tiles[x][y].x) - self.x, 2) + pow( Float(map.Tiles[x][y].z) - self.y, 2))
                     if(distance < Float(minDist)){
                         minDist = Int32(distance)
                     }
