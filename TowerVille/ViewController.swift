@@ -133,9 +133,11 @@ extension ViewController {
         // Tower (top section)
         let basicTower = UIModelStructure()
         basicTower.name = "Basic"
+        basicTower.cost = 10
         basicTower.image = UIImage(named: "watchtower.png")!
         basicTower.actionType = UIActionType.BuildTowerBasic
         let advancedTower = UIModelStructure()
+        advancedTower.cost = 50
         advancedTower.image = UIImage(named: "slow_tower.png")!
         advancedTower.name = "Slow"
         advancedTower.actionType = UIActionType.BuildTowerSpecial
@@ -146,10 +148,12 @@ extension ViewController {
         // Resource (bottom section)
         let farm = UIModelStructure()
         farm.name = "Farm"
+        farm.cost = 10
         farm.image = UIImage(named: "farm.png")!
         farm.actionType = UIActionType.BuildResourceFarm
         let mine = UIModelStructure()
         mine.name = "Mine"
+        mine.cost = 100
         mine.actionType = UIActionType.BuildResourceSpecial
         
         buildResourceOptions.append(farm)
@@ -216,12 +220,12 @@ extension ViewController {
         if (collectionView == towerCollectionView)
         {
             let tower = buildTowerOptions[indexPath.row]
-            cell.displayContent(image: tower.image, title: tower.name)
+            cell.displayContent(image: tower.image, title: tower.name, cost: tower.cost)
         }
         else // buildCollectionView
         {
             let generator = buildResourceOptions[indexPath.row]
-            cell.displayContent(image: generator.image, title: generator.name)
+            cell.displayContent(image: generator.image, title: generator.name, cost: generator.cost)
         }
         
         return cell
