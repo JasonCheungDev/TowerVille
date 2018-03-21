@@ -16,6 +16,7 @@
 		28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD2204757870068B071 /* tetrahedron.obj */; };
 		28C0DAD8204757870068B071 /* hexahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD3204757870068B071 /* hexahedron.obj */; };
 		28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD4204757870068B071 /* dodecahedron.obj */; };
+		28CE0FCA205FAD55001B415E /* farm.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28CE0FC9205FAD55001B415E /* farm.obj */; };
 		2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD6E20193318004565D4 /* AppDelegate.swift */; };
 		2BB2AD7120193318004565D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7020193318004565D4 /* ViewController.swift */; };
 		2BB2AD7420193318004565D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7220193318004565D4 /* Main.storyboard */; };
@@ -112,6 +113,7 @@
 		28C0DAD2204757870068B071 /* tetrahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tetrahedron.obj; sourceTree = "<group>"; };
 		28C0DAD3204757870068B071 /* hexahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexahedron.obj; sourceTree = "<group>"; };
 		28C0DAD4204757870068B071 /* dodecahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dodecahedron.obj; sourceTree = "<group>"; };
+		28CE0FC9205FAD55001B415E /* farm.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = farm.obj; sourceTree = "<group>"; };
 		2BB2AD6B20193318004565D4 /* TowerVille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TowerVille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB2AD6E20193318004565D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB2AD7020193318004565D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				28C0DAD2204757870068B071 /* tetrahedron.obj */,
 				2840DE2E203C1BEA005C0513 /* cube.obj */,
 				2840DE30203D2F7B005C0513 /* sphere.obj */,
+				28CE0FC9205FAD55001B415E /* farm.obj */,
 			);
 			path = ObjFiles;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
 				DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */,
+				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
