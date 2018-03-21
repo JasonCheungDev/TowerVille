@@ -33,6 +33,7 @@ class Farm : Structure, ResourceGenerator {
         let mat = LambertMaterial(shader)
         mat.loadTexture("farm.png")
         mat.surfaceColor = Color(1, 1, 1, 1)
+        mat.specularPower = 1;
         
         var objLoader = ObjLoader()
         objLoader.Read(fileName: "farm")
