@@ -241,8 +241,14 @@ class PlayState : State {
         case .BackSelected:
             if (isPickingStructure)
             {
+                // deselect
                 selectedTile = nil
+                // hide all menus
                 viewController.showBuildMenu(isShown: false)
+                viewController.hideStructureMenu()
+                // lower all flags
+                isPickingStructure = false
+                isSelectingStructure = false
             }
             // else if (isSelectingStructure) ...
             else
