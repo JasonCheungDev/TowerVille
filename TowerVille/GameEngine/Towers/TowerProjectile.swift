@@ -10,16 +10,15 @@ import Foundation
 import GLKit
 
 class TowerProjectile : VisualObject{
-    var damage : Int = 50
+    var damage : Int = 10
     
     var target : Minion!
     var timeAlive : Double = 0
-    
     var distance : Float = 0.0
     var directionX : Float = 0.0
     var directionZ : Float = 0.0
     var speed  : Float = 5
-    
+    var isMoving : Bool = true
     
     
     init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram, target : Minion) {
@@ -28,12 +27,20 @@ class TowerProjectile : VisualObject{
         self.z = z
         self.target = target
         
+        var objLoader = ObjLoader()
+        objLoader.smoothed = true
+        objLoader.Read(fileName: "icosahedron")
         let mat = LambertMaterial(shader)
-        mat.surfaceColor = Color(1,1,0,1)
-        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
+        mat.surfaceColor = Color(1,0,0,1)
+        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        ro.material = mat;
         linkRenderObject(ro)
-        
+    }
+    
+    func setScale(scale: Float){
+        self.xScale = scale;
+        self.yScale = scale;
+        self.zScale = scale;
     }
     
     override func update(dt: TimeInterval) {
@@ -51,7 +58,7 @@ class TowerProjectile : VisualObject{
         if(distance < 0.5 && timeAlive < 1000){
             target.health -= damage;
             timeAlive = 9999; //sets time alive to a large value in order to stop projectione animation.
-             return;
+            return;
         }
         
         directionX = (target.x - self.x) / distance
