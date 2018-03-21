@@ -11,14 +11,15 @@ import Darwin
 import GLKit
 
 
-class Farm : VisualObject, ResourceGenerator {
+class Farm : Structure, ResourceGenerator {
     
-    static let COST : Int = 10
+    override class var NAME : String { return "Farm" }
+    override class var ICON : String { return "farm.png" }
+    override class var HEALTH_LVLS : [Int] { return [20,40,60,80,100] }
+    override class var COST_LVLS : [Int] { return [20,50,100,150,300] }
     
-    var Health: Int = 100
     var ResourcePerSecond: Int = 1
     var ResourceMultiplier: Int = 1
-    var Cost: Int = COST
     
     private let game : PlayState
     private var cooldown : Double = 1
@@ -52,7 +53,8 @@ class Farm : VisualObject, ResourceGenerator {
             for y in 0 ..< map.Tiles[x].count {
                 
                 if(map.Tiles[x][y].type == TileType.Path){
-                    let distance = sqrt(pow(Float( map.Tiles[x][y].xCoord) - self.x, 2) + pow( Float(map.Tiles[x][y].yCoord)-self.y, 2))
+                    let distance = sqrt(pow(Float(
+                        map.Tiles[x][y].x) - self.x, 2) + pow( Float(map.Tiles[x][y].z) - self.y, 2))
                     if(distance < Float(minDist)){
                         minDist = Int32(distance)
                     }

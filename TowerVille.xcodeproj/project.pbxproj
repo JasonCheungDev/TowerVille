@@ -16,6 +16,7 @@
 		28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD2204757870068B071 /* tetrahedron.obj */; };
 		28C0DAD8204757870068B071 /* hexahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD3204757870068B071 /* hexahedron.obj */; };
 		28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28C0DAD4204757870068B071 /* dodecahedron.obj */; };
+		28CE0FCA205FAD55001B415E /* farm.obj in Resources */ = {isa = PBXBuildFile; fileRef = 28CE0FC9205FAD55001B415E /* farm.obj */; };
 		2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD6E20193318004565D4 /* AppDelegate.swift */; };
 		2BB2AD7120193318004565D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7020193318004565D4 /* ViewController.swift */; };
 		2BB2AD7420193318004565D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB2AD7220193318004565D4 /* Main.storyboard */; };
@@ -56,6 +57,10 @@
 		8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFD2054A34600757CB9 /* IceProjectile.swift */; };
 		8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
+		DE471728206205B700241030 /* StructureSelectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE471727206205B700241030 /* StructureSelectedView.xib */; };
+		DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE471729206205F800241030 /* StructureSelectedView.swift */; };
+		DE47172E206222C800241030 /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47172D206222C800241030 /* Structure.swift */; };
+		DE471730206224FC00241030 /* TestFarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47172F206224FC00241030 /* TestFarm.swift */; };
 		DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */; };
 		DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */; };
 		DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */; };
@@ -80,6 +85,8 @@
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
 		DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C42035434600F11022 /* Rendering Instructions.rtf */; };
 		DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC41C11205A36AC00B7373E /* Helpers.swift */; };
+		DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C13205BBEB000B7373E /* slow_tower.png */; };
+		DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C16205BC69F00B7373E /* Futura.ttc */; };
 		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
 		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
 		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
@@ -112,6 +119,7 @@
 		28C0DAD2204757870068B071 /* tetrahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tetrahedron.obj; sourceTree = "<group>"; };
 		28C0DAD3204757870068B071 /* hexahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexahedron.obj; sourceTree = "<group>"; };
 		28C0DAD4204757870068B071 /* dodecahedron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dodecahedron.obj; sourceTree = "<group>"; };
+		28CE0FC9205FAD55001B415E /* farm.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = farm.obj; sourceTree = "<group>"; };
 		2BB2AD6B20193318004565D4 /* TowerVille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TowerVille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB2AD6E20193318004565D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB2AD7020193318004565D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +167,10 @@
 		8CBACAFD2054A34600757CB9 /* IceProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationProjectile.swift; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
+		DE471727206205B700241030 /* StructureSelectedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StructureSelectedView.xib; sourceTree = "<group>"; };
+		DE471729206205F800241030 /* StructureSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSelectedView.swift; sourceTree = "<group>"; };
+		DE47172D206222C800241030 /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
+		DE47172F206224FC00241030 /* TestFarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFarm.swift; sourceTree = "<group>"; };
 		DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertVertexShader.glsl; sourceTree = "<group>"; };
 		DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertFragmentShader.glsl; sourceTree = "<group>"; };
 		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
@@ -183,6 +195,8 @@
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
 		DEC217C42035434600F11022 /* Rendering Instructions.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Rendering Instructions.rtf"; sourceTree = "<group>"; };
 		DEC41C11205A36AC00B7373E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		DEC41C13205BBEB000B7373E /* slow_tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow_tower.png; sourceTree = "<group>"; };
+		DEC41C16205BC69F00B7373E /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
 		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
 		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
@@ -223,6 +237,7 @@
 				28C0DAD2204757870068B071 /* tetrahedron.obj */,
 				2840DE2E203C1BEA005C0513 /* cube.obj */,
 				2840DE30203D2F7B005C0513 /* sphere.obj */,
+				28CE0FC9205FAD55001B415E /* farm.obj */,
 			);
 			path = ObjFiles;
 			sourceTree = "<group>";
@@ -250,6 +265,7 @@
 		2BB2AD6D20193318004565D4 /* TowerVille */ = {
 			isa = PBXGroup;
 			children = (
+				DEC41C15205BC67E00B7373E /* Fonts */,
 				DEF7A6DA204B4ED000B1A311 /* Images */,
 				28C0DACF204756EE0068B071 /* ObjFiles */,
 				DEC217C32035432E00F11022 /* Documentation */,
@@ -320,6 +336,7 @@
 				2BEBE6512019416C008E8FEB /* Color.swift */,
 				DEC217B72034F05900F11022 /* VertexData.swift */,
 				DE8EFD2A203D5C9D000987CE /* Camera.swift */,
+				DE47172D206222C800241030 /* Structure.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -357,6 +374,7 @@
 				2BEBE666201943B1008E8FEB /* Mine.swift */,
 				2BEBE668201943BE008E8FEB /* SawMill.swift */,
 				DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */,
+				DE47172F206224FC00241030 /* TestFarm.swift */,
 			);
 			path = Farm;
 			sourceTree = "<group>";
@@ -378,6 +396,8 @@
 				DE96E58A2047E6D200B2966E /* UICellStructure.swift */,
 				DE96E58C2047E9BC00B2966E /* UIModelStructure.swift */,
 				DE96E58E2047EF2A00B2966E /* UIEnums.swift */,
+				DE471727206205B700241030 /* StructureSelectedView.xib */,
+				DE471729206205F800241030 /* StructureSelectedView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -412,6 +432,14 @@
 			path = Documentation;
 			sourceTree = "<group>";
 		};
+		DEC41C15205BC67E00B7373E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DEC41C16205BC69F00B7373E /* Futura.ttc */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DEE44739201952CA009044FB /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +460,7 @@
 			children = (
 				DEF7A6DD204B4FAE00B1A311 /* wip.png */,
 				DEF7A6DB204B4F5800B1A311 /* watchtower.png */,
+				DEC41C13205BBEB000B7373E /* slow_tower.png */,
 				DEC217C12035412000F11022 /* dungeon_01.png */,
 				DE8EFD2E203F5B28000987CE /* farm.png */,
 			);
@@ -551,8 +580,10 @@
 				DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */,
 				28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
+				DE471728206205B700241030 /* StructureSelectedView.xib in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
 				DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */,
+				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
@@ -560,6 +591,7 @@
 				2840DE2F203C1BEA005C0513 /* cube.obj in Resources */,
 				28C0DAD5204757870068B071 /* icosahedron.obj in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
+				DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */,
 				DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */,
 				DEC217C22035412100F11022 /* dungeon_01.png in Resources */,
 				DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */,
@@ -568,6 +600,7 @@
 				DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */,
 				28C0DAD8204757870068B071 /* hexahedron.obj in Resources */,
 				DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */,
+				DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */,
 				DEC217BB2035321400F11022 /* PhongFragmentShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,6 +639,7 @@
 				DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */,
 				2BEBE6622019436D008E8FEB /* NonAggro.swift in Sources */,
 				2BEBE65B20194313008E8FEB /* SlowTower.swift in Sources */,
+				DE471730206224FC00241030 /* TestFarm.swift in Sources */,
 				3C01A27E20226BE200BB0D7C /* State.swift in Sources */,
 				2BEBE63820193B41008E8FEB /* InputManager.swift in Sources */,
 				DE9AF82D20358AFB0097F76B /* Light.swift in Sources */,
@@ -615,11 +649,13 @@
 				2BEBE64020193E68008E8FEB /* VisualObject.swift in Sources */,
 				DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
+				DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */,
 				2BEBE66420194382008E8FEB /* Aggro.swift in Sources */,
 				8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,
 				28B37B72203CE4E30063D84C /* ObjLoader.swift in Sources */,
+				DE47172E206222C800241030 /* Structure.swift in Sources */,
 				8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */,
 				2BEBE63620193A5B008E8FEB /* GameManager.swift in Sources */,
 				DE9AF830203BD6100097F76B /* PointLight.swift in Sources */,

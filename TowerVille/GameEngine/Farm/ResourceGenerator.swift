@@ -10,10 +10,6 @@ import Foundation
 
 // Consider: Extending "Structure" object (may be unneccessary inheritance though)
 protocol ResourceGenerator {
-    
-    var Health : Int { get set }
     var ResourcePerSecond : Int { get set }
-    var Cost : Int { get }
-    
     func ProduceResource() -> Void
 }
