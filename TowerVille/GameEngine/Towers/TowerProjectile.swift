@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class TowerProjectile : VisualObject{
-    var damage : Int = 10
+    var damage : Int = 50
     
     var target : Minion!
     var timeAlive : Double = 0
@@ -18,7 +18,7 @@ class TowerProjectile : VisualObject{
     var distance : Float = 0.0
     var directionX : Float = 0.0
     var directionZ : Float = 0.0
-    var speed  : Float = 1.5
+    var speed  : Float = 5
     
     
     
@@ -48,7 +48,9 @@ class TowerProjectile : VisualObject{
     func MoveTowards(dt: Float){
         distance = sqrt(pow(target.x-self.x, 2)+pow(target.z-self.z, 2))
         
-        if(distance < 0.1){
+        if(distance < 0.5 && timeAlive < 1000){
+            target.health -= damage;
+            timeAlive = 9999; //sets time alive to a large value in order to stop projectione animation.
              return;
         }
         
