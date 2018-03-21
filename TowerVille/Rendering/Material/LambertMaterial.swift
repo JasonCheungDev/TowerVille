@@ -53,6 +53,8 @@ class LambertMaterial : Material {
         glUniform4f(surfaceColorUniformLocation, surfaceColor.r, surfaceColor.g, surfaceColor.b, surfaceColor.a)
         glActiveTexture(GLenum(GL_TEXTURE1))
         glBindTexture(GLenum(GL_TEXTURE_2D), self.texture)
+        glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MAG_FILTER), GLint(GL_NEAREST))
+        glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GLint(GL_LINEAR))
         glUniform1i(textureUniformLocation, 1)
         glUniform1f(specularPowerUniformLocation, specularPower)
         glUniform1i(hasTextureUniformLocation, hasTexture)

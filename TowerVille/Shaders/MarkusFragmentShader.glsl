@@ -52,9 +52,9 @@ void main() {
     }
     
     if (u_HasTexture) {
-        diffuse *= texture2D(u_Texture, frag_TexCoord);
+        diffuse *= pow(texture2D(u_Texture, frag_TexCoord), vec4(2.2/1.0));
     }
     
     vec4 linearColor = diffuse * frag_Color + specular;
-    gl_FragColor = sqrt(linearColor);
+    gl_FragColor = pow(linearColor, vec4(1.0/2.2));
 }
