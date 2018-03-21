@@ -23,7 +23,7 @@ class SlowTower : Tower {
     
     override func spawnProjectile(zombie: Minion) {
         let p = IceProjectile(self.x, self.z, shader: self.shader, target: zombie)
-        p.setScale(scale: 0.3)
+        p.setScale(scale: 0.15)
         p.speed = 4.0
         towerProjectiles.append(p)
     }

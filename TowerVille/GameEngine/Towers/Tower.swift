@@ -55,6 +55,7 @@ class Tower : Structure {
     func spawnProjectile(zombie : Minion){
         //spawns a projectile
         let p = TowerProjectile(self.x, self.z, shader: self.shader, target: zombie)
+        p.setScale(scale: 0.15)
         towerProjectiles.append(p)
     }
     
