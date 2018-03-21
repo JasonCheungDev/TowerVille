@@ -9,7 +9,8 @@
 import Foundation
 
 class Minion : VisualObject {
-    var target : GameObject? = nil
+    
+    var target : Structure? = nil
     
     var health : Int = 100
     var speed : Double = 2

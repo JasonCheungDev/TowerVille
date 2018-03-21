@@ -53,6 +53,8 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
+		7B5870AF2062FE0D000AC6C2 /* RangeMinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */; };
+		7B5870B12062FEF7000AC6C2 /* MinionProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */; };
 		8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25E267203E0C0600CF348E /* TowerProjectile.swift */; };
 		8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFD2054A34600757CB9 /* IceProjectile.swift */; };
 		8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */; };
@@ -163,6 +165,8 @@
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeMinion.swift; sourceTree = "<group>"; };
+		7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinionProjectile.swift; sourceTree = "<group>"; };
 		8C25E267203E0C0600CF348E /* TowerProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFD2054A34600757CB9 /* IceProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationProjectile.swift; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 				2BEBE65F2019433E008E8FEB /* Minion.swift */,
 				2BEBE6612019436D008E8FEB /* NonAggro.swift */,
 				2BEBE66320194382008E8FEB /* Aggro.swift */,
+				7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */,
+				7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */,
 			);
 			path = NPC;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				3C01A27A202262CE00BB0D7C /* IntroState.swift in Sources */,
 				2BB2AD7120193318004565D4 /* ViewController.swift in Sources */,
 				2BEBE667201943B1008E8FEB /* Mine.swift in Sources */,
+				7B5870B12062FEF7000AC6C2 /* MinionProjectile.swift in Sources */,
 				2BEBE64020193E68008E8FEB /* VisualObject.swift in Sources */,
 				DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
@@ -677,6 +684,7 @@
 				2BEBE63E20193E53008E8FEB /* Tower.swift in Sources */,
 				2BEBE65920194304008E8FEB /* CannonTower.swift in Sources */,
 				2BEBE6522019416C008E8FEB /* Color.swift in Sources */,
+				7B5870AF2062FE0D000AC6C2 /* RangeMinion.swift in Sources */,
 				DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */,
 				DEC217B82034F05900F11022 /* VertexData.swift in Sources */,
 				DE96E58D2047E9BC00B2966E /* UIModelStructure.swift in Sources */,

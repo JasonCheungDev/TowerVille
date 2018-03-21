@@ -29,5 +29,10 @@ class GameObject {
     func update(dt : TimeInterval) {
         
     }
+    
+    class func distanceBetween2D(_ objA : GameObject, _ objB : GameObject) -> Float
+    {
+        return sqrt( pow(objA.x - objB.x, 2) + pow(objA.z - objB.z, 2) )
+    }
 }
 

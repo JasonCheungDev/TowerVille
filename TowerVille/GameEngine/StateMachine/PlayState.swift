@@ -24,8 +24,9 @@ class PlayState : State {
     }
 
     var spawner : MinionSpawner?
+    var rangedSpawner : MinionSpawner?
     var minions : [Minion] = []
-    var farms   : [VisualObject] = []
+    var farms   : [Farm] = []
     var selectedTile : Tile?
     
     var camera : Camera!
@@ -61,7 +62,9 @@ class PlayState : State {
         gold = 0
         
         // initiailze
-        spawner = MinionSpawner(minion: Minion(shader: shader))
+        spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
+        rangedSpawner = MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
+        rangedSpawner?.spawnTime = 2.5
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
         
         let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
@@ -95,7 +98,9 @@ class PlayState : State {
         for f in farms {
             f.update(dt: dt)
         }
-        spawner?.update(dt: dt)
+        
+        // spawner?.update(dt: dt)
+        rangedSpawner?.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)
