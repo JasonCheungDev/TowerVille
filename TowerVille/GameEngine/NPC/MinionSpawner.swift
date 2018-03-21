@@ -12,43 +12,14 @@ class MinionSpawner : GameObject {
     
     var wayPoints : [GameObject] = []
     var curTime : TimeInterval = 0.0
-    let spawnTime : TimeInterval = 2.0
+    var spawnTime : TimeInterval = 2.0
     let minion : Minion
     let total : Int = 10
     var current : Int = 0
     
-    init(minion : Minion) {
+    init(minion : Minion, waypoints : [GameObject]) {
         self.minion = minion
-        
-        // auto place some waypoints
-        // TODO : remove
-        let numberOfWaypoints = 7
-        for _ in 0..<numberOfWaypoints {
-            let go = GameObject()
-            wayPoints.append(go)
-        }
-        
-        wayPoints[0].x = 5
-        wayPoints[0].z = -5
-        
-        wayPoints[1].x = 12
-        wayPoints[1].z = -5
-        
-        wayPoints[2].x = 12
-        wayPoints[2].z = -8
-        
-        wayPoints[3].x = 4
-        wayPoints[3].z = -8
-        
-        wayPoints[4].x = 4
-        wayPoints[4].z = -11
-        
-        wayPoints[5].x = 12
-        wayPoints[5].z = -11
-        
-        wayPoints[6].x = 12
-        wayPoints[6].z = -16
-        
+        self.wayPoints = waypoints
     }
     
     func spawn() {
@@ -72,6 +43,42 @@ class MinionSpawner : GameObject {
             curTime = 0.0
             spawn()
         }
+    }
+    
+    
+    class var WAYPOINTS_LVL1 : [GameObject]
+    {
+        let numberOfWaypoints = 7
+        var waypoints : [GameObject] = []
+        
+        for _ in 0..<numberOfWaypoints
+        {
+            let go = GameObject()
+            waypoints.append(go)
+        }
+        
+        waypoints[0].x = 5
+        waypoints[0].z = -5
+        
+        waypoints[1].x = 12
+        waypoints[1].z = -5
+        
+        waypoints[2].x = 12
+        waypoints[2].z = -8
+        
+        waypoints[3].x = 4
+        waypoints[3].z = -8
+        
+        waypoints[4].x = 4
+        waypoints[4].z = -11
+        
+        waypoints[5].x = 12
+        waypoints[5].z = -11
+        
+        waypoints[6].x = 12
+        waypoints[6].z = -16
+
+        return waypoints
     }
     
 }
