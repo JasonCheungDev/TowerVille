@@ -9,9 +9,13 @@
 import Foundation
 import GLKit
 
-class Tower : VisualObject{
+class Tower : Structure {
     
-    var health : Int = 100
+    override class var NAME : String { return "Shooter" }
+    override class var ICON : String { return "watchtower.png" }
+    override class var HEALTH_LVLS : [Int] { return [100,150,300,500,1000] }
+    override class var COST_LVLS : [Int] { return [25,50,100,200,400] }
+
     var maxRange : Float = 5.0
     var attacksPerSecond : Double = 1.0
     var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
@@ -32,6 +36,9 @@ class Tower : VisualObject{
         self.x = x
         self.z = z
         self.y = 0.4
+        self.xScale = 0.3
+        self.yScale = 0.7
+        self.zScale = 0.3
         self.shader = shader
         
         let mat = LambertMaterial(shader)
