@@ -32,9 +32,13 @@ class Farm : Structure, ResourceGenerator {
         
         let mat = LambertMaterial(shader)
         mat.loadTexture("farm.png")
-        mat.surfaceColor = Color(0, 0.2, 0, 1)
+        mat.surfaceColor = Color(1, 1, 1, 1)
+        mat.specularPower = 1;
         
-        let ro = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
+        var objLoader = ObjLoader()
+        objLoader.Read(fileName: "farm")
+        
+        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         ro.material = mat
         
         self.linkRenderObject(ro)

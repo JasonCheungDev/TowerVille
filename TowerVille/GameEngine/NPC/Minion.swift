@@ -12,7 +12,21 @@ class Minion : VisualObject {
     
     var target : Structure? = nil
     
-    var health : Int = 100
+    private var _health : Int = 100
+    var health : Int {
+        get { return _health }
+        set {
+            if newValue <= 0
+            {
+                alive = false
+                _health = 0
+            }
+            else
+            {
+                _health = newValue
+            }
+        }
+    }
     var speed : Double = 2
     let shader : ShaderProgram
     var curIndex : Int = 1
@@ -60,6 +74,8 @@ class Minion : VisualObject {
         
         x += x_trans
         z += z_trans
-        
+       
     }
+    
+    
 }

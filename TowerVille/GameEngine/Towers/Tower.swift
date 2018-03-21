@@ -55,9 +55,7 @@ class Tower : Structure {
     func spawnProjectile(zombie : Minion){
         //spawns a projectile
         let p = TowerProjectile(self.x, self.z, shader: self.shader, target: zombie)
-        p.xScale = 0.1
-        p.yScale = 0.1
-        p.zScale = 0.1
+        p.setScale(scale: 0.15)
         towerProjectiles.append(p)
     }
     
@@ -93,6 +91,7 @@ class Tower : Structure {
         
     }
 
+    //scan for targets, then update the positions of each projectiles spawned by this tower.
     override func update(dt: TimeInterval) {
         //go to target
         
@@ -102,7 +101,7 @@ class Tower : Structure {
         }
         towerProjectiles = towerProjectiles.filter{$0.timeAlive <= projectileLife}
         
-        if(towerProjectiles.count > 0){ //put into tower.update
+        if(towerProjectiles.count > 0){
             for p in towerProjectiles
             {
                 p.update(dt: dt)

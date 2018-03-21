@@ -67,6 +67,7 @@ class PlayState : State {
         rangedSpawner?.spawnTime = 2.5
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
         
+        
         let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
         tower1.zScale = 0.3
         tower1.yScale = 0.7
@@ -78,6 +79,12 @@ class PlayState : State {
         slowTower1.yScale = 0.7
         slowTower1.xScale = 0.3
         towers.append(slowTower1)
+        
+        let explodeTower1 = ExplodeTower(10.0, -12.0, shader:shader, color: Color(1, 0, 1, 1))
+        explodeTower1.zScale = 0.3
+        explodeTower1.yScale = 0.7
+        explodeTower1.xScale = 0.3
+        towers.append(explodeTower1)
         
         self.debugFarm = Farm(self, shader)
         map.Tiles[5][5].SetStructure(debugFarm!)
