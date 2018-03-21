@@ -349,6 +349,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ikO-oC-a2S"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <constraints>
@@ -375,6 +380,11 @@
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="NvJ-8s-r7g"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="6Wn-PH-HYb"/>
+                                        <exclude reference="YrQ-0t-XDF"/>
+                                        <exclude reference="fRR-4G-14u"/>
                                     </mask>
                                 </variation>
                             </view>

@@ -172,7 +172,7 @@ class PlayState : State {
             {
                 if let structure = selectedTile?.structure
                 {
-                    viewController.showStructureMenu(structure as! Structure)
+                    viewController.showStructureMenu(structure)
                     isSelectingStructure = true
                 }
                 else

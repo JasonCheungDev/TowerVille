@@ -27,16 +27,16 @@ class MinionProjectile : VisualObject
         self.zScale = 0.25
         self.target = target
         
-        var objLoader = ObjLoader()
+        let objLoader = ObjLoader()
         objLoader.Read(fileName: "sphere")
         
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(1,0,0,1)
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         // let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        linkRenderObject(ro)
         
+        self.renderObject = ro
+        self.material = mat
     }
     
     override func update(dt: TimeInterval)

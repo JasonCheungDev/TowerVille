@@ -30,9 +30,9 @@ class FragmentationProjectile : VisualObject{
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(1,1,0,1)
         let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        linkRenderObject(ro)
-        
+
+        self.renderObject = ro
+        self.material = mat
     }
     
     override func update(dt: TimeInterval) {

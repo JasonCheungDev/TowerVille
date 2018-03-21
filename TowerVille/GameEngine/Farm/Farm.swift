@@ -35,14 +35,13 @@ class Farm : Structure, ResourceGenerator {
         mat.surfaceColor = Color(1, 1, 1, 1)
         mat.specularPower = 1;
         
-        var objLoader = ObjLoader()
+        let objLoader = ObjLoader()
         objLoader.Read(fileName: "farm")
         
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        ro.material = mat
         
-        self.linkRenderObject(ro)
-        
+        self.renderObject = ro
+        self.material = mat
     }
     
     func SetValue(x: Float, y: Float){

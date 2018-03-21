@@ -39,8 +39,10 @@ class Minion : VisualObject {
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(0,0,1,1)
         let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        linkRenderObject(ro)
+
+        self.renderObject = ro
+        self.material = mat
+        
         self.xScale = 0.4
         self.yScale = 0.3
         self.zScale = 0.4

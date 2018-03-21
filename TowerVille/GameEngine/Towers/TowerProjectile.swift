@@ -27,14 +27,15 @@ class TowerProjectile : VisualObject{
         self.z = z
         self.target = target
         
-        var objLoader = ObjLoader()
+        let objLoader = ObjLoader()
         objLoader.smoothed = true
         objLoader.Read(fileName: "icosahedron")
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(1,0,0,1)
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        ro.material = mat;
-        linkRenderObject(ro)
+        
+        self.renderObject = ro
+        self.material = mat
     }
     
     func setScale(scale: Float){

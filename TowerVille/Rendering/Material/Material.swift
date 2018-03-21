@@ -11,6 +11,8 @@ import GLKit
 
 protocol Material {
     
+    var shader : ShaderProgram { get }
+    
     func LoadMaterial() -> Void
     
     func LoadLightData(fromLights lights : [Light])

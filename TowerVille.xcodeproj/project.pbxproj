@@ -313,6 +313,7 @@
 			children = (
 				DE96E5892047E6A200B2966E /* UI */,
 				DE9AF831203BD6400097F76B /* Material */,
+				2BEBE63F20193E68008E8FEB /* VisualObject.swift */,
 				DE3A3B9920356B1D002E34FB /* CubePrefab.swift */,
 				2BEBE64120193E96008E8FEB /* RenderObject.swift */,
 				DE5B930F2019558B001B9D83 /* ShaderProgram.swift */,
@@ -334,7 +335,6 @@
 				2BEBE655201942DC008E8FEB /* Towers */,
 				DE9AF82E203BD5D40097F76B /* Lighting */,
 				2BEBE631201938F4008E8FEB /* GameObject.swift */,
-				2BEBE63F20193E68008E8FEB /* VisualObject.swift */,
 				2BEBE63520193A5B008E8FEB /* GameManager.swift */,
 				2BEBE63720193B41008E8FEB /* InputManager.swift */,
 				2BEBE63920193B5E008E8FEB /* Transform.swift */,
