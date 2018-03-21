@@ -148,25 +148,36 @@ class PlayState : State {
         {
             // clicking out of build menu - deselect
             selectedTile = nil;
-            getViewController()?.showBuildMenu(isShown: false)
+            viewController.showBuildMenu(isShown: false)
             isPickingStructure = false
         }
         else
         {
             // clicking on tile (no menus open) - select
             selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
+            
             if selectedTile?.type == TileType.Grass
             {
-                getViewController()?.showBuildMenu(isShown: true)
-                isPickingStructure = true
+                if let structure = selectedTile?.structure
+                {
+                    viewController.showStructureMenu(structure as! Structure)
+                    isSelectingStructure = true
+                }
+                else
+                {
+                    viewController.showBuildMenu(isShown: true)
+                    isPickingStructure = true
+                }
             }
         }
-        
     }
     
     override func processUiInput(action: UIActionType) {
         
         switch action {
+            
+            // BUILD MENU
+        
         case .BuildTowerBasic:
             if createBasicTower(tile: selectedTile!)
             {
@@ -187,10 +198,46 @@ class PlayState : State {
             if createFarm(tile: selectedTile!)
             {
                 selectedTile = nil
-                getViewController()?.showBuildMenu(isShown: false)
+                viewController.showBuildMenu(isShown: false)
                 isPickingStructure = false
             }
             break
+            
+            // STRUCTURE SELECTION MENU
+        
+        case .UpgradeStructure:
+            let structure = selectedTile!.structure!
+            if gold >= structure.upgradeCost
+            {
+                gold -= structure.upgradeCost
+                structure.upgrade()
+            }
+            viewController.hideStructureMenu()
+            break
+        case .RepairStructure:
+            let structure = selectedTile!.structure!
+            if gold >= structure.getRepairCost()
+            {
+                gold -= structure.getRepairCost()
+                structure.health = structure.maxHealth
+            }
+            viewController.hideStructureMenu()
+            break
+        case .SellStructure:
+            let structure = selectedTile!.structure!
+            gold += structure.getSellCost()
+            
+            selectedTile?.structure = nil
+            if let i = towers.index(where: { $0 === structure }) {
+                towers.remove(at: i)
+            } else if let i = farms.index(where: { $0 === structure }) {
+                farms.remove(at: i)
+            }
+            viewController.hideStructureMenu()
+            break
+            
+            // ETC.
+        
         case .BackSelected:
             if (isPickingStructure)
             {
@@ -257,19 +304,7 @@ class PlayState : State {
         
         return true
     }
-        
-    func getViewController() -> ViewController? {
-        
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            // forcefully cast as ViewController type
-            return topController as? ViewController
-        }
-        return nil
-    }
-
+    
     
     override func enter() {
         viewController.showScreen(screenType: .GameScreen);

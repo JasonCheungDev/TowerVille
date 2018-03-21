@@ -43,6 +43,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     var buildTowerOptions : [UIModelStructure] = []
     var buildResourceOptions : [UIModelStructure] = []
     
+    @IBOutlet var structureSelectedView: StructureSelectedView!
+    
     // OpenGL
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
@@ -59,6 +61,7 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
 
         // setup UI
         setupBuildMenu()
+        structureSelectedView.viewController = self
         
         // pregame setup
         setupGLcontext()
@@ -66,12 +69,6 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
         
         // init updater and game
         setupGLupdater()
-        
-//        setupShader()
-//        debug_SetupCamera()
-//        debug_SetupRenderObject()
-//        debug_SetupTiledMap()
-//        debug_SetupLights()
     }
 
     
@@ -93,27 +90,25 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     
     @IBAction func onButtonPress(_ sender: UIButton) {
         
+        // handle anything in view controller first
         switch sender.tag
         {
         case UIActionType.PlaySelected.rawValue:
             NSLog("Play btn pressed")
             gameScreen.isHidden = false
-            StateMachine.Instance.processUiAction(action: UIActionType.PlaySelected)
             break
         case UIActionType.HelpSelected.rawValue:
             NSLog("Help btn pressed")
             helpScreen.isHidden = false
             break
-        case UIActionType.HelpSelected.rawValue:
+        case UIActionType.SettingsSelected.rawValue:
             NSLog("Settings btn pressed")
-            helpScreen.isHidden = false
             break
         case UIActionType.HighscoreSelected.rawValue:
             NSLog("Highscore btn pressed")
             break
         case UIActionType.BackSelected.rawValue:
             helpScreen.isHidden = true
-            StateMachine.Instance.processUiAction(action: .BackSelected)
             NSLog("Back btn pressed")
             break
         default:
@@ -121,6 +116,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
             break
         }
         
+        // pass action to state machine
+        StateMachine.Instance.processUiAction(action: UIActionType(rawValue: sender.tag)!)
     }
     
 }
@@ -131,29 +128,18 @@ extension ViewController {
     func setupBuildMenu()
     {
         // Tower (top section)
-        let basicTower = UIModelStructure()
-        basicTower.name = "Basic"
-        basicTower.cost = 10
-        basicTower.image = UIImage(named: "watchtower.png")!
+        let basicTower = UIModelStructure(fromType: Tower.self)
         basicTower.actionType = UIActionType.BuildTowerBasic
-        let advancedTower = UIModelStructure()
-        advancedTower.cost = 50
-        advancedTower.image = UIImage(named: "slow_tower.png")!
-        advancedTower.name = "Slow"
+        let advancedTower = UIModelStructure(fromType: SlowTower.self)
         advancedTower.actionType = UIActionType.BuildTowerSpecial
         
         buildTowerOptions.append(basicTower)
         buildTowerOptions.append(advancedTower)
         
         // Resource (bottom section)
-        let farm = UIModelStructure()
-        farm.name = "Farm"
-        farm.cost = 10
-        farm.image = UIImage(named: "farm.png")!
+        let farm = UIModelStructure(fromType: Farm.self)
         farm.actionType = UIActionType.BuildResourceFarm
-        let mine = UIModelStructure()
-        mine.name = "Mine"
-        mine.cost = 100
+        let mine = UIModelStructure(fromType: Mine.self)
         mine.actionType = UIActionType.BuildResourceSpecial
         
         buildResourceOptions.append(farm)
@@ -163,6 +149,30 @@ extension ViewController {
     func showBuildMenu(isShown : Bool)
     {
         buildMenuView.isHidden = !isShown
+    }
+    
+    func showStructureMenu(_ structure : Structure)
+    {
+        structureSelectedView.displayContent(structure)
+        structureSelectedView.isHidden = false
+        
+//        if structure is Tower
+//        {
+//            let tower = structure as! Tower
+//        }
+//        else if structure is Farm
+//        {
+//            let farm = structure as! Farm
+//        }
+//        else
+//        {
+//            NSLog("ERROR: showing structure for unknown type")
+//        }
+    }
+    
+    func hideStructureMenu()
+    {
+        structureSelectedView.isHidden = true
     }
     
     func showScreen(screenType : UIScreens)
@@ -314,155 +324,6 @@ extension ViewController {
         self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     }
     
-    func debug_SetupCamera()
-    {
-        let aspectRatio = self.view.frame.width / self.view.frame.height
-        print("Aspect ratio \(aspectRatio)")
-        
-        Camera.initialize(aspectRatio)
-        var cam = OrthoCamPrefab(viewableTiles: 10)
-        Camera.ActiveCamera = cam
-    }
-    
-    func debug_SetupRenderObject()
-    {
-        let mat = LambertMaterial(self.shader)
-        mat.surfaceColor = Color(1,0,0,1)
-        mat.loadTexture("dungeon_01.png")
-        
-        let mat2 = LambertMaterial(self.shader)
-        mat.surfaceColor = Color(0,1,0,1)
-        
-        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        
-        let ro2 = RenderObject(fromShader: shader, fromVertices: DebugData.rectVertices, fromIndices: DebugData.cubeIndices)
-        ro2.material = mat2
-        
-        let ro3 = RenderObject(fromShader: shader, fromVertices: DebugData.rectVertices, fromIndices: DebugData.cubeIndices)
-        ro3.material = mat
-        
-        let vo = VisualObject()
-        vo.linkRenderObject(ro)
-        vo.x = 8
-        vo.z = -4
-        vo.xRot = 15
-        
-        let vo2 = VisualObject()
-        vo2.linkRenderObject(ro2)
-        vo2.x = 12
-        vo2.z = -4
-        vo2.yRot = 55
-        
-        // TODO: Should be auto gen by GameObject
-        vo.id = "Debug VO 1"
-        vo2.id = "Debug VO 2"
-        let vo3 = VisualObject()
-        vo3.linkRenderObject(ro3)
-        vo3.x = 8
-        vo3.z = -12
-        vo3.xRot = 60
-
-        let vo4 = VisualObject()
-        vo4.linkRenderObject(ro3)
-        vo4.x = 12
-        vo4.z = -12
-        vo4.yRot = 30
-        
-        let prefab = CubePrefab(shader)
-        prefab.x = 10
-        prefab.z = -10
-    
-        /*
-        self.debugVisualObjects.append(vo)
-        self.debugVisualObjects.append(vo2)
-        self.debugVisualObjects.append(vo3)
-        self.debugVisualObjects.append(vo4)
-        self.debugVisualObjects.append(prefab)*/
-    }
-    
-    func debug_SetupLights()
-    {
-        var directionalLight = DirectionalLight()
-        directionalLight.xDir = 1
-        directionalLight.yDir = -1
-        directionalLight.zDir = -1
-        directionalLight.lightIntensity = 0.125
-        directionalLight.lightColor = Color(1,1,1,1)
-        
-        var pointLight1 = PointLight()
-        pointLight1.x = 4.0
-        pointLight1.y = 5.0
-        pointLight1.z = -4.0
-        pointLight1.lightIntensity = 1.0
-        pointLight1.lightColor = Color(222/255,107/255,40/255,1)
-        
-        var pointLight2 = PointLight()
-        pointLight2.x = 14.0
-        pointLight2.y = 5.0
-        pointLight2.z = -14.0
-        pointLight2.lightIntensity = 1.0
-        pointLight2.lightColor = Color(67/255,134/255,150/255,1)
-        
-        var pointLight4 = PointLight()
-    }
-    
-    func debug_SetupTiledMap()
-    {
-        let displaySize: Int = DebugData.Instance.displaySize // screen size in tiles
-        let gridSize: Int = DebugData.Instance.gridSize // size of actual game grid data representation
-        
-        // create some materials
-        let grassTileMat = LambertMaterial(shader)
-        grassTileMat.surfaceColor = Color(0,1,0,1)
-        
-        let mountainTileMat = LambertMaterial(shader)
-        mountainTileMat.surfaceColor = Color(0,0,0,1)
-        
-        let highlightOrigin = LambertMaterial(shader)
-        highlightOrigin.surfaceColor = Color(1,0,0,1)
-
-        // create shared RO
-        let grassRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        grassRo.material = grassTileMat
-        let mountainRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        mountainRo.material = mountainTileMat
-        let highlightRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        highlightRo.material = highlightOrigin
-        
-        for x in 0..<gridSize {
-            for y in 0..<gridSize {
-                if (x + y >= gridSize / 2 && x + y < gridSize + gridSize / 2 && abs(x - y) <= gridSize / 2)
-                {
-                    var newTile = Tile()
-                    newTile.x = Float(x)
-                    newTile.z = Float(-y)
-                    if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2) {
-                        newTile.linkRenderObject(mountainRo)
-                    } else {
-                        newTile.linkRenderObject(grassRo)
-                    }
-                    debugVisualObjects.append(newTile)
-                }
-            }
-        }
-        
-        var objLoader : ObjLoader = ObjLoader()
-        objLoader.smoothed = true
-        objLoader.Read(fileName : "sphere")
-
-        var ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        ro.material = highlightOrigin
-        
-        var vo = VisualObject()
-        vo.x = 8
-        vo.y = 4
-        vo.z = -6
-
-        vo.linkRenderObject(ro)
-        
-        debugVisualObjects.append(vo)
-    }
 }
 
 // OPENGL DELEGATE (Update handler)

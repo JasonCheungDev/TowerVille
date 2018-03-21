@@ -225,10 +225,13 @@
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="C1j-Xi-urC"/>
                                     </stackView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-V5-NL5" customClass="StructureSelectedView" customModule="TowerVille" customModuleProvider="target">
+                                        <rect key="frame" x="85" y="48" width="398" height="224"/>
+                                    </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9S-Vf-1sq" userLabel="Build Menu">
                                         <rect key="frame" x="85.5" y="49" width="397.5" height="223.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="GSj-vQ-Yz3">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="GSj-vQ-Yz3" userLabel="Background">
                                                 <rect key="frame" x="0.0" y="0.0" width="397.5" height="223.5"/>
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Xx-9N-6Dq" userLabel="Tower Options Collection View">
@@ -349,10 +352,12 @@
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="GZo-V5-NL5" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" multiplier="0.7" id="14r-9x-b9e"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="61R-JN-LZh"/>
                                     <constraint firstItem="NvJ-8s-r7g" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="6Wn-PH-HYb"/>
                                     <constraint firstItem="7BL-Gl-60z" firstAttribute="leading" secondItem="FgP-ZR-VFs" secondAttribute="leading" constant="8" id="97f-Mb-rWt"/>
                                     <constraint firstItem="7BL-Gl-60z" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" constant="8" id="9bk-cR-kRt"/>
+                                    <constraint firstItem="GZo-V5-NL5" firstAttribute="centerY" secondItem="FgP-ZR-VFs" secondAttribute="centerY" id="CRe-o1-qiL"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" multiplier="0.7" id="DQO-y9-iPs"/>
                                     <constraint firstItem="GPn-aw-zNY" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" id="JLp-9Q-0Xy"/>
                                     <constraint firstAttribute="trailing" secondItem="GPn-aw-zNY" secondAttribute="trailing" id="Vgj-LA-tbX"/>
@@ -363,6 +368,8 @@
                                     <constraint firstItem="NvJ-8s-r7g" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" id="fRR-4G-14u"/>
                                     <constraint firstAttribute="trailing" secondItem="dOu-3d-bqr" secondAttribute="trailing" constant="8" id="g7D-gc-cL3"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="height" secondItem="FgP-ZR-VFs" secondAttribute="height" multiplier="0.7" id="qeP-VF-jix"/>
+                                    <constraint firstItem="GZo-V5-NL5" firstAttribute="height" secondItem="FgP-ZR-VFs" secondAttribute="height" multiplier="0.7" id="rNL-XA-i2S"/>
+                                    <constraint firstItem="GZo-V5-NL5" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="syx-JI-43L"/>
                                     <constraint firstAttribute="bottom" secondItem="GPn-aw-zNY" secondAttribute="bottom" id="teX-Ny-1pu"/>
                                 </constraints>
                                 <variation key="default">
@@ -399,6 +406,7 @@
                         <outlet property="helpScreen" destination="4cu-Ze-Z2d" id="pWj-2d-EI7"/>
                         <outlet property="introScreen" destination="O8e-Aj-Xsq" id="4GV-UK-z8B"/>
                         <outlet property="resourceCollectionView" destination="GP0-a4-f4t" id="7hv-p3-90h"/>
+                        <outlet property="structureSelectedView" destination="GZo-V5-NL5" id="8Dg-Xk-qyF"/>
                         <outlet property="towerCollectionView" destination="7Xx-9N-6Dq" id="rJj-hT-NrN"/>
                         <outlet property="wavesLabel" destination="cIl-lE-cRN" id="VKK-tn-WHk"/>
                     </connections>
@@ -410,7 +418,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="24.7376311844078" y="31.199999999999999"/>
+            <point key="canvasLocation" x="24.295774647887324" y="30"/>
         </scene>
     </scenes>
     <resources>
