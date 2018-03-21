@@ -17,12 +17,17 @@ enum UIScreens {
 
 enum UIActionType : Int {
     case NOT_IMPLEMENTED
+    
+    // Game screen actions
     case BuildTowerBasic
     case BuildTowerSpecial
     case BuildResourceFarm
     case BuildResourceSpecial
     case BuildCancel
-    
+    case UpgradeStructure = 200
+    case RepairStructure = 201
+    case SellStructure = 202
+
     // Intro screen buttons
     case PlaySelected = 100
     case HelpSelected = 101

@@ -14,7 +14,14 @@ class PlayState : State {
     //let minion : Minion
     var towers : [Tower] = []
     var gold : Int = 0
-    var lives : Int = 20
+    private var _lives : Int = 10
+    var lives : Int {
+        get { return _lives }
+        set {
+            if newValue <= 0 { gameOver() }
+            else { _lives = newValue }
+        }
+    }
 
     var spawner : MinionSpawner?
     var minions : [Minion] = []
@@ -46,6 +53,14 @@ class PlayState : State {
     
     func restart()
     {
+        // clean up
+        towers.removeAll()
+        farms.removeAll()
+        minions.removeAll()
+        lives = 10
+        gold = 0
+        
+        // initiailze
         spawner = MinionSpawner(minion: Minion(shader: shader))
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
         
@@ -64,6 +79,11 @@ class PlayState : State {
         self.debugFarm = Farm(self, shader)
         map.Tiles[5][5].SetStructure(debugFarm!)
         farms.append(debugFarm!)
+    }
+    
+    func gameOver()
+    {
+        restart()
     }
     
     override func update(dt: TimeInterval) {
@@ -124,41 +144,100 @@ class PlayState : State {
     
     override func processInput(x: Float, z: Float, u: Float, v: Float) {
         NSLog("PlayState processInput \(x) \(z), \(u) \(v)")
-        return;
         if (isPickingStructure)
         {
             // clicking out of build menu - deselect
             selectedTile = nil;
-            getViewController()?.showBuildMenu(isShown: false)
+            viewController.showBuildMenu(isShown: false)
             isPickingStructure = false
         }
         else
         {
             // clicking on tile (no menus open) - select
             selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
+            
             if selectedTile?.type == TileType.Grass
             {
-                getViewController()?.showBuildMenu(isShown: true)
-                isPickingStructure = true
+                if let structure = selectedTile?.structure
+                {
+                    viewController.showStructureMenu(structure as! Structure)
+                    isSelectingStructure = true
+                }
+                else
+                {
+                    viewController.showBuildMenu(isShown: true)
+                    isPickingStructure = true
+                }
             }
         }
-        
     }
     
     override func processUiInput(action: UIActionType) {
         
         switch action {
+            
+            // BUILD MENU
+        
         case .BuildTowerBasic:
-            // TODO: Tower stuff
+            if createBasicTower(tile: selectedTile!)
+            {
+                selectedTile = nil
+                viewController.showBuildMenu(isShown: false)
+                isPickingStructure = false
+            }
+            break
+        case .BuildTowerSpecial:
+            if createSlowTower(tile: selectedTile!)
+            {
+                selectedTile = nil
+                viewController.showBuildMenu(isShown: false)
+                isPickingStructure = false
+            }
             break
         case .BuildResourceFarm:
             if createFarm(tile: selectedTile!)
             {
                 selectedTile = nil
-                getViewController()?.showBuildMenu(isShown: false)
+                viewController.showBuildMenu(isShown: false)
                 isPickingStructure = false
             }
             break
+            
+            // STRUCTURE SELECTION MENU
+        
+        case .UpgradeStructure:
+            let structure = selectedTile!.structure!
+            if gold >= structure.upgradeCost
+            {
+                gold -= structure.upgradeCost
+                structure.upgrade()
+            }
+            viewController.hideStructureMenu()
+            break
+        case .RepairStructure:
+            let structure = selectedTile!.structure!
+            if gold >= structure.getRepairCost()
+            {
+                gold -= structure.getRepairCost()
+                structure.health = structure.maxHealth
+            }
+            viewController.hideStructureMenu()
+            break
+        case .SellStructure:
+            let structure = selectedTile!.structure!
+            gold += structure.getSellCost()
+            
+            selectedTile?.structure = nil
+            if let i = towers.index(where: { $0 === structure }) {
+                towers.remove(at: i)
+            } else if let i = farms.index(where: { $0 === structure }) {
+                farms.remove(at: i)
+            }
+            viewController.hideStructureMenu()
+            break
+            
+            // ETC.
+        
         case .BackSelected:
             if (isPickingStructure)
             {
@@ -199,19 +278,33 @@ class PlayState : State {
         
         return true
     }
+    
+    func createBasicTower(tile : Tile) -> Bool {
+        if (self.gold < Tower.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
         
-    func getViewController() -> ViewController? {
+        let newTower = Tower(0, 0, shader:shader, color: Color(1, 1, 0, 1))
+        tile.SetStructure(newTower)
+        towers.append(newTower)
+        self.gold -= Tower.COST
         
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            // forcefully cast as ViewController type
-            return topController as? ViewController
-        }
-        return nil
+        return true
     }
-
+    
+    func createSlowTower(tile : Tile) -> Bool {
+        if (self.gold < SlowTower.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
+        
+        let newTower = SlowTower(0, 0, shader:shader, color: Color(0, 1, 1, 1))
+        tile.SetStructure(newTower)
+        towers.append(newTower)
+        self.gold -= SlowTower.COST
+        
+        return true
+    }
+    
     
     override func enter() {
         viewController.showScreen(screenType: .GameScreen);

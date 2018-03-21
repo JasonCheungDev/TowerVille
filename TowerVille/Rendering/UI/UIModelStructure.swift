@@ -13,7 +13,17 @@ class UIModelStructure
 {
     var image : UIImage = UIImage(named: "wip.png")!
     var name : String = "Structure"
-    var description : String = ""
+    var description : String = "A generic structure"
     var cost : Int = 0
     var actionType : UIActionType = UIActionType.NOT_IMPLEMENTED
+    
+    
+    init() {}
+    
+    init(fromType Structure : Structure.Type)
+    {
+        name = Structure.NAME
+        cost = Structure.COST
+        image = UIImage(named: Structure.ICON)!
+    }
 }
