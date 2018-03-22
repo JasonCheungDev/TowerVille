@@ -18,7 +18,7 @@ varying vec3 frag_Normal;varying vec3 frag_Position;
 void main(void) {
     //TODO : remove
     float desaturationCoef = 0.5;
-    vec3 linearSurfaceColor = pow(u_SurfaceColor.rgb, vec3(2.2/1.0));
+    vec3 linearSurfaceColor = u_SurfaceColor.rgb * u_SurfaceColor.rgb;
     float averageLuminance = dot(linearSurfaceColor, vec3(0.333));
     
     frag_Color.rgb = mix(linearSurfaceColor, vec3(averageLuminance), desaturationCoef);
