@@ -9,53 +9,77 @@
 import Foundation
 import GLKit
 
-class FragmentationProjectile : VisualObject{
-    
-    var damage : Int = 10
-    
-    var timeAlive : Double = 0
-
-    var speed  : Float = 1.5
-    
+class FragmentationProjectile : TowerProjectile{
     var direction : Direction = Direction.North
     
     
-    init(_ x : GLfloat, _ z : GLfloat, shader : ShaderProgram, direction : Direction) {
-        super.init()
-        self.x = x
-        self.z = z
-        
+    func setDirection(direction: Direction){
         self.direction = direction
-        
-        let mat = LambertMaterial(shader)
-        mat.surfaceColor = Color(1,1,0,1)
-        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        linkRenderObject(ro)
-        
     }
     
-    override func update(dt: TimeInterval) {
+    override func MoveTowards(dt: Float){
         
-        timeAlive += dt
-
-        MoveTowards(dt: Float(dt))
-    }
-    
-    func MoveTowards(dt: Float){
+        if(!isMoving){
+            return
+        }
+        
+        for m in PlayState.activeGame.minions{
+            distance = sqrt(pow(m.x-self.x, 2)+pow(m.z-self.z, 2))
+            
+            if(distance < 0.5){
+                
+                isMoving = false;
+                timeAlive = 9999;
+                m.health -= damage
+                return;
+            }
+        }
         
         switch(self.direction){
+            
         case Direction.North:
-                self.x += speed * Float(dt)
-                //self.z += speed * Float(dt)
-                break;
+            self.x -= speed * Float(dt)
+            break
+            
+        case Direction.NorthEast:
+            self.x -= speed * Float(dt)
+            self.z -= speed * Float(dt)
+            break
+            
+        case Direction.East:
+            self.z -= speed * Float(dt)
+            break
+            
+        case Direction.SouthEast:
+            self.x += speed * Float(dt)
+            self.z -= speed * Float(dt)
+            break
+            
+        case Direction.South:
+            self.x += speed * Float(dt)
+            break
+            
+        case Direction.SouthWest:
+            self.x += speed * Float(dt)
+            self.z += speed * Float(dt)
+            break;
+            
+        case Direction.West:
+            self.z += speed * Float(dt)
+            break
+            
+        case Direction.NorthWest:
+            self.x -= speed * Float(dt)
+            self.z += speed * Float(dt)
+            break;
             
         default:
-            break;
+            break
         }
-    
-    
+        
+        
     }
+
 }
 
 enum Direction {
