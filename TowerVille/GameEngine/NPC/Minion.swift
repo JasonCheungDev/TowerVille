@@ -38,14 +38,19 @@ class Minion : VisualObject {
         super.init()
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(0,0,1,1)
-        let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
+        
+        let objLoader = ObjLoader();
+        objLoader.Read(fileName: "octahedron");
+        
+        let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
 
         self.renderObject = ro
         self.material = mat
         
-        self.xScale = 0.4
-        self.yScale = 0.3
-        self.zScale = 0.4
+        self.xScale = 0.5
+        self.yScale = 0.5
+        self.zScale = 0.5
+        self.y = 0.5;
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
