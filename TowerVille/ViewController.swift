@@ -130,20 +130,26 @@ extension ViewController {
         // Tower (top section)
         let basicTower = UIModelStructure(fromType: Tower.self)
         basicTower.actionType = UIActionType.BuildTowerBasic
-        let advancedTower = UIModelStructure(fromType: SlowTower.self)
-        advancedTower.actionType = UIActionType.BuildTowerSpecial
-        
-        buildTowerOptions.append(basicTower)
-        buildTowerOptions.append(advancedTower)
+        let slowTower = UIModelStructure(fromType: SlowTower.self)
+        slowTower.actionType = UIActionType.BuildTowerSlow
+        let explodeTower = UIModelStructure(fromType: ExplodeTower.self)
+        explodeTower.actionType = UIActionType.BuildTowerExplosion
+        let fragTower = UIModelStructure(fromType: FragmentationTower.self)
+        fragTower.actionType = UIActionType.BuildTowerFragment
+        let laserTower = UIModelStructure(fromType: LaserTower.self)
+        laserTower.actionType = UIActionType.BuildTowerLaser
+
+        buildTowerOptions.append(contentsOf: [basicTower, slowTower, explodeTower, fragTower, laserTower])
         
         // Resource (bottom section)
         let farm = UIModelStructure(fromType: Farm.self)
         farm.actionType = UIActionType.BuildResourceFarm
+        let mill = UIModelStructure(fromType: SawMill.self)
+        mill.actionType = UIActionType.BuildResourceSawMill
         let mine = UIModelStructure(fromType: Mine.self)
-        mine.actionType = UIActionType.BuildResourceSpecial
+        mine.actionType = UIActionType.BuildResourceMine
         
-        buildResourceOptions.append(farm)
-        buildResourceOptions.append(mine)
+        buildResourceOptions.append(contentsOf: [farm, mill, mine])
     }
     
     func showBuildMenu(isShown : Bool)

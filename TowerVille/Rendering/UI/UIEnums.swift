@@ -20,9 +20,13 @@ enum UIActionType : Int {
     
     // Game screen actions
     case BuildTowerBasic
-    case BuildTowerSpecial
+    case BuildTowerSlow
+    case BuildTowerExplosion
+    case BuildTowerFragment
+    case BuildTowerLaser
     case BuildResourceFarm
-    case BuildResourceSpecial
+    case BuildResourceSawMill
+    case BuildResourceMine
     case BuildCancel
     case UpgradeStructure = 200
     case RepairStructure = 201

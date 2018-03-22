@@ -386,8 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				2BEBE64B20194134008E8FEB /* Farm.swift */,
-				2BEBE666201943B1008E8FEB /* Mine.swift */,
 				2BEBE668201943BE008E8FEB /* SawMill.swift */,
+				2BEBE666201943B1008E8FEB /* Mine.swift */,
 				DE8EFD2C203F5B28000987CE /* ResourceGenerator.swift */,
 				DE47172F206224FC00241030 /* TestFarm.swift */,
 			);
