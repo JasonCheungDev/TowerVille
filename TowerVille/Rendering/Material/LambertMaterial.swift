@@ -15,6 +15,7 @@ class LambertMaterial : Material {
     
     var surfaceColor : Color  = Color(1,0,0,1)
     var specularPower : Float = 32
+    var shader: ShaderProgram
     
     private var hasTexture : GLint = 0
     
@@ -33,6 +34,7 @@ class LambertMaterial : Material {
     
     init (_ shader : ShaderProgram)
     {
+        self.shader = shader
         self.SetupAttributeLocations(shader)
     }
 

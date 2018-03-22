@@ -10,6 +10,9 @@ import Foundation
 import GLKit
 
 class PhongMaterial : Material {
+    
+    var shader: ShaderProgram
+    
     var SurfaceColor : Color  = Color(1,0,0,1)
     var LightColor : Color = Color(1,1,0,1)
     var LightDirection : Vertex = Vertex(-1, -1, -1)
@@ -20,6 +23,7 @@ class PhongMaterial : Material {
     
     init (_ shader : ShaderProgram)
     {
+        self.shader = shader
         SetupAttributeLocations(shader)
     }
     
