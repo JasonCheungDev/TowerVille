@@ -81,7 +81,7 @@ class Map {
     func setupPathFromWaypoints(waypoints : [GameObject])
     {
         let pathMat = LambertMaterial(shader!);
-        pathMat.surfaceColor = Color(0.1, 0.2, 0.3, 1.0);
+        pathMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0);
         let pathRo = RenderObject(fromShader: shader!, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
         pathRo.material = pathMat
         
