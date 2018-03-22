@@ -65,6 +65,7 @@ class LaserTower : Tower
         
         let mat = LambertMaterial(self.shader)
         mat.surfaceColor = Color(1,0,0,1)
+        mat.specularPower = 0
         
         let line = LineObject(fromShader: self.shader, fromVectors:
             [GLKVector3Make(towerPos.x, 0.5, towerPos.y), GLKVector3Make(targetPos.x, 0.5, targetPos.y)])

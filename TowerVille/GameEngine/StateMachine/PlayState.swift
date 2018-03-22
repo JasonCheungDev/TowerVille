@@ -73,18 +73,24 @@ class PlayState : State {
         tower1.yScale = 0.7
         tower1.xScale = 0.3
         towers.append(tower1)
-        
+
         let slowTower1 = SlowTower(3.0, -6.0, shader:shader, color: Color(0, 1, 1, 1))
         slowTower1.zScale = 0.3
         slowTower1.yScale = 0.7
         slowTower1.xScale = 0.3
         towers.append(slowTower1)
-        
+
         let explodeTower1 = ExplodeTower(10.0, -12.0, shader:shader, color: Color(1, 0, 1, 1))
         explodeTower1.zScale = 0.3
         explodeTower1.yScale = 0.7
         explodeTower1.xScale = 0.3
         towers.append(explodeTower1)
+        
+        let fragTower1 = FragmentationTower(13.0, -9.0, shader:shader, color: Color(0, 0, 1, 1))
+        fragTower1.zScale = 0.3
+        fragTower1.yScale = 0.7
+        fragTower1.xScale = 0.3
+        towers.append(fragTower1)
         
         let laserTower = LaserTower(12, -4, shader: shader, color: Color(1,0,0,1))
         towers.append(laserTower)
@@ -109,7 +115,7 @@ class PlayState : State {
             f.update(dt: dt)
         }
         
-        // spawner?.update(dt: dt)
+        spawner?.update(dt: dt)
         rangedSpawner?.update(dt: dt)
         
         for guy in minions {

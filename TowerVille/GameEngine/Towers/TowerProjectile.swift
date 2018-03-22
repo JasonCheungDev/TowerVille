@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class TowerProjectile : VisualObject{
-    var damage : Int = 10
+    var damage : Int = 50
     
     var target : Minion!
     var timeAlive : Double = 0
@@ -70,5 +70,6 @@ class TowerProjectile : VisualObject{
         
     }
     
+
 }
 

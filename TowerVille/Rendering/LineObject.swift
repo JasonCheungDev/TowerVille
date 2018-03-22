@@ -28,7 +28,10 @@ class LineObject : VisualObject
         // generate data based off points
         for i in 0..<vectors.count
         {
-            let v = VertexData(vectors[i].x, vectors[i].y, vectors[i].z)
+            var v = VertexData(vectors[i].x, vectors[i].y, vectors[i].z)
+            v.nx = 0
+            v.ny = 1
+            v.nz = 0
             vertexData.append(v)
             
             if i == 0 { continue }
