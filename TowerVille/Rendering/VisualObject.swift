@@ -37,7 +37,7 @@ class VisualObject : GameObject
         glDrawElements(GLenum(GL_TRIANGLES), GLsizei(renderObject!.indexCount), GLenum(GL_UNSIGNED_BYTE), nil)
     }
     
-    private func checkValidState() -> Bool
+    func checkValidState() -> Bool
     {
         if renderObject == nil
         {

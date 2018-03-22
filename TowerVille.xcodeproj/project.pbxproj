@@ -91,6 +91,7 @@
 		DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC41C11205A36AC00B7373E /* Helpers.swift */; };
 		DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C13205BBEB000B7373E /* slow_tower.png */; };
 		DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C16205BC69F00B7373E /* Futura.ttc */; };
+		DED25B65206354A800632ED2 /* LineObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED25B64206354A800632ED2 /* LineObject.swift */; };
 		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
 		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
 		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
@@ -205,6 +206,7 @@
 		DEC41C11205A36AC00B7373E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DEC41C13205BBEB000B7373E /* slow_tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow_tower.png; sourceTree = "<group>"; };
 		DEC41C16205BC69F00B7373E /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
+		DED25B64206354A800632ED2 /* LineObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineObject.swift; sourceTree = "<group>"; };
 		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
 		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				DEB2DA14201BD9810088797D /* GlkExtensions.swift */,
 				DEC217BD2035335A00F11022 /* DebugData.swift */,
 				28B37B71203CE4E30063D84C /* ObjLoader.swift */,
+				DED25B64206354A800632ED2 /* LineObject.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				DE8EFD29203CF75D000987CE /* PhongMaterial.swift in Sources */,
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
+				DED25B65206354A800632ED2 /* LineObject.swift in Sources */,
 				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
 				DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */,
 				2BEBE63A20193B5E008E8FEB /* Transform.swift in Sources */,
