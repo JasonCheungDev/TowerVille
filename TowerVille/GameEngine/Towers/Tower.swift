@@ -17,8 +17,8 @@ class Tower : Structure {
     override class var COST_LVLS : [Int] { return [25,50,100,200,400] }
 
     var maxRange : Float = 5.0
-    var attacksPerSecond : Double = 5.0
-    var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
+    var attacksPerSecond : Double = 1.0
+    var projectileLife : Double = 4.0   //time before projectiles are destroyed, in seconds
     
     var zombie : Minion!
     var towerProjectiles : [TowerProjectile] = []

@@ -16,7 +16,12 @@ class FragmentationTower : Tower {
     override class var HEALTH_LVLS : [Int] { return [100,200,400,800,1600] }
     override class var COST_LVLS : [Int] { return [200,400,800,1600,3200] }
     
-    
+    override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, color: Color) {
+        super.init(x,z,shader: shader,color: color)
+        self.attacksPerSecond = 0.5
+        self.projectileLife = 0.25
+        self.reloadTime = 1 / self.attacksPerSecond
+    }
     
     override func update(dt: TimeInterval) {
         
