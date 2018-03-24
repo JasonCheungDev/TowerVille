@@ -340,26 +340,10 @@
                                             <constraint firstAttribute="trailing" secondItem="7Xx-9N-6Dq" secondAttribute="trailing" constant="32" id="vPn-hH-45R"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug Display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvJ-8s-r7g" userLabel="DebugLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="64"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="64" id="ikO-oC-a2S"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="ikO-oC-a2S"/>
-                                            </mask>
-                                        </variation>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="GZo-V5-NL5" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" multiplier="0.7" id="14r-9x-b9e"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="61R-JN-LZh"/>
-                                    <constraint firstItem="NvJ-8s-r7g" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="6Wn-PH-HYb"/>
                                     <constraint firstItem="7BL-Gl-60z" firstAttribute="leading" secondItem="FgP-ZR-VFs" secondAttribute="leading" constant="8" id="97f-Mb-rWt"/>
                                     <constraint firstItem="7BL-Gl-60z" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" constant="8" id="9bk-cR-kRt"/>
                                     <constraint firstItem="GZo-V5-NL5" firstAttribute="centerY" secondItem="FgP-ZR-VFs" secondAttribute="centerY" id="CRe-o1-qiL"/>
@@ -367,27 +351,22 @@
                                     <constraint firstItem="GPn-aw-zNY" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" id="JLp-9Q-0Xy"/>
                                     <constraint firstAttribute="trailing" secondItem="GPn-aw-zNY" secondAttribute="trailing" id="Vgj-LA-tbX"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="centerY" secondItem="FgP-ZR-VFs" secondAttribute="centerY" id="YqT-bu-AaQ"/>
-                                    <constraint firstItem="NvJ-8s-r7g" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" id="YrQ-0t-XDF"/>
                                     <constraint firstItem="GPn-aw-zNY" firstAttribute="leading" secondItem="FgP-ZR-VFs" secondAttribute="leading" id="cJK-wx-zNI"/>
                                     <constraint firstItem="dOu-3d-bqr" firstAttribute="top" secondItem="FgP-ZR-VFs" secondAttribute="top" constant="8" id="d1C-A9-7Wu"/>
-                                    <constraint firstItem="NvJ-8s-r7g" firstAttribute="width" secondItem="FgP-ZR-VFs" secondAttribute="width" id="fRR-4G-14u"/>
                                     <constraint firstAttribute="trailing" secondItem="dOu-3d-bqr" secondAttribute="trailing" constant="8" id="g7D-gc-cL3"/>
                                     <constraint firstItem="R9S-Vf-1sq" firstAttribute="height" secondItem="FgP-ZR-VFs" secondAttribute="height" multiplier="0.7" id="qeP-VF-jix"/>
                                     <constraint firstItem="GZo-V5-NL5" firstAttribute="height" secondItem="FgP-ZR-VFs" secondAttribute="height" multiplier="0.7" id="rNL-XA-i2S"/>
                                     <constraint firstItem="GZo-V5-NL5" firstAttribute="centerX" secondItem="FgP-ZR-VFs" secondAttribute="centerX" id="syx-JI-43L"/>
                                     <constraint firstAttribute="bottom" secondItem="GPn-aw-zNY" secondAttribute="bottom" id="teX-Ny-1pu"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="NvJ-8s-r7g"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <exclude reference="6Wn-PH-HYb"/>
-                                        <exclude reference="YrQ-0t-XDF"/>
-                                        <exclude reference="fRR-4G-14u"/>
-                                    </mask>
-                                </variation>
                             </view>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug Display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvJ-8s-r7g" userLabel="DebugLabel">
+                                <rect key="frame" x="0.0" y="299.5" width="568" height="20.5"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
@@ -397,10 +376,13 @@
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="GRQ-c0-gaK"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="GWR-SO-BwR"/>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="Jai-qM-LTq"/>
+                            <constraint firstItem="NvJ-8s-r7g" firstAttribute="leading" secondItem="jLd-o5-rMF" secondAttribute="leading" id="Oyt-DF-eez"/>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="QSl-NI-a8A"/>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="TYa-zA-yQS"/>
+                            <constraint firstItem="z5K-yD-WZX" firstAttribute="bottom" secondItem="NvJ-8s-r7g" secondAttribute="bottom" id="j0e-Hb-Gw2"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="jzU-QJ-cgN"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="kuK-9t-zcb"/>
+                            <constraint firstAttribute="trailing" secondItem="NvJ-8s-r7g" secondAttribute="trailing" id="tWg-7l-nqy"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="uSZ-Go-pPu"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="yIW-92-W0C"/>
                         </constraints>

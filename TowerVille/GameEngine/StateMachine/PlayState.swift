@@ -38,6 +38,10 @@ class PlayState : State {
     // Mark: - Debug variables
     var debugFarm : Farm?
     
+    // Mark: - Performance measurement
+    var updateDuration : Double = 0
+    var drawDuration : Double = 0
+    
     
     override init(replacing : Bool = true, viewController : ViewController) {
         super.init(replacing: replacing, viewController: viewController)
@@ -107,6 +111,8 @@ class PlayState : State {
     
     override func update(dt: TimeInterval) {
         
+        let startTime = Date()
+        
         for t in towers {
             t.update(dt: dt)
         }
@@ -123,15 +129,19 @@ class PlayState : State {
             guy.update(dt: dt)
         }
         
+        updateDuration = startTime.timeIntervalSinceNow
     }
     
     override func draw() {
+        
+        let startTime = Date()
+        
         shader.prepareToDraw()
         
         for t in towers{
             t.draw()
         }
-
+        
         for row in map.Tiles {
             for vo in row {
                 vo.draw()
@@ -146,11 +156,14 @@ class PlayState : State {
             guy.draw()
         }
         
+        drawDuration = startTime.timeIntervalSinceNow
+        
         // update ui
         updateUi()
         
-        // debug display values
-        // getViewController()?.debug_updateUiDisplay("Gold: \(self.gold) | Lives: \(self.lives)")
+        let s = String(format: "Update: %.2f Draw: %.2f", updateDuration * -1000, drawDuration * -1000)
+        
+        viewController.debug_updateUiDisplay(s)
     }
     
     
