@@ -45,8 +45,9 @@ class Tower : Structure {
         mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
         
         let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        linkRenderObject(ro)
+ 
+        self.renderObject = ro
+        self.material = mat
         
         //timer = Timer.scheduledTimer(timeInterval: 1 / attacksPerSecond, target: self, selector: #selector(self.scanForTargets), userInfo: nil, repeats: true)
         reloadTime = 1.0 / attacksPerSecond;    //calculates how long the tower will wait before scanning and shooting a projectile at zombie

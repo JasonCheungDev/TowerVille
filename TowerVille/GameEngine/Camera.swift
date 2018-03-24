@@ -37,8 +37,8 @@ class OrthoCamPrefab : Camera {
             viewTar.x, viewTar.y, viewTar.z, // target position
             -1, 1, -1)                       // camera up vector
         
-        var size : Float = Float(displaySize) * sqrt(2) // screen width in tiles
-        var horSize = size / 2 / Float(Camera.aspectRatio)
+        let size : Float = Float(displaySize) * sqrt(2) // screen width in tiles
+        let horSize = size / 2 / Float(Camera.aspectRatio)
         self.projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -horSize, horSize, 0, 100.0)
     }
 }

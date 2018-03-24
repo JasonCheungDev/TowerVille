@@ -96,6 +96,9 @@ class PlayState : State {
         fragTower1.xScale = 0.3
         towers.append(fragTower1)
         
+        let laserTower = LaserTower(12, -4, shader: shader, color: Color(1,0,0,1))
+        towers.append(laserTower)
+        
         self.debugFarm = Farm(self, shader)
         map.Tiles[5][5].SetStructure(debugFarm!)
         farms.append(debugFarm!)
@@ -183,7 +186,7 @@ class PlayState : State {
             {
                 if let structure = selectedTile?.structure
                 {
-                    viewController.showStructureMenu(structure as! Structure)
+                    viewController.showStructureMenu(structure)
                     isSelectingStructure = true
                 }
                 else

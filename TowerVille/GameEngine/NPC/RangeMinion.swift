@@ -19,7 +19,7 @@ class RangeMinion : Minion
     {
         super.init(shader: shader)
         
-        let mat = self.renderObject?.material as! LambertMaterial
+        let mat = self.material as! LambertMaterial
         mat.surfaceColor = Color(1,0,0,1)
     }
     

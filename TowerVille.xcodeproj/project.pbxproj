@@ -92,6 +92,7 @@
 		DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC41C11205A36AC00B7373E /* Helpers.swift */; };
 		DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C13205BBEB000B7373E /* slow_tower.png */; };
 		DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C16205BC69F00B7373E /* Futura.ttc */; };
+		DED25B65206354A800632ED2 /* LineObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED25B64206354A800632ED2 /* LineObject.swift */; };
 		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
 		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
 		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
@@ -207,6 +208,7 @@
 		DEC41C11205A36AC00B7373E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DEC41C13205BBEB000B7373E /* slow_tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow_tower.png; sourceTree = "<group>"; };
 		DEC41C16205BC69F00B7373E /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
+		DED25B64206354A800632ED2 /* LineObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineObject.swift; sourceTree = "<group>"; };
 		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
 		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
@@ -315,12 +317,14 @@
 			children = (
 				DE96E5892047E6A200B2966E /* UI */,
 				DE9AF831203BD6400097F76B /* Material */,
+				2BEBE63F20193E68008E8FEB /* VisualObject.swift */,
 				DE3A3B9920356B1D002E34FB /* CubePrefab.swift */,
 				2BEBE64120193E96008E8FEB /* RenderObject.swift */,
 				DE5B930F2019558B001B9D83 /* ShaderProgram.swift */,
 				DEB2DA14201BD9810088797D /* GlkExtensions.swift */,
 				DEC217BD2035335A00F11022 /* DebugData.swift */,
 				28B37B71203CE4E30063D84C /* ObjLoader.swift */,
+				DED25B64206354A800632ED2 /* LineObject.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -336,7 +340,6 @@
 				2BEBE655201942DC008E8FEB /* Towers */,
 				DE9AF82E203BD5D40097F76B /* Lighting */,
 				2BEBE631201938F4008E8FEB /* GameObject.swift */,
-				2BEBE63F20193E68008E8FEB /* VisualObject.swift */,
 				2BEBE63520193A5B008E8FEB /* GameManager.swift */,
 				2BEBE63720193B41008E8FEB /* InputManager.swift */,
 				2BEBE63920193B5E008E8FEB /* Transform.swift */,
@@ -679,6 +682,7 @@
 				DE8EFD29203CF75D000987CE /* PhongMaterial.swift in Sources */,
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
+				DED25B65206354A800632ED2 /* LineObject.swift in Sources */,
 				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
 				DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */,
 				8C8F93152066F65400495B5C /* HoppingMinion.swift in Sources */,
