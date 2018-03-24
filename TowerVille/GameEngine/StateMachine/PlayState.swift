@@ -25,6 +25,7 @@ class PlayState : State {
 
     var spawner : MinionSpawner?
     var rangedSpawner : MinionSpawner?
+    var hopperSpawner : MinionSpawner?
     var minions : [Minion] = []
     var farms   : [Farm] = []
     var selectedTile : Tile?
@@ -65,10 +66,13 @@ class PlayState : State {
         spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         rangedSpawner = MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         rangedSpawner?.spawnTime = 2.5
+        hopperSpawner = MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
+        hopperSpawner?.total = 2 //3 hopper minions
+        hopperSpawner?.spawnTime = 4
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
         
         
-        /*
+        
          let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
          tower1.zScale = 0.3
          tower1.yScale = 0.7
@@ -85,7 +89,7 @@ class PlayState : State {
          explodeTower1.zScale = 0.3
          explodeTower1.yScale = 0.7
          explodeTower1.xScale = 0.3
-         towers.append(explodeTower1) */
+         towers.append(explodeTower1)
         
         let fragTower1 = FragmentationTower(13.0, -9.0, shader:shader, color: Color(0, 0, 1, 1))
         fragTower1.zScale = 0.3
@@ -113,8 +117,9 @@ class PlayState : State {
             f.update(dt: dt)
         }
         
-        // spawner?.update(dt: dt)
+        spawner?.update(dt: dt)
         rangedSpawner?.update(dt: dt)
+        hopperSpawner?.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)

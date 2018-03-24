@@ -17,7 +17,6 @@ class FragmentationTower : Tower {
     override class var COST_LVLS : [Int] { return [200,400,800,1600,3200] }
     
     
-    
     override func update(dt: TimeInterval) {
         
         if(timeElapsed > reloadTime){

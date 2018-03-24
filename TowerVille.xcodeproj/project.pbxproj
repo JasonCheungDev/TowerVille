@@ -58,6 +58,7 @@
 		8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25E267203E0C0600CF348E /* TowerProjectile.swift */; };
 		8C773B202062FDC20031FF21 /* FragmentationTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C773B1F2062FDC20031FF21 /* FragmentationTower.swift */; };
 		8C773B222062FE990031FF21 /* ExplodeProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C773B212062FE990031FF21 /* ExplodeProjectile.swift */; };
+		8C8F93152066F65400495B5C /* HoppingMinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F93142066F65400495B5C /* HoppingMinion.swift */; };
 		8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFD2054A34600757CB9 /* IceProjectile.swift */; };
 		8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
@@ -172,6 +173,7 @@
 		8C25E267203E0C0600CF348E /* TowerProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerProjectile.swift; sourceTree = "<group>"; };
 		8C773B1F2062FDC20031FF21 /* FragmentationTower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationTower.swift; sourceTree = "<group>"; };
 		8C773B212062FE990031FF21 /* ExplodeProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodeProjectile.swift; sourceTree = "<group>"; };
+		8C8F93142066F65400495B5C /* HoppingMinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoppingMinion.swift; sourceTree = "<group>"; };
 		8CBACAFD2054A34600757CB9 /* IceProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationProjectile.swift; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				2BEBE66320194382008E8FEB /* Aggro.swift */,
 				7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */,
 				7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */,
+				8C8F93142066F65400495B5C /* HoppingMinion.swift */,
 			);
 			path = NPC;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
 				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
 				DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */,
+				8C8F93152066F65400495B5C /* HoppingMinion.swift in Sources */,
 				2BEBE63A20193B5E008E8FEB /* Transform.swift in Sources */,
 				2BEBE669201943BE008E8FEB /* SawMill.swift in Sources */,
 				2BEBE632201938F4008E8FEB /* GameObject.swift in Sources */,
