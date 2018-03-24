@@ -18,7 +18,7 @@ class Tower : Structure {
 
     var maxRange : Float = 5.0
     var attacksPerSecond : Double = 1.0
-    var projectileLife : Double = 8.0   //time before projectiles are destroyed, in seconds
+    var projectileLife : Double = 4.0   //time before projectiles are destroyed, in seconds
     
     var zombie : Minion!
     var towerProjectiles : [TowerProjectile] = []
