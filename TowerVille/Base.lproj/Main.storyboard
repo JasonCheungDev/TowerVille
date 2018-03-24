@@ -114,7 +114,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r94-ng-uIS">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r94-ng-uIS">
                                         <rect key="frame" x="142.5" y="98" width="284" height="118"/>
                                         <string key="text">1. Select a tile to build a structure on it. 
 2. Build farms to increase gold generation. (building farms closer to pathways increase their generation!)
