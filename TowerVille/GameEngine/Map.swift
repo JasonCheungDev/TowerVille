@@ -7,17 +7,45 @@
 //
 
 import Foundation
+import GLKit
 
-class Map {
+class Map : VisualObject {
     
     var Tiles : [[Tile]] = []
     
-    private var shader : ShaderProgram?
+    private var shader : ShaderProgram!
+    private var mergedGrassVO    : VisualObject?
+    private var mergedMountainVO : VisualObject?
+    private var mergedPathVO     : VisualObject?
     
-    // TODO: Change to init. Shouldn't work more than once I guess
-    func setupMap(fromShader shader: ShaderProgram, mapSize: Int) {
-        
+    
+    init(fromShader shader : ShaderProgram, mapSize : Int)
+    {
+        super.init()
         self.shader = shader
+        setupMap(mapSize: mapSize)
+    }
+    
+    override func draw() {
+        mergedGrassVO?.draw()
+        mergedMountainVO?.draw()
+        mergedPathVO?.draw()
+
+        return
+        // efficient draw
+        if mergedGrassVO != nil
+        {
+        }
+        // standard draw
+        else
+        {
+            Tiles.forEach({ $0.forEach({ $0.draw() })})
+        }
+    }
+    
+    func setupMap(mapSize: Int) {
+
+        self.Tiles.removeAll()
         
         let gridSize = mapSize * 2 - 1
         
@@ -63,14 +91,13 @@ class Map {
                 {
                     // off screen
                     // don't add RO or mat
-                    newTile.type = TileType.Mountain // prevent building on this tile
+                    newTile.type = TileType.NOTHING // prevent building on this tile
                 }
                 
                 Tiles[x].append(newTile)
             }
         }
     }
-    
     
     func setupPathFromWaypoints(waypoints : [GameObject])
     {
@@ -105,5 +132,49 @@ class Map {
                 Tiles[curX][curZ].type = .Path
             }
         }
+    }
+
+    // call this function when the map is fully setup to improve performance
+    func compress()
+    {
+        self.mergedMountainVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Mountain }))
+        
+        self.mergedGrassVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Grass }))
+
+        self.mergedPathVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Path }))
+    }
+    
+    private func mergeVisualObjects(fromVisualObjects VOs : [VisualObject]) -> VisualObject
+    {
+        var vertices : [VertexData] = []
+        var indices : [GLushort] = []
+        
+        for v in VOs
+        {
+            if v.renderObject == nil { continue }
+            
+            // 1. add index data
+            let indexStart = vertices.count // vertex count not index!
+            for i in v.renderObject!.Indices {
+                indices.append(i + GLushort(indexStart))
+            }
+            
+            // 2. add vertex data
+            for vd in v.renderObject!.VertexDatas {
+                
+                vertices.append(
+                    VertexData(vd.x + v.x, vd.y + v.y, vd.z + v.z,
+                               vd.r, vd.g, vd.b, vd.a,
+                               vd.u, vd.v,
+                               vd.nx, vd.ny, vd.nz)
+                )
+                
+            }
+        }
+        
+        // create VO w/ shared data
+        let ro = RenderObject(fromShader: shader!, fromVertices: vertices, fromIndices: indices)
+        let mat = VOs.first?.material
+        return VisualObject(ro, mat!)
     }
 }

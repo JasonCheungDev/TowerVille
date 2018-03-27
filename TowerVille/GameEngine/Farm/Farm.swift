@@ -16,7 +16,7 @@ class Farm : Structure, ResourceGenerator {
     override class var NAME : String { return "Farm" }
     override class var ICON : String { return "farm.png" }
     override class var HEALTH_LVLS : [Int] { return [20,40,60,80,100] }
-    override class var COST_LVLS : [Int] { return [20,50,100,150,300] }
+    override class var COST_LVLS : [Int] { return [1,50,100,150,300] }
     
     var ResourcePerSecond: Int = 1
     var ResourceMultiplier: Int = 1
@@ -50,7 +50,7 @@ class Farm : Structure, ResourceGenerator {
         
         //Calculate how close the farm is to the nearest path, and increase value accordingly
         var minDist = INT_MAX
-        let map = PlayState.activeGame.map
+        let map = PlayState.activeGame.map!
         
         for x in 0 ..< map.Tiles.count {
             for y in 0 ..< map.Tiles[x].count {

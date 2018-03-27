@@ -19,7 +19,7 @@ class LineObject : VisualObject
 {
     var lineWidth : Float = 10
     var vertexData : [VertexData] = []
-    var indices : [GLubyte] = []
+    var indices : [GLushort] = []
     
     init(fromShader shader : ShaderProgram, fromVectors vectors : [GLKVector3])
     {
@@ -35,8 +35,8 @@ class LineObject : VisualObject
             vertexData.append(v)
             
             if i == 0 { continue }
-            indices.append(GLubyte(i-1))
-            indices.append(GLubyte(i))
+            indices.append(GLushort(i-1))
+            indices.append(GLushort(i))
         }
         
         // assign self generated RO
@@ -55,8 +55,8 @@ class LineObject : VisualObject
             vertexData.append(v)
             
             if i == 0 { continue }
-            indices.append(GLubyte(i-1))
-            indices.append(GLubyte(i))
+            indices.append(GLushort(i-1))
+            indices.append(GLushort(i))
         }
         
         // assign self generated RO
@@ -84,7 +84,7 @@ class LineObject : VisualObject
         
         // draw (LINES)
         glLineWidth(lineWidth)
-        glDrawElements(GLenum(GL_LINES), GLsizei(renderObject!.indexCount), GLenum(GL_UNSIGNED_BYTE), nil)
+        glDrawElements(GLenum(GL_LINES), GLsizei(renderObject!.indexCount), GLenum(GL_UNSIGNED_SHORT), nil)
 
     }
 }
