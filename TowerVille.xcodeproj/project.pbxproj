@@ -61,6 +61,9 @@
 		8C8F93152066F65400495B5C /* HoppingMinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F93142066F65400495B5C /* HoppingMinion.swift */; };
 		8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFD2054A34600757CB9 /* IceProjectile.swift */; };
 		8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */; };
+		DE2F3E76206A2CA00038A2A8 /* sawmill.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */; };
+		DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E74206A2CA00038A2A8 /* mountain.obj */; };
+		DE2F3E78206A2CA00038A2A8 /* mine.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E75206A2CA00038A2A8 /* mine.obj */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
 		DE471728206205B700241030 /* StructureSelectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE471727206205B700241030 /* StructureSelectedView.xib */; };
 		DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE471729206205F800241030 /* StructureSelectedView.swift */; };
@@ -177,6 +180,9 @@
 		8C8F93142066F65400495B5C /* HoppingMinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoppingMinion.swift; sourceTree = "<group>"; };
 		8CBACAFD2054A34600757CB9 /* IceProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationProjectile.swift; sourceTree = "<group>"; };
+		DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sawmill.obj; sourceTree = "<group>"; };
+		DE2F3E74206A2CA00038A2A8 /* mountain.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mountain.obj; sourceTree = "<group>"; };
+		DE2F3E75206A2CA00038A2A8 /* mine.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mine.obj; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
 		DE471727206205B700241030 /* StructureSelectedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StructureSelectedView.xib; sourceTree = "<group>"; };
 		DE471729206205F800241030 /* StructureSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSelectedView.swift; sourceTree = "<group>"; };
@@ -250,6 +256,9 @@
 				2840DE2E203C1BEA005C0513 /* cube.obj */,
 				2840DE30203D2F7B005C0513 /* sphere.obj */,
 				28CE0FC9205FAD55001B415E /* farm.obj */,
+				DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */,
+				DE2F3E74206A2CA00038A2A8 /* mountain.obj */,
+				DE2F3E75206A2CA00038A2A8 /* mine.obj */,
 			);
 			path = ObjFiles;
 			sourceTree = "<group>";
@@ -599,9 +608,11 @@
 				28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				DE471728206205B700241030 /* StructureSelectedView.xib in Resources */,
+				DE2F3E78206A2CA00038A2A8 /* mine.obj in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
 				DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */,
 				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
+				DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
 				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
@@ -615,6 +626,7 @@
 				DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */,
 				DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */,
 				28C0DAD6204757870068B071 /* octahedron.obj in Resources */,
+				DE2F3E76206A2CA00038A2A8 /* sawmill.obj in Resources */,
 				DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */,
 				28C0DAD8204757870068B071 /* hexahedron.obj in Resources */,
 				DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */,
