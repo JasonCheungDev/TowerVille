@@ -30,7 +30,7 @@ class TowerProjectile : VisualObject{
         self.target = target
         
         let objLoader = ObjLoader()
-        objLoader.smoothed = true
+        objLoader.smoothed = false
         objLoader.Read(fileName: "icosahedron")
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(1,1,1,1)
