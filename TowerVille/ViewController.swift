@@ -289,8 +289,9 @@ extension ViewController {
         var world_z = -(temp_x + temp_z) / sqrt(2)
         
         // undo first rotation
-        world_x += Float(DebugData.Instance.displaySize - 2) / 2
-        world_z -= Float(DebugData.Instance.displaySize - 2) / 2
+        let DEBUG_MAPSIZE = 10 // TODO UPDATE THIS
+        world_x += Float(DEBUG_MAPSIZE - 2) / 2
+        world_z -= Float(DEBUG_MAPSIZE - 2) / 2
         
         print("world x : \(world_x)")
         print("world z : \(world_z)")

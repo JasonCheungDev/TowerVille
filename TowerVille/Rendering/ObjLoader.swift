@@ -17,7 +17,7 @@ class ObjLoader {
     private var normalArray = [GLKVector3]()
     
     var vertexDataArray = [VertexData]()
-    var indexDataArray = [GLubyte]()
+    var indexDataArray = [GLushort]()
     
     func Read(fileName : String) -> Void{
         vertexArray.removeAll()
@@ -136,7 +136,7 @@ class ObjLoader {
                 vertexDataArray.append(vertexData)
             }
             
-            indexDataArray.append(GLubyte(vertexIndex))
+            indexDataArray.append(GLushort(vertexIndex))
             
             // if UVs provided set them in vertexDataArray
             if (a.count >= 2) {

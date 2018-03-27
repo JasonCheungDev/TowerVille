@@ -8,7 +8,7 @@ class PlayState : State {
     static var activeGame : PlayState!
     
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
-    var map : Map = Map()
+    var map : Map!
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
 
     //let minion : Minion
@@ -50,7 +50,8 @@ class PlayState : State {
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         
-        map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
+        map = Map(fromShader: self.shader, mapSize: self.mapSize)
+        
         setupLights()
         
         restart()
@@ -69,39 +70,16 @@ class PlayState : State {
         spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         rangedSpawner = MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         rangedSpawner?.spawnTime = 0.5
+        
+        // update map
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
+        map.compress()
         
-        
-        let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
-        tower1.zScale = 0.3
-        tower1.yScale = 0.7
-        tower1.xScale = 0.3
-        towers.append(tower1)
-
-        let slowTower1 = SlowTower(3.0, -6.0, shader:shader, color: Color(0, 1, 1, 1))
-        slowTower1.zScale = 0.3
-        slowTower1.yScale = 0.7
-        slowTower1.xScale = 0.3
-        towers.append(slowTower1)
-
-        let explodeTower1 = ExplodeTower(10.0, -12.0, shader:shader, color: Color(1, 0, 1, 1))
-        explodeTower1.zScale = 0.3
-        explodeTower1.yScale = 0.7
-        explodeTower1.xScale = 0.3
-        towers.append(explodeTower1)
-        
-        let fragTower1 = FragmentationTower(13.0, -9.0, shader:shader, color: Color(0, 0, 1, 1))
-        fragTower1.zScale = 0.3
-        fragTower1.yScale = 0.7
-        fragTower1.xScale = 0.3
-        towers.append(fragTower1)
-        
-        let laserTower = LaserTower(12, -4, shader: shader, color: Color(1,0,0,1))
-        towers.append(laserTower)
-        
-        self.debugFarm = Farm(self, shader)
-        map.Tiles[5][5].SetStructure(debugFarm!)
-        farms.append(debugFarm!)
+        // create some default structures 
+        self.gold = Farm.COST + SlowTower.COST + Tower.COST
+        createFarm(tile: map.Tiles[17][9])
+        createSlowTower(tile: map.Tiles[7][6])
+        createBasicTower(tile: map.Tiles[7][4])
     }
     
     func gameOver()
@@ -138,14 +116,10 @@ class PlayState : State {
         
         shader.prepareToDraw()
         
+        map.draw()
+        
         for t in towers{
             t.draw()
-        }
-        
-        for row in map.Tiles {
-            for vo in row {
-                vo.draw()
-            }
         }
         
         for f in farms {
