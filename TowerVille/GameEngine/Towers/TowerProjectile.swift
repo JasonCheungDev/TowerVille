@@ -35,7 +35,7 @@ class TowerProjectile : VisualObject{
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(1,1,1,1)
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        
+
         self.renderObject = ro
         self.material = mat
     }

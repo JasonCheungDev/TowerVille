@@ -14,14 +14,14 @@ class RenderObject {
     var Shader : ShaderProgram!
     var VAO : GLuint = 0
     var indexCount : Int { get { return Indices.count } }
+    var VertexDatas : [VertexData] = []
+    var Indices : [GLushort] = []
     
-    private var VertexDatas : [VertexData] = []
-    private var Indices : [GLubyte] = []
     private var vertexBuffer : GLuint = 0
     private var indexBuffer : GLuint = 0
     
     
-    init(fromShader shader: ShaderProgram, fromVertices vertices: [VertexData], fromIndices indices: [GLubyte])
+    init(fromShader shader: ShaderProgram, fromVertices vertices: [VertexData], fromIndices indices: [GLushort])
     {
         self.Shader = shader
         self.VertexDatas = vertices
@@ -55,7 +55,7 @@ class RenderObject {
         
         glGenBuffers(GLsizei(1), &indexBuffer)
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
-        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count * MemoryLayout<GLubyte>.size, Indices, GLenum(GL_STATIC_DRAW))
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count * MemoryLayout<GLushort>.size, Indices, GLenum(GL_STATIC_DRAW))
         
         
         // Enable attributes (in)

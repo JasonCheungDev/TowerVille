@@ -19,7 +19,7 @@ class Tile : VisualObject {
     ]
 
     // Note: Order matters
-    static let indexData : [GLubyte] = [
+    static let indexData : [GLushort] = [
         2,1,0,
         0,3,2
     ]
@@ -42,6 +42,7 @@ class Tile : VisualObject {
 }
 
 enum TileType {
+    case NOTHING
     case Grass
     case Path
     case Mountain

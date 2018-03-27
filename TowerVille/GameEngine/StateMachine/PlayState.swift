@@ -8,7 +8,7 @@ class PlayState : State {
     static var activeGame : PlayState!
     
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
-    var map : Map = Map()
+    var map : Map!
     let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
 
     //let minion : Minion
@@ -39,6 +39,10 @@ class PlayState : State {
     // Mark: - Debug variables
     var debugFarm : Farm?
     
+    // Mark: - Performance measurement
+    var updateDuration : Double = 0
+    var drawDuration : Double = 0
+    
     
     override init(replacing : Bool = true, viewController : ViewController) {
         super.init(replacing: replacing, viewController: viewController)
@@ -47,7 +51,8 @@ class PlayState : State {
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         
-        map.setupMap(fromShader: self.shader, mapSize: self.mapSize)
+        map = Map(fromShader: self.shader, mapSize: self.mapSize)
+        
         setupLights()
         
         restart()
@@ -69,39 +74,16 @@ class PlayState : State {
         hopperSpawner = MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         hopperSpawner?.total = 2 //3 hopper minions
         hopperSpawner?.spawnTime = 4
+        
+        // update map
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
+        map.compress()
         
-
-        let tower1 = Tower(8.0, -7.0, shader:shader, color: Color(1, 1, 0, 1))
-        tower1.zScale = 0.3
-        tower1.yScale = 0.7
-        tower1.xScale = 0.3
-        towers.append(tower1)
-
-        let slowTower1 = SlowTower(3.0, -6.0, shader:shader, color: Color(0, 1, 1, 1))
-        slowTower1.zScale = 0.3
-        slowTower1.yScale = 0.7
-        slowTower1.xScale = 0.3
-        towers.append(slowTower1)
-
-        let explodeTower1 = ExplodeTower(10.0, -12.0, shader:shader, color: Color(1, 0, 1, 1))
-        explodeTower1.zScale = 0.3
-        explodeTower1.yScale = 0.7
-        explodeTower1.xScale = 0.3
-        towers.append(explodeTower1)
-
-        let fragTower1 = FragmentationTower(13.0, -9.0, shader:shader, color: Color(0, 0, 1, 1))
-        fragTower1.zScale = 0.3
-        fragTower1.yScale = 0.7
-        fragTower1.xScale = 0.3
-        towers.append(fragTower1)
-        
-        let laserTower = LaserTower(12, -4, shader: shader, color: Color(1,0,0,1))
-        towers.append(laserTower)
-        
-        self.debugFarm = Farm(self, shader)
-        map.Tiles[5][5].SetStructure(debugFarm!)
-        farms.append(debugFarm!)
+        // create some default structures 
+        self.gold = Farm.COST + SlowTower.COST + Tower.COST
+        createFarm(tile: map.Tiles[17][9])
+        createSlowTower(tile: map.Tiles[7][6])
+        createBasicTower(tile: map.Tiles[7][4])
     }
     
     func gameOver()
@@ -110,6 +92,8 @@ class PlayState : State {
     }
     
     override func update(dt: TimeInterval) {
+        
+        let startTime = Date()
         
         for t in towers {
             t.update(dt: dt)
@@ -128,19 +112,19 @@ class PlayState : State {
             guy.update(dt: dt)
         }
         
+        updateDuration = startTime.timeIntervalSinceNow
     }
     
     override func draw() {
+        
+        let startTime = Date()
+        
         shader.prepareToDraw()
+        
+        map.draw()
         
         for t in towers{
             t.draw()
-        }
-
-        for row in map.Tiles {
-            for vo in row {
-                vo.draw()
-            }
         }
         
         for f in farms {
@@ -151,11 +135,14 @@ class PlayState : State {
             guy.draw()
         }
         
+        drawDuration = startTime.timeIntervalSinceNow
+        
         // update ui
         updateUi()
         
-        // debug display values
-        // getViewController()?.debug_updateUiDisplay("Gold: \(self.gold) | Lives: \(self.lives)")
+        let s = String(format: "Update: %.2f Draw: %.2f", updateDuration * -1000, drawDuration * -1000)
+        
+        viewController.debug_updateUiDisplay(s)
     }
     
     
@@ -205,28 +192,28 @@ class PlayState : State {
             // BUILD MENU
         
         case .BuildTowerBasic:
-            if createBasicTower(tile: selectedTile!)
-            {
-                selectedTile = nil
-                viewController.showBuildMenu(isShown: false)
-                isPickingStructure = false
-            }
+            if createBasicTower(tile: selectedTile!) { deselect() }
             break
-        case .BuildTowerSpecial:
-            if createSlowTower(tile: selectedTile!)
-            {
-                selectedTile = nil
-                viewController.showBuildMenu(isShown: false)
-                isPickingStructure = false
-            }
+        case .BuildTowerSlow:
+            if createSlowTower(tile: selectedTile!) { deselect() }
+            break
+        case .BuildTowerExplosion:
+            if createExplodeTower(tile: selectedTile!) { deselect() }
+            break
+        case .BuildTowerFragment:
+            if createFragmentTower(tile: selectedTile!) { deselect() }
+            break
+        case .BuildTowerLaser:
+            if createLaserTower(tile: selectedTile!) { deselect() }
             break
         case .BuildResourceFarm:
-            if createFarm(tile: selectedTile!)
-            {
-                selectedTile = nil
-                viewController.showBuildMenu(isShown: false)
-                isPickingStructure = false
-            }
+            if createFarm(tile: selectedTile!) { deselect() }
+            break
+        case .BuildResourceSawMill:
+            if createSawMill(tile: selectedTile!) { deselect() }
+            break
+        case .BuildResourceMine:
+            if createMine(tile: selectedTile!) { deselect() }
             break
             
             // STRUCTURE SELECTION MENU
@@ -265,18 +252,10 @@ class PlayState : State {
             // ETC.
         
         case .BackSelected:
-            if (isPickingStructure)
+            if (isPickingStructure || isSelectingStructure)
             {
-                // deselect
-                selectedTile = nil
-                // hide all menus
-                viewController.showBuildMenu(isShown: false)
-                viewController.hideStructureMenu()
-                // lower all flags
-                isPickingStructure = false
-                isSelectingStructure = false
+                deselect()
             }
-            // else if (isSelectingStructure) ...
             else
             {
                 NSLog("Back to intro")
@@ -290,19 +269,108 @@ class PlayState : State {
     }
     
     override func pause() {
-        
+        // this is the same as exit
     }
     
     override func resume() {
-        
+        // this is the same as enter
     }
     
+    override func enter() {
+        viewController.showScreen(screenType: .GameScreen);
+    }
+    
+    override func exit() {
+        NSLog("Playstate Exit")
+        viewController.hideScreen(screenType: .GameScreen);
+        towers.removeAll()
+        farms.removeAll()
+        minions.removeAll()
+        PlayState.activeGame = nil;
+        Camera.ActiveCamera = nil;
+    }
+    
+    private func deselect()
+    {
+        // deselect
+        selectedTile = nil
+        
+        // hide all menus
+        viewController.showBuildMenu(isShown: false)
+        viewController.hideStructureMenu()
+        
+        // lower all flags
+        isPickingStructure = false
+        isSelectingStructure = false
+    }
+    
+}
+
+// MARK: - Game initialization
+extension PlayState
+{
+    func setupLights()
+    {
+        let directionalLight = DirectionalLight()
+        directionalLight.xDir = 1
+        directionalLight.yDir = -1
+        directionalLight.zDir = -1
+        directionalLight.lightIntensity = 0.125
+        directionalLight.lightColor = Color(1,1,1,1)
+        
+        let pointLightLeft = PointLight()
+        pointLightLeft.x = 4.0
+        pointLightLeft.y = 5.0
+        pointLightLeft.z = -4.0
+        pointLightLeft.lightIntensity = 1.0
+        pointLightLeft.lightColor = Color(222/255,107/255,40/255,1)
+        
+        let pointLightRename = PointLight()
+        pointLightRename.x = 14.0
+        pointLightRename.y = 5.0
+        pointLightRename.z = -14.0
+        pointLightRename.lightIntensity = 1.0
+        pointLightRename.lightColor = Color(67/255,134/255,150/255,1)
+    }
+}
+
+// MARK: - Structure creation
+extension PlayState
+{
     func createFarm(tile : Tile) -> Bool {
         if (self.gold < Farm.COST) { return false }
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
         let newFarm = Farm(self, shader)
+        newFarm.SetValue(x: tile.x, y: tile.z)
+        tile.SetStructure(newFarm)
+        farms.append(newFarm)
+        self.gold -= Farm.COST
+        
+        return true
+    }
+    
+    func createSawMill(tile : Tile) -> Bool {
+        if (self.gold < SawMill.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
+        
+        let newFarm = SawMill(self, shader)
+        newFarm.SetValue(x: tile.x, y: tile.z)
+        tile.SetStructure(newFarm)
+        farms.append(newFarm)
+        self.gold -= SawMill.COST
+        
+        return true
+    }
+    
+    func createMine(tile : Tile) -> Bool {
+        if (self.gold < Mine.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
+        
+        let newFarm = Mine(self, shader)
         newFarm.SetValue(x: tile.x, y: tile.z)
         tile.SetStructure(newFarm)
         farms.append(newFarm)
@@ -337,54 +405,43 @@ class PlayState : State {
         return true
     }
     
-    
-    override func enter() {
-        viewController.showScreen(screenType: .GameScreen);
-    }
-    
-    override func exit() {
-        NSLog("Playstate Exit")
-        viewController.hideScreen(screenType: .GameScreen);
-        towers.removeAll()
-        farms.removeAll()
-        minions.removeAll()
-        PlayState.activeGame = nil;
-        Camera.ActiveCamera = nil;
-    }
-    
-}
-
-// MARK: - Game initialization
-extension PlayState
-{
-
-    
-    func setupLights()
-    {
-        let directionalLight = DirectionalLight()
-        directionalLight.xDir = 1
-        directionalLight.yDir = -1
-        directionalLight.zDir = -1
-        directionalLight.lightIntensity = 0.125
-        directionalLight.lightColor = Color(1,1,1,1)
+    func createExplodeTower(tile : Tile) -> Bool {
+        if (self.gold < ExplodeTower.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
         
-        let pointLightLeft = PointLight()
-        pointLightLeft.x = 4.0
-        pointLightLeft.y = 5.0
-        pointLightLeft.z = -4.0
-        pointLightLeft.lightIntensity = 1.0
-        pointLightLeft.lightColor = Color(222/255,107/255,40/255,1)
+        let newTower = ExplodeTower(0, 0, shader:shader, color: Color(1, 0, 1, 1))
+        tile.SetStructure(newTower)
+        towers.append(newTower)
+        self.gold -= ExplodeTower.COST
         
-        let pointLightRename = PointLight()
-        pointLightRename.x = 14.0
-        pointLightRename.y = 5.0
-        pointLightRename.z = -14.0
-        pointLightRename.lightIntensity = 1.0
-        pointLightRename.lightColor = Color(67/255,134/255,150/255,1)
+        return true
     }
-}
-
-// pathetic swift doesn't even have a basic error type
-enum MyError : Error {
-    case RunTimeError(String)
+    
+    func createFragmentTower(tile : Tile) -> Bool {
+        if (self.gold < FragmentationTower.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
+        
+        let newTower = FragmentationTower(0, 0, shader:shader, color: Color(0, 0, 1, 1))
+        tile.SetStructure(newTower)
+        towers.append(newTower)
+        self.gold -= FragmentationTower.COST
+        
+        return true
+    }
+    
+    func createLaserTower(tile : Tile) -> Bool {
+        if (self.gold < LaserTower.COST) { return false }
+        if (tile.structure != nil) { return false }
+        if (tile.type != TileType.Grass) { return false }
+        
+        let newTower = LaserTower(0, 0, shader:shader, color: Color(1, 0, 0, 1))
+        tile.SetStructure(newTower)
+        towers.append(newTower)
+        self.gold -= LaserTower.COST
+        
+        return true
+    }
+    
 }

@@ -15,13 +15,25 @@ class VisualObject : GameObject
     var material : Material?
     
     
+    override init()
+    {
+        super.init()
+    }
+    
+    init(_ ro : RenderObject, _ mat : Material)
+    {
+        super.init()
+        self.renderObject = ro
+        self.material = mat
+    }
+    
     func draw()
     {
         // ensure VO is in a valid state before drawing
         if !checkValidState() { return }
         
         let activeShader = renderObject!.Shader!
-        activeShader.prepareToDraw()
+        //activeShader.prepareToDraw()
 
         // load material data
         material?.LoadMaterial()
@@ -34,7 +46,7 @@ class VisualObject : GameObject
         glUniformMatrix4fv(activeShader.projectionUniform, 1, GLboolean(GL_FALSE), Camera.ActiveCamera!.projectionMatrix.array)
         
         // draw
-        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(renderObject!.indexCount), GLenum(GL_UNSIGNED_BYTE), nil)
+        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(renderObject!.indexCount), GLenum(GL_UNSIGNED_SHORT), nil)
     }
     
     func checkValidState() -> Bool
