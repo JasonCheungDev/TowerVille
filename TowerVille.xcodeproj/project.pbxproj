@@ -68,8 +68,6 @@
 		DE47172E206222C800241030 /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47172D206222C800241030 /* Structure.swift */; };
 		DE471730206224FC00241030 /* TestFarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47172F206224FC00241030 /* TestFarm.swift */; };
 		DE5977EE20324E3000E52927 /* LambertVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */; };
-		DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */; };
-		DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */; };
 		DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5B930F2019558B001B9D83 /* ShaderProgram.swift */; };
 		DE8EFD29203CF75D000987CE /* PhongMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD28203CF75D000987CE /* PhongMaterial.swift */; };
 		DE8EFD2B203D5C9D000987CE /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EFD2A203D5C9D000987CE /* Camera.swift */; };
@@ -82,11 +80,8 @@
 		DE9AF82B20358A230097F76B /* LightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82A20358A230097F76B /* LightManager.swift */; };
 		DE9AF82D20358AFB0097F76B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82C20358AFB0097F76B /* Light.swift */; };
 		DE9AF830203BD6100097F76B /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82F203BD6100097F76B /* PointLight.swift */; };
-		DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DE9AF832203C03440097F76B /* JasonFragmentShader.glsl */; };
 		DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2DA14201BD9810088797D /* GlkExtensions.swift */; };
 		DEC217B82034F05900F11022 /* VertexData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217B72034F05900F11022 /* VertexData.swift */; };
-		DEC217BB2035321400F11022 /* PhongFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEC217B92035321400F11022 /* PhongFragmentShader.glsl */; };
-		DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEC217BA2035321400F11022 /* PhongVertexShader.glsl */; };
 		DEC217BE2035335A00F11022 /* DebugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217BD2035335A00F11022 /* DebugData.swift */; };
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
 		DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C42035434600F11022 /* Rendering Instructions.rtf */; };
@@ -94,7 +89,6 @@
 		DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C13205BBEB000B7373E /* slow_tower.png */; };
 		DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C16205BC69F00B7373E /* Futura.ttc */; };
 		DED25B65206354A800632ED2 /* LineObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED25B64206354A800632ED2 /* LineObject.swift */; };
-		DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */; };
 		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
 		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
 /* End PBXBuildFile section */
@@ -185,8 +179,6 @@
 		DE47172D206222C800241030 /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
 		DE47172F206224FC00241030 /* TestFarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFarm.swift; sourceTree = "<group>"; };
 		DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertVertexShader.glsl; sourceTree = "<group>"; };
-		DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LambertFragmentShader.glsl; sourceTree = "<group>"; };
-		DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentShader.glsl; sourceTree = "<group>"; };
 		DE5B930F2019558B001B9D83 /* ShaderProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
 		DE8EFD28203CF75D000987CE /* PhongMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongMaterial.swift; sourceTree = "<group>"; };
 		DE8EFD2A203D5C9D000987CE /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -199,11 +191,8 @@
 		DE9AF82A20358A230097F76B /* LightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightManager.swift; sourceTree = "<group>"; };
 		DE9AF82C20358AFB0097F76B /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		DE9AF82F203BD6100097F76B /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
-		DE9AF832203C03440097F76B /* JasonFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JasonFragmentShader.glsl; sourceTree = "<group>"; };
 		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
 		DEC217B72034F05900F11022 /* VertexData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexData.swift; sourceTree = "<group>"; };
-		DEC217B92035321400F11022 /* PhongFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongFragmentShader.glsl; sourceTree = "<group>"; };
-		DEC217BA2035321400F11022 /* PhongVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhongVertexShader.glsl; sourceTree = "<group>"; };
 		DEC217BD2035335A00F11022 /* DebugData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugData.swift; sourceTree = "<group>"; };
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
 		DEC217C42035434600F11022 /* Rendering Instructions.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Rendering Instructions.rtf"; sourceTree = "<group>"; };
@@ -211,7 +200,6 @@
 		DEC41C13205BBEB000B7373E /* slow_tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow_tower.png; sourceTree = "<group>"; };
 		DEC41C16205BC69F00B7373E /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
 		DED25B64206354A800632ED2 /* LineObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineObject.swift; sourceTree = "<group>"; };
-		DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.glsl; sourceTree = "<group>"; };
 		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
 		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -464,13 +452,7 @@
 		DEE44739201952CA009044FB /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				DE9AF832203C03440097F76B /* JasonFragmentShader.glsl */,
-				DEC217B92035321400F11022 /* PhongFragmentShader.glsl */,
-				DEC217BA2035321400F11022 /* PhongVertexShader.glsl */,
-				DE5977ED20324E3000E52927 /* LambertFragmentShader.glsl */,
 				DE5977EC20324E3000E52927 /* LambertVertexShader.glsl */,
-				DEE4473A2019530E009044FB /* SimpleVertexShader.glsl */,
-				DE5B930D20195424001B9D83 /* SimpleFragmentShader.glsl */,
 				289E3CC8203A8B6800B34C4A /* MarkusFragmentShader.glsl */,
 			);
 			path = Shaders;
@@ -607,7 +589,6 @@
 				28E88C3E206AA9DA004BA75B /* rook.obj in Resources */,
 				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* MarkusFragmentShader.glsl in Resources */,
-				DEC217BC2035321400F11022 /* PhongVertexShader.glsl in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
 				DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */,
 				2840DE2F203C1BEA005C0513 /* cube.obj in Resources */,
@@ -616,14 +597,9 @@
 				DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */,
 				DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */,
 				DEC217C22035412100F11022 /* dungeon_01.png in Resources */,
-				DE5B930E20195424001B9D83 /* SimpleFragmentShader.glsl in Resources */,
-				DEE4473B2019530E009044FB /* SimpleVertexShader.glsl in Resources */,
 				28C0DAD6204757870068B071 /* octahedron.obj in Resources */,
-				DE5977EF20324E3000E52927 /* LambertFragmentShader.glsl in Resources */,
 				28C0DAD8204757870068B071 /* hexahedron.obj in Resources */,
-				DE9AF834203C03440097F76B /* JasonFragmentShader.glsl in Resources */,
 				DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */,
-				DEC217BB2035321400F11022 /* PhongFragmentShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
