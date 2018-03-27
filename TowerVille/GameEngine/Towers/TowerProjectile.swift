@@ -60,8 +60,10 @@ class TowerProjectile : VisualObject{
         }
     }
     
-    func MoveTowards(dt: Float){
-        distance = sqrt(pow(target.x-self.x, 2)+pow(target.z-self.z, 2)+pow(target.y-self.y, 2))
+    func MoveTowards(dt: Float) {
+        
+        // 2D distance checking
+        distance = sqrt(pow(target.x-self.x, 2)+pow(target.y-self.y, 2))
         
         if(distance < 0.5 && timeAlive < 1000){
             target.health -= damage;

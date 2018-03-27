@@ -31,6 +31,12 @@ class GameObject {
         
     }
     
+    func setScale(_ scale : Float) {
+        self.xScale = scale
+        self.yScale = scale
+        self.zScale = scale
+    }
+    
     class func distanceBetween2D(_ objA : GameObject, _ objB : GameObject) -> Float
     {
         return sqrt( pow(objA.x - objB.x, 2) + pow(objA.z - objB.z, 2) )

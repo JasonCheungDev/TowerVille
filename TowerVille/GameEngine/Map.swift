@@ -27,14 +27,13 @@ class Map : VisualObject {
     }
     
     override func draw() {
-        mergedGrassVO?.draw()
-        mergedMountainVO?.draw()
-        mergedPathVO?.draw()
 
-        return
         // efficient draw
         if mergedGrassVO != nil
         {
+            mergedGrassVO?.draw()
+            mergedMountainVO?.draw()
+            mergedPathVO?.draw()
         }
         // standard draw
         else
@@ -142,6 +141,11 @@ class Map : VisualObject {
         self.mergedGrassVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Grass }))
 
         self.mergedPathVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Path }))
+    }
+    
+    func clearAllStructures()
+    {
+        Tiles.forEach({ $0.forEach({ $0.structure = nil })})
     }
     
     private func mergeVisualObjects(fromVisualObjects VOs : [VisualObject]) -> VisualObject

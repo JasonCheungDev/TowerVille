@@ -64,6 +64,7 @@ class PlayState : State {
         towers.removeAll()
         farms.removeAll()
         minions.removeAll()
+        map.clearAllStructures()
         lives = 10
         gold = 0
         
