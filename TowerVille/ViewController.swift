@@ -50,8 +50,6 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     var glkUpdater: GLKUpdater!
     
     // TODO: Remove debug variables
-    var shader : ShaderProgram!
-    var debugVisualObjects : [VisualObject] = []
     @IBOutlet var debugDisplay: UILabel!
 
     
@@ -327,10 +325,6 @@ extension ViewController {
     func setupGLupdater() {
         self.glkUpdater = GLKUpdater(glkViewController: self)
         self.delegate = self.glkUpdater
-    }
-    
-    func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "PerVertex.vert", fragmentShader: "PerVertex.frag")
     }
     
 }
