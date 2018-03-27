@@ -22,6 +22,7 @@ class FragmentationTower : Tower {
         self.projectileLife = 0.25
         self.reloadTime = 1 / self.attacksPerSecond
     }
+
     
     override func update(dt: TimeInterval) {
         

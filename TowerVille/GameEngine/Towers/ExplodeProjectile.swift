@@ -11,6 +11,22 @@ import GLKit
 
 class ExplodeProjectile : TowerProjectile{
 
+    
+    
+    override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, target: Minion) {
+        super.init(x, z, shader: shader, target: target)
+        
+        let mat = self.material as! LambertMaterial
+        mat.surfaceColor = Color(1,0,0,1) // red explosion
+        
+    }
+    
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = ExplodeProjectile(self.x, self.z, shader: shader, target: self.target)
+        return copy
+    }
+    
+    
     override func MoveTowards(dt: Float) {
         
         distance = sqrt(pow(target.x-self.x, 2)+pow(target.z-self.z, 2))
@@ -35,9 +51,11 @@ class ExplodeProjectile : TowerProjectile{
             
             directionX = (target.x - self.x) / distance
             directionZ = (target.z - self.z) / distance
+            directionY = (target.y - self.y) / distance
             
             self.x += directionX * speed * Float(dt)
             self.z += directionZ * speed * Float(dt)
+            self.y += directionY * speed * Float(dt)
             
         }else{
             

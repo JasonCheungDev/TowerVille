@@ -13,6 +13,20 @@ class FragmentationProjectile : TowerProjectile{
     var direction : Direction = Direction.North
     
     
+    override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, target: Minion) {
+        super.init(x, z, shader: shader, target: target)
+        
+        let mat = self.material as! LambertMaterial
+        mat.surfaceColor = Color(0,1,0,1) //green
+        
+    }
+    
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = FragmentationProjectile(self.x, self.z, shader: shader, target: self.target)
+        return copy
+    }
+    
+    
     func setDirection(direction: Direction){
         self.direction = direction
     }
@@ -24,7 +38,7 @@ class FragmentationProjectile : TowerProjectile{
         }
         
         for m in PlayState.activeGame.minions{
-            distance = sqrt(pow(m.x-self.x, 2)+pow(m.z-self.z, 2))
+            distance = sqrt(pow(m.x-self.x, 2)+pow(m.z-self.z, 2)+pow(m.y-self.y,2))
             
             if(distance < 0.5){
                 

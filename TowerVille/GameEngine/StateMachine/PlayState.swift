@@ -25,6 +25,7 @@ class PlayState : State {
 
     var spawner : MinionSpawner?
     var rangedSpawner : MinionSpawner?
+    var hopperSpawner : MinionSpawner?
     var minions : [Minion] = []
     var farms   : [Farm] = []
     var selectedTile : Tile?
@@ -69,7 +70,10 @@ class PlayState : State {
         // initiailze
         spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         rangedSpawner = MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
-        rangedSpawner?.spawnTime = 0.5
+        rangedSpawner?.spawnTime = 2.5
+        hopperSpawner = MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
+        hopperSpawner?.total = 2 //3 hopper minions
+        hopperSpawner?.spawnTime = 4
         
         // update map
         map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
@@ -101,6 +105,7 @@ class PlayState : State {
         
         spawner?.update(dt: dt)
         rangedSpawner?.update(dt: dt)
+        hopperSpawner?.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)
