@@ -63,7 +63,7 @@ class LaserTower : Tower
         shootDir = GLKVector2MultiplyScalar(shootDir, self.maxRange)
         targetPos = GLKVector2Add(towerPos, shootDir)
         
-        let mat = LambertMaterial(self.shader)
+        let mat = GenericMaterial(self.shader)
         mat.surfaceColor = Color(1,0,0,1)
         mat.specularPower = 0
         

@@ -36,7 +36,7 @@
 		2BEBE64620193F1D008E8FEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64520193F1D008E8FEB /* Map.swift */; };
 		2BEBE64820193FF5008E8FEB /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64720193FF5008E8FEB /* Material.swift */; };
 		2BEBE64C20194134008E8FEB /* Farm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64B20194134008E8FEB /* Farm.swift */; };
-		2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */; };
+		2BEBE64E2019413F008E8FEB /* GenericMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64D2019413F008E8FEB /* GenericMaterial.swift */; };
 		2BEBE6502019415A008E8FEB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE64F2019415A008E8FEB /* Vertex.swift */; };
 		2BEBE6522019416C008E8FEB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE6512019416C008E8FEB /* Color.swift */; };
 		2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBE656201942F4008E8FEB /* ExplodeTower.swift */; };
@@ -143,7 +143,7 @@
 		2BEBE64520193F1D008E8FEB /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		2BEBE64720193FF5008E8FEB /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		2BEBE64B20194134008E8FEB /* Farm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Farm.swift; sourceTree = "<group>"; };
-		2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LambertMaterial.swift; sourceTree = "<group>"; };
+		2BEBE64D2019413F008E8FEB /* GenericMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMaterial.swift; sourceTree = "<group>"; };
 		2BEBE64F2019415A008E8FEB /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		2BEBE6512019416C008E8FEB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2BEBE656201942F4008E8FEB /* ExplodeTower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodeTower.swift; sourceTree = "<group>"; };
@@ -415,7 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				2BEBE64720193FF5008E8FEB /* Material.swift */,
-				2BEBE64D2019413F008E8FEB /* LambertMaterial.swift */,
+				2BEBE64D2019413F008E8FEB /* GenericMaterial.swift */,
 			);
 			path = Material;
 			sourceTree = "<group>";
@@ -651,7 +651,7 @@
 				2BB2AD6F20193318004565D4 /* AppDelegate.swift in Sources */,
 				DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */,
 				DED25B65206354A800632ED2 /* LineObject.swift in Sources */,
-				2BEBE64E2019413F008E8FEB /* LambertMaterial.swift in Sources */,
+				2BEBE64E2019413F008E8FEB /* GenericMaterial.swift in Sources */,
 				DE96E58F2047EF2A00B2966E /* UIEnums.swift in Sources */,
 				8C8F93152066F65400495B5C /* HoppingMinion.swift in Sources */,
 				2BEBE669201943BE008E8FEB /* SawMill.swift in Sources */,
