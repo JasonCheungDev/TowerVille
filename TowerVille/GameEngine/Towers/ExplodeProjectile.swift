@@ -16,7 +16,7 @@ class ExplodeProjectile : TowerProjectile{
     override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, target: Minion) {
         super.init(x, z, shader: shader, target: target)
         
-        let mat = self.renderObject?.material as! LambertMaterial
+        let mat = self.material as! LambertMaterial
         mat.surfaceColor = Color(1,0,0,1) // red explosion
         
     }
