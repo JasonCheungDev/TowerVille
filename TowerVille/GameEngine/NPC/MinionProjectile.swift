@@ -22,13 +22,15 @@ class MinionProjectile : VisualObject
         super.init()
         self.x = x
         self.z = z
-        self.xScale = 0.25
-        self.yScale = 0.25
-        self.zScale = 0.25
+        self.y = 0.5
+        self.xScale = 0.15
+        self.yScale = 0.15
+        self.zScale = 0.15
         self.target = target
         
         let objLoader = ObjLoader()
-        objLoader.Read(fileName: "sphere")
+        objLoader.smoothed = false
+        objLoader.Read(fileName: "icosahedron")
         
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(1,0,0,1)
