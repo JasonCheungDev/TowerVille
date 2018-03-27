@@ -9,9 +9,24 @@
 import Foundation
 
 class Minion : VisualObject {
-    var target : GameObject? = nil
     
-    var health : Int = 100
+    var target : Structure? = nil
+    
+    private var _health : Int = 100
+    var health : Int {
+        get { return _health }
+        set {
+            if newValue <= 0
+            {
+                alive = false
+                _health = 0
+            }
+            else
+            {
+                _health = newValue
+            }
+        }
+    }
     var speed : Double = 2
     let shader : ShaderProgram
     var curIndex : Int = 1
@@ -23,12 +38,19 @@ class Minion : VisualObject {
         super.init()
         let mat = LambertMaterial(shader)
         mat.surfaceColor = Color(0,0,1,1)
-        let ro = RenderObject(fromShader:shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
-        ro.material = mat
-        linkRenderObject(ro)
-        self.xScale = 0.4
-        self.yScale = 0.3
-        self.zScale = 0.4
+        
+        let objLoader = ObjLoader();
+        objLoader.Read(fileName: "octahedron");
+        
+        let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+
+        self.renderObject = ro
+        self.material = mat
+        
+        self.xScale = 0.5
+        self.yScale = 0.5
+        self.zScale = 0.5
+        self.y = 0.5;
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
@@ -59,6 +81,8 @@ class Minion : VisualObject {
         
         x += x_trans
         z += z_trans
-        
+       
     }
+    
+    
 }

@@ -14,10 +14,16 @@ class LambertMaterial : Material {
     private static let MAX_POINT_LIGHTS = 4
     
     var surfaceColor : Color  = Color(1,0,0,1)
+    var specularPower : Float = 32
+    var shader: ShaderProgram
+    
+    private var hasTexture : GLint = 0
     
     private var surfaceColorUniformLocation : Int32!
     private var textureUniformLocation : Int32!
     private var texture : GLuint = 0
+    private var specularPowerUniformLocation : Int32!
+    private var hasTextureUniformLocation : Int32!
     
     private var directionalLightIntensityUniform : Int32!
     private var directionalLightDirectionUniform : Int32!
@@ -28,16 +34,17 @@ class LambertMaterial : Material {
     
     init (_ shader : ShaderProgram)
     {
+        self.shader = shader
         self.SetupAttributeLocations(shader)
     }
 
     func loadTexture(_ filename: String) {
-
         let path = Bundle.main.path(forResource: filename, ofType: nil)!
         let option = [ GLKTextureLoaderOriginBottomLeft: true]
         do {
             let info = try GLKTextureLoader.texture(withContentsOfFile: path, options: option as [String : NSNumber]?)
             self.texture = info.name
+            hasTexture = 1
         } catch {
             NSLog("ERROR: Failed to load texture %s", filename)
         }
@@ -48,7 +55,11 @@ class LambertMaterial : Material {
         glUniform4f(surfaceColorUniformLocation, surfaceColor.r, surfaceColor.g, surfaceColor.b, surfaceColor.a)
         glActiveTexture(GLenum(GL_TEXTURE1))
         glBindTexture(GLenum(GL_TEXTURE_2D), self.texture)
+        glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MAG_FILTER), GLint(GL_NEAREST))
+        glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GLint(GL_LINEAR))
         glUniform1i(textureUniformLocation, 1)
+        glUniform1f(specularPowerUniformLocation, specularPower)
+        glUniform1i(hasTextureUniformLocation, hasTexture)
     }
     
     func LoadLightData(fromLights lights: [Light]) {
@@ -88,6 +99,8 @@ class LambertMaterial : Material {
         // surface
         surfaceColorUniformLocation = glGetUniformLocation(shader.programHandle, "u_SurfaceColor")
         textureUniformLocation = glGetUniformLocation(shader.programHandle, "u_Texture")
+        hasTextureUniformLocation = glGetUniformLocation(shader.programHandle, "u_HasTexture")
+        specularPowerUniformLocation = glGetUniformLocation(shader.programHandle, "u_SpecularPower")
         
         // lighting 
         directionalLightDirectionUniform = glGetUniformLocation(shader.programHandle, "u_DirectionalLight.direction")

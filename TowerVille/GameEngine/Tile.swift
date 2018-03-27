@@ -19,7 +19,7 @@ class Tile : VisualObject {
     ]
 
     // Note: Order matters
-    static let indexData : [GLubyte] = [
+    static let indexData : [GLushort] = [
         2,1,0,
         0,3,2
     ]
@@ -27,9 +27,9 @@ class Tile : VisualObject {
     var xCoord : uint = 0
     var yCoord : uint = 0
     var type   : TileType = TileType.Grass
-    var structure : GameObject?
+    var structure : Structure?
     
-    func SetStructure(_ newStructure : GameObject) -> Bool {
+    func SetStructure(_ newStructure : Structure) -> Bool {
         if self.structure != nil { return false }
         
         self.structure = newStructure
@@ -42,6 +42,7 @@ class Tile : VisualObject {
 }
 
 enum TileType {
+    case NOTHING
     case Grass
     case Path
     case Mountain

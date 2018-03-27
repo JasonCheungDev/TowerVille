@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class FlatColorMaterial : Material{
-    
+        
     var color : Color = Color(1,0,0,1)
     
     private var colorUniformLocation : Int32!

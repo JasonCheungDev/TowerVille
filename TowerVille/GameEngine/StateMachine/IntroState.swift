@@ -2,13 +2,13 @@ import Foundation
 
 class IntroState : State {
     
-    override init(replacing : Bool = true) {
-        super.init(replacing : replacing)
+    override init(replacing : Bool = true, viewController : ViewController) {
+        super.init(replacing: replacing, viewController: viewController)
         print("intro")
     }
     
     override func update(dt: TimeInterval) {
-        next = PlayState()
+        // next = PlayState()
     }
     
     override func draw() {
@@ -19,12 +19,28 @@ class IntroState : State {
         
     }
     
+    override func processUiInput(action: UIActionType) {
+        if (action == .PlaySelected)
+        {
+            next = PlayState(replacing: false, viewController: self.viewController)
+        }
+    }
+    
     override func pause() {
         
     }
     
     override func resume() {
         
+    }
+    
+    override func enter() {
+        self.viewController.showScreen(screenType: UIScreens.IntroScreen)
+    }
+    
+    override func exit() {
+        self.viewController.hideScreen(screenType: UIScreens.IntroScreen)
+        next = nil
     }
     
 }

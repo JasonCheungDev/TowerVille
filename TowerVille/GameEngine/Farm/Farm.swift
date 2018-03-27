@@ -7,16 +7,19 @@
 //
 
 import Foundation
+import Darwin
 import GLKit
 
 
-class Farm : VisualObject, ResourceGenerator {
+class Farm : Structure, ResourceGenerator {
     
-    static let COST : Int = 10
+    override class var NAME : String { return "Farm" }
+    override class var ICON : String { return "farm.png" }
+    override class var HEALTH_LVLS : [Int] { return [20,40,60,80,100] }
+    override class var COST_LVLS : [Int] { return [1,50,100,150,300] }
     
-    var Health: Int = 100
-    var ResourcePerSecond: Int = 2
-    var Cost: Int = COST
+    var ResourcePerSecond: Int = 1
+    var ResourceMultiplier: Int = 1
     
     private let game : PlayState
     private var cooldown : Double = 1
@@ -29,12 +32,76 @@ class Farm : VisualObject, ResourceGenerator {
         
         let mat = LambertMaterial(shader)
         mat.loadTexture("farm.png")
-        mat.surfaceColor = Color(0, 0.2, 0, 1)
+        mat.surfaceColor = Color(1, 1, 1, 1)
+        mat.specularPower = 1;
         
-        let ro = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        ro.material = mat
+        let objLoader = ObjLoader()
+        objLoader.Read(fileName: "farm")
         
-        self.linkRenderObject(ro)        
+        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        
+        self.renderObject = ro
+        self.material = mat
+    }
+    
+    func SetValue(x: Float, y: Float){
+        self.x = x
+        self.y = y
+        
+        //Calculate how close the farm is to the nearest path, and increase value accordingly
+        var minDist = INT_MAX
+        let map = PlayState.activeGame.map!
+        
+        for x in 0 ..< map.Tiles.count {
+            for y in 0 ..< map.Tiles[x].count {
+                
+                if(map.Tiles[x][y].type == TileType.Path){
+                    let distance = sqrt(pow(Float(
+                        map.Tiles[x][y].x) - self.x, 2) + pow( Float(map.Tiles[x][y].z) - self.y, 2))
+                    if(distance < Float(minDist)){
+                        minDist = Int32(distance)
+                    }
+                    
+                    //print("The distance is ", minDist)
+                }
+            }
+        }
+        
+        //set value based on how close the farm is to the nearest path
+        switch(minDist){
+        case 1:
+            ResourcePerSecond = ResourceMultiplier * 12
+            break;
+        case 2:
+            ResourcePerSecond = ResourceMultiplier * 10
+            break;
+        case 3:
+            ResourcePerSecond = ResourceMultiplier * 8
+            break;
+        case 4:
+            ResourcePerSecond = ResourceMultiplier * 7
+            break;
+        case 5:
+            ResourcePerSecond = ResourceMultiplier * 6
+            break;
+        case 6:
+            ResourcePerSecond = ResourceMultiplier * 5
+            break;
+        case 7:
+            ResourcePerSecond = ResourceMultiplier * 4
+            break;
+        case 8:
+            ResourcePerSecond = ResourceMultiplier * 3
+            break;
+        case 9:
+            ResourcePerSecond = ResourceMultiplier * 2
+            break;
+        default:
+            ResourcePerSecond = 1
+            break;
+        }
+        
+        print("Resources per second: ", ResourcePerSecond, " distance away from path: ", minDist)
     }
     
     func ProduceResource() -> Void {
@@ -49,5 +116,6 @@ class Farm : VisualObject, ResourceGenerator {
             ProduceResource()
             cooldown = 1
         }
+        
     }
 }
