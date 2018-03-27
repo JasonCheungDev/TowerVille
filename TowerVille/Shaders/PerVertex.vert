@@ -60,7 +60,7 @@ void main(void) {
     }
     
     frag_TexCoord = i_TexCoord;
-    frag_Diffuse = diffuse * u_SurfaceColor;
+    frag_Diffuse = diffuse * u_SurfaceColor * u_SurfaceColor;
     frag_Specular = specular;
     gl_Position = u_Projection * u_ModelView * i_Position;
 }
