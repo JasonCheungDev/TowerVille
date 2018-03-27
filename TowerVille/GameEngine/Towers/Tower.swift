@@ -45,7 +45,8 @@ class Tower : Structure {
         mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
         
         let goat = ObjLoader()
-        goat.smoothed = true
+        goat.smoothed = false
+        goat.calculate_normals = true
         goat.Read(fileName: "rook")
         
         let ro = RenderObject(fromShader: shader, fromVertices: goat.vertexDataArray, fromIndices: goat.indexDataArray)
