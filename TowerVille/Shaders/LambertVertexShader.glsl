@@ -16,12 +16,7 @@ varying vec2 frag_TexCoord;
 varying vec3 frag_Normal;varying vec3 frag_Position;
 
 void main(void) {
-    //TODO : remove
-    float desaturationCoef = 0.5;
-    vec3 linearSurfaceColor = u_SurfaceColor.rgb * u_SurfaceColor.rgb;
-    float averageLuminance = dot(linearSurfaceColor, vec3(0.333));
-    
-    frag_Color.rgb = mix(linearSurfaceColor, vec3(averageLuminance), desaturationCoef);
+    frag_Color = u_SurfaceColor * u_SurfaceColor;
     frag_TexCoord = i_TexCoord;
     frag_Normal = normalize((u_ModelView * vec4(i_Normal, 0.0)).xyz);
     frag_Position = (u_ModelView * i_Position).xyz;
