@@ -310,6 +310,7 @@ extension ViewController {
         glkView = self.view as! GLKView
         glkView.context = EAGLContext(api: .openGLES2)!
         glkView.drawableDepthFormat = .format16         // for depth testing
+        self.preferredFramesPerSecond = 60
         EAGLContext.setCurrent(glkView.context)
         
         glEnable(GLenum(GL_DEPTH_TEST))

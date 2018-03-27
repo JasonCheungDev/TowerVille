@@ -18,7 +18,7 @@ varying vec3 frag_Normal;varying vec3 frag_Position;
 void main(void) {
     frag_Color = u_SurfaceColor * u_SurfaceColor;
     frag_TexCoord = i_TexCoord;
-    frag_Normal = normalize((u_ModelView * vec4(i_Normal, 0.0)).xyz);
+    frag_Normal = normalize(mat3(u_ModelView) * i_Normal);
     frag_Position = (u_ModelView * i_Position).xyz;
     gl_Position = u_Projection * u_ModelView * i_Position;
 }
