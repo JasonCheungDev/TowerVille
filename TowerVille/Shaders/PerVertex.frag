@@ -12,5 +12,5 @@ void main() {
     if (u_HasTexture) {
         diffuseColor *= texture2D(u_Texture, frag_TexCoord) * texture2D(u_Texture, frag_TexCoord);
     }
-    gl_FragColor = sqrt(diffuseColor + frag_Specular);
+    gl_FragColor = diffuseColor + frag_Specular;
 }

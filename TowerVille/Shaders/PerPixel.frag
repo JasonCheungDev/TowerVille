@@ -67,7 +67,6 @@ void main() {
         diffuse *= texture2D(u_Texture, frag_TexCoord) * texture2D(u_Texture, frag_TexCoord);
     }
     
-    vec4 linearColor = diffuse * frag_Color + specular;
-    gl_FragColor = sqrt(linearColor);
+    gl_FragColor = diffuse * frag_Color + specular;
 }
 
