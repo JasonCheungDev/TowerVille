@@ -10,7 +10,7 @@ varying lowp vec2 frag_TexCoord;
 void main() {
     vec4 diffuseColor = frag_Diffuse;
     if (u_HasTexture) {
-        diffuseColor *= texture2D(u_Texture, frag_TexCoord) * texture2D(u_Texture, frag_TexCoord);
+        diffuseColor *= texture2D(u_Texture, frag_TexCoord);
     }
     gl_FragColor = diffuseColor + frag_Specular;
 }

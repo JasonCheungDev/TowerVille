@@ -64,7 +64,7 @@ void main() {
     }
     
     if (u_HasTexture) {
-        diffuse *= texture2D(u_Texture, frag_TexCoord) * texture2D(u_Texture, frag_TexCoord);
+        diffuse *= texture2D(u_Texture, frag_TexCoord);
     }
     
     gl_FragColor = diffuse * frag_Color + specular;
