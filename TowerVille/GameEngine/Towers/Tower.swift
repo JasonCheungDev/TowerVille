@@ -41,7 +41,7 @@ class Tower : Structure {
         self.zScale = 0.5
         self.shader = shader
         
-        let mat = LambertMaterial(shader)
+        let mat = GenericMaterial(shader)
         mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
         
         let goat = ObjLoader()

@@ -16,7 +16,7 @@ class IceProjectile : TowerProjectile
     override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, target: Minion) {
         super.init(x, z, shader: shader, target: target)
         
-        let mat = self.material as! LambertMaterial
+        let mat = self.material as! GenericMaterial
         mat.surfaceColor = Color(0,0,1,1) //blue
         
     }
