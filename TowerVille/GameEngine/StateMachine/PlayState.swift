@@ -9,7 +9,7 @@ class PlayState : State {
     
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
     var map : Map!
-    let shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
+    let shader = ShaderProgram(vertexShader: "PerPixel.vert", fragmentShader: "PerPixel.frag")
 
     //let minion : Minion
     var towers : [Tower] = []
