@@ -18,8 +18,6 @@ uniform highp mat4 u_ModelView;
 uniform highp mat4 u_Projection;
 uniform lowp vec4 u_SurfaceColor;
 
-uniform sampler2D u_Texture;
-uniform bool u_HasTexture;
 uniform DirectionalLight u_DirectionalLight;
 uniform PointLights u_PointLights[4];
 uniform float u_SpecularPower;
