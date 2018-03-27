@@ -329,7 +329,7 @@ extension ViewController {
     }
     
     func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "PerPixel.vert", fragmentShader: "PerPixel.frag")
+        self.shader = ShaderProgram(vertexShader: "PerVertex.vert", fragmentShader: "PerVertex.frag")
     }
     
 }
