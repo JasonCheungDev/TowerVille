@@ -27,14 +27,13 @@ class Map : VisualObject {
     }
     
     override func draw() {
-        mergedGrassVO?.draw()
-        mergedMountainVO?.draw()
-        mergedPathVO?.draw()
 
-        return
         // efficient draw
         if mergedGrassVO != nil
         {
+            mergedGrassVO?.draw()
+            mergedMountainVO?.draw()
+            mergedPathVO?.draw()
         }
         // standard draw
         else
@@ -50,10 +49,10 @@ class Map : VisualObject {
         let gridSize = mapSize * 2 - 1
         
         // create some materials
-        let grassTileMat = LambertMaterial(shader)
+        let grassTileMat = GenericMaterial(shader)
         grassTileMat.surfaceColor = Color(0,1,0,1)
 
-        let mountainTileMat = LambertMaterial(shader)
+        let mountainTileMat = GenericMaterial(shader)
         mountainTileMat.surfaceColor = Color(0,0,0,1)
                 
         // create shared RO
@@ -101,7 +100,7 @@ class Map : VisualObject {
     
     func setupPathFromWaypoints(waypoints : [GameObject])
     {
-        let pathMat = LambertMaterial(shader!)
+        let pathMat = GenericMaterial(shader!)
         pathMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
         
         let pathRo = RenderObject(fromShader: shader!, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
@@ -142,6 +141,11 @@ class Map : VisualObject {
         self.mergedGrassVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Grass }))
 
         self.mergedPathVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Path }))
+    }
+    
+    func clearAllStructures()
+    {
+        Tiles.forEach({ $0.forEach({ $0.structure = nil })})
     }
     
     private func mergeVisualObjects(fromVisualObjects VOs : [VisualObject]) -> VisualObject

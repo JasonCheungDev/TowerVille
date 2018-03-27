@@ -35,16 +35,21 @@ class Tower : Structure {
         super.init()
         self.x = x
         self.z = z
-        self.y = 0.4
-        self.xScale = 0.3
-        self.yScale = 0.7
-        self.zScale = 0.3
+        self.y = 0.0
+        self.xScale = 0.5
+        self.yScale = 0.5
+        self.zScale = 0.5
         self.shader = shader
         
-        let mat = LambertMaterial(shader)
+        let mat = GenericMaterial(shader)
         mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
         
-        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
+        let goat = ObjLoader()
+        goat.smoothed = false
+        goat.calculate_normals = true
+        goat.Read(fileName: "rook")
+        
+        let ro = RenderObject(fromShader: shader, fromVertices: goat.vertexDataArray, fromIndices: goat.indexDataArray)
  
         self.renderObject = ro
         self.material = mat

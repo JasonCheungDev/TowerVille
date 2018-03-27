@@ -7,7 +7,7 @@
 //
 //  Sample Usage:
 //  var lineObj = LineObject(fromShader: self.shader, fromVectors: [GLKVector3Make(0,0,0), GLKVector3Make(5,0,-5), GLKVector3Make(7,0,-12)])
-//  var mat = LambertMaterial(self.shader)
+//  var mat = GenericMaterial(self.shader)
 //  mat.surfaceColor = Color(1,0,0,1)
 //  lineObj.material = mat
 //
