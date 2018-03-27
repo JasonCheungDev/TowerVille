@@ -35,7 +35,7 @@ class HoppingMinion : Minion
     override func update(dt: TimeInterval) {
         super.update(dt: dt)
         timeElapsed += Float(dt)
-        self.y = amplitude * sin(w * timeElapsed + phase) + amplitude
+        self.y = 0.5 + 2.0 * amplitude * abs(sin(0.5 * w * timeElapsed + phase))
         
     }
 }
