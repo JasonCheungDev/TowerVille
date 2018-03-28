@@ -141,9 +141,9 @@ extension ViewController {
     {
         let scores = LoadScores()
         var scoreString = ""
-        for i in (1...5).reversed()
+        for i in (1...scores.count).reversed()
         {
-            scoreString += "\(6-i). \(scores[i]) \n"
+            scoreString += "\(scores.count-i). \(scores[i]) \n"
         }
         highscoreText.text = scoreString
     }
