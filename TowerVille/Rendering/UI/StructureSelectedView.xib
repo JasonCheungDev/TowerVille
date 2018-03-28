@@ -22,6 +22,7 @@
                 <outlet property="nameLabel" destination="nrJ-zX-22W" id="8AE-H7-Pbv"/>
                 <outlet property="repairCostLabel" destination="XDB-zS-WpH" id="eRB-6H-Nsf"/>
                 <outlet property="sellCostLabel" destination="qhU-nl-DhZ" id="8xV-lk-1uC"/>
+                <outlet property="upgradeButton" destination="oXP-Ee-q8J" id="ZHv-6i-C66"/>
                 <outlet property="upgradeCostLabel" destination="rl7-de-8Og" id="Kwl-OS-Jlu"/>
                 <outlet property="view" destination="iN0-l3-epB" id="otC-jE-7ft"/>
             </connections>

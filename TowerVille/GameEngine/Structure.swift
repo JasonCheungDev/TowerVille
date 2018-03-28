@@ -47,6 +47,7 @@ class Structure : VisualObject
     
     func upgrade()
     {
+        if level >= 5 { return }
         level += 1
         health = maxHealth
     }
