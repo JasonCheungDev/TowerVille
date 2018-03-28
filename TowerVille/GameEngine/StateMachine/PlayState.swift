@@ -418,7 +418,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = Tower(0, 0, shader:shader, color: Color(1, 1, 0, 1))
+        let newTower = Tower(0, 0, shader:shader, color: Color(0.5, 0.5, 0.5, 1)) // grey
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= Tower.COST
@@ -431,7 +431,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = SlowTower(0, 0, shader:shader, color: Color(0, 1, 1, 1))
+        let newTower = SlowTower(0, 0, shader:shader, color: Color(0, 0, 1, 1)) // blue
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= SlowTower.COST
@@ -444,7 +444,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = ExplodeTower(0, 0, shader:shader, color: Color(1, 0, 1, 1))
+        let newTower = ExplodeTower(0, 0, shader:shader, color: Color(1, 0, 0, 1)) // red
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= ExplodeTower.COST
@@ -457,7 +457,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = FragmentationTower(0, 0, shader:shader, color: Color(0, 0, 1, 1))
+        let newTower = FragmentationTower(0, 0, shader:shader, color: Color(0, 0, 1, 1)) // green
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= FragmentationTower.COST
@@ -470,7 +470,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = LaserTower(0, 0, shader:shader, color: Color(1, 0, 0, 1))
+        let newTower = LaserTower(0, 0, shader:shader, color: Color(1, 0, 0, 1)) // red
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= LaserTower.COST
