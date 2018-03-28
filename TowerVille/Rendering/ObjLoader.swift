@@ -11,6 +11,7 @@ import GLKit
 
 class ObjLoader {
     var smoothed = false
+    var calculate_normals = false
     
     private var vertexArray = [GLKVector3]()
     private var textureArray = [GLKVector2]()
@@ -34,13 +35,13 @@ class ObjLoader {
                         ReadVertex(line)
                     } else if (line.hasPrefix("vt ")) {
                         ReadTexture(line)
-                    } else if (line.hasPrefix("vn ")) {
+                    } else if (!calculate_normals && line.hasPrefix("vn ")) {
                         ReadNormal(line)
                     } else if (line.hasPrefix("f ")) {
                         ReadFace(line)
                     }
                 }
-                if (normalArray.count == 0) {
+                if (calculate_normals || normalArray.count == 0) {
                     CalculateNormals() // if no normals provided manually calculate them
                 }
             } catch {
@@ -149,7 +150,7 @@ class ObjLoader {
             }
             
             // if normal provided set it in vertexDataArray
-            if (a.count == 3) {
+            if (!calculate_normals && a.count == 3) {
                 let normalIndex = Int(a[2])
                 if (normalIndex != nil) {
                     let normal = normalArray[normalIndex! - 1]

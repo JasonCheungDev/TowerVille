@@ -40,7 +40,7 @@ class LambertMaterial : Material {
 
     func loadTexture(_ filename: String) {
         let path = Bundle.main.path(forResource: filename, ofType: nil)!
-        let option = [ GLKTextureLoaderOriginBottomLeft: true]
+        let option = [ GLKTextureLoaderOriginBottomLeft: true, GLKTextureLoaderSRGB: true]
         do {
             let info = try GLKTextureLoader.texture(withContentsOfFile: path, options: option as [String : NSNumber]?)
             self.texture = info.name
