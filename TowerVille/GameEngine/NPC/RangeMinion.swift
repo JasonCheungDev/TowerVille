@@ -36,6 +36,8 @@ class RangeMinion : Minion
     
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = RangeMinion(shader: shader)
+        copy.health = self.health
+        copy.speed = self.speed
         return copy
     }
     

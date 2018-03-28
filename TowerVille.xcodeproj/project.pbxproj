@@ -50,6 +50,7 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
+		3C9B781E206B008B0092FBF0 /* WaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B781D206B008B0092FBF0 /* WaveController.swift */; };
 		7B5870AF2062FE0D000AC6C2 /* RangeMinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */; };
 		7B5870B12062FEF7000AC6C2 /* MinionProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */; };
 		8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25E267203E0C0600CF348E /* TowerProjectile.swift */; };
@@ -160,6 +161,7 @@
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		3C9B781D206B008B0092FBF0 /* WaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveController.swift; sourceTree = "<group>"; };
 		7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeMinion.swift; sourceTree = "<group>"; };
 		7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinionProjectile.swift; sourceTree = "<group>"; };
 		8C25E267203E0C0600CF348E /* TowerProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerProjectile.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */,
 				7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */,
 				8C8F93142066F65400495B5C /* HoppingMinion.swift */,
+				3C9B781D206B008B0092FBF0 /* WaveController.swift */,
 			);
 			path = NPC;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
 				DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */,
+				3C9B781E206B008B0092FBF0 /* WaveController.swift in Sources */,
 				8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,

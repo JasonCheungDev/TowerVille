@@ -41,6 +41,8 @@ class HoppingMinion : Minion
     
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = HoppingMinion(shader: shader)
+        copy.health = self.health
+        copy.speed = self.speed
         return copy
     }
     
