@@ -297,6 +297,23 @@ extension ViewController {
         return Vertex(world_x, 0, world_z)
     }
     
+    func SaveScore(score: Int){
+        let key = "HighScoreArray"
+        
+        var array : [Int]
+        if (UserDefaults.standard.object(forKey: key) == nil) {
+            array = [0, 0, 0, 0, 0]
+        } else {
+            array = UserDefaults.standard.object(forKey: key) as? [Int] ?? [Int]()
+        }
+        
+        array.append(score)
+        array.sort()
+        array.removeFirst()
+        
+        UserDefaults.standard.set(array, forKey: key)
+    }
+    
     func SaveScores(highScoreArray: [Int]){
         let key = "HighScoreArray"
         UserDefaults.standard.set(highScoreArray, forKey: key)
