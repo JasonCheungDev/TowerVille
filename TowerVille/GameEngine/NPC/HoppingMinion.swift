@@ -30,7 +30,7 @@ class HoppingMinion : Minion
         mat.surfaceColor = Color(0,1,0,1)
         
         let objLoader = ObjLoader()
-        objLoader.Read(fileName: "grassHopper2");
+        objLoader.Read(fileName: "grassHopper");
         let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         self.renderObject = ro
         self.material = mat
