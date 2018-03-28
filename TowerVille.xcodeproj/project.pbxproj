@@ -50,12 +50,16 @@
 		3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A278202262CE00BB0D7C /* PlayState.swift */; };
 		3C01A27D202267D800BB0D7C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A27C202267D800BB0D7C /* Stack.swift */; };
 		3C01A27E20226BE200BB0D7C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A274202262CD00BB0D7C /* State.swift */; };
+		3C9B781E206B008B0092FBF0 /* WaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B781D206B008B0092FBF0 /* WaveController.swift */; };
 		7B5870AF2062FE0D000AC6C2 /* RangeMinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */; };
 		7B5870B12062FEF7000AC6C2 /* MinionProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */; };
 		8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25E267203E0C0600CF348E /* TowerProjectile.swift */; };
 		8C773B202062FDC20031FF21 /* FragmentationTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C773B1F2062FDC20031FF21 /* FragmentationTower.swift */; };
 		8C773B222062FE990031FF21 /* ExplodeProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C773B212062FE990031FF21 /* ExplodeProjectile.swift */; };
 		8C8F93152066F65400495B5C /* HoppingMinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F93142066F65400495B5C /* HoppingMinion.swift */; };
+		8CA5B4FF206B0BAF006EC230 /* rat.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8CA5B4FE206B0BAF006EC230 /* rat.obj */; };
+		8CA5B503206B0E7E006EC230 /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8CA5B502206B0E7E006EC230 /* plane.obj */; };
+		8CA5B505206B0FF5006EC230 /* grassHopper.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8CA5B504206B0FF5006EC230 /* grassHopper.obj */; };
 		8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFD2054A34600757CB9 /* IceProjectile.swift */; };
 		8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */; };
 		DE2F3E76206A2CA00038A2A8 /* sawmill.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */; };
@@ -157,12 +161,16 @@
 		3C01A275202262CD00BB0D7C /* IntroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroState.swift; sourceTree = "<group>"; };
 		3C01A278202262CE00BB0D7C /* PlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		3C01A27C202267D800BB0D7C /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		3C9B781D206B008B0092FBF0 /* WaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveController.swift; sourceTree = "<group>"; };
 		7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeMinion.swift; sourceTree = "<group>"; };
 		7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinionProjectile.swift; sourceTree = "<group>"; };
 		8C25E267203E0C0600CF348E /* TowerProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowerProjectile.swift; sourceTree = "<group>"; };
 		8C773B1F2062FDC20031FF21 /* FragmentationTower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationTower.swift; sourceTree = "<group>"; };
 		8C773B212062FE990031FF21 /* ExplodeProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodeProjectile.swift; sourceTree = "<group>"; };
 		8C8F93142066F65400495B5C /* HoppingMinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoppingMinion.swift; sourceTree = "<group>"; };
+		8CA5B4FE206B0BAF006EC230 /* rat.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rat.obj; sourceTree = "<group>"; };
+		8CA5B502206B0E7E006EC230 /* plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plane.obj; sourceTree = "<group>"; };
+		8CA5B504206B0FF5006EC230 /* grassHopper.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grassHopper.obj; sourceTree = "<group>"; };
 		8CBACAFD2054A34600757CB9 /* IceProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationProjectile.swift; sourceTree = "<group>"; };
 		DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sawmill.obj; sourceTree = "<group>"; };
@@ -233,6 +241,9 @@
 				2840DE2E203C1BEA005C0513 /* cube.obj */,
 				2840DE30203D2F7B005C0513 /* sphere.obj */,
 				28CE0FC9205FAD55001B415E /* farm.obj */,
+				8CA5B504206B0FF5006EC230 /* grassHopper.obj */,
+				8CA5B502206B0E7E006EC230 /* plane.obj */,
+				8CA5B4FE206B0BAF006EC230 /* rat.obj */,
 				DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */,
 				DE2F3E74206A2CA00038A2A8 /* mountain.obj */,
 				DE2F3E75206A2CA00038A2A8 /* mine.obj */,
@@ -362,6 +373,7 @@
 				7B5870AE2062FE0D000AC6C2 /* RangeMinion.swift */,
 				7B5870B02062FEF7000AC6C2 /* MinionProjectile.swift */,
 				8C8F93142066F65400495B5C /* HoppingMinion.swift */,
+				3C9B781D206B008B0092FBF0 /* WaveController.swift */,
 			);
 			path = NPC;
 			sourceTree = "<group>";
@@ -571,15 +583,18 @@
 				DE8EFD2F203F5B28000987CE /* farm.png in Resources */,
 				DE5977EE20324E3000E52927 /* PerPixel.vert in Resources */,
 				28C0DAD9204757870068B071 /* dodecahedron.obj in Resources */,
+				8CA5B505206B0FF5006EC230 /* grassHopper.obj in Resources */,
 				2BB2AD7620193318004565D4 /* Assets.xcassets in Resources */,
 				DE471728206205B700241030 /* StructureSelectedView.xib in Resources */,
 				DE2F3E78206A2CA00038A2A8 /* mine.obj in Resources */,
+				8CA5B4FF206B0BAF006EC230 /* rat.obj in Resources */,
 				2840DE31203D2F7B005C0513 /* sphere.obj in Resources */,
 				DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */,
 				286C5DFF206AE367000CCBBE /* PerVertex.vert in Resources */,
 				286C5E01206AE380000CCBBE /* PerVertex.frag in Resources */,
 				28E88C3E206AA9DA004BA75B /* rook.obj in Resources */,
 				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
+				8CA5B503206B0E7E006EC230 /* plane.obj in Resources */,
 				DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* PerPixel.frag in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
@@ -641,6 +656,7 @@
 				DE8EFD2D203F5B28000987CE /* ResourceGenerator.swift in Sources */,
 				2BEBE657201942F4008E8FEB /* ExplodeTower.swift in Sources */,
 				DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */,
+				3C9B781E206B008B0092FBF0 /* WaveController.swift in Sources */,
 				8C25E268203E0C0600CF348E /* TowerProjectile.swift in Sources */,
 				DE5B93102019558B001B9D83 /* ShaderProgram.swift in Sources */,
 				2BEBE64C20194134008E8FEB /* Farm.swift in Sources */,
