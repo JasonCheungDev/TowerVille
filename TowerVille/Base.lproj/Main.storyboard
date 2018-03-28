@@ -27,130 +27,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-Aj-Xsq" userLabel="Intro Screen">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="intro_bg" translatesAutoresizingMaskIntoConstraints="NO" id="vRb-XT-X2L">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TowerVille" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNR-DD-J3g">
-                                        <rect key="frame" x="181.5" y="32" width="204" height="47"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="47" id="Tpd-FA-pZb"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="36"/>
-                                        <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tKT-AT-56R">
-                                        <rect key="frame" x="204" y="95" width="160" height="193"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcI-aI-ilQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="42.5"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                                <state key="normal" title="PLAY" backgroundImage="btn_normal">
-                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xSg-CC-KIp"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-w5-esI">
-                                                <rect key="frame" x="0.0" y="50.5" width="160" height="42"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                                <state key="normal" title="HELP" backgroundImage="btn_normal">
-                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q53-hS-JLX"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39Y-2q-6JK">
-                                                <rect key="frame" x="0.0" y="100.5" width="160" height="42.5"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                                <state key="normal" title="SETTINGS" backgroundImage="btn_normal">
-                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cXo-gj-yI4"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3x-b2-GkK">
-                                                <rect key="frame" x="0.0" y="151" width="160" height="42"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                                <state key="normal" title="HIGHSCORE" backgroundImage="btn_normal">
-                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jAZ-ks-4ig"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="LeK-dK-qz5"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="tKT-AT-56R" secondAttribute="bottom" constant="32" id="4q8-o8-rLj"/>
-                                    <constraint firstItem="KNR-DD-J3g" firstAttribute="centerX" secondItem="O8e-Aj-Xsq" secondAttribute="centerX" id="R73-gI-B8F"/>
-                                    <constraint firstItem="tKT-AT-56R" firstAttribute="centerX" secondItem="O8e-Aj-Xsq" secondAttribute="centerX" id="XW2-eh-DbV"/>
-                                    <constraint firstItem="KNR-DD-J3g" firstAttribute="top" secondItem="O8e-Aj-Xsq" secondAttribute="top" constant="32" id="qs3-KU-yQH"/>
-                                    <constraint firstItem="tKT-AT-56R" firstAttribute="top" secondItem="KNR-DD-J3g" secondAttribute="bottom" constant="16" id="y7R-yg-NdB"/>
-                                </constraints>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cu-Ze-Z2d" userLabel="Help Screen">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zY-KP-lKf">
-                                        <rect key="frame" x="183.5" y="32" width="200" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="J5i-km-gBb"/>
-                                            <constraint firstAttribute="width" constant="200" id="KTu-5d-dHh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r94-ng-uIS">
-                                        <rect key="frame" x="142.5" y="98" width="284" height="118"/>
-                                        <string key="text">1. Select a tile to build a structure on it. 
-2. Build farms to increase gold generation. (building farms closer to pathways increase their generation!)
-3. Build towers to defend your base and farms!
-4. Remember to upgrade your structures!</string>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgn-ng-X4c">
-                                        <rect key="frame" x="203.5" y="232" width="160" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="hgn-ng-X4c" secondAttribute="height" multiplier="20:7" id="1Ue-hn-Dtq"/>
-                                            <constraint firstAttribute="width" constant="160" id="86v-Tr-C3Z"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                        <state key="normal" title="BACK" backgroundImage="btn_normal">
-                                            <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o7v-er-jK9"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hgn-ng-X4c" secondAttribute="bottom" constant="32" id="7qb-fd-1gU"/>
-                                    <constraint firstItem="r94-ng-uIS" firstAttribute="width" secondItem="4cu-Ze-Z2d" secondAttribute="width" multiplier="0.5" id="9uF-15-Zcc"/>
-                                    <constraint firstItem="r94-ng-uIS" firstAttribute="centerX" secondItem="4cu-Ze-Z2d" secondAttribute="centerX" id="Gox-yB-ugQ"/>
-                                    <constraint firstItem="hgn-ng-X4c" firstAttribute="centerX" secondItem="4cu-Ze-Z2d" secondAttribute="centerX" id="haf-VH-QqW"/>
-                                    <constraint firstItem="8zY-KP-lKf" firstAttribute="centerX" secondItem="4cu-Ze-Z2d" secondAttribute="centerX" id="lwL-Q1-aCA"/>
-                                    <constraint firstItem="8zY-KP-lKf" firstAttribute="top" secondItem="4cu-Ze-Z2d" secondAttribute="top" constant="32" id="uHn-L7-0Op"/>
-                                    <constraint firstItem="r94-ng-uIS" firstAttribute="top" secondItem="8zY-KP-lKf" secondAttribute="bottom" constant="16" id="xsv-Vm-Egx"/>
-                                    <constraint firstItem="hgn-ng-X4c" firstAttribute="top" secondItem="r94-ng-uIS" secondAttribute="bottom" constant="16" id="zWm-x5-EPr"/>
-                                </constraints>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgP-ZR-VFs">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                                 <subviews>
@@ -451,6 +327,183 @@
                                     <constraint firstAttribute="bottom" secondItem="GPn-aw-zNY" secondAttribute="bottom" id="teX-Ny-1pu"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-Aj-Xsq" userLabel="Intro Screen">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="intro_bg" translatesAutoresizingMaskIntoConstraints="NO" id="vRb-XT-X2L">
+                                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TowerVille" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNR-DD-J3g">
+                                        <rect key="frame" x="181.5" y="32" width="204" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47" id="Tpd-FA-pZb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="36"/>
+                                        <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tKT-AT-56R">
+                                        <rect key="frame" x="204" y="95" width="160" height="193"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcI-aI-ilQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <state key="normal" title="PLAY" backgroundImage="btn_normal">
+                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xSg-CC-KIp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-w5-esI">
+                                                <rect key="frame" x="0.0" y="50.5" width="160" height="42"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                                <state key="normal" title="HELP" backgroundImage="btn_normal">
+                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q53-hS-JLX"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39Y-2q-6JK">
+                                                <rect key="frame" x="0.0" y="100.5" width="160" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                                <state key="normal" title="SETTINGS" backgroundImage="btn_normal">
+                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cXo-gj-yI4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3x-b2-GkK">
+                                                <rect key="frame" x="0.0" y="151" width="160" height="42"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                                <state key="normal" title="HIGHSCORE" backgroundImage="btn_normal">
+                                                    <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jAZ-ks-4ig"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="160" id="LeK-dK-qz5"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="tKT-AT-56R" secondAttribute="bottom" constant="32" id="4q8-o8-rLj"/>
+                                    <constraint firstItem="KNR-DD-J3g" firstAttribute="centerX" secondItem="O8e-Aj-Xsq" secondAttribute="centerX" id="R73-gI-B8F"/>
+                                    <constraint firstItem="tKT-AT-56R" firstAttribute="centerX" secondItem="O8e-Aj-Xsq" secondAttribute="centerX" id="XW2-eh-DbV"/>
+                                    <constraint firstItem="KNR-DD-J3g" firstAttribute="top" secondItem="O8e-Aj-Xsq" secondAttribute="top" constant="32" id="qs3-KU-yQH"/>
+                                    <constraint firstItem="tKT-AT-56R" firstAttribute="top" secondItem="KNR-DD-J3g" secondAttribute="bottom" constant="16" id="y7R-yg-NdB"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cu-Ze-Z2d" userLabel="Help Screen">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zY-KP-lKf">
+                                        <rect key="frame" x="183.5" y="32" width="200" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="J5i-km-gBb"/>
+                                            <constraint firstAttribute="width" constant="200" id="KTu-5d-dHh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r94-ng-uIS">
+                                        <rect key="frame" x="142.5" y="98" width="284" height="118"/>
+                                        <string key="text">1. Select a tile to build a structure on it. 
+2. Build farms to increase gold generation. (building farms closer to pathways increase their generation!)
+3. Build towers to defend your base and farms!
+4. Remember to upgrade your structures!</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgn-ng-X4c">
+                                        <rect key="frame" x="203.5" y="232" width="160" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hgn-ng-X4c" secondAttribute="height" multiplier="20:7" id="1Ue-hn-Dtq"/>
+                                            <constraint firstAttribute="width" constant="160" id="86v-Tr-C3Z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                        <state key="normal" title="BACK" backgroundImage="btn_normal">
+                                            <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o7v-er-jK9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hgn-ng-X4c" secondAttribute="bottom" constant="32" id="7qb-fd-1gU"/>
+                                    <constraint firstItem="r94-ng-uIS" firstAttribute="width" secondItem="4cu-Ze-Z2d" secondAttribute="width" multiplier="0.5" id="9uF-15-Zcc"/>
+                                    <constraint firstItem="r94-ng-uIS" firstAttribute="centerX" secondItem="4cu-Ze-Z2d" secondAttribute="centerX" id="Gox-yB-ugQ"/>
+                                    <constraint firstItem="hgn-ng-X4c" firstAttribute="centerX" secondItem="4cu-Ze-Z2d" secondAttribute="centerX" id="haf-VH-QqW"/>
+                                    <constraint firstItem="8zY-KP-lKf" firstAttribute="centerX" secondItem="4cu-Ze-Z2d" secondAttribute="centerX" id="lwL-Q1-aCA"/>
+                                    <constraint firstItem="8zY-KP-lKf" firstAttribute="top" secondItem="4cu-Ze-Z2d" secondAttribute="top" constant="32" id="uHn-L7-0Op"/>
+                                    <constraint firstItem="r94-ng-uIS" firstAttribute="top" secondItem="8zY-KP-lKf" secondAttribute="bottom" constant="16" id="xsv-Vm-Egx"/>
+                                    <constraint firstItem="hgn-ng-X4c" firstAttribute="top" secondItem="r94-ng-uIS" secondAttribute="bottom" constant="16" id="zWm-x5-EPr"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqm-gc-5ak" userLabel="Highscore Screen">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIGHSCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPu-xe-uMw">
+                                        <rect key="frame" x="84" y="32" width="400" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="400" id="L7y-h8-4nW"/>
+                                            <constraint firstAttribute="height" constant="50" id="YNH-78-UWY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXv-Ne-DRM">
+                                        <rect key="frame" x="234.5" y="98" width="100" height="118"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="yb3-ls-J2U"/>
+                                        </constraints>
+                                        <string key="text">1. 1
+2. 20
+3. 300
+4. 400
+5. 500</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxG-7e-53g">
+                                        <rect key="frame" x="203.5" y="232" width="160" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="TxG-7e-53g" secondAttribute="height" multiplier="20:7" id="STl-Kd-vWb"/>
+                                            <constraint firstAttribute="width" constant="160" id="vaj-KK-QLV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                        <state key="normal" title="BACK" backgroundImage="btn_normal">
+                                            <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LNE-DJ-5RH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="TxG-7e-53g" firstAttribute="top" secondItem="RXv-Ne-DRM" secondAttribute="bottom" constant="16" id="4UR-I5-bFg"/>
+                                    <constraint firstItem="IPu-xe-uMw" firstAttribute="top" secondItem="oqm-gc-5ak" secondAttribute="top" constant="32" id="EHj-07-tsR"/>
+                                    <constraint firstItem="IPu-xe-uMw" firstAttribute="centerX" secondItem="oqm-gc-5ak" secondAttribute="centerX" id="LFs-ts-bOA"/>
+                                    <constraint firstItem="RXv-Ne-DRM" firstAttribute="top" secondItem="IPu-xe-uMw" secondAttribute="bottom" constant="16" id="O8H-F8-6iI"/>
+                                    <constraint firstAttribute="bottom" secondItem="TxG-7e-53g" secondAttribute="bottom" constant="32" id="Z7u-ev-HNJ"/>
+                                    <constraint firstItem="TxG-7e-53g" firstAttribute="centerX" secondItem="oqm-gc-5ak" secondAttribute="centerX" id="dRq-vD-Cu4"/>
+                                    <constraint firstItem="RXv-Ne-DRM" firstAttribute="centerX" secondItem="oqm-gc-5ak" secondAttribute="centerX" id="gK8-Uu-Wk0"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug Display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvJ-8s-r7g" userLabel="DebugLabel">
                                 <rect key="frame" x="0.0" y="299.5" width="568" height="20.5"/>
                                 <gestureRecognizers/>
@@ -464,12 +517,16 @@
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="2KQ-Yc-x6h"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="3jI-I7-p7c"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="83G-Pz-Xil"/>
+                            <constraint firstItem="oqm-gc-5ak" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="A9Y-gO-ccb"/>
+                            <constraint firstItem="oqm-gc-5ak" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="Ciw-qe-LpZ"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="GRQ-c0-gaK"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="GWR-SO-BwR"/>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="Jai-qM-LTq"/>
                             <constraint firstItem="NvJ-8s-r7g" firstAttribute="leading" secondItem="jLd-o5-rMF" secondAttribute="leading" id="Oyt-DF-eez"/>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="QSl-NI-a8A"/>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="TYa-zA-yQS"/>
+                            <constraint firstItem="oqm-gc-5ak" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="VGq-3F-LvD"/>
+                            <constraint firstItem="oqm-gc-5ak" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="VRW-Uy-Q4I"/>
                             <constraint firstItem="z5K-yD-WZX" firstAttribute="bottom" secondItem="NvJ-8s-r7g" secondAttribute="bottom" id="j0e-Hb-Gw2"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="jzU-QJ-cgN"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="kuK-9t-zcb"/>
@@ -490,6 +547,8 @@
                         <outlet property="goldLabel" destination="vnU-bR-5mQ" id="MWR-Ld-x5D"/>
                         <outlet property="healthLabel" destination="pAy-DJ-Zyc" id="i7Q-ri-exA"/>
                         <outlet property="helpScreen" destination="4cu-Ze-Z2d" id="pWj-2d-EI7"/>
+                        <outlet property="highscoreScreen" destination="oqm-gc-5ak" id="Oly-wl-TaS"/>
+                        <outlet property="highscoreText" destination="RXv-Ne-DRM" id="FvU-zt-7Ce"/>
                         <outlet property="introScreen" destination="O8e-Aj-Xsq" id="4GV-UK-z8B"/>
                         <outlet property="resourceCollectionView" destination="GP0-a4-f4t" id="7hv-p3-90h"/>
                         <outlet property="structureSelectedView" destination="GZo-V5-NL5" id="8Dg-Xk-qyF"/>

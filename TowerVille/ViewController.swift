@@ -29,6 +29,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var introScreen: UIView!
     @IBOutlet var gameScreen: UIView!
     @IBOutlet var helpScreen: UIView!
+    @IBOutlet var highscoreScreen: UIView!
+    
     
     // Game Screen
     @IBOutlet var healthLabel: UILabel!
@@ -48,6 +50,10 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var endMenu: UIView!
     @IBOutlet var endWaveLabel: UILabel!
     @IBOutlet var endGoldLabel: UILabel!
+    
+    
+    // Highscore Screen
+    @IBOutlet var highscoreText: UITextView!
     
     
     // OpenGL
@@ -98,20 +104,23 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
         {
         case UIActionType.PlaySelected.rawValue:
             NSLog("Play btn pressed")
-            gameScreen.isHidden = false
+            showScreen(screenType: .GameScreen)
             break
         case UIActionType.HelpSelected.rawValue:
             NSLog("Help btn pressed")
-            helpScreen.isHidden = false
+            showScreen(screenType: .HelpScreen)
             break
         case UIActionType.SettingsSelected.rawValue:
             NSLog("Settings btn pressed")
             break
         case UIActionType.HighscoreSelected.rawValue:
+            loadHighscoreView()
+            showScreen(screenType: .ScoreScreen)
             NSLog("Highscore btn pressed")
             break
         case UIActionType.BackSelected.rawValue:
-            helpScreen.isHidden = true
+            hideScreen(screenType: .HelpScreen)
+            hideScreen(screenType: .ScoreScreen)
             NSLog("Back btn pressed")
             break
         default:
@@ -127,6 +136,17 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
 
 // USER INTERFACE
 extension ViewController {
+    
+    func loadHighscoreView()
+    {
+        let scores = LoadScores()
+        var scoreString = ""
+        for i in (1...5).reversed()
+        {
+            scoreString += "\(6-i). \(scores[i]) \n"
+        }
+        highscoreText.text = scoreString
+    }
     
     func setupBuildMenu()
     {
@@ -214,6 +234,8 @@ extension ViewController {
         case .HelpScreen:
             helpScreen.isHidden = false
             break
+        case .ScoreScreen:
+            highscoreScreen.isHidden = false
         default:
             NSLog("Screen does not exist")
         }
@@ -232,6 +254,8 @@ extension ViewController {
         case .HelpScreen:
             helpScreen.isHidden = true
             break
+        case .ScoreScreen:
+            highscoreScreen.isHidden = true
         default:
             NSLog("Screen does not exist")
         }
