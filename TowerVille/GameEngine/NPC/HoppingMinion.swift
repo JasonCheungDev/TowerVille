@@ -21,7 +21,7 @@ class HoppingMinion : Minion
     {
         super.init(shader: shader)
         
-        let mat = self.material as! LambertMaterial
+        let mat = self.material as! GenericMaterial
         mat.surfaceColor = Color(255/255,255/255,0/255,1) //yellow
         
         w = 2 * .pi * frequency

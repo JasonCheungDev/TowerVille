@@ -49,10 +49,10 @@ class Map : VisualObject {
         let gridSize = mapSize * 2 - 1
         
         // create some materials
-        let grassTileMat = LambertMaterial(shader)
+        let grassTileMat = GenericMaterial(shader)
         grassTileMat.surfaceColor = Color(0,1,0,1)
 
-        let mountainTileMat = LambertMaterial(shader)
+        let mountainTileMat = GenericMaterial(shader)
         mountainTileMat.surfaceColor = Color(0,0,0,1)
                 
         // create shared RO
@@ -100,7 +100,7 @@ class Map : VisualObject {
     
     func setupPathFromWaypoints(waypoints : [GameObject])
     {
-        let pathMat = LambertMaterial(shader!)
+        let pathMat = GenericMaterial(shader!)
         pathMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
         
         let pathRo = RenderObject(fromShader: shader!, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)

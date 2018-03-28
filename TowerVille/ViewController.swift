@@ -55,8 +55,6 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     var glkUpdater: GLKUpdater!
     
     // TODO: Remove debug variables
-    var shader : ShaderProgram!
-    var debugVisualObjects : [VisualObject] = []
     @IBOutlet var debugDisplay: UILabel!
 
     
@@ -321,7 +319,19 @@ extension ViewController {
         return Vertex(world_x, 0, world_z)
     }
     
+    func SaveScores(highScoreArray: [Int]){
+        let key = "HighScoreArray"
+        UserDefaults.standard.set(highScoreArray, forKey: key)
+    }
     
+    func LoadScores() -> [Int]{
+        let key = "HighScoreArray"
+        if (UserDefaults.standard.object(forKey: key) == nil) {
+            return [0, 0, 0, 0, 0]
+        } else {
+            return UserDefaults.standard.object(forKey: key) as? [Int] ?? [Int]()
+        }
+    }
     
 }
 
@@ -349,10 +359,6 @@ extension ViewController {
     func setupGLupdater() {
         self.glkUpdater = GLKUpdater(glkViewController: self)
         self.delegate = self.glkUpdater
-    }
-    
-    func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "PerVertex.vert", fragmentShader: "PerVertex.frag")
     }
     
 }

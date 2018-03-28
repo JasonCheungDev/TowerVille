@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-class LambertMaterial : Material {
+class GenericMaterial : Material {
     
     private static let MAX_POINT_LIGHTS = 4
     
@@ -87,7 +87,7 @@ class LambertMaterial : Material {
                 pointLightCount += 1
             }
             
-            if (pointLightCount >= LambertMaterial.MAX_POINT_LIGHTS)
+            if (pointLightCount >= GenericMaterial.MAX_POINT_LIGHTS)
             {
                 return;
             }
@@ -107,7 +107,7 @@ class LambertMaterial : Material {
         directionalLightColorUniform = glGetUniformLocation(shader.programHandle, "u_DirectionalLight.color")
         directionalLightIntensityUniform = glGetUniformLocation(shader.programHandle, "u_DirectionalLight.intensity")
         
-        for i in 0..<LambertMaterial.MAX_POINT_LIGHTS {
+        for i in 0..<GenericMaterial.MAX_POINT_LIGHTS {
             pointLightPositionsUniform[i] = glGetUniformLocation(shader.programHandle, "u_PointLights[\(i)].position")
             pointLightColorsUniform[i] = glGetUniformLocation(shader.programHandle, "u_PointLights[\(i)].color")
             pointLightIntensitiesUniform[i] = glGetUniformLocation(shader.programHandle, "u_PointLights[\(i)].intensity")

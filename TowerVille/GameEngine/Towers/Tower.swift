@@ -41,15 +41,15 @@ class Tower : Structure {
         self.zScale = 0.5
         self.shader = shader
         
-        let mat = LambertMaterial(shader)
+        let mat = GenericMaterial(shader)
         mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
         
-        let goat = ObjLoader()
-        goat.smoothed = false
-        goat.calculate_normals = true
-        goat.Read(fileName: "rook")
+        let objLoader = ObjLoader()
+        objLoader.smoothed = false
+        objLoader.calculate_normals = true
+        objLoader.Read(fileName: "rook")
         
-        let ro = RenderObject(fromShader: shader, fromVertices: goat.vertexDataArray, fromIndices: goat.indexDataArray)
+        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
  
         self.renderObject = ro
         self.material = mat

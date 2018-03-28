@@ -25,7 +25,7 @@ class SawMill : Farm {
         
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         
-        let mat = LambertMaterial(shader)
+        let mat = GenericMaterial(shader)
         mat.surfaceColor = Color(133/255, 94/255, 66/255, 1)
         mat.specularPower = 1;
 
