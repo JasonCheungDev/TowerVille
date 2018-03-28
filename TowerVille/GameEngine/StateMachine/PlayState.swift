@@ -75,6 +75,7 @@ class PlayState : State {
         farms.removeAll()
         minions.removeAll()
         map.clearAllStructures()
+        viewController.hideGameOverMenu()
         lives = 10
         gold = 0
         
