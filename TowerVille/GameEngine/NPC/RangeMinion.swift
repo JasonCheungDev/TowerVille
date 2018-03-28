@@ -20,7 +20,18 @@ class RangeMinion : Minion
         super.init(shader: shader)
         
         let mat = self.material as! GenericMaterial
-        mat.surfaceColor = Color(1,0,0,1)
+        mat.surfaceColor = Color(1,140/255,0,1) 
+        
+        let objLoader = ObjLoader()
+        objLoader.Read(fileName: "plane");
+        let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        self.renderObject = ro
+        self.material = mat
+        
+        self.setScale(0.6)
+        self.y = 1.0
+        
+        self.rotationOffset = 90
     }
     
     override func copy(with zone: NSZone? = nil) -> Any {

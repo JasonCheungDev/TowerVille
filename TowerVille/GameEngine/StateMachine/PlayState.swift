@@ -72,7 +72,7 @@ class PlayState : State {
         waveController = WaveController(shader : shader)
         
         // update map
-        map.setupPathFromWaypoints(waypoints: (waveController.spawners[0].wayPoints))
+        map.setupPathFromWaypoints(waypoints: (WaveController.WAYPOINTS_LVL1))
         map.compress()
         
         // create some default structures 
