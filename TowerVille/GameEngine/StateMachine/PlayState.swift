@@ -13,7 +13,17 @@ class PlayState : State {
 
     //let minion : Minion
     var towers : [Tower] = []
-    var gold : Int = 0
+    var _gold : Int = 0
+    var goldEarned : Int = 0
+    var gold : Int {
+        get { return _gold }
+        set {
+            // if earning gold
+            if newValue > _gold { goldEarned += (newValue - _gold) }
+            _gold = newValue
+        }
+    }
+    
     private var _lives : Int = 10
     var lives : Int {
         get { return _lives }
@@ -35,6 +45,7 @@ class PlayState : State {
     // flags
     var isSelectingStructure = false;   // selected a tile w/ a structure
     var isPickingStructure = false;     // selected a tile w/o a structure
+    var paused = false
     
     // Mark: - Debug variables
     var debugFarm : Farm?
@@ -82,17 +93,24 @@ class PlayState : State {
         
         // create some default structures 
         self.gold = Farm.COST + SlowTower.COST + Tower.COST
+        goldEarned = 0
         createFarm(tile: map.Tiles[17][9])
         createSlowTower(tile: map.Tiles[7][6])
         createBasicTower(tile: map.Tiles[7][4])
+
+        // star the game
+        paused = false
     }
     
     func gameOver()
     {
-        restart()
+        paused = true
+        viewController.showGameOverMenu(wavesCompleted: 10, goldEarned: goldEarned)
     }
     
     override func update(dt: TimeInterval) {
+        
+        if paused { return }
         
         let startTime = Date()
         
@@ -248,6 +266,17 @@ class PlayState : State {
                 farms.remove(at: i)
             }
             viewController.hideStructureMenu()
+            break
+            
+            // GAME OVER
+            
+        case .Retry:
+            restart()
+            viewController.hideGameOverMenu()
+            break
+        case .HighscoreSelected:
+            StateMachine.Instance.lastState()
+            viewController.showHighscoreMenu(isShown: true)
             break
             
             // ETC.

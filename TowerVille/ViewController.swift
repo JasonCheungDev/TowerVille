@@ -45,6 +45,11 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     
     @IBOutlet var structureSelectedView: StructureSelectedView!
     
+    @IBOutlet var endMenu: UIView!
+    @IBOutlet var endWaveLabel: UILabel!
+    @IBOutlet var endGoldLabel: UILabel!
+    
+    
     // OpenGL
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
@@ -179,6 +184,23 @@ extension ViewController {
     func hideStructureMenu()
     {
         structureSelectedView.isHidden = true
+    }
+    
+    func showGameOverMenu(wavesCompleted waves : Int, goldEarned gold : Int)
+    {
+        endWaveLabel.text = "WAVE: \(waves)"
+        endGoldLabel.text = "TOTAL GOLD: \(gold)"
+        endMenu.isHidden = false
+    }
+    
+    func hideGameOverMenu()
+    {
+        endMenu.isHidden = true
+    }
+    
+    func showHighscoreMenu(isShown : Bool)
+    {
+        // TODO
     }
     
     func showScreen(screenType : UIScreens)
