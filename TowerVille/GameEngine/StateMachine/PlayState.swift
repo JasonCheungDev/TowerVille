@@ -23,10 +23,10 @@ class PlayState : State {
         }
     }
 
-    var spawner : MinionSpawner?
-    var rangedSpawner : MinionSpawner?
-    var hopperSpawner : MinionSpawner?
+    var waveController : WaveController
+    var waves : Int = 1
     var minions : [Minion] = []
+    var minionsLeft : Int = 0
     var farms   : [Farm] = []
     var selectedTile : Tile?
     
@@ -45,6 +45,7 @@ class PlayState : State {
     
     
     override init(replacing : Bool = true, viewController : ViewController) {
+        waveController = WaveController(shader : shader)
         super.init(replacing: replacing, viewController: viewController)
         PlayState.activeGame = self
         
@@ -52,7 +53,6 @@ class PlayState : State {
         Camera.ActiveCamera = camera
         
         map = Map(fromShader: self.shader, mapSize: self.mapSize)
-        
         setupLights()
         
         restart()
@@ -68,15 +68,10 @@ class PlayState : State {
         gold = 0
         
         // initiailze
-        spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
-        rangedSpawner = MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
-        rangedSpawner?.spawnTime = 2.5
-        hopperSpawner = MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
-        hopperSpawner?.total = 2 //3 hopper minions
-        hopperSpawner?.spawnTime = 4
+        waveController = WaveController(shader : shader)
         
         // update map
-        map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
+        map.setupPathFromWaypoints(waypoints: (waveController.spawners[0].wayPoints))
         map.compress()
         
         // create some default structures 
@@ -103,9 +98,7 @@ class PlayState : State {
             f.update(dt: dt)
         }
         
-        spawner?.update(dt: dt)
-        rangedSpawner?.update(dt: dt)
-        hopperSpawner?.update(dt: dt)
+        waveController.update(dt: dt)
         
         for guy in minions {
             //print(minions.count)
@@ -150,8 +143,8 @@ class PlayState : State {
     {
         viewController.healthLabel.text = "\(self.lives)"
         viewController.goldLabel.text = "\(self.gold)"
-        viewController.wavesLabel.text = "WAVE: 1"
-        viewController.enemiesLabel.text = "ENEMIES: 10"
+        viewController.wavesLabel.text = "WAVE: \(self.waves)"
+        viewController.enemiesLabel.text = "ENEMIES: \(self.minionsLeft)"
     }
     
     
