@@ -141,7 +141,7 @@ extension ViewController {
     {
         let scores = LoadScores()
         var scoreString = ""
-        for i in (1...scores.count).reversed()
+        for i in (0..<scores.count).reversed() 
         {
             scoreString += "\(scores.count-i). \(scores[i]) \n"
         }
