@@ -17,6 +17,7 @@ class StructureSelectedView : UIView
     @IBOutlet var upgradeCostLabel: UILabel!
     @IBOutlet var repairCostLabel: UILabel!
     @IBOutlet var sellCostLabel: UILabel!
+    @IBOutlet var upgradeButton: UIButton!
     
     var viewController : ViewController?
     
@@ -24,8 +25,19 @@ class StructureSelectedView : UIView
     func displayContent(_ structure : Structure)
     {
         let sType = type(of: structure)
-        nameLabel.text = sType.NAME + " Lv." + String(structure.level)
-        upgradeCostLabel.text = String(structure.upgradeCost)
+        if structure.level >= 5
+        {
+            nameLabel.text = sType.NAME + " Lv." + String(structure.level) + " (MAX)"
+            upgradeButton.isEnabled = false
+            upgradeCostLabel.isEnabled = false
+        }
+        else
+        {
+            nameLabel.text = sType.NAME + " Lv." + String(structure.level)
+            upgradeCostLabel.text = String(structure.upgradeCost)
+            upgradeButton.isEnabled = true
+            upgradeCostLabel.isEnabled = true
+        }
         repairCostLabel.text = String(structure.getRepairCost())
         sellCostLabel.text = String(structure.getSellCost())
     }
