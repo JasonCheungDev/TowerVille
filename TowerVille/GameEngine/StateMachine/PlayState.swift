@@ -34,7 +34,6 @@ class PlayState : State {
     }
 
     var waveController : WaveController
-    var waves : Int = 1
     var minions : [Minion] = []
     var minionsLeft : Int = 0
     var farms   : [Farm] = []
@@ -93,14 +92,26 @@ class PlayState : State {
         createSlowTower(tile: map.Tiles[7][6])
         createBasicTower(tile: map.Tiles[7][4])
 
-        // star the game
+        // start the game
         paused = false
     }
     
     func gameOver()
     {
         paused = true
-        viewController.showGameOverMenu(wavesCompleted: 10, goldEarned: goldEarned)
+        
+        // check if we should prompt user to enter in hs
+        var scores = viewController.LoadScores()
+        for score in scores
+        {
+            if goldEarned > score
+            {
+                viewController.SaveScore(score: goldEarned)
+                break
+            }
+        }
+        
+        viewController.showGameOverMenu(wavesCompleted: waveController.currentWave, goldEarned: goldEarned)
     }
     
     override func update(dt: TimeInterval) {
@@ -162,7 +173,7 @@ class PlayState : State {
     {
         viewController.healthLabel.text = "\(self.lives)"
         viewController.goldLabel.text = "\(self.gold)"
-        viewController.wavesLabel.text = "WAVE: \(self.waves)"
+        viewController.wavesLabel.text = "WAVE: \(waveController.currentWave)"
         viewController.enemiesLabel.text = "ENEMIES: \(self.minionsLeft)"
     }
     

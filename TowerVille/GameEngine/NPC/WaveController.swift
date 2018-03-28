@@ -13,7 +13,7 @@ class WaveController : GameObject {
     var spawners : [MinionSpawner] = []
     var curTime : TimeInterval = 0.0
     var spawnTime : TimeInterval = 5.0
-    var currentWave : Int = 0
+    var currentWave : Int = 1
     let shader : ShaderProgram
     var finished : Bool = false
     var minionsLeft : Int = 0
@@ -38,7 +38,6 @@ class WaveController : GameObject {
             if(curTime >= spawnTime) {
                 finished = false
                 curTime = 0.0
-                PlayState.activeGame.waves += 1
             }
             return
         }
@@ -77,6 +76,8 @@ class WaveController : GameObject {
         spawners[2].reset()
         spawners[2].total += 1
         spawners[2].minion.health += 1000
+        
+        currentWave += 1
     }
     
     class var WAYPOINTS_LVL1 : [GameObject]
