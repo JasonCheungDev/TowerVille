@@ -45,6 +45,10 @@ class MinionSpawner : GameObject {
         }
     }
     
+    func reset() {
+        current = 0
+        curTime = 0
+    }
     
     class var WAYPOINTS_LVL1 : [GameObject]
     {

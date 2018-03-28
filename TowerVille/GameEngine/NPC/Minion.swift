@@ -55,6 +55,8 @@ class Minion : VisualObject {
     
     func copy(with zone: NSZone? = nil) -> Any {
         let copy = Minion(shader: shader)
+        copy.health = self.health
+        copy.speed = self.speed
         return copy
     }
     
