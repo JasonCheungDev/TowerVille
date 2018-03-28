@@ -69,15 +69,15 @@ class PlayState : State {
         gold = 0
         
         // initiailze
-        spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
+        /*spawner = MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         rangedSpawner = MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
-        rangedSpawner?.spawnTime = 2.5
+        rangedSpawner?.spawnTime = 2.5*/
         hopperSpawner = MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1)
         hopperSpawner?.total = 2 //3 hopper minions
         hopperSpawner?.spawnTime = 4
         
         // update map
-        map.setupPathFromWaypoints(waypoints: (spawner?.wayPoints)!)
+        map.setupPathFromWaypoints(waypoints: (hopperSpawner?.wayPoints)!)
         map.compress()
         
         // create some default structures 
