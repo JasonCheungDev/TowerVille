@@ -21,12 +21,12 @@ class WaveController : GameObject {
     init(shader: ShaderProgram) {
         self.shader = shader
         
-        spawners.append(MinionSpawner(minion: Minion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1))
+        spawners.append(MinionSpawner(minion: Minion(shader: shader), waypoints: WaveController.WAYPOINTS_LVL1))
         spawners[0].total = 1
-        spawners.append(MinionSpawner(minion: RangeMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1))
+        spawners.append(MinionSpawner(minion: RangeMinion(shader: shader), waypoints: WaveController.WAYPOINTS_LVL1))
         spawners[1].total = 1
         spawners[1].spawnTime = 2.5
-        spawners.append(MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: MinionSpawner.WAYPOINTS_LVL1))
+        spawners.append(MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: WaveController.WAYPOINTS_LVL1))
         spawners[2].spawnTime = 4
         spawners[2].total = 1
         
@@ -77,6 +77,41 @@ class WaveController : GameObject {
         spawners[2].reset()
         spawners[2].total += 1
         spawners[2].minion.health += 1000
+    }
+    
+    class var WAYPOINTS_LVL1 : [GameObject]
+    {
+        let numberOfWaypoints = 7
+        var waypoints : [GameObject] = []
+        
+        for _ in 0..<numberOfWaypoints
+        {
+            let go = GameObject()
+            waypoints.append(go)
+        }
+        
+        waypoints[0].x = 5
+        waypoints[0].z = -5
+        
+        waypoints[1].x = 12
+        waypoints[1].z = -5
+        
+        waypoints[2].x = 12
+        waypoints[2].z = -8
+        
+        waypoints[3].x = 4
+        waypoints[3].z = -8
+        
+        waypoints[4].x = 4
+        waypoints[4].z = -11
+        
+        waypoints[5].x = 12
+        waypoints[5].z = -11
+        
+        waypoints[6].x = 12
+        waypoints[6].z = -16
+        
+        return waypoints
     }
     
 }
