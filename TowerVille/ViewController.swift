@@ -50,8 +50,6 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     var glkUpdater: GLKUpdater!
     
     // TODO: Remove debug variables
-    var shader : ShaderProgram!
-    var debugVisualObjects : [VisualObject] = []
     @IBOutlet var debugDisplay: UILabel!
 
     
@@ -77,7 +75,7 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     }
 
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        glClearColor(0.2, 0.4, 0.6, 1.0);
+        glClearColor(pow(51/255, 2.2), pow(102/255, 2.2), pow(153/255, 2.2), 1.0);
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
 
         StateMachine.Instance.draw()
@@ -299,7 +297,19 @@ extension ViewController {
         return Vertex(world_x, 0, world_z)
     }
     
+    func SaveScores(highScoreArray: [Int]){
+        let key = "HighScoreArray"
+        UserDefaults.standard.set(highScoreArray, forKey: key)
+    }
     
+    func LoadScores() -> [Int]{
+        let key = "HighScoreArray"
+        if (UserDefaults.standard.object(forKey: key) == nil) {
+            return [0, 0, 0, 0, 0]
+        } else {
+            return UserDefaults.standard.object(forKey: key) as? [Int] ?? [Int]()
+        }
+    }
     
 }
 
@@ -310,6 +320,8 @@ extension ViewController {
         glkView = self.view as! GLKView
         glkView.context = EAGLContext(api: .openGLES2)!
         glkView.drawableDepthFormat = .format16         // for depth testing
+        glkView.drawableColorFormat = GLKViewDrawableColorFormat.SRGBA8888
+        self.preferredFramesPerSecond = 60
         EAGLContext.setCurrent(glkView.context)
         
         glEnable(GLenum(GL_DEPTH_TEST))
@@ -325,10 +337,6 @@ extension ViewController {
     func setupGLupdater() {
         self.glkUpdater = GLKUpdater(glkViewController: self)
         self.delegate = self.glkUpdater
-    }
-    
-    func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "LambertVertexShader.glsl", fragmentShader: "MarkusFragmentShader.glsl")
     }
     
 }

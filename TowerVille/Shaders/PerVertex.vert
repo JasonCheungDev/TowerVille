@@ -14,40 +14,34 @@ struct PointLights {
     mediump vec4 color;
 };
 
-uniform sampler2D u_Texture;
-uniform bool u_HasTexture;
+uniform highp mat4 u_ModelView;
+uniform highp mat4 u_Projection;
+uniform lowp vec4 u_SurfaceColor;
+
 uniform DirectionalLight u_DirectionalLight;
 uniform PointLights u_PointLights[4];
-uniform highp mat4 u_ModelView;
 uniform float u_SpecularPower;
 
-varying lowp vec4 frag_Color;
-varying lowp vec2 frag_TexCoord;
-varying lowp vec3 frag_Normal;
-varying lowp vec3 frag_Position;
+attribute vec4 i_Position;
+attribute vec2 i_TexCoord;
+attribute vec3 i_Normal;
 
-// out lowp vec4 o_color;
+varying vec2 frag_TexCoord;
+varying vec4 frag_Diffuse;
+varying vec4 frag_Specular;
 
-void main() {
+void main(void) {
     const vec3 cameraForward = vec3(0.0, 0.0, 1.0);
     const float attenuationCoef = 0.13;
     
-    vec3 normal = normalize(frag_Normal);
-    
-    /*
-     vec3 halfDirection = normalize(vec3(0.0, 0.0, 1.0)+normalize(-u_DirectionalLight.direction));
-     float halfLambert = pow(dot(normal, normalize(-u_DirectionalLight.direction)) * 0.5 + 0.5, 2.0);
-     float blinn = (2.0 + u_SpecularPower) * pow(max(0.0, dot(normal, halfDirection)), u_SpecularPower) / (8.0 * M_PI);
-     
-     vec4 diffuse = u_DirectionalLight.color * u_DirectionalLight.intensity * halfLambert;
-     vec4 specular = u_DirectionalLight.color * u_DirectionalLight.intensity * blinn;
-     */
+    vec3 normal = normalize(mat3(u_ModelView) * i_Normal);
+    vec3 position = (u_ModelView * i_Position).xyz;
     
     vec4 diffuse = vec4(0.0);
     vec4 specular = vec4(0.0);
     
     for (int i = 0; i < 2; i++) {
-        vec3 lightDirection = u_PointLights[i].position - frag_Position;
+        vec3 lightDirection = u_PointLights[i].position - position;
         float lightDistance = length(lightDirection);
         lightDirection /= lightDistance;
         
@@ -63,11 +57,9 @@ void main() {
         specular += u_PointLights[i].color * attenuation * blinn;
     }
     
-    if (u_HasTexture) {
-        diffuse *= texture2D(u_Texture, frag_TexCoord) * texture2D(u_Texture, frag_TexCoord);
-    }
-    
-    vec4 linearColor = diffuse * frag_Color + specular;
-    gl_FragColor = sqrt(linearColor);
+    frag_TexCoord = i_TexCoord;
+    frag_Diffuse = diffuse * u_SurfaceColor * u_SurfaceColor;
+    frag_Specular = specular;
+    gl_Position = u_Projection * u_ModelView * i_Position;
 }
 

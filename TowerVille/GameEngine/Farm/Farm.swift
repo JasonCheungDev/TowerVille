@@ -30,7 +30,7 @@ class Farm : Structure, ResourceGenerator {
         
         super.init()
         
-        let mat = LambertMaterial(shader)
+        let mat = GenericMaterial(shader)
         mat.loadTexture("farm.png")
         mat.surfaceColor = Color(1, 1, 1, 1)
         mat.specularPower = 1;

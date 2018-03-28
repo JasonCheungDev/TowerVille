@@ -36,7 +36,7 @@ class Minion : VisualObject {
     init(shader: ShaderProgram) {
         self.shader = shader
         super.init()
-        let mat = LambertMaterial(shader)
+        let mat = GenericMaterial(shader)
         mat.surfaceColor = Color(0,0,1,1)
         
         let objLoader = ObjLoader();
