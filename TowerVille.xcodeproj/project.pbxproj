@@ -65,6 +65,7 @@
 		DE2F3E76206A2CA00038A2A8 /* sawmill.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */; };
 		DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E74206A2CA00038A2A8 /* mountain.obj */; };
 		DE2F3E78206A2CA00038A2A8 /* mine.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E75206A2CA00038A2A8 /* mine.obj */; };
+		DE38C3AB20719DA90010B718 /* AssetLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE38C3AA20719DA90010B718 /* AssetLoader.swift */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
 		DE471728206205B700241030 /* StructureSelectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE471727206205B700241030 /* StructureSelectedView.xib */; };
 		DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE471729206205F800241030 /* StructureSelectedView.swift */; };
@@ -176,6 +177,7 @@
 		DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sawmill.obj; sourceTree = "<group>"; };
 		DE2F3E74206A2CA00038A2A8 /* mountain.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mountain.obj; sourceTree = "<group>"; };
 		DE2F3E75206A2CA00038A2A8 /* mine.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mine.obj; sourceTree = "<group>"; };
+		DE38C3AA20719DA90010B718 /* AssetLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetLoader.swift; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
 		DE471727206205B700241030 /* StructureSelectedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StructureSelectedView.xib; sourceTree = "<group>"; };
 		DE471729206205F800241030 /* StructureSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSelectedView.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				DEC217BD2035335A00F11022 /* DebugData.swift */,
 				28B37B71203CE4E30063D84C /* ObjLoader.swift */,
 				DED25B64206354A800632ED2 /* LineObject.swift */,
+				DE38C3AA20719DA90010B718 /* AssetLoader.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				2BEBE64220193E96008E8FEB /* RenderObject.swift in Sources */,
 				DE9AF8292035868B0097F76B /* DirectionalLight.swift in Sources */,
 				2BEBE63C20193E16008E8FEB /* MinionSpawner.swift in Sources */,
+				DE38C3AB20719DA90010B718 /* AssetLoader.swift in Sources */,
 				DE96E58B2047E6D200B2966E /* UICellStructure.swift in Sources */,
 				DEC41C12205A36AC00B7373E /* Helpers.swift in Sources */,
 				8C773B222062FE990031FF21 /* ExplodeProjectile.swift in Sources */,
