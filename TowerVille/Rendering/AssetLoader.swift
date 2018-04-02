@@ -6,6 +6,30 @@
 //  Copyright © 2018 The-Fighting-Mongeese. All rights reserved.
 //
 
+/*
+EXAMPLE USAGE
+ 
+ // 1. Preload formal assets (done in PlayState right now)
+ AssetLoader.Instance.PreloadAssets(shader)
+ 
+ // 2. retrieve a formal asset
+ let ro = AssetLoader.Instance.GetRenderObject(
+                Assets.RO_RAT.rawValue)
+ let mat = AssetLoader.Instance.GetMaterial(
+                Assets.MAT_RAT.rawValue)
+ 
+ // 3. register your own asset (same for RenderObject)
+ let myMat = GenericMaterial(shader)
+ myMat.loadTexture("cool_texture.png")
+ myMat.surfaceColor = Color(1, 1, 1, 1)
+ myMat.specularPower = 64;
+ 
+ let success = AssetLoader.Instance.RegisterMaterial(id: "my_id", mat: myMat)
+
+ // 4. retrieve an added asset
+ let theMat = AssetLoader.Instance.GetMaterial("my_id")
+ */
+
 import Foundation
 
 // formal list of assets AssetLoader preloads
