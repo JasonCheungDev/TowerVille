@@ -30,6 +30,7 @@ class Farm : Structure, ResourceGenerator {
         
         super.init()
         
+        SetupVisuals()
 //        let mat = GenericMaterial(shader)
 //        mat.loadTexture("farm.png")
 //        mat.surfaceColor = Color(1, 1, 1, 1)
@@ -40,6 +41,10 @@ class Farm : Structure, ResourceGenerator {
 //
 //        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         
+    }
+    
+    func SetupVisuals()
+    {
         self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_FARM.rawValue)
         self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_FARM.rawValue)
     }

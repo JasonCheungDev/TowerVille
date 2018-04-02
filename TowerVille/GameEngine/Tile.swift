@@ -12,10 +12,10 @@ import GLKit
 class Tile : VisualObject {
     
     static let vertexData = [
-        VertexData( 0.4, 0, -0.4, 1, 0, 0, 1,  1, 0,  0, 1, 0),
-        VertexData( 0.4, 0, 0.4, 0, 1, 0, 1,  1, 1,  0, 1, 0),
-        VertexData( -0.4, 0, 0.4, 0, 0, 1, 1,  0, 1,  0, 1, 0),
-        VertexData( -0.4, 0, -0.4, 0, 0, 0, 1,  0, 0,  0, 1, 0),
+        VertexData( 0.45, 0, -0.45, 1, 0, 0, 1,  1, 0,  0, 1, 0),
+        VertexData( 0.45, 0, 0.45, 0, 1, 0, 1,  1, 1,  0, 1, 0),
+        VertexData( -0.45, 0, 0.45, 0, 0, 1, 1,  0, 1,  0, 1, 0),
+        VertexData( -0.45, 0, -0.45, 0, 0, 0, 1,  0, 0,  0, 1, 0),
     ]
 
     // Note: Order matters

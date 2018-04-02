@@ -18,19 +18,14 @@ class RangeMinion : Minion
     override init(shader: ShaderProgram)
     {
         super.init(shader: shader)
-        
-        let mat = self.material as! GenericMaterial
-        mat.surfaceColor = Color(1,140/255,0,1) 
-        
-        let objLoader = ObjLoader()
-        objLoader.Read(fileName: "plane");
-        let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        self.renderObject = ro
-        self.material = mat
-        
+    }
+    
+    override func SetupVisuals()
+    {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_PLANE.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_PLANE.rawValue)
         self.setScale(0.6)
         self.y = 1.0
-        
         self.rotationOffset = 90
     }
     

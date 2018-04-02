@@ -56,15 +56,18 @@ class AssetLoader
             NSLog("ERROR: Attempting to load assets without a shader. Call SetShader(...) first.")
             return;
         }
-        
+    
+        NSLog("AssetLoader: Starting asset preload")
+        let startTime = Date()
+
         // RENDER OBJECTS
         var objLoader = ObjLoader()
         
         objLoader.Read(fileName: "rat")
         let roRat = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        renderObjects[Assets.RO_FARM.rawValue] = roRat
+        renderObjects[Assets.RO_RAT.rawValue] = roRat
         
-        objLoader.Read(fileName: "grasshopper")
+        objLoader.Read(fileName: "grassHopper")
         let roHopper = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_HOPPER.rawValue] = roHopper
         
@@ -84,6 +87,8 @@ class AssetLoader
         let roMine = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_MINE.rawValue] = roMine
         
+        objLoader.smoothed = false
+        objLoader.calculate_normals = true
         objLoader.Read(fileName: "rook")
         let roTower = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_TOWER.rawValue] = roTower
@@ -148,12 +153,15 @@ class AssetLoader
         materials[Assets.MAT_TWR_EXPLODE.rawValue] = matTowerExplode
         
         let matTowerFrag = GenericMaterial(shader)
-        matTowerFrag.surfaceColor = Color(0, 0, 1, 1)
+        matTowerFrag.surfaceColor = Color(0, 1, 1, 1)
         materials[Assets.MAT_TWR_FRAG.rawValue] = matTowerFrag
         
         let matTowerLaser = GenericMaterial(shader)
         matTowerLaser.surfaceColor = Color(1, 0, 0, 1)
         materials[Assets.MAT_TWR_LASER.rawValue] = matTowerLaser
+    
+        let loadTime = startTime.timeIntervalSinceNow
+        NSLog("AssetLoader: Preload finished. Took %.2f seconds.", loadTime)
     }
     
     // MARK:- Data retrieval
