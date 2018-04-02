@@ -30,18 +30,18 @@ class Farm : Structure, ResourceGenerator {
         
         super.init()
         
-        let mat = GenericMaterial(shader)
-        mat.loadTexture("farm.png")
-        mat.surfaceColor = Color(1, 1, 1, 1)
-        mat.specularPower = 1;
+//        let mat = GenericMaterial(shader)
+//        mat.loadTexture("farm.png")
+//        mat.surfaceColor = Color(1, 1, 1, 1)
+//        mat.specularPower = 1;
+//
+//        let objLoader = ObjLoader()
+//        objLoader.Read(fileName: "farm")
+//
+//        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         
-        let objLoader = ObjLoader()
-        objLoader.Read(fileName: "farm")
-        
-        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        
-        self.renderObject = ro
-        self.material = mat
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_FARM.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_FARM.rawValue)
     }
     
     func SetValue(x: Float, y: Float){

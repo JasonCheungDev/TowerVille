@@ -33,7 +33,7 @@ class PlayState : State {
         }
     }
 
-    var waveController : WaveController
+    var waveController : WaveController!
     var minions : [Minion] = []
     var minionsLeft : Int = 0
     var farms   : [Farm] = []
@@ -55,10 +55,12 @@ class PlayState : State {
     
     
     override init(replacing : Bool = true, viewController : ViewController) {
-        waveController = WaveController(shader : shader)
         super.init(replacing: replacing, viewController: viewController)
         PlayState.activeGame = self
-        
+
+        // preload all assets - may take awhile
+        AssetLoader.Instance.PreloadAssets(shader: self.shader)
+
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         

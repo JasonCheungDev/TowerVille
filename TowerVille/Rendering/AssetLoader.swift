@@ -8,40 +8,48 @@
 
 import Foundation
 
+// formal list of assets AssetLoader preloads
 enum Assets : String
 {
-    case MAT_GRASS = "mat_grass"
-    case MAT_PATH = "mat_path"
-    case MAT_MOUNTAIN = "mat_mountain"
-    case MAT_TOWER = "mat_tower"
-    
+    case RO_RAT = "ro_rat"
+    case RO_HOPPER = "ro_hopper"
+    case RO_PLANE = "ro_plane"
     case RO_FARM = "ro_farm"
     case RO_SAWMILL = "ro_sawmill"
     case RO_MINE = "ro_mine"
     case RO_TOWER = "ro_tower"
     case RO_CUBE = "ro_cube"
-    case RO_RECTANGLE = "ro_rectangle"
+    case RO_TILE = "ro_tile"
     
+    case MAT_GRASS = "mat_grass"
+    case MAT_PATH = "mat_path"
+    case MAT_MOUNTAIN = "mat_mountain"
+    case MAT_RAT = "mat_rat"
+    case MAT_HOPPER = "mat_hopper"
+    case MAT_PLANE = "mat_plane"
+    case MAT_FARM = "mat_farm"
+    case MAT_SAWMILL = "mat_sawmill"
+    case MAT_MINE = "mat_mine"
+    case MAT_TWR = "mat_tower"
+    case MAT_TWR_SLOW = "mat_tower_slow"
+    case MAT_TWR_EXPLODE = "mat_tower_explode"
+    case MAT_TWR_FRAG = "mat_tower_fragmentation"
+    case MAT_TWR_LASER = "mat_tower_laser"
 }
 
 class AssetLoader
 {
-    var Instance : AssetLoader = AssetLoader()
+    static var Instance : AssetLoader = AssetLoader()
     var materials : [String : Material] = [:]
     var renderObjects : [String : RenderObject] = [:]
-    var shader : ShaderProgram?
+    // var visualObjects : [String : (ro:RenderObject, mat:Material)] = [:]
     
     // MARK:- Initialization
     
     init() { }
     
-    func SetShader(shader : ShaderProgram)
-    {
-        self.shader = shader
-    }
-    
     // call this function initialize all prefab assets
-    func LoadAssets()
+    func PreloadAssets(shader : ShaderProgram)
     {
         if shader == nil
         {
@@ -49,7 +57,103 @@ class AssetLoader
             return;
         }
         
-        //
+        // RENDER OBJECTS
+        var objLoader = ObjLoader()
+        
+        objLoader.Read(fileName: "rat")
+        let roRat = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_FARM.rawValue] = roRat
+        
+        objLoader.Read(fileName: "grasshopper")
+        let roHopper = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_HOPPER.rawValue] = roHopper
+        
+        objLoader.Read(fileName: "plane")
+        let roPlane = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_PLANE.rawValue] = roPlane
+        
+        objLoader.Read(fileName: "farm")
+        let roFarm = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_FARM.rawValue] = roFarm
+        
+        objLoader.Read(fileName: "sawmill")
+        let roSawmill = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_SAWMILL.rawValue] = roSawmill
+        
+        objLoader.Read(fileName: "mine")
+        let roMine = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_MINE.rawValue] = roMine
+        
+        objLoader.Read(fileName: "rook")
+        let roTower = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_TOWER.rawValue] = roTower
+        
+        let roCube = RenderObject(fromShader: shader, fromVertices: DebugData.cubeVertices, fromIndices: DebugData.cubeIndices)
+        renderObjects[Assets.RO_CUBE.rawValue] = roCube
+        
+        let roTile = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
+        renderObjects[Assets.RO_TILE.rawValue] = roTile
+
+        // MATERIALS
+        let grassTileMat = GenericMaterial(shader)
+        grassTileMat.surfaceColor = Color(0,1,0,1)
+        materials[Assets.MAT_GRASS.rawValue] = grassTileMat
+
+        let mountainTileMat = GenericMaterial(shader)
+        mountainTileMat.surfaceColor = Color(0,0,0,1)
+        materials[Assets.MAT_MOUNTAIN.rawValue] = mountainTileMat
+
+        let pathMat = GenericMaterial(shader)
+        pathMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
+        materials[Assets.MAT_PATH.rawValue] = pathMat
+
+        let matRat = GenericMaterial(shader)
+        matRat.surfaceColor = Color(105/255,105/255,105/255,1)
+        materials[Assets.MAT_RAT.rawValue] = matRat
+
+        let matHopper = GenericMaterial(shader)
+        matHopper.surfaceColor = Color(0,1,0,1)
+        materials[Assets.MAT_HOPPER.rawValue] = matHopper
+
+        let matPlane = GenericMaterial(shader)
+        matPlane.surfaceColor = Color(1,140/255,0,1)
+        materials[Assets.MAT_PLANE.rawValue] = matPlane
+        
+        let matFarm = GenericMaterial(shader)
+        matFarm.loadTexture("farm.png")
+        matFarm.surfaceColor = Color(1, 1, 1, 1)
+        matFarm.specularPower = 1;
+        materials[Assets.MAT_FARM.rawValue] = matFarm
+        
+        let matSawmill = GenericMaterial(shader)
+        matSawmill.surfaceColor = Color(133/255, 94/255, 66/255, 1)
+        matSawmill.specularPower = 1;
+        materials[Assets.MAT_SAWMILL.rawValue] = matSawmill
+        
+        let matMine = GenericMaterial(shader)
+        matMine.surfaceColor = Color(133/255, 94/255, 66/255, 1)
+        matMine.specularPower = 1;
+        materials[Assets.MAT_MINE.rawValue] = matMine
+    
+        let matTowerBasic = GenericMaterial(shader)
+        matTowerBasic.surfaceColor = Color(0.5, 0.5, 0.5, 1)
+        materials[Assets.MAT_TWR.rawValue] = matTowerBasic
+    
+        let matTowerSlow = GenericMaterial(shader)
+        matTowerSlow.surfaceColor = Color(0, 0, 1, 1)
+        materials[Assets.MAT_TWR_SLOW.rawValue] = matTowerSlow
+        
+        let matTowerExplode = GenericMaterial(shader)
+        matTowerExplode.surfaceColor = Color(1, 0.3, 0, 1)
+        materials[Assets.MAT_TWR_EXPLODE.rawValue] = matTowerExplode
+        
+        let matTowerFrag = GenericMaterial(shader)
+        matTowerFrag.surfaceColor = Color(0, 0, 1, 1)
+        materials[Assets.MAT_TWR_FRAG.rawValue] = matTowerFrag
+        
+        let matTowerLaser = GenericMaterial(shader)
+        matTowerLaser.surfaceColor = Color(1, 0, 0, 1)
+        materials[Assets.MAT_TWR_LASER.rawValue] = matTowerLaser
     }
     
     // MARK:- Data retrieval
@@ -64,11 +168,20 @@ class AssetLoader
         return renderObjects[id];
     }
     
-    func CreateVisualObject(id : String) -> VisualObject
-    {
-        var vo = VisualObject()
-        return vo
-    }
+//    func CreateVisualObject(id : String) -> VisualObject?
+//    {
+//        if let data = visualObjects[id]
+//        {
+//            var vo = VisualObject()
+//            vo.renderObject = data.ro
+//            vo.material = data.mat
+//            return vo
+//        }
+//        else
+//        {
+//            return nil
+//        }
+//    }
     
     // MARK:- Data registration
     
@@ -86,9 +199,11 @@ class AssetLoader
         return true
     }
     
-    func RegisterVisualObject(id : String, matId : String, roId : String) -> Bool
-    {
-        // TODO STUB
-        return false
-    }
+//    func RegisterVisualObject(id : String, ro : RenderObject, mat : Material) -> Bool
+//    {
+//        if visualObjects[id] != nil { return false }
+//        let data = (ro:ro, mat:mat)
+//        visualObjects[id] = data
+//        return true
+//    }
 }
