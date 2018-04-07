@@ -64,9 +64,10 @@ class Map : VisualObject {
                     if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2)
                     {
                         // border
-                        newTile.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TILE.rawValue)
+                        newTile.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_MOUNTAIN.rawValue)
                         newTile.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_MOUNTAIN.rawValue)
                         newTile.type = TileType.Mountain
+                        newTile.setScale(0.5)
                     } else {
                         // rest
                         newTile.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TILE.rawValue)
@@ -145,15 +146,30 @@ class Map : VisualObject {
             }
             
             // 2. add vertex data
+            let m = v.renderObject!.modelMatrix(v)
+            let mm = m.m
             for vd in v.renderObject!.VertexDatas {
+                let oldPos = GLKVector4Make(vd.x, vd.y, vd.z, 1)
+                let oldNrm = GLKVector4Make(vd.nx, vd.ny, vd.nz, 1)
+                let newPos = GLKMatrix4MultiplyVector4(m, oldPos)
+                let newNrm = GLKMatrix4MultiplyVector4(m, oldNrm)
+                let x1 = vd.x + v.x
+                let y1 = vd.y + v.y
+                let z1 = vd.z + v.z
+                let x2 = oldPos.x
+                let y2 = oldPos.y
+                let z2 = oldPos.z
+                let x3 = newPos.x
+                let y3 = newPos.y
+                let z3 = newPos.z
                 
                 vertices.append(
-                    VertexData(vd.x + v.x, vd.y + v.y, vd.z + v.z,
+                    VertexData(newPos.x, newPos.y, newPos.z,
                                vd.r, vd.g, vd.b, vd.a,
                                vd.u, vd.v,
                                vd.nx, vd.ny, vd.nz)
+                               //newNrm.x, newNrm.y, newNrm.z)
                 )
-                
             }
         }
         

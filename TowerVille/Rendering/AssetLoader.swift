@@ -44,6 +44,7 @@ enum Assets : String
     case RO_TOWER = "ro_tower"
     case RO_CUBE = "ro_cube"
     case RO_TILE = "ro_tile"
+    case RO_MOUNTAIN = "ro_mountain"
     
     case MAT_GRASS = "mat_grass"
     case MAT_PATH = "mat_path"
@@ -123,13 +124,19 @@ class AssetLoader
         let roTile = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
         renderObjects[Assets.RO_TILE.rawValue] = roTile
 
+        objLoader.Read(fileName: "mountain_tile")
+        let roMnt = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        renderObjects[Assets.RO_MOUNTAIN.rawValue] = roMnt
+
         // MATERIALS
         let grassTileMat = GenericMaterial(shader)
         grassTileMat.surfaceColor = Color(0,1,0,1)
+        grassTileMat.loadTexture("grass.jpg")
         materials[Assets.MAT_GRASS.rawValue] = grassTileMat
 
         let mountainTileMat = GenericMaterial(shader)
-        mountainTileMat.surfaceColor = Color(0,0,0,1)
+        mountainTileMat.surfaceColor = Color(1,1,1,1)
+        mountainTileMat.loadTexture("mountain.jpg")
         materials[Assets.MAT_MOUNTAIN.rawValue] = mountainTileMat
 
         let pathMat = GenericMaterial(shader)
