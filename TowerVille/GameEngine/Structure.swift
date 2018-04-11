@@ -26,7 +26,23 @@ class Structure : VisualObject
         }
     }
     
-    var health : Int = Structure.HEALTH_LVLS[0]
+    private var _health : Int = Structure.HEALTH_LVLS[0]
+    var health : Int {
+        get { return _health }
+        set
+        {
+            if newValue <= 0
+            {
+                _health = 0
+                destroy = true
+            }
+            else
+            {
+                _health = newValue
+            }
+        }
+    }
+    
     var level  : Int = 1
     
     

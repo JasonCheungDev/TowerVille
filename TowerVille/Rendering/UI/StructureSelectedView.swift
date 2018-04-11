@@ -18,6 +18,8 @@ class StructureSelectedView : UIView
     @IBOutlet var repairCostLabel: UILabel!
     @IBOutlet var sellCostLabel: UILabel!
     @IBOutlet var upgradeButton: UIButton!
+    @IBOutlet var healthLabel: UILabel!
+    @IBOutlet var healthSlider: UISlider!
     
     var viewController : ViewController?
     
@@ -40,6 +42,12 @@ class StructureSelectedView : UIView
         }
         repairCostLabel.text = String(structure.getRepairCost())
         sellCostLabel.text = String(structure.getSellCost())
+        healthLabel.text = "HP: \(structure.health)/\(structure.maxHealth)"
+        
+
+        healthSlider.value = Float(structure.health) / Float(structure.maxHealth)
+        NSLog("Percent health:%f", Float(structure.health) / Float(structure.maxHealth))
+        
     }
     
     
@@ -68,6 +76,7 @@ class StructureSelectedView : UIView
         
         addSubview(view)
         view.frame = bounds
+        healthSlider.setThumbImage(UIImage(), for: .normal)
     }
 
 }
