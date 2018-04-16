@@ -16,6 +16,7 @@ void main() {
     vec4 linearColor = diffuseColor + frag_Specular;
     
     // HORRIBLE GROSS DISGUSTING code to draw tile borders
+    // Tile UVs are intentionally partially out of range to allow for janky border rendering
     if (frag_TexCoord.x > 1.0 || frag_TexCoord.y > 1.0) {
         linearColor /= 2.0;
     }
