@@ -12,5 +12,16 @@ void main() {
     if (u_HasTexture) {
         diffuseColor *= texture2D(u_Texture, frag_TexCoord);
     }
-    gl_FragColor = diffuseColor + frag_Specular;
+
+    vec4 linearColor = diffuseColor + frag_Specular;
+    
+    // HORRIBLE GROSS DISGUSTING code to draw tile borders
+    if (frag_TexCoord.x > 1.0 || frag_TexCoord.y > 1.0) {
+        linearColor /= 2.0;
+    }
+    if (frag_TexCoord.x < 0.0 || frag_TexCoord.y < 0.0) {
+        linearColor *= 2.0;
+    }
+    
+    gl_FragColor = linearColor;
 }
