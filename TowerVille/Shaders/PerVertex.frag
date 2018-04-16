@@ -10,7 +10,8 @@ varying lowp vec2 frag_TexCoord;
 void main() {
     vec4 diffuseColor = frag_Diffuse;
     if (u_HasTexture) {
-        diffuseColor *= texture2D(u_Texture, frag_TexCoord);
+        // swizzle is to account for GLKTextureLoaderSRGB swapping R & B channels for some god forsaken reason
+        diffuseColor *= texture2D(u_Texture, frag_TexCoord).bgra;
     }
 
     vec4 linearColor = diffuseColor + frag_Specular;
