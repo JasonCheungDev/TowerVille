@@ -86,6 +86,7 @@
 		DE9AF82D20358AFB0097F76B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82C20358AFB0097F76B /* Light.swift */; };
 		DE9AF830203BD6100097F76B /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82F203BD6100097F76B /* PointLight.swift */; };
 		DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2DA14201BD9810088797D /* GlkExtensions.swift */; };
+		DEBEDBD120869C6200E82950 /* cube_corner.obj in Resources */ = {isa = PBXBuildFile; fileRef = DEBEDBD020869C6200E82950 /* cube_corner.obj */; };
 		DEC217B82034F05900F11022 /* VertexData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217B72034F05900F11022 /* VertexData.swift */; };
 		DEC217BE2035335A00F11022 /* DebugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217BD2035335A00F11022 /* DebugData.swift */; };
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
@@ -203,6 +204,7 @@
 		DE9AF82C20358AFB0097F76B /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		DE9AF82F203BD6100097F76B /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
 		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
+		DEBEDBD020869C6200E82950 /* cube_corner.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_corner.obj; sourceTree = "<group>"; };
 		DEC217B72034F05900F11022 /* VertexData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexData.swift; sourceTree = "<group>"; };
 		DEC217BD2035335A00F11022 /* DebugData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugData.swift; sourceTree = "<group>"; };
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		28C0DACF204756EE0068B071 /* ObjFiles */ = {
 			isa = PBXGroup;
 			children = (
+				DEBEDBD020869C6200E82950 /* cube_corner.obj */,
 				DE53C34F2075FDF200B77F8B /* mountain_tile.obj */,
 				28C0DAD4204757870068B071 /* dodecahedron.obj */,
 				28C0DAD3204757870068B071 /* hexahedron.obj */,
@@ -612,6 +615,7 @@
 				286C5E01206AE380000CCBBE /* PerVertex.frag in Resources */,
 				28E88C3E206AA9DA004BA75B /* rook.obj in Resources */,
 				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
+				DEBEDBD120869C6200E82950 /* cube_corner.obj in Resources */,
 				8CA5B503206B0E7E006EC230 /* plane.obj in Resources */,
 				DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* PerPixel.frag in Resources */,
