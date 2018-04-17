@@ -64,7 +64,8 @@ void main() {
     }
     
     if (u_HasTexture) {
-        diffuse *= texture2D(u_Texture, frag_TexCoord);
+        // swizzle is to account for GLKTextureLoaderSRGB swapping R & B channels for some god forsaken reason
+        diffuse *= texture2D(u_Texture, frag_TexCoord).bgra;
     }
     
     gl_FragColor = diffuse * frag_Color + specular;

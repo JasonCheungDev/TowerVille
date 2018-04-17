@@ -11,11 +11,12 @@ import GLKit
 
 class Tile : VisualObject {
     
+    // Tile UVs are intentionally partially out of range to allow for janky border rendering in PerVertex.frag
     static let vertexData = [
-        VertexData( 0.4, 0, -0.4, 1, 0, 0, 1,  1, 0,  0, 1, 0),
-        VertexData( 0.4, 0, 0.4, 0, 1, 0, 1,  1, 1,  0, 1, 0),
-        VertexData( -0.4, 0, 0.4, 0, 0, 1, 1,  0, 1,  0, 1, 0),
-        VertexData( -0.4, 0, -0.4, 0, 0, 0, 1,  0, 0,  0, 1, 0),
+        VertexData( 0.5, 0, -0.5, 1, 0, 0, 1,  1.1, -0.1,  0, 1, 0),
+        VertexData( 0.5, 0, 0.5, 0, 1, 0, 1,  1.1, 1.1,  0, 1, 0),
+        VertexData( -0.5, 0, 0.5, 0, 0, 1, 1,  -0.1, 1.1,  0, 1, 0),
+        VertexData( -0.5, 0, -0.5, 0, 0, 0, 1,  -0.1, -0.1,  0, 1, 0),
     ]
 
     // Note: Order matters
