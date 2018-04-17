@@ -30,7 +30,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var gameScreen: UIView!
     @IBOutlet var helpScreen: UIView!
     @IBOutlet var highscoreScreen: UIView!
-    
+    @IBOutlet var loadingScreen: UIView!
+
     
     // Game Screen
     @IBOutlet var healthLabel: UILabel!
