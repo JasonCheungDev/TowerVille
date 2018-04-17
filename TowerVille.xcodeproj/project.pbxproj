@@ -87,6 +87,7 @@
 		DE9AF830203BD6100097F76B /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AF82F203BD6100097F76B /* PointLight.swift */; };
 		DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2DA14201BD9810088797D /* GlkExtensions.swift */; };
 		DEBEDBD120869C6200E82950 /* cube_corner.obj in Resources */ = {isa = PBXBuildFile; fileRef = DEBEDBD020869C6200E82950 /* cube_corner.obj */; };
+		DEBEDBD32086A32400E82950 /* ColorLerper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEDBD22086A32400E82950 /* ColorLerper.swift */; };
 		DEC217B82034F05900F11022 /* VertexData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217B72034F05900F11022 /* VertexData.swift */; };
 		DEC217BE2035335A00F11022 /* DebugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217BD2035335A00F11022 /* DebugData.swift */; };
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
@@ -205,6 +206,7 @@
 		DE9AF82F203BD6100097F76B /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
 		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
 		DEBEDBD020869C6200E82950 /* cube_corner.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_corner.obj; sourceTree = "<group>"; };
+		DEBEDBD22086A32400E82950 /* ColorLerper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLerper.swift; sourceTree = "<group>"; };
 		DEC217B72034F05900F11022 /* VertexData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexData.swift; sourceTree = "<group>"; };
 		DEC217BD2035335A00F11022 /* DebugData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugData.swift; sourceTree = "<group>"; };
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				DEC217B72034F05900F11022 /* VertexData.swift */,
 				DE8EFD2A203D5C9D000987CE /* Camera.swift */,
 				DE47172D206222C800241030 /* Structure.swift */,
+				DEBEDBD22086A32400E82950 /* ColorLerper.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */,
 				DE8EFD2B203D5C9D000987CE /* Camera.swift in Sources */,
 				DE9AF82B20358A230097F76B /* LightManager.swift in Sources */,
+				DEBEDBD32086A32400E82950 /* ColorLerper.swift in Sources */,
 				2BEBE6502019415A008E8FEB /* Vertex.swift in Sources */,
 				3C01A27B202262CE00BB0D7C /* PlayState.swift in Sources */,
 				2BEBE64820193FF5008E8FEB /* Material.swift in Sources */,

@@ -87,9 +87,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     }
 
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        glClearColor(pow(51/255, 2.2), pow(102/255, 2.2), pow(153/255, 2.2), 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
-
+//        glClearColor(pow(175/255, 2.2), pow(238/255, 2.2), pow(238/255, 2.2), 1.0);
+//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         StateMachine.Instance.draw()
     }
 

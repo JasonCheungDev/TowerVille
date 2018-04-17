@@ -41,6 +41,8 @@ class PlayState : State {
     
     var camera : Camera!
     
+    var bgColorController : ColorLerper!
+    
     // flags
     var isSelectingStructure = false;   // selected a tile w/ a structure
     var isPickingStructure = false;     // selected a tile w/o a structure
@@ -67,6 +69,21 @@ class PlayState : State {
         map = Map(fromShader: self.shader, mapSize: self.mapSize)
         setupLights()
         
+        bgColorController = ColorLerper(delay: 5.0)
+        // day
+        bgColorController.Add(color: Color(90/255,129/255,180/255,1.0))
+        bgColorController.Add(color: Color(135/255,206/255,250/255,1.0))
+        bgColorController.Add(color: Color(90/255,129/255,180/255,1.0))
+        // evening
+        bgColorController.Add(color: Color(220/255,158/255,87/255,1.0))
+        bgColorController.Add(color: Color(180/255,68/255,78/255,1.0))
+        // night
+        bgColorController.Add(color: Color(26/255,26/255,91/255,1.0))
+        bgColorController.Add(color: Color(6/255,12/255,48/255,1.0))
+        bgColorController.Add(color: Color(26/255,26/255,91/255,1.0))
+        // morning
+        bgColorController.Add(color: Color(220/255,158/255,87/255,1.0))
+
         restart()
     }
     
@@ -140,12 +157,19 @@ class PlayState : State {
             guy.update(dt: dt)
         }
         
+        // background color
+        bgColorController.Update(deltaTime: Float(dt))
+        
         updateDuration = startTime.timeIntervalSinceNow
     }
     
     override func draw() {
         
         let startTime = Date()
+        
+        let curBgColor = bgColorController.GetColor()
+        glClearColor(curBgColor.r, curBgColor.g, curBgColor.b, 1.0);
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         
         shader.prepareToDraw()
         
