@@ -17,7 +17,22 @@ enum VertexAttributes : GLuint {
     case normal = 3
 }
 
-struct VertexData {
+struct VertexData : Hashable {
+    
+    var hashValue: Int {
+        return x.hashValue ^ y.hashValue ^ z.hashValue
+        ^ r.hashValue ^ g.hashValue ^ b.hashValue ^ a.hashValue
+        ^ u.hashValue ^ v.hashValue
+        ^ nx.hashValue ^ ny.hashValue ^ nz.hashValue
+    }
+    
+    static func ==(lhs: VertexData, rhs: VertexData) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
+        && lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b && lhs.a == rhs.a
+        && lhs.u == rhs.u && lhs.v == rhs.v
+        && lhs.nx == rhs.nx && lhs.ny == rhs.ny && lhs.nz == rhs.nz
+    }
+    
     var x : GLfloat = 0.0
     var y : GLfloat = 0.0
     var z : GLfloat = 0.0

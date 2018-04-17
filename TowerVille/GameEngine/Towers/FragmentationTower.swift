@@ -22,7 +22,12 @@ class FragmentationTower : Tower {
         self.projectileLife = 0.25
         self.reloadTime = 1 / self.attacksPerSecond
     }
-
+    
+    override func SetupVisuals() {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TOWER.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_TWR_FRAG.rawValue)
+        self.setScale(0.5)
+    }
     
     override func update(dt: TimeInterval) {
         

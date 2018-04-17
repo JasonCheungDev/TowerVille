@@ -105,13 +105,13 @@
                                         <rect key="frame" x="85" y="48" width="398" height="224"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9S-Vf-1sq" userLabel="Build Menu">
-                                        <rect key="frame" x="85" y="49" width="398.5" height="223.5"/>
+                                        <rect key="frame" x="86" y="48" width="397" height="224"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="GSj-vQ-Yz3" userLabel="Background">
-                                                <rect key="frame" x="0.0" y="0.0" width="398.5" height="223.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="397" height="224"/>
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Xx-9N-6Dq" userLabel="Tower Options Collection View">
-                                                <rect key="frame" x="32" y="32" width="334.5" height="79"/>
+                                                <rect key="frame" x="32" y="32" width="333" height="80"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <gestureRecognizers/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h2N-VT-VcJ">
@@ -175,7 +175,7 @@
                                                 </connections>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-a4-f4t" userLabel="Resource Options Collection View">
-                                                <rect key="frame" x="32" y="111" width="334.5" height="80.5"/>
+                                                <rect key="frame" x="32" y="112" width="333" height="80"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <gestureRecognizers/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JUr-ol-bYK">
@@ -191,7 +191,7 @@
                                                 </connections>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4F-Fb-64g" userLabel="Divider">
-                                                <rect key="frame" x="64" y="109.5" width="270.5" height="4"/>
+                                                <rect key="frame" x="64" y="109.5" width="269" height="4"/>
                                                 <color key="backgroundColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="IhR-hT-2f6"/>
@@ -217,16 +217,16 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-26-3JH" userLabel="Gameover Menu">
-                                        <rect key="frame" x="84.5" y="48" width="398.5" height="224"/>
+                                        <rect key="frame" x="85" y="48" width="397" height="224"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="RAj-TH-c0Y" userLabel="Background">
-                                                <rect key="frame" x="0.0" y="0.0" width="398.5" height="224"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="397" height="224"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T9c-ch-NCh">
-                                                <rect key="frame" x="0.0" y="36" width="398.5" height="86.5"/>
+                                                <rect key="frame" x="0.0" y="36" width="397" height="86.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcS-tR-Esm" userLabel="Gameover Label">
-                                                        <rect key="frame" x="0.0" y="0.0" width="398.5" height="32.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="397" height="32.5"/>
                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -234,7 +234,7 @@
                                                         <size key="shadowOffset" width="1" height="1"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAVE: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbI-g5-hTp" userLabel="Waves Label">
-                                                        <rect key="frame" x="0.0" y="32.5" width="398.5" height="27"/>
+                                                        <rect key="frame" x="0.0" y="32.5" width="397" height="27"/>
                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                                         <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -242,7 +242,7 @@
                                                         <size key="shadowOffset" width="1" height="1"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOLD: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pu1-tO-Y3e" userLabel="Gold Label">
-                                                        <rect key="frame" x="0.0" y="59.5" width="398.5" height="27"/>
+                                                        <rect key="frame" x="0.0" y="59.5" width="397" height="27"/>
                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                                         <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -252,7 +252,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sAd-PR-cf7">
-                                                <rect key="frame" x="60" y="138" width="278.5" height="50"/>
+                                                <rect key="frame" x="60" y="138" width="278" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dk-gF-Xbo">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
@@ -265,7 +265,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0R-55-slU">
-                                                        <rect key="frame" x="94" y="0.0" width="90.5" height="50"/>
+                                                        <rect key="frame" x="94" y="0.0" width="90" height="50"/>
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                                         <state key="normal" title="SCORES" backgroundImage="btn_normal">
                                                             <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -275,7 +275,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emb-kz-MZC">
-                                                        <rect key="frame" x="188.5" y="0.0" width="90" height="50"/>
+                                                        <rect key="frame" x="188" y="0.0" width="90" height="50"/>
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                                         <state key="normal" title="EXIT" backgroundImage="btn_normal">
                                                             <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -330,9 +330,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-Aj-Xsq" userLabel="Intro Screen">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="intro_bg" translatesAutoresizingMaskIntoConstraints="NO" id="vRb-XT-X2L">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_bg" translatesAutoresizingMaskIntoConstraints="NO" id="vRb-XT-X2L">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TowerVille" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNR-DD-J3g">
                                         <rect key="frame" x="181.5" y="32" width="204" height="47"/>
@@ -395,9 +394,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="tKT-AT-56R" secondAttribute="bottom" constant="32" id="4q8-o8-rLj"/>
+                                    <constraint firstItem="vRb-XT-X2L" firstAttribute="top" secondItem="O8e-Aj-Xsq" secondAttribute="top" id="MD9-fx-Uv8"/>
                                     <constraint firstItem="KNR-DD-J3g" firstAttribute="centerX" secondItem="O8e-Aj-Xsq" secondAttribute="centerX" id="R73-gI-B8F"/>
                                     <constraint firstItem="tKT-AT-56R" firstAttribute="centerX" secondItem="O8e-Aj-Xsq" secondAttribute="centerX" id="XW2-eh-DbV"/>
+                                    <constraint firstAttribute="trailing" secondItem="vRb-XT-X2L" secondAttribute="trailing" id="YsM-O4-iEC"/>
+                                    <constraint firstAttribute="bottom" secondItem="vRb-XT-X2L" secondAttribute="bottom" id="lXQ-KL-Ria"/>
                                     <constraint firstItem="KNR-DD-J3g" firstAttribute="top" secondItem="O8e-Aj-Xsq" secondAttribute="top" constant="32" id="qs3-KU-yQH"/>
+                                    <constraint firstItem="vRb-XT-X2L" firstAttribute="leading" secondItem="O8e-Aj-Xsq" secondAttribute="leading" id="sdk-Ej-Gss"/>
                                     <constraint firstItem="tKT-AT-56R" firstAttribute="top" secondItem="KNR-DD-J3g" secondAttribute="bottom" constant="16" id="y7R-yg-NdB"/>
                                 </constraints>
                             </view>

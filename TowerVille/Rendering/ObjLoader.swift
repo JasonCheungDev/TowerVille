@@ -16,7 +16,7 @@ class ObjLoader {
     private var vertexArray = [GLKVector3]()
     private var textureArray = [GLKVector2]()
     private var normalArray = [GLKVector3]()
-    
+    private var hash = [VertexData : GLushort]()
     var vertexDataArray = [VertexData]()
     var indexDataArray = [GLushort]()
     
@@ -93,15 +93,6 @@ class ObjLoader {
         let z = Float(strings[3])!
         let vector3 = GLKVector3Make(x, y, z)
         vertexArray.append(vector3)
-        
-        // if model is smoothed vertices don't need to be duplicate
-        // and can be added immediately
-        if (smoothed) {
-            let vertexIndex = vertexArray.count - 1
-            let vertex = vertexArray[vertexIndex]
-            let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
-            vertexDataArray.append(vertexData)
-        }
     }
     
     private func ReadTexture(_ line : String) -> Void{
@@ -125,48 +116,54 @@ class ObjLoader {
     private func ReadFace(_ line : String) -> Void{
         var strings = line.components(separatedBy: " ")
         strings.removeFirst()
+        
+        var faceIndices : [GLushort] = []   // track indices in case of quad
+        
         for string in strings {
             var a = string.components(separatedBy: "/")
+            var vertexData = VertexData(0,0,0,0,0,0,0,0);
             
-            // choose vertexDataArray index to set values at
-            var vertexIndex = Int(a[0])! - 1
-            if (!smoothed) {
-                let vertex = vertexArray[vertexIndex]
-                vertexIndex = vertexDataArray.count
-                let vertexData = VertexData.init(vertex.x, vertex.y, vertex.z)
+            // setup verticfes
+            let vIndex = Int(a[0])! - 1
+            vertexData.x = vertexArray[vIndex].x
+            vertexData.y = vertexArray[vIndex].y
+            vertexData.z = vertexArray[vIndex].z
+            // setup texture coordinates
+            if a.count >= 2, let tIndex = Int(a[1]) {
+                vertexData.u = textureArray[tIndex-1].x
+                vertexData.v = textureArray[tIndex-1].y
+            }
+            // setup normals
+            if !calculate_normals, a.count == 3, let nIndex = Int(a[2])
+            {
+                vertexData.nx = normalArray[nIndex-1].x
+                vertexData.ny = normalArray[nIndex-1].y
+                vertexData.nz = normalArray[nIndex-1].z
+            }
+            
+            // see if data exists already 
+            if let index = hash[vertexData]
+            {
+                indexDataArray.append(index)
+                faceIndices.append(index)
+            }
+            else
+            {
+                let newIndex = GLushort(vertexDataArray.count)
+                indexDataArray.append(newIndex)
                 vertexDataArray.append(vertexData)
-            }
-            
-            indexDataArray.append(GLushort(vertexIndex))
-            
-            // if UVs provided set them in vertexDataArray
-            if (a.count >= 2) {
-                let textureIndex = Int(a[1])
-                if (textureIndex != nil) {
-                    let texture = textureArray[textureIndex! - 1]
-                    vertexDataArray[vertexIndex].v = texture.x
-                    vertexDataArray[vertexIndex].u = texture.y
-                }
-            }
-            
-            // if normal provided set it in vertexDataArray
-            if (!calculate_normals && a.count == 3) {
-                let normalIndex = Int(a[2])
-                if (normalIndex != nil) {
-                    let normal = normalArray[normalIndex! - 1]
-                    vertexDataArray[vertexIndex].nx += normal.x
-                    vertexDataArray[vertexIndex].ny += normal.y
-                    vertexDataArray[vertexIndex].nz += normal.z
-                }
+                hash[vertexData] = newIndex
+                faceIndices.append(newIndex)
             }
         }
+        
+        // if face is a quad break it down to a triangle
         if (strings.count == 4) {
-            let count = indexDataArray.count
-            
-            indexDataArray.append(indexDataArray[count - 4])
-            indexDataArray.append(indexDataArray[count - 2])
+            indexDataArray.append(faceIndices[0])
+            indexDataArray.append(faceIndices[2])
         }
     }
     
 }
+
 

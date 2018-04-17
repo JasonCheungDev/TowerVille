@@ -36,17 +36,13 @@ class Minion : VisualObject {
     init(shader: ShaderProgram) {
         self.shader = shader
         super.init()
-        let mat = GenericMaterial(shader)
-        mat.surfaceColor = Color(105/255,105/255,105/255,1)
-        
-        let objLoader = ObjLoader()
-        objLoader.Read(fileName: "rat"); //octahedron
-        
-        let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-
-        self.renderObject = ro
-        self.material = mat
-        
+        SetupVisuals()
+    }
+    
+    func SetupVisuals()
+    {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_RAT.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_RAT.rawValue)
         self.setScale(0.25)
         self.y = 0.2
     }

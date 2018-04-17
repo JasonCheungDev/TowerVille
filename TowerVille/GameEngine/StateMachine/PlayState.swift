@@ -33,7 +33,7 @@ class PlayState : State {
         }
     }
 
-    var waveController : WaveController
+    var waveController : WaveController!
     var minions : [Minion] = []
     var minionsLeft : Int = 0
     var farms   : [Farm] = []
@@ -55,10 +55,12 @@ class PlayState : State {
     
     
     override init(replacing : Bool = true, viewController : ViewController) {
-        waveController = WaveController(shader : shader)
         super.init(replacing: replacing, viewController: viewController)
         PlayState.activeGame = self
-        
+
+        // preload all assets - may take awhile
+        AssetLoader.Instance.PreloadAssets(shader: self.shader)
+
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         
@@ -121,18 +123,20 @@ class PlayState : State {
         
         let startTime = Date()
         
-        for t in towers {
-            t.update(dt: dt)
+        // use reverse enumeration to iterate once
+        for (i,tower) in towers.enumerated().reversed() {
+            if tower.destroy { towers.remove(at: i) }
+            else { tower.update(dt: dt) }
         }
         
-        for f in farms {
-            f.update(dt: dt)
+        for (i,farm) in farms.enumerated().reversed() {
+            if farm.destroy { farms.remove(at: i) }
+            else { farm.update(dt: dt) }
         }
         
         waveController.update(dt: dt)
         
         for guy in minions {
-            //print(minions.count)
             guy.update(dt: dt)
         }
         

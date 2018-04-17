@@ -20,22 +20,18 @@ class HoppingMinion : Minion
     override init(shader: ShaderProgram)
     {
         super.init(shader: shader)
-        
-        //let mat = self.material as! GenericMaterial
-        //mat.surfaceColor = Color(255/255,255/255,0/255,1) //yellow
+
+        self.speed = 3.0
         
         w = 2 * .pi * frequency
-        
-        let mat = GenericMaterial(shader)
-        mat.surfaceColor = Color(0,1,0,1)
-        
-        let objLoader = ObjLoader()
-        objLoader.Read(fileName: "grassHopper");
-        let ro = RenderObject(fromShader:shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        self.renderObject = ro
-        self.material = mat
-        
+    }
+    
+    override func SetupVisuals()
+    {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_HOPPER.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_HOPPER.rawValue)
         self.setScale(0.2)
+        self.y = 1.0
         self.rotationOffset = 180
     }
     

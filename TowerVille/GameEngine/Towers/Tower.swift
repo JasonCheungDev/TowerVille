@@ -36,26 +36,18 @@ class Tower : Structure {
         self.x = x
         self.z = z
         self.y = 0.0
-        self.xScale = 0.5
-        self.yScale = 0.5
-        self.zScale = 0.5
         self.shader = shader
         
-        let mat = GenericMaterial(shader)
-        mat.surfaceColor = color    //Color(1,1,0,1) // r g b a
-        
-        let objLoader = ObjLoader()
-        objLoader.smoothed = false
-        objLoader.calculate_normals = true
-        objLoader.Read(fileName: "rook")
-        
-        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
- 
-        self.renderObject = ro
-        self.material = mat
-        
-        //timer = Timer.scheduledTimer(timeInterval: 1 / attacksPerSecond, target: self, selector: #selector(self.scanForTargets), userInfo: nil, repeats: true)
         reloadTime = 1.0 / attacksPerSecond;    //calculates how long the tower will wait before scanning and shooting a projectile at zombie
+        
+        SetupVisuals()
+    }
+    
+    func SetupVisuals()
+    {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TOWER.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_TWR.rawValue)
+        self.setScale(0.5)
     }
     
     func spawnProjectile(zombie : Minion){
