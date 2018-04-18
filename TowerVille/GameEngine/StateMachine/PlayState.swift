@@ -389,6 +389,7 @@ extension PlayState
     func setupLights()
     {
         directionalLight.yDir = -1
+        directionalLight.zDir = -1
         directionalLight.lightIntensity = 1
         
         let pointLightLeft = PointLight()
