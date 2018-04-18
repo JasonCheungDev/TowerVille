@@ -112,7 +112,6 @@ class AssetLoader
         let roMine = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_MINE.rawValue] = roMine
         
-        objLoader.smoothed = false
         objLoader.calculate_normals = true
         objLoader.Read(fileName: "rook")
         let roTower = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
@@ -180,7 +179,7 @@ class AssetLoader
         materials[Assets.MAT_TWR_SLOW.rawValue] = matTowerSlow
         
         let matTowerExplode = GenericMaterial(shader)
-        matTowerExplode.surfaceColor = Color(1, 0.3, 0, 1)
+        matTowerExplode.surfaceColor = Color(1, 0, 0, 1)
         materials[Assets.MAT_TWR_EXPLODE.rawValue] = matTowerExplode
         
         let matTowerFrag = GenericMaterial(shader)
