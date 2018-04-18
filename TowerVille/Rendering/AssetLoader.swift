@@ -123,19 +123,21 @@ class AssetLoader
         let roTile = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
         renderObjects[Assets.RO_TILE.rawValue] = roTile
 
-        objLoader.Read(fileName: "mountain_tile")
+        objLoader.calculate_normals = true
+        objLoader.Read(fileName: "mountain")
         let roMnt = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_MOUNTAIN.rawValue] = roMnt
 
         // MATERIALS
         let grassTileMat = GenericMaterial(shader)
-        grassTileMat.surfaceColor = Color(0,1,0,1)
-        //grassTileMat.loadTexture("grass.jpg")
+        grassTileMat.surfaceColor = Color(0.75,1.25,1,1)
+        grassTileMat.loadTexture("grass.jpg")
         materials[Assets.MAT_GRASS.rawValue] = grassTileMat
 
         let mountainTileMat = GenericMaterial(shader)
         mountainTileMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
-        //mountainTileMat.loadTexture("mountain.jpg")
+        mountainTileMat.loadTexture("mountain.png")
+        mountainTileMat.specularPower = 10
         materials[Assets.MAT_MOUNTAIN.rawValue] = mountainTileMat
 
         let pathMat = GenericMaterial(shader)

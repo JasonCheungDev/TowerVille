@@ -26,6 +26,8 @@ class Camera : GameObject
 // Please note x,y,z cannot be changed in this class
 class OrthoCamPrefab : Camera {
     
+    static var HACK_OFFSET : Float = 1
+    
     init (viewableTiles displaySize : Int)
     {
         super.init()
@@ -33,8 +35,8 @@ class OrthoCamPrefab : Camera {
         var viewTar = GLKVector3Make(Float(displaySize - 2) / 2, 0, -Float(displaySize - 2) / 2)
         var viewPos = GLKVector3Add(viewTar, GLKVector3Make(Float(displaySize), Float(displaySize), Float(displaySize)))
         self.viewMatrix = GLKMatrix4MakeLookAt(
-            viewPos.x, viewPos.y, viewPos.z, // camera position
-            viewTar.x, viewTar.y, viewTar.z, // target position
+            viewPos.x - OrthoCamPrefab.HACK_OFFSET, viewPos.y, viewPos.z + OrthoCamPrefab.HACK_OFFSET, // camera position
+            viewTar.x - OrthoCamPrefab.HACK_OFFSET, viewTar.y, viewTar.z + OrthoCamPrefab.HACK_OFFSET, // target position
             -1, 1, -1)                       // camera up vector
         
         let size : Float = Float(displaySize) * sqrt(2) // screen width in tiles
