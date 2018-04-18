@@ -30,7 +30,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var gameScreen: UIView!
     @IBOutlet var helpScreen: UIView!
     @IBOutlet var highscoreScreen: UIView!
-    
+    @IBOutlet var loadingScreen: UIView!
+
     
     // Game Screen
     @IBOutlet var healthLabel: UILabel!
@@ -86,9 +87,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     }
 
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        glClearColor(pow(51/255, 2.2), pow(102/255, 2.2), pow(153/255, 2.2), 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
-
+//        glClearColor(pow(175/255, 2.2), pow(238/255, 2.2), pow(238/255, 2.2), 1.0);
+//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         StateMachine.Instance.draw()
     }
 
@@ -333,14 +333,14 @@ extension ViewController {
         var world_z = -(temp_x + temp_z) / sqrt(2)
         
         // undo first rotation
-        let DEBUG_MAPSIZE = 10 // TODO UPDATE THIS
+        let DEBUG_MAPSIZE = 11 // WARNING: HARDCODED
         world_x += Float(DEBUG_MAPSIZE - 2) / 2
         world_z -= Float(DEBUG_MAPSIZE - 2) / 2
         
         print("world x : \(world_x)")
         print("world z : \(world_z)")
         
-        return Vertex(world_x, 0, world_z)
+        return Vertex(world_x - OrthoCamPrefab.HACK_OFFSET, 0, world_z + OrthoCamPrefab.HACK_OFFSET)
     }
     
     func LoadScores() -> [Int]{

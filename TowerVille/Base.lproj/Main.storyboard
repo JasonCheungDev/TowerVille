@@ -122,7 +122,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="structureCollectionViewCell" id="ZJm-Ni-pcO" customClass="UICellStructure" customModule="TowerVille" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="7.5" width="64" height="64"/>
+                                                        <rect key="frame" x="0.0" y="8" width="64" height="64"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -514,11 +514,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sl0-0J-5mP" userLabel="Loading Screen">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPX-Qf-cwe">
+                                        <rect key="frame" x="176" y="138" width="216.5" height="45.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="YPX-Qf-cwe" firstAttribute="centerX" secondItem="sl0-0J-5mP" secondAttribute="centerX" id="848-2M-DS7"/>
+                                    <constraint firstItem="YPX-Qf-cwe" firstAttribute="centerY" secondItem="sl0-0J-5mP" secondAttribute="centerY" id="HV4-6Z-7aF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="2KQ-Yc-x6h"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="3jI-I7-p7c"/>
+                            <constraint firstItem="sl0-0J-5mP" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="7cA-8Q-PXG"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="83G-Pz-Xil"/>
                             <constraint firstItem="oqm-gc-5ak" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="A9Y-gO-ccb"/>
                             <constraint firstItem="oqm-gc-5ak" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="Ciw-qe-LpZ"/>
@@ -530,9 +547,12 @@
                             <constraint firstItem="O8e-Aj-Xsq" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="TYa-zA-yQS"/>
                             <constraint firstItem="oqm-gc-5ak" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="VGq-3F-LvD"/>
                             <constraint firstItem="oqm-gc-5ak" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="VRW-Uy-Q4I"/>
+                            <constraint firstItem="sl0-0J-5mP" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="VsI-FX-Gar"/>
+                            <constraint firstItem="sl0-0J-5mP" firstAttribute="top" secondItem="z5K-yD-WZX" secondAttribute="top" id="h1J-p8-E8A"/>
                             <constraint firstItem="z5K-yD-WZX" firstAttribute="bottom" secondItem="NvJ-8s-r7g" secondAttribute="bottom" id="j0e-Hb-Gw2"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="jzU-QJ-cgN"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="bottom" secondItem="z5K-yD-WZX" secondAttribute="bottom" id="kuK-9t-zcb"/>
+                            <constraint firstItem="sl0-0J-5mP" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="shy-IZ-hPY"/>
                             <constraint firstAttribute="trailing" secondItem="NvJ-8s-r7g" secondAttribute="trailing" id="tWg-7l-nqy"/>
                             <constraint firstItem="FgP-ZR-VFs" firstAttribute="trailing" secondItem="z5K-yD-WZX" secondAttribute="trailing" id="uSZ-Go-pPu"/>
                             <constraint firstItem="4cu-Ze-Z2d" firstAttribute="leading" secondItem="z5K-yD-WZX" secondAttribute="leading" id="yIW-92-W0C"/>
@@ -553,6 +573,7 @@
                         <outlet property="highscoreScreen" destination="oqm-gc-5ak" id="Oly-wl-TaS"/>
                         <outlet property="highscoreText" destination="RXv-Ne-DRM" id="FvU-zt-7Ce"/>
                         <outlet property="introScreen" destination="O8e-Aj-Xsq" id="4GV-UK-z8B"/>
+                        <outlet property="loadingScreen" destination="sl0-0J-5mP" id="xV4-Zw-kbB"/>
                         <outlet property="resourceCollectionView" destination="GP0-a4-f4t" id="7hv-p3-90h"/>
                         <outlet property="structureSelectedView" destination="GZo-V5-NL5" id="8Dg-Xk-qyF"/>
                         <outlet property="towerCollectionView" destination="7Xx-9N-6Dq" id="rJj-hT-NrN"/>

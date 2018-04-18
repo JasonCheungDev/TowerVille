@@ -12,11 +12,13 @@ import GLKit
 class Map : VisualObject {
     
     var Tiles : [[Tile]] = []
-    
+    var facade : [VisualObject] = []
+
     private var shader : ShaderProgram!
     private var mergedGrassVO    : VisualObject?
     private var mergedMountainVO : VisualObject?
     private var mergedPathVO     : VisualObject?
+    private var mergedFacadeVO   : VisualObject?
     
     
     init(fromShader shader : ShaderProgram, mapSize : Int)
@@ -34,12 +36,15 @@ class Map : VisualObject {
             mergedGrassVO?.draw()
             mergedMountainVO?.draw()
             mergedPathVO?.draw()
+            mergedFacadeVO?.draw()
         }
         // standard draw
         else
         {
             Tiles.forEach({ $0.forEach({ $0.draw() })})
+            facade.forEach({ $0.draw() })
         }
+
     }
     
     func setupMap(mapSize: Int) {
@@ -47,6 +52,13 @@ class Map : VisualObject {
         self.Tiles.removeAll()
         
         let gridSize = mapSize * 2 - 1
+        
+        var objLoader = ObjLoader()
+        objLoader.Read(fileName: "cube_corner")
+        let facadeRo = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
+        let facadeMat = GenericMaterial(shader)
+        facadeMat.surfaceColor = Color(0.5,0.5,0.5,1)
+
         
         for x in 0..<gridSize {
             
@@ -68,6 +80,16 @@ class Map : VisualObject {
                         newTile.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_MOUNTAIN.rawValue)
                         newTile.type = TileType.Mountain
                         newTile.setScale(0.5)
+                        
+                        // create a facade (to appear in the sky)
+                        let facadeVo = VisualObject()
+                        facadeVo.x = Float(x)
+                        facadeVo.y = -0.5
+                        facadeVo.z = Float(-y)
+                        facadeVo.renderObject = facadeRo
+                        facadeVo.material = facadeMat
+                        facade.append(facadeVo)
+
                     } else {
                         // rest
                         newTile.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TILE.rawValue)
@@ -123,6 +145,8 @@ class Map : VisualObject {
         self.mergedGrassVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Grass }))
 
         self.mergedPathVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Path }))
+        
+        self.mergedFacadeVO = mergeVisualObjects(fromVisualObjects: facade)
     }
     
     func clearAllStructures()
