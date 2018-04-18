@@ -44,18 +44,23 @@ void main(void) {
     vec3 normal = normalize(mat3(u_ModelView) * i_Normal);
     vec3 position = (u_ModelView * i_Position).xyz;
     
-    vec4 diffuse = vec4(0.0);
-    vec4 specular = vec4(0.0);
+    float halfLambert = dot(normal, -u_DirectionalLight.direction) * 0.5 + 0.5;
+    
+    vec3 halfDirection = normalize(cameraForward-u_DirectionalLight.direction);
+    float blinn = (2.0 + u_SpecularPower) * pow(max(0.0, dot(normal, halfDirection)), u_SpecularPower) * MAGIC_NUMBER;
+    
+    vec4 diffuse = u_DirectionalLight.color * u_DirectionalLight.intensity * halfLambert * halfLambert;
+    vec4 specular = u_DirectionalLight.color * u_DirectionalLight.intensity * blinn;
     
     for (int i = 0; i < 2; i++) {
         vec3 lightDirection = u_PointLights[i].position - position;
         float lightDistance = length(lightDirection);
         lightDirection /= lightDistance;
         
-        float halfLambert = dot(normal, lightDirection) * 0.5 + 0.5;
+        halfLambert = dot(normal, lightDirection) * 0.5 + 0.5;
         
-        vec3 halfDirection = normalize(cameraForward+lightDirection);
-        float blinn = (2.0 + u_SpecularPower) * pow(max(0.0, dot(normal, halfDirection)), u_SpecularPower) * MAGIC_NUMBER;
+        halfDirection = normalize(cameraForward+lightDirection);
+        blinn = (2.0 + u_SpecularPower) * pow(max(0.0, dot(normal, halfDirection)), u_SpecularPower) * MAGIC_NUMBER;
         
         float attenuation = 1.0 / (lightDistance * attenuationCoef);
         attenuation *= attenuation * u_PointLights[i].intensity;

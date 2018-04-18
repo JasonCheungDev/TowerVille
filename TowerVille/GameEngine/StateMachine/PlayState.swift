@@ -7,6 +7,8 @@ class PlayState : State {
     
     static var activeGame : PlayState!
     
+    let directionalLight = DirectionalLight()
+    
     let mapSize : Int = 10  // size of 1 side of the map (length and width)
     var map : Map!
     let shader = ShaderProgram(vertexShader: "PerVertex.vert", fragmentShader: "PerVertex.frag")
@@ -168,6 +170,7 @@ class PlayState : State {
         let startTime = Date()
         
         let curBgColor = bgColorController.GetColor()
+        directionalLight.lightColor = bgColorController.GetColor()
         glClearColor(curBgColor.r, curBgColor.g, curBgColor.b, 1.0);
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         
@@ -379,26 +382,22 @@ extension PlayState
 {
     func setupLights()
     {
-        let directionalLight = DirectionalLight()
-        directionalLight.xDir = 1
         directionalLight.yDir = -1
-        directionalLight.zDir = -1
-        directionalLight.lightIntensity = 0.125
-        directionalLight.lightColor = Color(1,1,1,1)
+        directionalLight.lightIntensity = 0.66
         
         let pointLightLeft = PointLight()
         pointLightLeft.x = 4.0
         pointLightLeft.y = 5.0
         pointLightLeft.z = -4.0
-        pointLightLeft.lightIntensity = 1.0
-        pointLightLeft.lightColor = Color(222/255,107/255,40/255,1)
+        pointLightLeft.lightIntensity = 0.66
+        pointLightLeft.lightColor = Color(255/255,64/255,0/255,1)
         
         let pointLightRename = PointLight()
         pointLightRename.x = 14.0
         pointLightRename.y = 5.0
         pointLightRename.z = -14.0
-        pointLightRename.lightIntensity = 1.0
-        pointLightRename.lightColor = Color(67/255,134/255,150/255,1)
+        pointLightRename.lightIntensity = 0.66
+        pointLightRename.lightColor = Color(0/255,128/255,255/255,1)
     }
 }
 
