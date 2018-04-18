@@ -29,11 +29,10 @@ class MinionProjectile : VisualObject
         self.target = target
         
         let objLoader = ObjLoader()
-        objLoader.smoothed = false
         objLoader.Read(fileName: "icosahedron")
         
         let mat = GenericMaterial(shader)
-        mat.surfaceColor = Color(1,0,0,1)
+        mat.surfaceColor = Color(1,140/255,0,1)
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
 
         self.renderObject = ro

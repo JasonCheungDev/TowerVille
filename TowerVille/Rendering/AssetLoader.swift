@@ -112,7 +112,6 @@ class AssetLoader
         let roMine = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_MINE.rawValue] = roMine
         
-        objLoader.smoothed = false
         objLoader.calculate_normals = true
         objLoader.Read(fileName: "rook")
         let roTower = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
@@ -124,19 +123,21 @@ class AssetLoader
         let roTile = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
         renderObjects[Assets.RO_TILE.rawValue] = roTile
 
-        objLoader.Read(fileName: "mountain_tile")
+        objLoader.calculate_normals = true
+        objLoader.Read(fileName: "mountain")
         let roMnt = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
         renderObjects[Assets.RO_MOUNTAIN.rawValue] = roMnt
 
         // MATERIALS
         let grassTileMat = GenericMaterial(shader)
-        grassTileMat.surfaceColor = Color(0,1,0,1)
+        grassTileMat.surfaceColor = Color(0.75,1.25,1,1)
         grassTileMat.loadTexture("grass.jpg")
         materials[Assets.MAT_GRASS.rawValue] = grassTileMat
 
         let mountainTileMat = GenericMaterial(shader)
-        mountainTileMat.surfaceColor = Color(1,1,1,1)
-        mountainTileMat.loadTexture("mountain.jpg")
+        mountainTileMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
+        mountainTileMat.loadTexture("mountain.png")
+        mountainTileMat.specularPower = 10
         materials[Assets.MAT_MOUNTAIN.rawValue] = mountainTileMat
 
         let pathMat = GenericMaterial(shader)
@@ -180,7 +181,7 @@ class AssetLoader
         materials[Assets.MAT_TWR_SLOW.rawValue] = matTowerSlow
         
         let matTowerExplode = GenericMaterial(shader)
-        matTowerExplode.surfaceColor = Color(1, 0.3, 0, 1)
+        matTowerExplode.surfaceColor = Color(1, 0, 0, 1)
         materials[Assets.MAT_TWR_EXPLODE.rawValue] = matTowerExplode
         
         let matTowerFrag = GenericMaterial(shader)

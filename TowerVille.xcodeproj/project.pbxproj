@@ -63,14 +63,12 @@
 		8CBACAFE2054A34600757CB9 /* IceProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFD2054A34600757CB9 /* IceProjectile.swift */; };
 		8CBACB002054A5AC00757CB9 /* FragmentationProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */; };
 		DE2F3E76206A2CA00038A2A8 /* sawmill.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */; };
-		DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E74206A2CA00038A2A8 /* mountain.obj */; };
 		DE2F3E78206A2CA00038A2A8 /* mine.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE2F3E75206A2CA00038A2A8 /* mine.obj */; };
 		DE38C3AB20719DA90010B718 /* AssetLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE38C3AA20719DA90010B718 /* AssetLoader.swift */; };
 		DE3A3B9A20356B1D002E34FB /* CubePrefab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A3B9920356B1D002E34FB /* CubePrefab.swift */; };
 		DE471728206205B700241030 /* StructureSelectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE471727206205B700241030 /* StructureSelectedView.xib */; };
 		DE47172A206205F800241030 /* StructureSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE471729206205F800241030 /* StructureSelectedView.swift */; };
 		DE47172E206222C800241030 /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47172D206222C800241030 /* Structure.swift */; };
-		DE53C34C2075FDD800B77F8B /* mountain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE53C34B2075FDD700B77F8B /* mountain.jpg */; };
 		DE53C3502075FDF300B77F8B /* mountain_tile.obj in Resources */ = {isa = PBXBuildFile; fileRef = DE53C34F2075FDF200B77F8B /* mountain_tile.obj */; };
 		DE53C3522076065E00B77F8B /* grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE53C3512076065E00B77F8B /* grass.jpg */; };
 		DE5977EE20324E3000E52927 /* PerPixel.vert in Resources */ = {isa = PBXBuildFile; fileRef = DE5977EC20324E3000E52927 /* PerPixel.vert */; };
@@ -88,6 +86,8 @@
 		DEB2DA15201BD9810088797D /* GlkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2DA14201BD9810088797D /* GlkExtensions.swift */; };
 		DEBEDBD120869C6200E82950 /* cube_corner.obj in Resources */ = {isa = PBXBuildFile; fileRef = DEBEDBD020869C6200E82950 /* cube_corner.obj */; };
 		DEBEDBD32086A32400E82950 /* ColorLerper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEDBD22086A32400E82950 /* ColorLerper.swift */; };
+		DEBEDBD92086D13400E82950 /* mountain.obj in Resources */ = {isa = PBXBuildFile; fileRef = DEBEDBD82086D13400E82950 /* mountain.obj */; };
+		DEBEDBDB2086D1A600E82950 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = DEBEDBDA2086D1A600E82950 /* mountain.png */; };
 		DEC217B82034F05900F11022 /* VertexData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217B72034F05900F11022 /* VertexData.swift */; };
 		DEC217BE2035335A00F11022 /* DebugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC217BD2035335A00F11022 /* DebugData.swift */; };
 		DEC217C22035412100F11022 /* dungeon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC217C12035412000F11022 /* dungeon_01.png */; };
@@ -96,7 +96,6 @@
 		DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C13205BBEB000B7373E /* slow_tower.png */; };
 		DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = DEC41C16205BC69F00B7373E /* Futura.ttc */; };
 		DED25B65206354A800632ED2 /* LineObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED25B64206354A800632ED2 /* LineObject.swift */; };
-		DEEE67052079497A0006E1E4 /* mountain_tex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DEEE67032079497A0006E1E4 /* mountain_tex.jpg */; };
 		DEEE67062079497A0006E1E4 /* mountain_grass_tex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DEEE67042079497A0006E1E4 /* mountain_grass_tex.jpg */; };
 		DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DB204B4F5800B1A311 /* watchtower.png */; };
 		DEF7A6DE204B4FAF00B1A311 /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF7A6DD204B4FAE00B1A311 /* wip.png */; };
@@ -182,14 +181,12 @@
 		8CBACAFD2054A34600757CB9 /* IceProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceProjectile.swift; sourceTree = "<group>"; };
 		8CBACAFF2054A5AC00757CB9 /* FragmentationProjectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentationProjectile.swift; sourceTree = "<group>"; };
 		DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sawmill.obj; sourceTree = "<group>"; };
-		DE2F3E74206A2CA00038A2A8 /* mountain.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mountain.obj; sourceTree = "<group>"; };
 		DE2F3E75206A2CA00038A2A8 /* mine.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mine.obj; sourceTree = "<group>"; };
 		DE38C3AA20719DA90010B718 /* AssetLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetLoader.swift; sourceTree = "<group>"; };
 		DE3A3B9920356B1D002E34FB /* CubePrefab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePrefab.swift; sourceTree = "<group>"; };
 		DE471727206205B700241030 /* StructureSelectedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StructureSelectedView.xib; sourceTree = "<group>"; };
 		DE471729206205F800241030 /* StructureSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSelectedView.swift; sourceTree = "<group>"; };
 		DE47172D206222C800241030 /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
-		DE53C34B2075FDD700B77F8B /* mountain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mountain.jpg; sourceTree = "<group>"; };
 		DE53C34F2075FDF200B77F8B /* mountain_tile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mountain_tile.obj; sourceTree = "<group>"; };
 		DE53C3512076065E00B77F8B /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
 		DE5977EC20324E3000E52927 /* PerPixel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerPixel.vert; sourceTree = "<group>"; };
@@ -207,6 +204,8 @@
 		DEB2DA14201BD9810088797D /* GlkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlkExtensions.swift; sourceTree = "<group>"; };
 		DEBEDBD020869C6200E82950 /* cube_corner.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_corner.obj; sourceTree = "<group>"; };
 		DEBEDBD22086A32400E82950 /* ColorLerper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLerper.swift; sourceTree = "<group>"; };
+		DEBEDBD82086D13400E82950 /* mountain.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mountain.obj; sourceTree = "<group>"; };
+		DEBEDBDA2086D1A600E82950 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain.png; sourceTree = "<group>"; };
 		DEC217B72034F05900F11022 /* VertexData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexData.swift; sourceTree = "<group>"; };
 		DEC217BD2035335A00F11022 /* DebugData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugData.swift; sourceTree = "<group>"; };
 		DEC217C12035412000F11022 /* dungeon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon_01.png; sourceTree = "<group>"; };
@@ -215,7 +214,6 @@
 		DEC41C13205BBEB000B7373E /* slow_tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow_tower.png; sourceTree = "<group>"; };
 		DEC41C16205BC69F00B7373E /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
 		DED25B64206354A800632ED2 /* LineObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineObject.swift; sourceTree = "<group>"; };
-		DEEE67032079497A0006E1E4 /* mountain_tex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mountain_tex.jpg; sourceTree = "<group>"; };
 		DEEE67042079497A0006E1E4 /* mountain_grass_tex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mountain_grass_tex.jpg; sourceTree = "<group>"; };
 		DEF7A6DB204B4F5800B1A311 /* watchtower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watchtower.png; sourceTree = "<group>"; };
 		DEF7A6DD204B4FAE00B1A311 /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
@@ -250,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				DEBEDBD020869C6200E82950 /* cube_corner.obj */,
+				DEBEDBD82086D13400E82950 /* mountain.obj */,
 				DE53C34F2075FDF200B77F8B /* mountain_tile.obj */,
 				28C0DAD4204757870068B071 /* dodecahedron.obj */,
 				28C0DAD3204757870068B071 /* hexahedron.obj */,
@@ -263,7 +262,6 @@
 				8CA5B502206B0E7E006EC230 /* plane.obj */,
 				8CA5B4FE206B0BAF006EC230 /* rat.obj */,
 				DE2F3E73206A2C9F0038A2A8 /* sawmill.obj */,
-				DE2F3E74206A2CA00038A2A8 /* mountain.obj */,
 				DE2F3E75206A2CA00038A2A8 /* mine.obj */,
 				28E88C3D206AA9DA004BA75B /* rook.obj */,
 			);
@@ -482,9 +480,8 @@
 		DEF7A6DA204B4ED000B1A311 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DEBEDBDA2086D1A600E82950 /* mountain.png */,
 				DEEE67042079497A0006E1E4 /* mountain_grass_tex.jpg */,
-				DEEE67032079497A0006E1E4 /* mountain_tex.jpg */,
-				DE53C34B2075FDD700B77F8B /* mountain.jpg */,
 				DE53C3512076065E00B77F8B /* grass.jpg */,
 				DEF7A6DD204B4FAE00B1A311 /* wip.png */,
 				DEF7A6DB204B4F5800B1A311 /* watchtower.png */,
@@ -620,14 +617,12 @@
 				28CE0FCA205FAD55001B415E /* farm.obj in Resources */,
 				DEBEDBD120869C6200E82950 /* cube_corner.obj in Resources */,
 				8CA5B503206B0E7E006EC230 /* plane.obj in Resources */,
-				DE2F3E77206A2CA00038A2A8 /* mountain.obj in Resources */,
 				289E3CC9203A8B6800B34C4A /* PerPixel.frag in Resources */,
 				28C0DAD7204757870068B071 /* tetrahedron.obj in Resources */,
 				DEF7A6DC204B4F5800B1A311 /* watchtower.png in Resources */,
 				2840DE2F203C1BEA005C0513 /* cube.obj in Resources */,
 				28C0DAD5204757870068B071 /* icosahedron.obj in Resources */,
 				2BB2AD7420193318004565D4 /* Main.storyboard in Resources */,
-				DE53C34C2075FDD800B77F8B /* mountain.jpg in Resources */,
 				DEC41C17205BC6AE00B7373E /* Futura.ttc in Resources */,
 				DEC217C52035434600F11022 /* Rendering Instructions.rtf in Resources */,
 				DEC217C22035412100F11022 /* dungeon_01.png in Resources */,
@@ -635,9 +630,10 @@
 				28C0DAD6204757870068B071 /* octahedron.obj in Resources */,
 				DE2F3E76206A2CA00038A2A8 /* sawmill.obj in Resources */,
 				DE53C3502075FDF300B77F8B /* mountain_tile.obj in Resources */,
-				DEEE67052079497A0006E1E4 /* mountain_tex.jpg in Resources */,
+				DEBEDBD92086D13400E82950 /* mountain.obj in Resources */,
 				28C0DAD8204757870068B071 /* hexahedron.obj in Resources */,
 				DE53C3522076065E00B77F8B /* grass.jpg in Resources */,
+				DEBEDBDB2086D1A600E82950 /* mountain.png in Resources */,
 				DEC41C14205BBEB000B7373E /* slow_tower.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

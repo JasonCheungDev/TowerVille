@@ -142,7 +142,7 @@ class ObjLoader {
             }
             
             // see if data exists already 
-            if let index = hash[vertexData]
+            if let index = hash[vertexData], smoothed
             {
                 indexDataArray.append(index)
                 faceIndices.append(index)

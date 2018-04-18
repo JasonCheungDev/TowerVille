@@ -63,7 +63,7 @@ class PlayState : State {
         // preload all assets - may take awhile
         AssetLoader.Instance.PreloadAssets(shader: self.shader)
 
-        camera = OrthoCamPrefab(viewableTiles: 11)  // WARNING: HARDCODED
+        camera = OrthoCamPrefab(viewableTiles: self.mapSize + Int(OrthoCamPrefab.HACK_OFFSET))  // WARNING: HARDCODED
         Camera.ActiveCamera = camera
         
         map = Map(fromShader: self.shader, mapSize: self.mapSize)
