@@ -11,10 +11,10 @@ import GLKit
 
 class FragmentationTower : Tower {
     
-    override class var NAME : String { return "Fragmentation" }
-    override class var ICON : String { return "watchtower.png" }
+    override class var NAME : String { return "Fragment" }
+    override class var ICON : String { return "FragmentTower.png" }
     override class var HEALTH_LVLS : [Int] { return [100,200,400,800,1600] }
-    override class var COST_LVLS : [Int] { return [200,400,800,1600,3200] }
+    override class var COST_LVLS : [Int] { return [100,200,300,400,500] }
     
     override init(_ x: GLfloat, _ z: GLfloat, shader: ShaderProgram, color: Color) {
         super.init(x,z,shader: shader,color: color)

@@ -11,7 +11,7 @@ import GLKit
 
 class ExplodeTower : Tower{
     override class var NAME : String { return "Explosion" }
-    override class var ICON : String { return "watchtower.png" }
+    override class var ICON : String { return "ExplosionTower.png" }
     override class var HEALTH_LVLS : [Int] { return [100,150,300,500,1000] }
     override class var COST_LVLS : [Int] { return [50,100,200,400,600] }
     

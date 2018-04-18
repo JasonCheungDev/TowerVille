@@ -189,7 +189,7 @@ class AssetLoader
         materials[Assets.MAT_TWR_FRAG.rawValue] = matTowerFrag
         
         let matTowerLaser = GenericMaterial(shader)
-        matTowerLaser.surfaceColor = Color(1, 0, 0, 1)
+        matTowerLaser.surfaceColor = Color(0, 1, 0, 1)
         materials[Assets.MAT_TWR_LASER.rawValue] = matTowerLaser
     
         let loadTime = startTime.timeIntervalSinceNow

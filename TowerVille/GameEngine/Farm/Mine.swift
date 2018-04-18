@@ -11,7 +11,7 @@ import Foundation
 class Mine : Farm {
     
     override class var NAME : String { return "Mine" }
-    override class var ICON : String { return "farm.png" }
+    override class var ICON : String { return "Mine.png" }
     override class var HEALTH_LVLS : [Int] { return [40,60,80,100,200] }
     override class var COST_LVLS : [Int] { return [200,400,600,800,1000] }
     
