@@ -170,7 +170,13 @@ class PlayState : State {
         let startTime = Date()
         
         let curBgColor = bgColorController.GetColor()
-        directionalLight.lightColor = bgColorController.GetColor()
+        
+        var temp = curBgColor
+        temp.r = powf(temp.r, 2.2)
+        temp.g = powf(temp.g, 2.2)
+        temp.b = powf(temp.b, 2.2)
+        directionalLight.lightColor = temp
+        
         glClearColor(curBgColor.r, curBgColor.g, curBgColor.b, 1.0);
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         
@@ -396,7 +402,7 @@ extension PlayState
         pointLightRename.x = 14.0
         pointLightRename.y = 5.0
         pointLightRename.z = -14.0
-        pointLightRename.lightIntensity = 0.66
+        pointLightRename.lightIntensity = 1
         pointLightRename.lightColor = Color(0/255,128/255,255/255,1)
     }
 }
