@@ -122,15 +122,25 @@ class PlayState : State {
     {
         paused = true
         
+        // do last update
+        updateUi()
+        
         // check if we should prompt user to enter in hs
-        var scores = viewController.LoadScores()
-        for score in scores
+        let scores = viewController.LoadScores()
+        if scores.count != 0
         {
-            if goldEarned > score
+            for score in scores
             {
-                viewController.SaveScore(score: goldEarned)
-                break
+                if goldEarned > score
+                {
+                    viewController.SaveScore(score: goldEarned)
+                    break
+                }
             }
+        }
+        else
+        {
+            viewController.SaveScore(score: goldEarned)
         }
         
         viewController.showGameOverMenu(wavesCompleted: waveController.currentWave, goldEarned: goldEarned)

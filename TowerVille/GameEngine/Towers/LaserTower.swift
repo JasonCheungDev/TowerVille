@@ -12,9 +12,9 @@ import GLKit
 class LaserTower : Tower
 {
     override class var NAME : String { return "Laser" }
-    override class var ICON : String { return "watchtower.png" }
+    override class var ICON : String { return "LaserTower.png" }
     override class var HEALTH_LVLS : [Int] { return [50,100,150,250,500] }
-    override class var COST_LVLS : [Int] { return [5,50,100,200,400] }
+    override class var COST_LVLS : [Int] { return [75,100,150,200,300] }
 
     var damage : Int = 100
     var shotWidth : Float = 1
@@ -70,7 +70,7 @@ class LaserTower : Tower
         targetPos = GLKVector2Add(towerPos, shootDir)
         
         let mat = GenericMaterial(self.shader)
-        mat.surfaceColor = Color(1,0,0,1)
+        mat.surfaceColor = Color(0,1,0,1)
         mat.specularPower = 0
         
         let line = LineObject(fromShader: self.shader, fromVectors:
