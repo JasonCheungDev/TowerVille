@@ -15,7 +15,7 @@ class PlayState : State {
 
     //let minion : Minion
     var towers : [Tower] = []
-    var _gold : Int = 0
+    var _gold : Int = 25
     var goldEarned : Int = 0
     var gold : Int {
         get { return _gold }
@@ -98,7 +98,7 @@ class PlayState : State {
         map.clearAllStructures()
         viewController.hideGameOverMenu()
         lives = 10
-        gold = 0
+        gold = 25
         
         // initiailze
         waveController = WaveController(shader : shader)
@@ -108,7 +108,7 @@ class PlayState : State {
         map.compress()
         
         // create some default structures 
-        self.gold = Farm.COST + SlowTower.COST + Tower.COST
+        self.gold = Farm.COST + SlowTower.COST + Tower.COST + 25
         goldEarned = 0
         createFarm(tile: map.Tiles[17][9])
         createSlowTower(tile: map.Tiles[7][6])

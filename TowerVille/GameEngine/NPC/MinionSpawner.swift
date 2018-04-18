@@ -39,7 +39,7 @@ class MinionSpawner : GameObject {
         if let i = t.minions.index(where: { !$0.alive }) {
             t.minions.remove(at: i)
         }
-        if(current <= total && curTime >= spawnTime) {
+        if(current < total && curTime >= spawnTime) {
             curTime = 0.0
             spawn()
         }
