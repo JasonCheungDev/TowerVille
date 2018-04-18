@@ -25,6 +25,7 @@ class WaveController : GameObject {
         spawners[0].total = 1
         spawners.append(MinionSpawner(minion: RangeMinion(shader: shader), waypoints: WaveController.WAYPOINTS_LVL1))
         spawners[1].total = 1
+        spawners[1].minion.speed = 1.5
         spawners[1].spawnTime = 2.5
         spawners.append(MinionSpawner(minion: HoppingMinion(shader: shader), waypoints: WaveController.WAYPOINTS_LVL1))
         spawners[2].spawnTime = 4
@@ -54,7 +55,7 @@ class WaveController : GameObject {
         // .. = 40 - (20 - 15) = 35
         // .. = 40 - (40 - 10) = 30
         // math
-        PlayState.activeGame.minionsLeft = (currentTotal + 3) - (currentAmount - PlayState.activeGame.minions.count)
+        PlayState.activeGame.minionsLeft = currentTotal - (currentAmount - PlayState.activeGame.minions.count)
         
         if(currentAmount >= currentTotal && PlayState.activeGame.minions.isEmpty) {
             finishLevel()
@@ -67,15 +68,31 @@ class WaveController : GameObject {
     func finishLevel() {
         finished = true
         spawners[0].reset()
-        spawners[0].total += 3
-        spawners[0].minion.speed += 1
+        spawners[0].total += 1
         
         spawners[1].reset()
-        spawners[1].total += 2
+        if(currentWave % 2 == 0) {
+            spawners[1].total += 1
+        }
         
         spawners[2].reset()
-        spawners[2].total += 1
-        spawners[2].minion.health += 1000
+        if(currentWave % 5 == 0) {
+            spawners[2].total += 1
+        }
+        
+        if(currentWave % 10 == 0)
+        {
+            for spawner in spawners {
+                spawner.minion.speed += 1
+            }
+        }
+        
+        if(currentWave % 3 == 0)
+        {
+            for spawner in spawners {
+                spawner.minion.health += currentWave * 10
+            }
+        }
         
         currentWave += 1
     }
