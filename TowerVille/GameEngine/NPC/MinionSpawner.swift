@@ -50,39 +50,4 @@ class MinionSpawner : GameObject {
         curTime = 0
     }
     
-    class var WAYPOINTS_LVL1 : [GameObject]
-    {
-        let numberOfWaypoints = 7
-        var waypoints : [GameObject] = []
-        
-        for _ in 0..<numberOfWaypoints
-        {
-            let go = GameObject()
-            waypoints.append(go)
-        }
-        
-        waypoints[0].x = 5
-        waypoints[0].z = -5
-        
-        waypoints[1].x = 12
-        waypoints[1].z = -5
-        
-        waypoints[2].x = 12
-        waypoints[2].z = -8
-        
-        waypoints[3].x = 4
-        waypoints[3].z = -8
-        
-        waypoints[4].x = 4
-        waypoints[4].z = -11
-        
-        waypoints[5].x = 12
-        waypoints[5].z = -11
-        
-        waypoints[6].x = 12
-        waypoints[6].z = -16
-
-        return waypoints
-    }
-    
 }

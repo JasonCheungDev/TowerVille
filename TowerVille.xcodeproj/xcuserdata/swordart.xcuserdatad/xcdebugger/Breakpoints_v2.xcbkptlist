@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TowerVille/GameEngine/NPC/HoppingMinion.swift"
-            timestampString = "543622873.689144"
+            timestampString = "543889729.129759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "update(dt:)"
             landmarkType = "7">
          </BreakpointContent>

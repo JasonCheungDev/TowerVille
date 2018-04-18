@@ -20,20 +20,12 @@ class Mine : Farm {
     {
         super.init(playState, shader)
         
-        let objLoader = ObjLoader()
-        objLoader.Read(fileName: "mine")
-        
-        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        
-        let mat = GenericMaterial(shader)
-        mat.surfaceColor = Color(133/255, 94/255, 66/255, 1)
-        mat.specularPower = 1;
-        
-        self.renderObject = ro
-        self.material = mat
-        
-        self.setScale(0.5)
-        
         self.ResourcePerSecond = 4
+    }
+    
+    override func SetupVisuals() {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_MINE.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_MINE.rawValue)
+        self.setScale(0.4)
     }
 }

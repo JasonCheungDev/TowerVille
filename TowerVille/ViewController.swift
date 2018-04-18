@@ -29,6 +29,8 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var introScreen: UIView!
     @IBOutlet var gameScreen: UIView!
     @IBOutlet var helpScreen: UIView!
+    @IBOutlet var highscoreScreen: UIView!
+    
     
     // Game Screen
     @IBOutlet var healthLabel: UILabel!
@@ -44,6 +46,15 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
     var buildResourceOptions : [UIModelStructure] = []
     
     @IBOutlet var structureSelectedView: StructureSelectedView!
+    
+    @IBOutlet var endMenu: UIView!
+    @IBOutlet var endWaveLabel: UILabel!
+    @IBOutlet var endGoldLabel: UILabel!
+    
+    
+    // Highscore Screen
+    @IBOutlet var highscoreText: UITextView!
+    
     
     // OpenGL
     var glkView: GLKView!
@@ -93,20 +104,23 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
         {
         case UIActionType.PlaySelected.rawValue:
             NSLog("Play btn pressed")
-            gameScreen.isHidden = false
+            showScreen(screenType: .GameScreen)
             break
         case UIActionType.HelpSelected.rawValue:
             NSLog("Help btn pressed")
-            helpScreen.isHidden = false
+            showScreen(screenType: .HelpScreen)
             break
         case UIActionType.SettingsSelected.rawValue:
             NSLog("Settings btn pressed")
             break
         case UIActionType.HighscoreSelected.rawValue:
+            loadHighscoreView()
+            showScreen(screenType: .ScoreScreen)
             NSLog("Highscore btn pressed")
             break
         case UIActionType.BackSelected.rawValue:
-            helpScreen.isHidden = true
+            hideScreen(screenType: .HelpScreen)
+            hideScreen(screenType: .ScoreScreen)
             NSLog("Back btn pressed")
             break
         default:
@@ -122,6 +136,17 @@ class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionV
 
 // USER INTERFACE
 extension ViewController {
+    
+    func loadHighscoreView()
+    {
+        let scores = LoadScores()
+        var scoreString = ""
+        for i in (0..<scores.count).reversed() 
+        {
+            scoreString += "\(scores.count-i). \(scores[i]) \n"
+        }
+        highscoreText.text = scoreString
+    }
     
     func setupBuildMenu()
     {
@@ -179,6 +204,23 @@ extension ViewController {
         structureSelectedView.isHidden = true
     }
     
+    func showGameOverMenu(wavesCompleted waves : Int, goldEarned gold : Int)
+    {
+        endWaveLabel.text = "WAVE: \(waves)"
+        endGoldLabel.text = "TOTAL GOLD: \(gold)"
+        endMenu.isHidden = false
+    }
+    
+    func hideGameOverMenu()
+    {
+        endMenu.isHidden = true
+    }
+    
+    func showHighscoreMenu(isShown : Bool)
+    {
+        // TODO
+    }
+    
     func showScreen(screenType : UIScreens)
     {
         switch screenType
@@ -192,6 +234,8 @@ extension ViewController {
         case .HelpScreen:
             helpScreen.isHidden = false
             break
+        case .ScoreScreen:
+            highscoreScreen.isHidden = false
         default:
             NSLog("Screen does not exist")
         }
@@ -210,6 +254,8 @@ extension ViewController {
         case .HelpScreen:
             helpScreen.isHidden = true
             break
+        case .ScoreScreen:
+            highscoreScreen.isHidden = true
         default:
             NSLog("Screen does not exist")
         }
@@ -297,18 +343,17 @@ extension ViewController {
         return Vertex(world_x, 0, world_z)
     }
     
-    func SaveScores(highScoreArray: [Int]){
-        let key = "HighScoreArray"
-        UserDefaults.standard.set(highScoreArray, forKey: key)
+    func LoadScores() -> [Int]{
+        let scores = UserDefaults.standard.object(forKey: "HighScoreArray")
+        return (scores != nil) ? scores as? [Int] ?? [Int]() : []
     }
     
-    func LoadScores() -> [Int]{
-        let key = "HighScoreArray"
-        if (UserDefaults.standard.object(forKey: key) == nil) {
-            return [0, 0, 0, 0, 0]
-        } else {
-            return UserDefaults.standard.object(forKey: key) as? [Int] ?? [Int]()
-        }
+    func SaveScore(score: Int){
+        var array = LoadScores()
+        array.append(score)
+        array.sort()
+        array = Array(array.suffix(5))
+        UserDefaults.standard.set(array, forKey: "HighScoreArray")
     }
     
 }

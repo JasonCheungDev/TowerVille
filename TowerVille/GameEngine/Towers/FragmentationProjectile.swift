@@ -21,12 +21,6 @@ class FragmentationProjectile : TowerProjectile{
         
     }
     
-    override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = FragmentationProjectile(self.x, self.z, shader: shader, target: self.target)
-        return copy
-    }
-    
-    
     func setDirection(direction: Direction){
         self.direction = direction
     }

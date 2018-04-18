@@ -21,9 +21,4 @@ class IceProjectile : TowerProjectile
         
     }
     
-    override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = IceProjectile(self.x, self.z, shader: shader, target: self.target)
-        return copy
-    }
-    
 }

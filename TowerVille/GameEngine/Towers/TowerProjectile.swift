@@ -30,10 +30,10 @@ class TowerProjectile : VisualObject{
         self.target = target
         
         let objLoader = ObjLoader()
-        objLoader.smoothed = false
         objLoader.Read(fileName: "icosahedron")
+        
         let mat = GenericMaterial(shader)
-        mat.surfaceColor = Color(1,1,1,1)
+        mat.surfaceColor = Color(0.5,0.5,0.5,1)
         let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
 
         self.renderObject = ro
@@ -44,11 +44,6 @@ class TowerProjectile : VisualObject{
         self.xScale = scale;
         self.yScale = scale;
         self.zScale = scale;
-    }
-    
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copy = TowerProjectile(self.x, self.z, shader: shader, target: self.target)
-        return copy
     }
     
     override func update(dt: TimeInterval) {

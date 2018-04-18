@@ -19,6 +19,12 @@ class ExplodeTower : Tower{
         super.init(x, z, shader: shader, color: color)
     }
     
+    override func SetupVisuals() {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TOWER.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_TWR_EXPLODE.rawValue)
+        self.setScale(0.5)
+    }
+    
     override func spawnProjectile(zombie: Minion) {
         let p = ExplodeProjectile(self.x, self.z, shader: self.shader, target: zombie)
         p.setScale(scale: 0.3)

@@ -21,11 +21,6 @@ class ExplodeProjectile : TowerProjectile{
         
     }
     
-    override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = ExplodeProjectile(self.x, self.z, shader: shader, target: self.target)
-        return copy
-    }
-    
     
     override func MoveTowards(dt: Float) {
         

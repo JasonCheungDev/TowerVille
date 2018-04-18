@@ -1,4 +1,4 @@
-#define INVERSE_8_PI 0.0397887357729738339422209408431
+#define MAGIC_NUMBER 0.00666666666
 
 precision mediump float;
 
@@ -54,7 +54,7 @@ void main() {
         float halfLambert = dot(normal, lightDirection) * 0.5 + 0.5;
         
         vec3 halfDirection = normalize(cameraForward+lightDirection);
-        float blinn = (2.0 + u_SpecularPower) * pow(max(0.0, dot(normal, halfDirection)), u_SpecularPower) * INVERSE_8_PI;
+        float blinn = (2.0 + u_SpecularPower) * pow(max(0.0, dot(normal, halfDirection)), u_SpecularPower * MAGIC_NUMBER;
         
         float attenuation = 1.0 / (lightDistance * attenuationCoef);
         attenuation *= attenuation * u_PointLights[i].intensity;
@@ -64,7 +64,8 @@ void main() {
     }
     
     if (u_HasTexture) {
-        diffuse *= texture2D(u_Texture, frag_TexCoord);
+        // swizzle is to account for GLKTextureLoaderSRGB swapping R & B channels for some god forsaken reason
+        diffuse *= texture2D(u_Texture, frag_TexCoord).bgra;
     }
     
     gl_FragColor = diffuse * frag_Color + specular;

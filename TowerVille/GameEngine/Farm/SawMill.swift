@@ -20,20 +20,13 @@ class SawMill : Farm {
     {
         super.init(playState, shader)
         
-        let objLoader = ObjLoader()
-        objLoader.Read(fileName: "sawmill")
-        
-        let ro = RenderObject(fromShader: shader, fromVertices: objLoader.vertexDataArray, fromIndices: objLoader.indexDataArray)
-        
-        let mat = GenericMaterial(shader)
-        mat.surfaceColor = Color(133/255, 94/255, 66/255, 1)
-        mat.specularPower = 1;
-
-        self.renderObject = ro
-        self.material = mat
-        
-        self.setScale(0.4)
-        
         self.ResourcePerSecond = 2
+    }
+    
+    override func SetupVisuals() {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_SAWMILL.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_SAWMILL.rawValue)
+        setScale(0.4)
+
     }
 }

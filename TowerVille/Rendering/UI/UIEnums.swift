@@ -31,6 +31,7 @@ enum UIActionType : Int {
     case UpgradeStructure = 200
     case RepairStructure = 201
     case SellStructure = 202
+    case Retry = 203 
 
     // Intro screen buttons
     case PlaySelected = 100

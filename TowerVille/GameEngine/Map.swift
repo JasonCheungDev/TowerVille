@@ -48,18 +48,6 @@ class Map : VisualObject {
         
         let gridSize = mapSize * 2 - 1
         
-        // create some materials
-        let grassTileMat = GenericMaterial(shader)
-        grassTileMat.surfaceColor = Color(0,1,0,1)
-
-        let mountainTileMat = GenericMaterial(shader)
-        mountainTileMat.surfaceColor = Color(0,0,0,1)
-                
-        // create shared RO
-        let grassRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        
-        let mountainRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        
         for x in 0..<gridSize {
             
             Tiles.append([])
@@ -76,13 +64,14 @@ class Map : VisualObject {
                     if (x + y == gridSize / 2 || x + y == gridSize + gridSize / 2 - 1 || abs(x - y) == gridSize / 2)
                     {
                         // border
-                        newTile.renderObject = mountainRo
-                        newTile.material = mountainTileMat
+                        newTile.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_MOUNTAIN.rawValue)
+                        newTile.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_MOUNTAIN.rawValue)
                         newTile.type = TileType.Mountain
+                        newTile.setScale(0.5)
                     } else {
                         // rest
-                        newTile.renderObject = grassRo
-                        newTile.material = grassTileMat
+                        newTile.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TILE.rawValue)
+                        newTile.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_GRASS.rawValue)
                         newTile.type = TileType.Grass
                     }
                 }
@@ -99,18 +88,12 @@ class Map : VisualObject {
     }
     
     func setupPathFromWaypoints(waypoints : [GameObject])
-    {
-        let pathMat = GenericMaterial(shader!)
-        pathMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
-        
-        let pathRo = RenderObject(fromShader: shader!, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        
+    {        
         var curX = Int(waypoints[0].x)
         var curZ = -Int(waypoints[0].z)
         
         // do first tile path manually
-        Tiles[curX][curZ].renderObject = pathRo
-        Tiles[curX][curZ].material = pathMat
+        Tiles[curX][curZ].material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_PATH.rawValue)
         Tiles[curX][curZ].type = .Path
         
         for index in 1 ..< waypoints.count {
@@ -126,8 +109,7 @@ class Map : VisualObject {
                 curX += moveX
                 curZ += moveZ
                 
-                Tiles[curX][curZ].renderObject = pathRo
-                Tiles[curX][curZ].material = pathMat
+                Tiles[curX][curZ].material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_PATH.rawValue)
                 Tiles[curX][curZ].type = .Path
             }
         }
@@ -164,15 +146,30 @@ class Map : VisualObject {
             }
             
             // 2. add vertex data
+            let m = v.renderObject!.modelMatrix(v)
+            let mm = m.m
             for vd in v.renderObject!.VertexDatas {
+                let oldPos = GLKVector4Make(vd.x, vd.y, vd.z, 1)
+                let oldNrm = GLKVector4Make(vd.nx, vd.ny, vd.nz, 1)
+                let newPos = GLKMatrix4MultiplyVector4(m, oldPos)
+                let newNrm = GLKMatrix4MultiplyVector4(m, oldNrm)
+                let x1 = vd.x + v.x
+                let y1 = vd.y + v.y
+                let z1 = vd.z + v.z
+                let x2 = oldPos.x
+                let y2 = oldPos.y
+                let z2 = oldPos.z
+                let x3 = newPos.x
+                let y3 = newPos.y
+                let z3 = newPos.z
                 
                 vertices.append(
-                    VertexData(vd.x + v.x, vd.y + v.y, vd.z + v.z,
+                    VertexData(newPos.x, newPos.y, newPos.z,
                                vd.r, vd.g, vd.b, vd.a,
                                vd.u, vd.v,
                                vd.nx, vd.ny, vd.nz)
+                               //newNrm.x, newNrm.y, newNrm.z)
                 )
-                
             }
         }
         

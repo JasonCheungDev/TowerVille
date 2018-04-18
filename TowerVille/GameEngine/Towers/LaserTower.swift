@@ -31,6 +31,12 @@ class LaserTower : Tower
         self.reloadTime = 5.0
         self.projectileLife = 1.0
     }
+    
+    override func SetupVisuals() {
+        self.renderObject = AssetLoader.Instance.GetRenderObject(id: Assets.RO_TOWER.rawValue)
+        self.material = AssetLoader.Instance.GetMaterial(id: Assets.MAT_TWR_LASER.rawValue)
+        self.setScale(0.5)
+    }
 
     override func update(dt: TimeInterval) {
         super.update(dt: dt)

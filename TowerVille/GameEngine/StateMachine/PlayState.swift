@@ -13,7 +13,17 @@ class PlayState : State {
 
     //let minion : Minion
     var towers : [Tower] = []
-    var gold : Int = 0
+    var _gold : Int = 0
+    var goldEarned : Int = 0
+    var gold : Int {
+        get { return _gold }
+        set {
+            // if earning gold
+            if newValue > _gold { goldEarned += (newValue - _gold) }
+            _gold = newValue
+        }
+    }
+    
     private var _lives : Int = 10
     var lives : Int {
         get { return _lives }
@@ -23,8 +33,7 @@ class PlayState : State {
         }
     }
 
-    var waveController : WaveController
-    var waves : Int = 1
+    var waveController : WaveController!
     var minions : [Minion] = []
     var minionsLeft : Int = 0
     var farms   : [Farm] = []
@@ -35,6 +44,7 @@ class PlayState : State {
     // flags
     var isSelectingStructure = false;   // selected a tile w/ a structure
     var isPickingStructure = false;     // selected a tile w/o a structure
+    var paused = false
     
     // Mark: - Debug variables
     var debugFarm : Farm?
@@ -45,10 +55,12 @@ class PlayState : State {
     
     
     override init(replacing : Bool = true, viewController : ViewController) {
-        waveController = WaveController(shader : shader)
         super.init(replacing: replacing, viewController: viewController)
         PlayState.activeGame = self
-        
+
+        // preload all assets - may take awhile
+        AssetLoader.Instance.PreloadAssets(shader: self.shader)
+
         camera = OrthoCamPrefab(viewableTiles: self.mapSize)
         Camera.ActiveCamera = camera
         
@@ -65,6 +77,7 @@ class PlayState : State {
         farms.removeAll()
         minions.removeAll()
         map.clearAllStructures()
+        viewController.hideGameOverMenu()
         lives = 10
         gold = 0
         
@@ -72,37 +85,58 @@ class PlayState : State {
         waveController = WaveController(shader : shader)
         
         // update map
-        map.setupPathFromWaypoints(waypoints: (waveController.spawners[0].wayPoints))
+        map.setupPathFromWaypoints(waypoints: (WaveController.WAYPOINTS_LVL1))
         map.compress()
         
         // create some default structures 
         self.gold = Farm.COST + SlowTower.COST + Tower.COST
+        goldEarned = 0
         createFarm(tile: map.Tiles[17][9])
         createSlowTower(tile: map.Tiles[7][6])
         createBasicTower(tile: map.Tiles[7][4])
+
+        // start the game
+        paused = false
     }
     
     func gameOver()
     {
-        restart()
+        paused = true
+        
+        // check if we should prompt user to enter in hs
+        var scores = viewController.LoadScores()
+        for score in scores
+        {
+            if goldEarned > score
+            {
+                viewController.SaveScore(score: goldEarned)
+                break
+            }
+        }
+        
+        viewController.showGameOverMenu(wavesCompleted: waveController.currentWave, goldEarned: goldEarned)
     }
     
     override func update(dt: TimeInterval) {
         
+        if paused { return }
+        
         let startTime = Date()
         
-        for t in towers {
-            t.update(dt: dt)
+        // use reverse enumeration to iterate once
+        for (i,tower) in towers.enumerated().reversed() {
+            if tower.destroy { towers.remove(at: i) }
+            else { tower.update(dt: dt) }
         }
         
-        for f in farms {
-            f.update(dt: dt)
+        for (i,farm) in farms.enumerated().reversed() {
+            if farm.destroy { farms.remove(at: i) }
+            else { farm.update(dt: dt) }
         }
         
         waveController.update(dt: dt)
         
         for guy in minions {
-            //print(minions.count)
             guy.update(dt: dt)
         }
         
@@ -144,7 +178,7 @@ class PlayState : State {
     {
         viewController.healthLabel.text = "\(self.lives)"
         viewController.goldLabel.text = "\(self.gold)"
-        viewController.wavesLabel.text = "WAVE: \(self.waves)"
+        viewController.wavesLabel.text = "WAVE: \(waveController.currentWave)"
         viewController.enemiesLabel.text = "ENEMIES: \(self.minionsLeft)"
     }
     
@@ -241,6 +275,17 @@ class PlayState : State {
                 farms.remove(at: i)
             }
             viewController.hideStructureMenu()
+            break
+            
+            // GAME OVER
+            
+        case .Retry:
+            restart()
+            viewController.hideGameOverMenu()
+            break
+        case .HighscoreSelected:
+            StateMachine.Instance.lastState()
+            viewController.showHighscoreMenu(isShown: true)
             break
             
             // ETC.
@@ -378,7 +423,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = Tower(0, 0, shader:shader, color: Color(1, 1, 0, 1))
+        let newTower = Tower(0, 0, shader:shader, color: Color(0.5, 0.5, 0.5, 1)) // grey
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= Tower.COST
@@ -391,7 +436,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = SlowTower(0, 0, shader:shader, color: Color(0, 1, 1, 1))
+        let newTower = SlowTower(0, 0, shader:shader, color: Color(0, 0, 1, 1)) // blue
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= SlowTower.COST
@@ -404,7 +449,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = ExplodeTower(0, 0, shader:shader, color: Color(1, 0, 1, 1))
+        let newTower = ExplodeTower(0, 0, shader:shader, color: Color(1, 0, 0, 1)) // red
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= ExplodeTower.COST
@@ -417,7 +462,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = FragmentationTower(0, 0, shader:shader, color: Color(0, 0, 1, 1))
+        let newTower = FragmentationTower(0, 0, shader:shader, color: Color(0, 0, 1, 1)) // green
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= FragmentationTower.COST
@@ -430,7 +475,7 @@ extension PlayState
         if (tile.structure != nil) { return false }
         if (tile.type != TileType.Grass) { return false }
         
-        let newTower = LaserTower(0, 0, shader:shader, color: Color(1, 0, 0, 1))
+        let newTower = LaserTower(0, 0, shader:shader, color: Color(1, 0, 0, 1)) // red
         tile.SetStructure(newTower)
         towers.append(newTower)
         self.gold -= LaserTower.COST
