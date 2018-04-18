@@ -389,13 +389,13 @@ extension PlayState
     func setupLights()
     {
         directionalLight.yDir = -1
-        directionalLight.lightIntensity = 0.66
+        directionalLight.lightIntensity = 1
         
         let pointLightLeft = PointLight()
         pointLightLeft.x = 4.0
         pointLightLeft.y = 5.0
         pointLightLeft.z = -4.0
-        pointLightLeft.lightIntensity = 0.66
+        pointLightLeft.lightIntensity = 1
         pointLightLeft.lightColor = Color(255/255,64/255,0/255,1)
         
         let pointLightRename = PointLight()
