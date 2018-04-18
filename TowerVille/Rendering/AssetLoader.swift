@@ -131,12 +131,12 @@ class AssetLoader
         // MATERIALS
         let grassTileMat = GenericMaterial(shader)
         grassTileMat.surfaceColor = Color(0,1,0,1)
-        grassTileMat.loadTexture("grass.jpg")
+        //grassTileMat.loadTexture("grass.jpg")
         materials[Assets.MAT_GRASS.rawValue] = grassTileMat
 
         let mountainTileMat = GenericMaterial(shader)
-        mountainTileMat.surfaceColor = Color(1,1,1,1)
-        mountainTileMat.loadTexture("mountain.jpg")
+        mountainTileMat.surfaceColor = Color(0.5, 0.5, 0.5, 1.0)
+        //mountainTileMat.loadTexture("mountain.jpg")
         materials[Assets.MAT_MOUNTAIN.rawValue] = mountainTileMat
 
         let pathMat = GenericMaterial(shader)
