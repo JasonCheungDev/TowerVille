@@ -63,7 +63,7 @@ class PlayState : State {
         // preload all assets - may take awhile
         AssetLoader.Instance.PreloadAssets(shader: self.shader)
 
-        camera = OrthoCamPrefab(viewableTiles: self.mapSize)
+        camera = OrthoCamPrefab(viewableTiles: 11)  // WARNING: HARDCODED
         Camera.ActiveCamera = camera
         
         map = Map(fromShader: self.shader, mapSize: self.mapSize)
@@ -219,7 +219,12 @@ class PlayState : State {
         else
         {
             // clicking on tile (no menus open) - select
-            selectedTile = self.map.Tiles[Int(round(x))][Int(round(-z))]
+            let xCoord = Int(round(x))
+            let yCoord = Int(round(-z))
+            
+            if (xCoord < 0 || xCoord >= map.Tiles.count
+                || yCoord < 0 || yCoord >= map.Tiles[0].count) { return }
+            selectedTile = self.map.Tiles[xCoord][yCoord]
             
             if selectedTile?.type == TileType.Grass
             {
