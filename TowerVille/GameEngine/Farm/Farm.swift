@@ -15,8 +15,8 @@ class Farm : Structure, ResourceGenerator {
     
     override class var NAME : String { return "Farm" }
     override class var ICON : String { return "farm.png" }
-    override class var HEALTH_LVLS : [Int] { return [20,40,60,80,100] }
-    override class var COST_LVLS : [Int] { return [1,50,100,150,300] }
+    override class var HEALTH_LVLS : [Int] { return [10,20,30,40,50] }
+    override class var COST_LVLS : [Int] { return [25,50,100,150,300] }
     
     var ResourcePerSecond: Int = 1
     var ResourceMultiplier: Int = 1
@@ -75,30 +75,9 @@ class Farm : Structure, ResourceGenerator {
         //set value based on how close the farm is to the nearest path
         switch(minDist){
         case 1:
-            ResourcePerSecond = ResourceMultiplier * 12
-            break;
-        case 2:
-            ResourcePerSecond = ResourceMultiplier * 10
-            break;
-        case 3:
-            ResourcePerSecond = ResourceMultiplier * 8
-            break;
-        case 4:
-            ResourcePerSecond = ResourceMultiplier * 7
-            break;
-        case 5:
-            ResourcePerSecond = ResourceMultiplier * 6
-            break;
-        case 6:
-            ResourcePerSecond = ResourceMultiplier * 5
-            break;
-        case 7:
-            ResourcePerSecond = ResourceMultiplier * 4
-            break;
-        case 8:
             ResourcePerSecond = ResourceMultiplier * 3
             break;
-        case 9:
+        case 2:
             ResourcePerSecond = ResourceMultiplier * 2
             break;
         default:

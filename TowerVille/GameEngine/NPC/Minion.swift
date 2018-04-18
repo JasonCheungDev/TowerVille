@@ -12,7 +12,7 @@ class Minion : VisualObject {
     
     var target : Structure? = nil
     
-    private var _health : Int = 100
+    private var _health : Int = 50
     var health : Int {
         get { return _health }
         set {
