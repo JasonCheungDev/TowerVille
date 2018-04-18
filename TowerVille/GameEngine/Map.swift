@@ -18,6 +18,7 @@ class Map : VisualObject {
     private var mergedGrassVO    : VisualObject?
     private var mergedMountainVO : VisualObject?
     private var mergedPathVO     : VisualObject?
+    private var mergedFacadeVO   : VisualObject?
     
     
     init(fromShader shader : ShaderProgram, mapSize : Int)
@@ -35,13 +36,14 @@ class Map : VisualObject {
             mergedGrassVO?.draw()
             mergedMountainVO?.draw()
             mergedPathVO?.draw()
+            mergedFacadeVO?.draw()
         }
         // standard draw
         else
         {
             Tiles.forEach({ $0.forEach({ $0.draw() })})
+            facade.forEach({ $0.draw() })
         }
-        facade.forEach({ $0.draw() })
 
     }
     
@@ -143,6 +145,8 @@ class Map : VisualObject {
         self.mergedGrassVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Grass }))
 
         self.mergedPathVO = mergeVisualObjects(fromVisualObjects: Tiles.flatMap({$0}).filter({ $0.type == .Path }))
+        
+        self.mergedFacadeVO = mergeVisualObjects(fromVisualObjects: facade)
     }
     
     func clearAllStructures()
