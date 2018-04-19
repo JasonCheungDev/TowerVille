@@ -2,17 +2,41 @@ import Foundation
 
 class IntroState : State {
     
-    override init(machine : StateMachine, replacing : Bool = true) {
-        super.init(machine : machine, replacing : replacing)
+    override init(replacing : Bool = true, viewController : ViewController) {
+        super.init(replacing: replacing, viewController: viewController)
         print("intro")
     }
     
     override func update(dt: TimeInterval) {
-        _next = PlayState(machine : _machine)
+        // next = PlayState()
     }
     
     override func draw() {
         
+    }
+    
+    override func processInput(x: Float, z: Float, u: Float, v: Float) {
+        
+    }
+    
+    override func processUiInput(action: UIActionType) {
+        if (action == .PlaySelected)
+        {
+            DispatchQueue.main.async {
+
+                // weird hacky fix where we need to double async to make sure screen is updated before executing PlayState intiailization
+                
+                // from what I understand a screen update is NOT guaranteed after a main update, BUT is after an async update. This is why it doesn't matter if screen is hidden in main or async, as long as PlayState is nested in an async.
+                
+                self.viewController.loadingScreen.isHidden = false
+                
+                DispatchQueue.main.async {
+                    self.next = PlayState(replacing: false, viewController: self.viewController)
+                    
+                    self.viewController.loadingScreen.isHidden = true
+                }
+            }
+        }
     }
     
     override func pause() {
@@ -23,45 +47,13 @@ class IntroState : State {
         
     }
     
+    override func enter() {
+        self.viewController.showScreen(screenType: UIScreens.IntroScreen)
+    }
+    
+    override func exit() {
+        self.viewController.hideScreen(screenType: UIScreens.IntroScreen)
+        next = nil
+    }
+    
 }
-
-/*
-IntroState::IntroState(StateMachine& machine, sf::RenderWindow& window, bool replace)
-	: State(machine, window, replace)
-{
-	_font.loadFromFile("arial.ttf");
-	_text.setFont(_font);
-	_text.setFillColor(sf::Color::White);
-	_text.setString("intro");
-	_events.Register(sf::Event::Closed, [this](sf::Event _event) {_machine.quit(); });
-	_events.Register(sf::Event::KeyPressed, [this](sf::Event _event) {_machine.run(std::make_unique<PlayState>(_machine, _window, true)); });
-}
-
-void IntroState::pause()
-{
-}
-
-void IntroState::resume()
-{
-}
-
-void IntroState::update(const sf::Time& dt)
-{
-	while (_window.pollEvent(_event))
-	{
-		_events.Invoke(_event);
-
-	}
-}
-
-void IntroState::draw() const
-{
-	_window.clear(sf::Color::Black);
-	_window.draw(_text);
-	_window.display();
-}
-
-IntroState::~IntroState()
-{
-}
-*/

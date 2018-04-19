@@ -23,26 +23,288 @@ OpenGL Notes (Read this to get basic understanding of the Glkit flow)
 import UIKit
 import GLKit
 
-class ViewController: GLKViewController { //UIViewController
+class ViewController: GLKViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // UI
+    @IBOutlet var introScreen: UIView!
+    @IBOutlet var gameScreen: UIView!
+    @IBOutlet var helpScreen: UIView!
+    @IBOutlet var highscoreScreen: UIView!
+    @IBOutlet var loadingScreen: UIView!
 
+    
+    // Game Screen
+    @IBOutlet var healthLabel: UILabel!
+    @IBOutlet var goldLabel: UILabel!
+    @IBOutlet var wavesLabel: UILabel!
+    @IBOutlet var enemiesLabel: UILabel!
+    
+    @IBOutlet var buildMenuView: UIView!
+    @IBOutlet var towerCollectionView: UICollectionView!
+    @IBOutlet var resourceCollectionView: UICollectionView!
+    let cellIdentifier: String = "structureCollectionViewCell"
+    var buildTowerOptions : [UIModelStructure] = []
+    var buildResourceOptions : [UIModelStructure] = []
+    
+    @IBOutlet var structureSelectedView: StructureSelectedView!
+    
+    @IBOutlet var endMenu: UIView!
+    @IBOutlet var endWaveLabel: UILabel!
+    @IBOutlet var endGoldLabel: UILabel!
+    
+    
+    // Highscore Screen
+    @IBOutlet var highscoreText: UITextView!
+    
+    
+    // OpenGL
     var glkView: GLKView!
     var glkUpdater: GLKUpdater!
     
-    var shader : ShaderProgram!
-   
-    var debugVisualObjects : [VisualObject] = []
+    // TODO: Remove debug variables
+    @IBOutlet var debugDisplay: UILabel!
+
     
     //initilization
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupGLcontext()
-        setupGLupdater()
-        setupShader()
+        // setup UI
+        setupBuildMenu()
+        structureSelectedView.viewController = self
         
-        debug_setup()
-        //debug_SetupRenderObject()
-        debug_SetupTiledMap()
+        // pregame setup
+        setupGLcontext()
+        setupCamera()       // this retrieves aspect ratio for all Camera objects
+        
+        // init updater and game
+        setupGLupdater()
+    }
+
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
+//        glClearColor(pow(175/255, 2.2), pow(238/255, 2.2), pow(238/255, 2.2), 1.0);
+//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
+        StateMachine.Instance.draw()
+    }
+
+    func debug_updateUiDisplay(_ text : String)
+    {
+        debugDisplay.text = text 
+    }
+    
+    @IBAction func onButtonPress(_ sender: UIButton) {
+        
+        // handle anything in view controller first
+        switch sender.tag
+        {
+        case UIActionType.PlaySelected.rawValue:
+            NSLog("Play btn pressed")
+            showScreen(screenType: .GameScreen)
+            break
+        case UIActionType.HelpSelected.rawValue:
+            NSLog("Help btn pressed")
+            showScreen(screenType: .HelpScreen)
+            break
+        case UIActionType.SettingsSelected.rawValue:
+            NSLog("Settings btn pressed")
+            break
+        case UIActionType.HighscoreSelected.rawValue:
+            loadHighscoreView()
+            showScreen(screenType: .ScoreScreen)
+            NSLog("Highscore btn pressed")
+            break
+        case UIActionType.BackSelected.rawValue:
+            hideScreen(screenType: .HelpScreen)
+            hideScreen(screenType: .ScoreScreen)
+            NSLog("Back btn pressed")
+            break
+        default:
+            NSLog("Unknown btn pressed \(sender.tag)")
+            break
+        }
+        
+        // pass action to state machine
+        StateMachine.Instance.processUiAction(action: UIActionType(rawValue: sender.tag)!)
+    }
+    
+}
+
+// USER INTERFACE
+extension ViewController {
+    
+    func loadHighscoreView()
+    {
+        let scores = LoadScores()
+        var scoreString = ""
+        for i in (0..<scores.count).reversed() 
+        {
+            scoreString += "\(scores.count-i). \(scores[i]) \n"
+        }
+        highscoreText.text = scoreString
+    }
+    
+    func setupBuildMenu()
+    {
+        // Tower (top section)
+        let basicTower = UIModelStructure(fromType: Tower.self)
+        basicTower.actionType = UIActionType.BuildTowerBasic
+        let slowTower = UIModelStructure(fromType: SlowTower.self)
+        slowTower.actionType = UIActionType.BuildTowerSlow
+        let explodeTower = UIModelStructure(fromType: ExplodeTower.self)
+        explodeTower.actionType = UIActionType.BuildTowerExplosion
+        let fragTower = UIModelStructure(fromType: FragmentationTower.self)
+        fragTower.actionType = UIActionType.BuildTowerFragment
+        let laserTower = UIModelStructure(fromType: LaserTower.self)
+        laserTower.actionType = UIActionType.BuildTowerLaser
+
+        buildTowerOptions.append(contentsOf: [basicTower, slowTower, explodeTower, fragTower, laserTower])
+        
+        // Resource (bottom section)
+        let farm = UIModelStructure(fromType: Farm.self)
+        farm.actionType = UIActionType.BuildResourceFarm
+        let mill = UIModelStructure(fromType: SawMill.self)
+        mill.actionType = UIActionType.BuildResourceSawMill
+        let mine = UIModelStructure(fromType: Mine.self)
+        mine.actionType = UIActionType.BuildResourceMine
+        
+        buildResourceOptions.append(contentsOf: [farm, mill, mine])
+    }
+    
+    func showBuildMenu(isShown : Bool)
+    {
+        buildMenuView.isHidden = !isShown
+    }
+    
+    func showStructureMenu(_ structure : Structure)
+    {
+        structureSelectedView.displayContent(structure)
+        structureSelectedView.isHidden = false
+        
+//        if structure is Tower
+//        {
+//            let tower = structure as! Tower
+//        }
+//        else if structure is Farm
+//        {
+//            let farm = structure as! Farm
+//        }
+//        else
+//        {
+//            NSLog("ERROR: showing structure for unknown type")
+//        }
+    }
+    
+    func hideStructureMenu()
+    {
+        structureSelectedView.isHidden = true
+    }
+    
+    func showGameOverMenu(wavesCompleted waves : Int, goldEarned gold : Int)
+    {
+        endWaveLabel.text = "WAVE: \(waves)"
+        endGoldLabel.text = "TOTAL GOLD: \(gold)"
+        endMenu.isHidden = false
+    }
+    
+    func hideGameOverMenu()
+    {
+        endMenu.isHidden = true
+    }
+    
+    func showHighscoreMenu(isShown : Bool)
+    {
+        // TODO
+    }
+    
+    func showScreen(screenType : UIScreens)
+    {
+        switch screenType
+        {
+        case .IntroScreen:
+            introScreen.isHidden = false
+            break
+        case .GameScreen:
+            gameScreen.isHidden = false
+            break
+        case .HelpScreen:
+            helpScreen.isHidden = false
+            break
+        case .ScoreScreen:
+            highscoreScreen.isHidden = false
+        default:
+            NSLog("Screen does not exist")
+        }
+    }
+    
+    func hideScreen(screenType : UIScreens)
+    {
+        switch screenType
+        {
+        case .IntroScreen:
+            introScreen.isHidden = true
+            break
+        case .GameScreen:
+            gameScreen.isHidden = true
+            break
+        case .HelpScreen:
+            helpScreen.isHidden = true
+            break
+        case .ScoreScreen:
+            highscoreScreen.isHidden = true
+        default:
+            NSLog("Screen does not exist")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if (collectionView == towerCollectionView)
+        {
+            return buildTowerOptions.count
+        }
+        else // resourceCollectionView
+        {
+            return buildResourceOptions.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = towerCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! UICellStructure
+        
+        if (collectionView == towerCollectionView)
+        {
+            let tower = buildTowerOptions[indexPath.row]
+            cell.displayContent(image: tower.image, title: tower.name, cost: tower.cost)
+        }
+        else // buildCollectionView
+        {
+            let generator = buildResourceOptions[indexPath.row]
+            cell.displayContent(image: generator.image, title: generator.name, cost: generator.cost)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if (collectionView == towerCollectionView)
+        {
+            let tower = buildTowerOptions[indexPath.row]
+            StateMachine.Instance.processUiAction(action: tower.actionType)
+            print("Selected tower: \(tower.name)")
+        }
+        else // buildCollectionView
+        {
+            let generator = buildResourceOptions[indexPath.row]
+            StateMachine.Instance.processUiAction(action: generator.actionType)
+            print("Selected generator: \(generator.name)")
+        }
     }
     
     @IBAction func OnTap(_ sender: UITapGestureRecognizer)
@@ -52,43 +314,48 @@ class ViewController: GLKViewController { //UIViewController
             let touchLocation = sender.location(in:sender.view)
             let x = Float(touchLocation.x / sender.view!.frame.width)
             let y = Float(0.5 - touchLocation.y / sender.view!.frame.height)
-            printScreenToWorld(screen_x: x, screen_y: y)
+            let world = getWorldFromScreen(screen_x: x, screen_y: y)
+            StateMachine.Instance.processInput(x: world.x, z: world.z, u: Float(touchLocation.x), v: Float(touchLocation.y))
         }
     }
     
-    func printScreenToWorld(screen_x: Float, screen_y: Float)
+    func getWorldFromScreen(screen_x: Float, screen_y: Float) -> Vertex
     {
         // undo scaling
-        var temp_x = screen_x * 2 / DebugData.Instance.projectionMatrix.m00
-        var temp_y = screen_y * 2 / DebugData.Instance.projectionMatrix.m11
+        let temp_x = screen_x * 2 / Camera.ActiveCamera!.projectionMatrix.m00
+        var temp_z = screen_y * 2 / Camera.ActiveCamera!.projectionMatrix.m11
         
         // undo second rotation
-        temp_y *= sqrt(3)
+        temp_z *= sqrt(3)
         
         // undo first rotation
-        var world_x = (temp_x - temp_y) / sqrt(2)
-        var world_y = (temp_x + temp_y) / sqrt(2)
+        var world_x = (temp_x - temp_z) / sqrt(2)
+        var world_z = -(temp_x + temp_z) / sqrt(2)
+        
+        // undo first rotation
+        let DEBUG_MAPSIZE = 11 // WARNING: HARDCODED
+        world_x += Float(DEBUG_MAPSIZE - 2) / 2
+        world_z -= Float(DEBUG_MAPSIZE - 2) / 2
         
         print("world x : \(world_x)")
-        print("world y : \(world_y)")
+        print("world z : \(world_z)")
+        
+        return Vertex(world_x - OrthoCamPrefab.HACK_OFFSET, 0, world_z + OrthoCamPrefab.HACK_OFFSET)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func LoadScores() -> [Int]{
+        let scores = UserDefaults.standard.object(forKey: "HighScoreArray")
+        return (scores != nil) ? scores as? [Int] ?? [Int]() : []
     }
-
-    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        glClearColor(0.2, 0.4, 0.6, 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        
-        shader.prepareToDraw()  // warning: May need to move this to the RenderObject (to ensure right shader is used)
-        
-        for vo in debugVisualObjects
-        {
-            vo.RenderObject?.Draw()
-        }
+    
+    func SaveScore(score: Int){
+        var array = LoadScores()
+        array.append(score)
+        array.sort()
+        array = Array(array.suffix(5))
+        UserDefaults.standard.set(array, forKey: "HighScoreArray")
     }
-
+    
 }
 
 // OPENGL SETUP
@@ -96,8 +363,20 @@ extension ViewController {
     
     func setupGLcontext() {
         glkView = self.view as! GLKView
-        glkView.context = EAGLContext(api: .openGLES3)! // Warning: Doesn't work on iPods
+        glkView.context = EAGLContext(api: .openGLES2)!
+        glkView.drawableDepthFormat = .format16         // for depth testing
+        glkView.drawableColorFormat = GLKViewDrawableColorFormat.SRGBA8888
+        self.preferredFramesPerSecond = 60
         EAGLContext.setCurrent(glkView.context)
+        
+        glEnable(GLenum(GL_DEPTH_TEST))
+        glEnable(GLenum(GL_CULL_FACE))
+    }
+    
+    func setupCamera()
+    {
+        let aspectRatio = self.view.frame.width / self.view.frame.height
+        Camera.initialize(aspectRatio)
     }
     
     func setupGLupdater() {
@@ -105,234 +384,23 @@ extension ViewController {
         self.delegate = self.glkUpdater
     }
     
-    func setupShader() {
-        self.shader = ShaderProgram(vertexShader: "SimpleVertexShader.glsl", fragmentShader: "SimpleFragmentShader.glsl")
-    }
-    
-    func debug_setup()
-    {
-        let aspectRatio = self.view.frame.width / self.view.frame.height
-        print("Aspect ratio \(aspectRatio)")
-        DebugData.Instance.initialize(aspectRatio)
-    }
-    
-    func debug_SetupRenderObject()
-    {
-        let vo = VisualObject()
-        let ro = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromIndices: DebugData.indices)
-        let mat = LambertMaterial(shader)
-        mat.color = Color(1,0,0,1)
-        ro.Material = mat
-        vo.LinkRenderObject(ro)
-        
-        let vo2 = VisualObject()
-        let ro2 = RenderObject(fromShader: shader, fromVertices: DebugData.cubePositionData, fromIndices: DebugData.indices)
-        let mat2 = LambertMaterial(shader)
-        mat2.color = Color(0,1,0,1)
-        ro2.Material = mat2
-        vo2.LinkRenderObject(ro2)
-        vo2.y = 2
-        vo2.x = 2
-        
-        // TODO: Should be auto gen by GameObject
-        vo.ID = "Debug VO 1"
-        vo2.ID = "Debug VO 2"
-        
-        self.debugVisualObjects.append(vo)
-        self.debugVisualObjects.append(vo2)
-    }
-    
-    func debug_SetupTiledMap()
-    {
-        let gridSize: Int = 10
-        // let tileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-        let grassTileMat = LambertMaterial(shader)
-        grassTileMat.color = Color(0,1,0,1)
-        let mountainTileMat = LambertMaterial(shader)
-        mountainTileMat.color = Color(0,0,0,1)
-        let highlightOrigin = LambertMaterial(shader)
-        highlightOrigin.color = Color(1,0,0,1)
-        
-        for x in 0..<gridSize {
-            for y in 0..<gridSize {
-                var newTile = Tile()
-                newTile.x = Float(x)
-                // newTile.xCoord = uint(x) // or x - maxSize/2
-                newTile.z = Float(y)
-                // newTile.yCoord = uint(y) // or y - maxSize/2
-
-                let newTileRo = RenderObject(fromShader: shader, fromVertices: Tile.vertexData, fromIndices: Tile.indexData)
-
-                if (x == 0 && y == 0)
-                {
-                    newTileRo.Material = highlightOrigin
-                }
-                else if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
-                {
-                    newTileRo.Material = mountainTileMat
-                }
-                else
-                {
-                    newTileRo.Material = grassTileMat
-                }
-                
-                newTile.LinkRenderObject(newTileRo)
-
-                debugVisualObjects.append(newTile)
-            }
-        }
-    }
 }
 
 // OPENGL DELEGATE (Update handler)
 class GLKUpdater : NSObject, GLKViewControllerDelegate {
     
     weak var glkViewController : GLKViewController!
-    var _machine : StateMachine = StateMachine()
     
     init(glkViewController : GLKViewController) {
         self.glkViewController = glkViewController
-        _machine.run(state: IntroState(machine : _machine))
+        StateMachine.Instance.run(state: IntroState(viewController: glkViewController as! ViewController))
     }
     
     // Update Game Logic
     func glkViewControllerUpdate(_ controller: GLKViewController) {
-        _machine.nextState()
-        _machine.update(dt: controller.timeSinceLastUpdate)
-        // collision detection ...
-        // GameManager.instance.Update()
+        StateMachine.Instance.nextState()   // check if next state is available and switch if there is one
+        StateMachine.Instance.update(dt: controller.timeSinceLastUpdate)
     }
 }
 
-class DebugData {
-    
-    static let Instance = DebugData()
-    
-    static let cubePositionData : [Vertex] = [
-        Vertex(-1.0, -1.0, -1.0),
-        Vertex( 1.0, -1.0, -1.0),
-        Vertex( 1.0,  1.0, -1.0),
-        Vertex(-1.0,  1.0, -1.0),
-        Vertex(-1.0, -1.0,  1.0),
-        Vertex( 1.0, -1.0,  1.0),
-        Vertex( 1.0,  1.0,  1.0),
-        Vertex(-1.0,  1.0,  1.0)
-    ]
-    
-    static let indices : [GLubyte] = [
-        0, 1, 2,    // front
-        2, 3, 0,
-        4, 5, 6,    // back
-        6, 7, 4,
-        1, 2, 5,    // right
-        5, 6, 2,
-        0, 3, 4,    // left
-        4, 7, 3,
-        2, 3, 6,    // top
-        6, 7, 3,
-        0, 1, 4,    // bot
-        4, 5, 1
-    ]
-    
-    static let cubeColorData : [Color] = [
-        Color(1.0,  0.0,  0.0, 1.0),
-        Color(0.0,  1.0,  0.0, 1.0),
-        Color(0.0,  0.0,  1.0, 1.0),
-        Color(1.0,  1.0,  0.0, 1.0),
-        Color(1.0,  0.0,  0.0, 1.0),
-        Color(0.0,  1.0,  0.0, 1.0),
-        Color(0.0,  0.0,  1.0, 1.0),
-        Color(1.0,  1.0,  0.0, 1.0),
-    ]
-    
-    var projectionMatrix : GLKMatrix4!
-    var viewMatrix : GLKMatrix4!
-    var modelMatrixCube : GLKMatrix4!   // debug transformation for the cube
-    var aspectRatio : CGFloat
-    var colorBuffer : GLuint = 0
-    
-    private init()
-    {
-        self.aspectRatio = 1.0
-    }
-    
-    func initialize(_ aspectRatio : CGFloat)
-    {
-        var viewPos = GLKVector3Make(10, -10, -10)
-        var viewTar = GLKVector3Make(0, 0, 0)
-        viewMatrix = GLKMatrix4MakeLookAt(viewPos.x, viewPos.y, viewPos.z, // camera position
-                                          viewTar.x, viewTar.y, viewTar.z, // target position
-                                          -1, -1, 1) // camera up vector
-        
-        var size : Float = 10 * sqrt(2) // screen width in tiles
-        projectionMatrix = GLKMatrix4MakeOrtho(0.0, size, -size / 2 / Float(aspectRatio), size / 2 / Float(aspectRatio), 0, 100.0)
-    }
-    
-    private func setupBuffers()
-    {
-        glGenBuffers(GLsizei(1), &colorBuffer)
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), colorBuffer)
-        let ccount = DebugData.cubeColorData.count
-        let csize =  MemoryLayout<Color>.size
-        glBufferData(GLenum(GL_ARRAY_BUFFER), ccount * csize, DebugData.cubeColorData, GLenum(GL_STATIC_DRAW))
-    }
-}
 
-// // COPY PASTE THIS CODE TO VIEWCONTROLLER DRAW FUNC TO GET A RAINBOW CUBE.
-//  var vertexBuffer : GLuint = 0
-//  var colorBuffer : GLuint = 0
-//  var indexBuffer : GLuint = 0
-//
-//func setupVertexBuffer() {
-//    glGenBuffers(GLsizei(1), &vertexBuffer)
-//    glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-//    let count = DebugData.cubePositionData.count
-//    let size =  MemoryLayout<Vertex>.size
-//    glBufferData(GLenum(GL_ARRAY_BUFFER), count * size, DebugData.cubePositionData, GLenum(GL_STATIC_DRAW))
-//    
-//    glGenBuffers(GLsizei(1), &colorBuffer)
-//    glBindBuffer(GLenum(GL_ARRAY_BUFFER), colorBuffer)
-//    let ccount = DebugData.cubeColorData.count
-//    let csize =  MemoryLayout<Color>.size
-//    glBufferData(GLenum(GL_ARRAY_BUFFER), ccount * csize, DebugData.cubeColorData, GLenum(GL_STATIC_DRAW))
-//    
-//    glGenBuffers(GLsizei(1), &indexBuffer)
-//    glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
-//    glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), DebugData.indices.count * MemoryLayout<GLubyte>.size, DebugData.indices, GLenum(GL_STATIC_DRAW))
-//}
-//func BUFFER_OFFSET(_ n: Int) -> UnsafeRawPointer {
-//    let ptr: UnsafeRawPointer? = nil
-//    return ptr! + n * MemoryLayout<Void>.size
-//}
-//        var mvp =
-//            // GLKMatrix4Multiply(debugData.viewMatrix, debugData.modelMatrixCube)
-//            GLKMatrix4Multiply(DebugData.Instance.projectionMatrix, DebugData.Instance.viewMatrix)
-//        mvp = GLKMatrix4Multiply(mvp, DebugData.Instance.modelMatrixCube)
-//        glUniformMatrix4fv(shader.mvpUniform, 1, GLboolean(GL_FALSE), mvp.array)
-//
-//        glEnableVertexAttribArray(VertexAttributes.position.rawValue)
-//        glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-//        glVertexAttribPointer(
-//            VertexAttributes.position.rawValue,
-//            3,
-//            GLenum(GL_FLOAT),
-//            GLboolean(GL_FALSE),
-//            GLsizei(MemoryLayout<Vertex>.size), nil) // or BUFFER_OFFSET(0)
-//
-//        glEnableVertexAttribArray(VertexAttributes.colour.rawValue)
-//        glBindBuffer(GLenum(GL_ARRAY_BUFFER), colorBuffer)
-//        glVertexAttribPointer(
-//            VertexAttributes.colour.rawValue,
-//            4,
-//            GLenum(GL_FLOAT),
-//            GLboolean(GL_FALSE),
-//            GLsizei(MemoryLayout<Color>.size), nil) // or BUFFER_OFFSET(0)
-//
-//        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
-//
-//        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(DebugData.indices.count), GLenum(GL_UNSIGNED_BYTE), nil)
-//
-//        // glDrawArrays(GLenum(GL_TRIANGLES), 0, GLsizei(DebugData.cubePositionData.count))
-//
-//        glDisableVertexAttribArray(VertexAttributes.position.rawValue)
-//        glDisableVertexAttribArray(VertexAttributes.colour.rawValue)

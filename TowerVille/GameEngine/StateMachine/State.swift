@@ -2,13 +2,13 @@ import Foundation
 
 class State
 {
-    var _next : State? = nil
-    var _replacing : Bool = true
-    var _machine : StateMachine
+    var next : State? = nil
+    var replacing : Bool = true
+    var viewController : ViewController!
     
-    init(machine : StateMachine, replacing : Bool = true) {
-        _machine = machine
-        _replacing = replacing
+    init(replacing : Bool = true, viewController : ViewController) {
+        self.replacing = replacing
+        self.viewController = viewController
     }
     
     func update(dt : TimeInterval) {
@@ -16,6 +16,14 @@ class State
     }
     
     func draw() {
+        
+    }
+    
+    func processInput(x : Float, z : Float, u : Float, v : Float) {
+        
+    }
+    
+    func processUiInput(action : UIActionType) {
         
     }
     
@@ -27,38 +35,17 @@ class State
         
     }
     
-    func next() -> State? {
-        return _next
+    // called when entering this state
+    func enter()
+    {
+        
     }
     
-    func isReplacing() -> Bool {
-        return _replacing
+    // called when leaving this state
+    func exit()
+    {
+        
     }
     
-/*
- public:
-	State(StateMachine& machine, sf::RenderWindow& window, bool replace = true)
-	: _machine(machine)
-	, _window(window)
-	, _replacing(replace)
-	{
-	}
-	virtual ~State() = default;
-	virtual void pause() = 0;
-	virtual void resume() = 0;
-
-	virtual void update(const sf::Time&) = 0;
-	virtual void draw()const = 0;
-
-	auto next() { return std::move(_next); }
-	auto isReplacing() { return _replacing; }
-
-protected:
-	EventMap _events;
-	sf::Event _event;
-	StateMachine& _machine;
-	sf::RenderWindow& _window;
-	bool _replacing;
-	std::unique_ptr<State> _next;
- */
+    
 }

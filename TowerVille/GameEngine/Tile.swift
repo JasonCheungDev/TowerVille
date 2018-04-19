@@ -11,19 +11,40 @@ import GLKit
 
 class Tile : VisualObject {
     
+    // Tile UVs are intentionally partially out of range to allow for janky border rendering in PerVertex.frag
     static let vertexData = [
-        Vertex(0.9, 0, 0.9),
-        Vertex(0.9, 0, 0.1),
-        Vertex(0.1, 0, 0.9),
-        Vertex(0.1, 0, 0.1)
+        VertexData( 0.5, 0, -0.5, 1, 0, 0, 1,  1.1, -0.1,  0, 1, 0),
+        VertexData( 0.5, 0, 0.5, 0, 1, 0, 1,  1.1, 1.1,  0, 1, 0),
+        VertexData( -0.5, 0, 0.5, 0, 0, 1, 1,  -0.1, 1.1,  0, 1, 0),
+        VertexData( -0.5, 0, -0.5, 0, 0, 0, 1,  -0.1, -0.1,  0, 1, 0),
     ]
-    
-    static let indexData : [GLubyte] = [
-        0,1,2,
-        1,2,3
+
+    // Note: Order matters
+    static let indexData : [GLushort] = [
+        2,1,0,
+        0,3,2
     ]
     
     var xCoord : uint = 0
     var yCoord : uint = 0
+    var type   : TileType = TileType.Grass
+    var structure : Structure?
+    
+    func SetStructure(_ newStructure : Structure) -> Bool {
+        if self.structure != nil { return false }
         
+        self.structure = newStructure
+        newStructure.x = self.x
+        newStructure.y = self.y + 0.01
+        newStructure.z = self.z
+        return true
+    }
+        
+}
+
+enum TileType {
+    case NOTHING
+    case Grass
+    case Path
+    case Mountain
 }

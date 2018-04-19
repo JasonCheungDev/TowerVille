@@ -1,0 +1,196 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red170\green13\blue145;\red0\green0\blue0;
+\red63\green110\blue116;\red28\green0\blue207;\red38\green71\blue75;\red196\green26\blue22;\red46\green13\blue110;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c0\c0\c0;
+\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c11000\c0\c81000;\csgenericrgb\c14900\c27800\c29400;\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c18100\c5200\c43100;
+}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 \
+Creating Visual Objects \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+To create visual objects follow these steps in any file:\cb2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b \cf0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0 \cf0 \ul \ulc0 Easy:
+\b \ulnone \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\b0 \cf0 1. Create a CubePrefab object. (This creates unnecessary vertex data and multiple materials*)\
+	
+\f1\fs28 \cf3 \cb2 let\cf4  prefab = \cf5 CubePrefab\cf4 (\cf5 shader\cf4 )
+\f0\fs24 \cf0 \
+	
+\f1\fs28 \cf4 prefab.\cf5 x\cf4  = \cf6 6\
+	p\cf4 refab.\cf5 z\cf4  = \cf6 6\
+	prefab.Draw()
+\f0\b\fs24 \cf0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+
+\b0 \ul Custom: (
+\i \ulnone Will probably change soon!!!
+\i0 \ul )
+\b \ulnone \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\b0 \cf0 1. Create a VisualObject (aka. a GameObject for positional data you can manipulate) \
+
+\f1\fs28 \cf4 \cb2     \cf3 let\cf4  vo = \cf5 VisualObject\cf4 ()
+\f0\fs24 \cf0 \
+
+\b \cb1 \
+
+\b0 2. Create a RenderObject (aka. a model or mesh)\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf4 \cb2 	\cf3 let\cf4  ro = \cf5 RenderObject\cf4 (fromShader: \cf5 shader\cf4 , fromVertices: \cf5 DebugData\cf4 .\cf5 cubeVertices\cf4 , fromIndices: \cf5 DebugData\cf4 .\cf5 cubeIndices\cf4 )
+\f0\b\fs24 \cf0 \cb1 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\b0 \cf0 3. Create a Material (aka. an appearance). Currently only use LambertMaterial.\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf4 \cb2     \cf3 let\cf4  mat = \cf5 LambertMaterial\cf4 (\cf3 ShaderProgram\cf4 )\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 4. Link them all up.\
+	
+\f1\fs28 \cf4 \cb2 ro.\cf5 Material\cf4  = mat
+\f0\fs24 \cf0 \
+	
+\f1\fs28 \cf4 vo.\cf7 LinkRenderObject\cf4 (ro)\
+\
+
+\f0\fs24 \cf0 \cb1 5. Manipulate the VisualObject's position\
+
+\f1\fs28 \cf4 \cb2 	vo.\cf5 x\cf4  = \cf6 10
+\f0\fs24 \cf0 \
+	
+\f1\fs28 \cf4 vo.\cf5 yRot\cf4  = \cf6 180
+\f0\fs24 \cf0 \cb1 \
+\cb2 \
+6*. One material can be used by multiple RenderObjects. One RenderObject can be used by multiple VisualObjects\
+	- Example: See ViewController > debug_SetupRenderObjects() \
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\b \cf0 \cb1 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Using another Shader \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+ 	- Only one shader can be used, this game cannot use more than one shader at runtime (at the moment). \
+	- For every shader there should be ONE compatible material (ex. Simple...Shader & FlatColorMaterial). \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \ul Sample code to use SimpleVertexShader + SimpleFragmentShader\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \ulnone \
+---------- ViewController.swift --------------\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf4 \cb2 \
+    \cf3 func\cf4  setupShader() \{
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         \cf3 self\cf4 .\cf5 shader\cf4  = \cf5 ShaderProgram\cf4 (vertexShader: \cf8 "SimpleVertexShader.glsl"\cf4 , fragmentShader: \cf8 "SimpleFragmentShader.glsl"\cf4 )\
+	\}
+\f0\fs24 \cf0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf4 \cb2     \cf3 func\cf4  debug_SetupRenderObject()
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4     \{\
+        \cf3 let\cf4  mat = \cf5 FlatColorMaterial\cf4 (\cf3 self\cf4 .\cf5 shader\cf4 )
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         mat.\cf5 color\cf4  = \cf5 Color\cf4 (\cf6 0\cf4 ,\cf6 1\cf4 ,\cf6 0\cf4 ,\cf6 1\cf4 )
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         \cf3 let\cf4  ro = \cf5 RenderObject\cf4 (fromShader: \cf5 shader\cf4 , fromVertices: \cf5 DebugData\cf4 .\cf5 cubeVertices\cf4 , fromIndices: \cf5 DebugData\cf4 .\cf5 cubeIndices\cf4 )
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         ro.\cf5 Material\cf4  = mat
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         \cf3 let\cf4  vo = \cf5 VisualObject\cf4 ()
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         vo.\cf5 x\cf4  = \cf6 10
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         vo.\cf5 yRot\cf4  = \cf6 180
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         vo.\cf7 LinkRenderObject\cf4 (ro)
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf4         \cf3 self\cf4 .\cf5 debugVisualObjects\cf4 .\cf9 append\cf4 (vo)\
+	\}
+\f0\fs24 \cf0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+---------- End File ----------\
+\
+\
+
+\b Creating your own Shader\
+
+\b0 \
+1. Create another Vertex and Fragment Shader file pair.\
+These files must include below variables (named EXACTLY the same) at the bare minimum:\
+\
+-------- FoobarVertex.glsl and/or FoobarFragment.glsl ----------\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf3 \cb2 \
+uniform\cf4  \cf3 highp\cf4  \cf3 mat4\cf4  u_ModelView;
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf3 uniform\cf4  \cf3 highp\cf4  \cf3 mat4\cf4  u_Projection;
+\f0\fs24 \cf0 \
+\
+
+\f1\fs28 \cf3 in\cf4  \cf3 vec4\cf4  i_Position;
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf3 in\cf4  \cf3 vec2\cf4  i_TexCoord;
+\f0\fs24 \cf0 \
+
+\f1\fs28 \cf3 in\cf4  \cf3 vec3\cf4  i_Normal;
+\f0\fs24 \cf0 \cb1 \
+\
+---------- End File ----------\
+\
+\
+2. Create a material to implement your shader \
+This material should have uniforms for all the details such as colour and lightning. Each material should correspond to one shader. \
+	- See the various material files for details. \
+}
